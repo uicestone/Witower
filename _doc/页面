@@ -1,0 +1,17 @@
+uri				controller			view			discription
+/				index/index			index			首页
+/project		project/index		project/list	项目列表
+/project/{id}	project/view		project/view	项目查看/创意列表
+/wit/{id}		wit/view			wit/view		创意查看/版本列表
+/wit/edit/{id}	wit/edit			wit/edit		版本编辑
+/vote			vote/index			vote/list		投票项目列表
+/vote/{id}		vote/view			vote/view		投票项目查看
+/login			user/login			user/login		登陆
+/signup			user/signup			user/signup		注册
+/user/talent	user/talent			user/talent		达人用户列表
+/user/partnet	user/partner		user/partner	企业用户列表
+/home			user/home			user/home		个人主页/动态
+/home/score		user/score							积分页面
+/home/profile	user/profile		user/profile	用户资料
+/home/project	user/project		user/project	我的项目列表
+/space/{id}		user/space			user/space		用户主页/动态

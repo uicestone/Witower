@@ -38,9 +38,20 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "index";
 $route['404_override'] = '';
 
+$route['project/(:num)'] = 'project/view/$1';
+$route['wit/(:num)'] = 'wit/view/$1';
+$route['vote/(:num)'] = 'vote/view/$1';
+$route['login'] = 'user/login';
+$route['logout'] = 'user/logout';
+$route['signup'] = 'user/signup';
+$route['home'] = 'user/home';
+$route['home/score'] = 'user/score';
+$route['home/profile'] = 'user/profile';
+$route['home/project'] = 'user/project';
+$route['space/(:num)'] = 'user/space/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
