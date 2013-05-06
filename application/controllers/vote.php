@@ -15,7 +15,7 @@ class Vote extends WT_Controller{
 	 * 项目投票详情查看页
 	 */
 	function view(){
-		
+		$this->load->view('vote/view');
 	}
 	
 }
