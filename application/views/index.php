@@ -31,48 +31,43 @@
             </div>
         </div>
     </div-->
+
     <div class="water">
-        <!--{loop $projectlist $key $project}-->
+<?foreach($projects as $project){//这里的单个project是c里面projects下面的子数组 然后 每个里面的 id  XX XX 对吧?>
         <div class="box">
             <div class="img cell">
                 <!--img src="style/default/p.jpg"-->
-                <a href="index.php?project-view-<?=$project[p_id]?>">
-                <img src="<?=$project[image_path]?><?=$project[image_name]?>">
+                <a href="/project/<?=$project['id']?>">
+                <img src="<?=$project['pic']?>">
                 </a>
-                <p><?=$project[title]?></p>
+                <p><?=$project['name']?></p>
             </div>
             <div class="details cell">
-                项目金额 ：<span class="price"><?=$project[money]?>元</span>       <br>
-                截止日期 ： <?=$project[end_time]?><br>
+                项目金额 ：<span class="price"><?=$project['bonus']?>元</span>       <br>
+                截止日期 ： <?=$project['expire_date']?><br>
                 标签：
-                <!--{loop $project[tag] $key_t $tag}-->
-                <a class="f3" href="#"><?=$tag[tag_name]?></a>
-                <!--{/loop}-->
+<?	foreach($project['tags'] as $tag){?>
+                <a class="f3" href="#"><?=$tag?></a>
+<?	}?>
                 <ul>
-                    <a href="index.php?project-view-<?=$project[p_id]?>"><li class="cat-1" title="参与">(<?=$project[join_num]?>)</li></a>
-                    <a href="index.php?project-view-<?=$project[p_id]?>"><li class="cat-2" title="讨论">(<?=$project[comment_num]?>)</li></a>
-                    <a href="index.php?project-view-<?=$project[p_id]?>"><li class="cat-3" title="收藏">(<?=$project[favorite_num]?>)</li></a>
+                    <a href="/project/<?=$project['id']?>"><li class="cat-1" title="参与">(<?=$project['participants']?>)</li></a>
+                    <a href="/project/<?=$project['id']?>"><li class="cat-2" title="讨论">(<?=$project['comment_num']?>)</li></a>
+                    <a href="/project/<?=$project['id']?>"><li class="cat-3" title="收藏">(<?=$project['favorates']?>)</li></a>
                 </ul>
             </div>
             <div class="users cell">
-                <p><?=$project[summary]?></p>
+                <p><?//=$project[summary]?></p>
                 <ul>
-                    <!--{loop $project[comment_list] $k_c $comment}-->
-                    <li><a href="index.php?user-space-<?=$comment[uid]?>"><!--<img src="style/default/p5.jpg">--><img src="<?=$comment[image]?>_30.jpg"></a>
-                        <p><a href="index.php?user-space-<?=$comment[uid]?>"><?=$comment[username]?>：</a><?=$comment[comment]?></p>
+<?	foreach($project['comments'] as $comment){?>
+                    <li><a href="/space/<?=$comment['user']?>"><!--<img src="style/default/p5.jpg">--><img src="/uploads/avartar/<?=$comment['user']?>_30.jpg"></a>
+					   <p><a href="/space/<?=$comment['user']?>"><?=$comment['username']?>：</a><?=$comment['content']?></p>
                     </li>
-                    <!--{/loop}-->
-                    <!--li><img src="style/default/p5.jpg">
-                        <p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
-                    </li>
-                    <li><img src="style/default/p5.jpg">
-                        <p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
-                    </li-->
+<?	}?>
                 </ul>
             </div>
-            <div class="tail cell"> <a href="index.php?project-view-<?=$project[p_id]?>"> >>> </a></div>
+            <div class="tail cell"> <a href="/project/<?=$project['id']?>"> >>> </a></div>
         </div>
-        <!--{/loop}-->
+<?}?>
 <!--        
         <div class="box">
             <div class="img cell">
