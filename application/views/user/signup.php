@@ -13,8 +13,7 @@ function check_username(){
 		g_is_ok_username=0;
 		$('#checkusername').html('{lang loginTip1}').fadeIn();
 		divDance('checkusername');
-	/*}else if( length <<?=$minlength?> || length ><?=$maxlength?>){*/
-	}else if( length <{lang minlength} || length >{lang maxlength}){
+	}else if( length < 2 || length >255){
 		$('#checkusername').html('<?=$loginTip2?>').fadeIn();
 		divDance('checkusername');
 		g_is_ok_username=0;
