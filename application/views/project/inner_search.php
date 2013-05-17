@@ -27,6 +27,6 @@
 			<?foreach ($people as $people){?>
 					<a href="#" class="on"><?=$people?></a>
 			<?}?>
-		</li>           
+		</li>
 	</ul>
 </div>

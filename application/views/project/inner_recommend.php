@@ -4,7 +4,7 @@
 		<div class="info">
 			<a href="/project/view/<?=$recommended_project['id']?>"><img src="<?=$recommended_project[image_path]?><?=$recommend_project[image_name]?>"><!--<img src="style/default/pro_p1.jpg">--></a>
 			<ul>
-				<li><b>发布企业：</b><?=$recommended_project['name']?>
+				<li><b>发布企业：</b><?=$recommended_project['company_name']?>
 					<!--{if $recommend_project[follow]}-->
 						<span class="add_attention">已关注</span>
 					<!--{else}-->

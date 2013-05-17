@@ -41,7 +41,7 @@
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
-						<li><b>发布企业：</b><?=$project['name']?></li>
+						<li><b>发布企业：</b><?=$project['company_name']?></li>
 						<li><b>项目金额：</b><?=$project['bonus']?></li>
 						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
 						<li class="tags">
@@ -71,7 +71,7 @@
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
-						<li><b>发布企业：</b><?=$project['name']?></li>
+						<li><b>发布企业：</b><?=$project['company_name']?></li>
 						<li><b>项目金额：</b><?=$project['bonus']?></li>
 						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
 						<li class="tags">
@@ -101,7 +101,7 @@
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
-						<li><b>发布企业：</b><?=$project['name']?></li>
+						<li><b>发布企业：</b><?=$project['company_name']?></li>
 						<li><b>项目金额：</b><?=$project['bonus']?></li>
 						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
 						<li class="tags">

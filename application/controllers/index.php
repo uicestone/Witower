@@ -45,7 +45,7 @@ class Index extends WT_Controller{
 			)
 		);
 		
-		$this->load->view('index',compact('project'));
+		$this->load->view('index',compact('projects'));
 	}
 	
 }

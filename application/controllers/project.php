@@ -283,7 +283,7 @@ class Project extends WT_Controller{
 			array('id'=>1,'name'=>'Sony PSV'),
 			array('id'=>2,'name'=>'可口可乐广告'),
 		);
-		$Collection_tags = array('设计','包装');
+		$collection_tags = array('设计','包装');
 		
 		$this->load->view('project/view',  compact('project','wits','hot_tags','participants','participants_count','recommended_projects','recommended_votes','Collection_tags'));
 	}
