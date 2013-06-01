@@ -19,7 +19,7 @@ class Project extends WT_Controller{
 			'labels'=>array('可乐','广告'),
 			'comments'=>array(
 				array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-				array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+				array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 			),
 			//'reposts'=>10 项目的转发删了，不要了
 			'comments_count'=>2,
@@ -51,7 +51,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -69,7 +69,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -90,7 +90,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -108,7 +108,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -126,7 +126,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -144,7 +144,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -165,7 +165,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -183,7 +183,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -201,7 +201,7 @@ class Project extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -233,7 +233,7 @@ class Project extends WT_Controller{
 			'labels'=>array('可乐','广告'),
 			'comments'=>array(
 				array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-				array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+				array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 			),
 			//'reposts'=>10 项目的转发删了，不要了
 			'comments_count'=>2,
@@ -249,7 +249,7 @@ class Project extends WT_Controller{
 				'content'=>'什么叫同义词11111？同义词，是表达的意义相同但是名称不同的词条，例如：“北京”和“北京市”是同义词。为了避免不同用户提交名称不同而内容相同的词条，造成资源浪费和重复劳动，互动百科会将概念相同的词条添加为同义',
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				'comments_count'=>2
 			),
@@ -259,7 +259,7 @@ class Project extends WT_Controller{
 				'content'=>'什么叫同义词22222？同义词，是表达的意义相同但是名称不同的词条，例如：“北京”和“北京市”是同义词。为了避免不同用户提交名称不同而内容相同的词条，造成资源浪费和重复劳动，互动百科会将概念相同的词条添加为同义',
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				'comments_count'=>2
 			),

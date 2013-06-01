@@ -38,7 +38,7 @@
 			<div class="img cell">
 				<!--img src="style/default/p.jpg"-->
 				<a href="/project/<?= $project['id'] ?>">
-					<img src="<?= $project['pic'] ?>">
+					<img src="/uploads/images/project/<?= $project['id'];?>_100.jpg">
 				</a>
 				<p><?= $project['name'] ?></p>
 			</div>
@@ -59,7 +59,7 @@
 				<p><? //=$project[summary]   ?></p>
 				<ul>
 					<? foreach ($project['comments'] as $comment) { ?>
-								<li><a href="/space/<?= $comment['user'] ?>"><!--<img src="style/default/p5.jpg">--><img src="/uploads/avartar/<?=$comment['username'] ?>_30.jpg"></a>
+								<li><a href="/space/<?= $comment['user'] ?>"><!--<img src="style/default/p5.jpg">--><img src="/uploads/images/avartar/<?=$comment['user'] ?>_30.jpg"></a>
 							<p><a href="/space/<?= $comment['user'] ?>"><?= $comment['username'] ?>：</a><?= $comment['content'] ?></p>
 						</li>
 					<? } ?>

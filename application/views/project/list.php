@@ -37,7 +37,7 @@
 
 				<?foreach($latest_projects as $project){?>
 				<div class="main">
-					<a href="project-view-<?=$project['id']?>"><img src="style/default/3.jpg"></a>
+                                    <a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
@@ -67,7 +67,7 @@
 
 				<?foreach($hotprojects as $project){?>
 				<div class="main">
-					<a href="project-view-<?=$project['id']?>"><img src="style/default/3.jpg"></a>
+					<a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
@@ -97,7 +97,7 @@
 
 				<?foreach($bonus_projects as $project){?>
 				<div class="main">
-					<a href="project-view-<?=$project['id']?>"><img src="style/default/3.jpg"></a>
+					<a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>

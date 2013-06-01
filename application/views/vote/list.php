@@ -6,7 +6,7 @@
 		<div class="title"><h3>每日热门投票</h3></div>
 		<div class="main">
 			<div class="info">
-				<a href="<?= $recommended_voting_project['id'] ?>}"><img src="<?= $recommend_project[image_path] ?><?= $recommend_project[image_name] ?>"></a>
+				<a href="<?= $recommended_voting_project['id'] ?>}"><img src="uploads/images/project/<?=$recommended_voting_project['id']?>_100.jpg"></a>
 				<ul>
 					<li><b>发布企业：</b><?= $recommended_voting_project['company_name'] ?>
 						<!--{if $recommend_project[follow]}-->
@@ -25,7 +25,7 @@
 				<div class="fn-right">
 					<ul id="mycarousel" class="jcarousel-skin-tango">
 						<?foreach($recommended_voting_project['voters'] as $project){?>
-						<li><a href="index.php?user-space-<?= $project['id'] ?>"><img src="style/default/1.jpg"><span><?= $project['name'] ?></span></a></li>
+						<li><a href="index.php?user-space-<?= $project['id'] ?>"><img src="uploads/images/avartar/<?=$project['id']?>_30.jpg"><span><?= $project['name'] ?></span></a></li>
 						<?}?>
 					</ul>
 				</div>
@@ -34,7 +34,7 @@
 				<div class="main">
 					<ul>
 						<?foreach($recommended_voting_project['candidates'] as $project){?>
-						<li><b><?= $project['percentage'] ?>%</b>的人投票给<span><a href="#">@tudo用户名</a></span><br>
+						<li><b><?= $project['percentage'] ?>%</b>的人投票给<span><a href="<?=$project['user']?>"><?=$project['username']?></a></span><br>
 							<ul>
 								<li>当前投票数：<?= $recommended_voting_project['voters_count'] ?>票</li>
 								<li>投票时间：<?= $recommended_voting_project['date_start'] ?> 至 <?= $recommended_voting_project['date_end'] ?></li>
@@ -81,7 +81,7 @@
 
 					<?foreach($voting_projects as $project){?>
 					<div class="box">
-						<a href="{url projectvote-view-<?= $project['id'] ?>}"><img src="style/default/3.jpg"></a>
+						<a href="{url projectvote-view-<?= $project['id'] ?>}"><img src="uploads/images/project/<?=$project['id']?>.jpg"></a>
 						<ul>
 							<li><b>项目名称：</b><?= $project['name'] ?></li>
 							<li><b>项目介绍：</b><?= $project['summary'] ?></li>
@@ -114,7 +114,7 @@
 
 					<?foreach($voting_projects as $project){?>
 					<div class="box">
-						<a href="{url projectvote-view-<?= $project['id'] ?>}"><img src="style/default/3.jpg"></a>
+						<a href="{url projectvote-view-<?= $project['id'] ?>}"><img src="uploads/images/project/<?=$project['id']?>.jpg"></a>
 						<ul>
 							<li><b>项目名称：</b><?= $project['name'] ?></li>
 							<li><b>项目介绍：</b><?= $project['summary'] ?></li>

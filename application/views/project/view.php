@@ -7,7 +7,7 @@
 	<div id="left">
 		<div class="model model-b">
 			<div class="main">
-				<div><img src="style/default/us_pic.jpg"><br>
+				<div><img src="/uploads/images/project/<?=$project['id']?>_100.jpg"><br>
 					<span>
 						<!--{if $project[follow]}-->
 						<span class="add_attention">已关注</span>
@@ -89,7 +89,7 @@
 					</div>
 					<div class="main">
 						<p><?= $data['content'] ?></p>
-						<img src="style/default/us_p1.jpg">
+						<img src="uploads/images/product/<?=$data['id']?>.jpg">
 					</div>
 					<div class="tail icons">
 						<ul>

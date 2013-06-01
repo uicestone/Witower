@@ -2,7 +2,7 @@
 	<div class="title"><h3>每日推荐</h3></div>
 	<div class="main">
 		<div class="info">
-			<a href="/project/view/<?=$recommended_project['id']?>"><img src="<?=$recommended_project[image_path]?><?=$recommend_project[image_name]?>"><!--<img src="style/default/pro_p1.jpg">--></a>
+			<a href="/project/view/<?=$recommended_project['id']?>"><img src="uploads/images/project/<?=$recommended_project['id']?>_100.jpg"><!--<img src="style/default/pro_p1.jpg">--></a>
 			<ul>
 				<li><b>发布企业：</b><?=$recommended_project['company_name']?>
 					<!--{if $recommend_project[follow]}-->
@@ -30,7 +30,7 @@
 			<div class="fn-right">
 				<ul id="mycarousel" class="jcarousel-skin-tango">
 					<?foreach($recommended_project['comments'] as $data){?>
-						<li><a href="/user/space/<?=$data['id']?>"><img src="style/default/<?=$data['username']?>_60.jpg"><span><?=$data['content']?></span></a></li>
+						<li><a href="/user/space/<?=$data['id']?>"><img src="uploads/images/avartar/<?=$data['user']?>_30.jpg"><span><?=$data['username']?></span></a></li>
 					<?}?>
 				</ul>
 			</div>

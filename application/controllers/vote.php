@@ -27,20 +27,24 @@ class Vote extends WT_Controller{
 			'company'=>2,
 			'company_name'=>'可口可乐',
 			'voters'=>array(
-				array('id'=>1,'name'=>'user_1'),
-				array('id'=>2,'name'=>'user_2')
+				array('id'=>5,'name'=>'user_1'),
+				array('id'=>6,'name'=>'user_2')
 			),
 			'voters_count'=>2,
 			'votes'=>4,
 			'tags'=>array('网站','UI','广告'),
-			'candidates'=>array(//todo:如果这里是投票的话那么好像还少一个用户名字段，视图的是0.5%的人投票给@XX
+			'candidates'=>array(
 				array(
 					'percentage'=>0.5,
-					'votes'=>2
+					'votes'=>2,
+					'user'=>5,
+					'username'=>'user_1'
 				),
 				array(
 					'percentage'=>0.5,
-					'votes'=>2
+					'votes'=>2,
+					'user'=>6,
+					'username'=>'user_2'
 				)
 			)
 		);

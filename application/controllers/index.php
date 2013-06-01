@@ -20,7 +20,7 @@ class Index extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				//'reposts'=>10 项目的转发删了，不要了
 				'comments_count'=>2,
@@ -36,7 +36,7 @@ class Index extends WT_Controller{
 				'labels'=>array('可乐','广告'),
 				'comments'=>array(
 					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_01')
+					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
 				),
 				'comments_count'=>2,
 				'favorites'=>3,

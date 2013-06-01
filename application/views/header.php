@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset={WIKI_CHARSET}" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title><?=$navtitle?> <?=$setting['site_name']?> <?=$setting['seo_title']?></title>
 		<meta name="keywords" content="<?=$setting['seo_keywords']?>" />
 		<meta name="description" content="<?=$setting['seo_description']?>" />
