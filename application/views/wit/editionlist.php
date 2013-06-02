@@ -113,7 +113,7 @@ $(function(){
 			<a href="{url edition-view-<?=$edition['eid']?>-{eval echo count($editionlist)-$key}}">{lang edition}{eval echo count($editionlist)-$key}</a></></td>
 			<td class="gray"><?=$edition['time']?></td>
 			<td><a href="{url user-space-$edition['authorid']}" ><?=$edition['author']?></a>
-			<span title="{lang userstars} <?=$edition['stars']?>"><!--{for $i=0; $i<$edition['editorstar'][3]; $i++}--><img src="style/default/star_level3.gif"/><!--{/for}--><!--{for $i=0; $i<$edition['editorstar'][2]; $i++}--><img src="style/default/star_level2.gif"/><!--{/for}--><!--{for $i=0; $i<$edition['editorstar'][1]; $i++}--><img src="style/default/star_level1.gif"/><!--{/for}--></span>
+			<span title="{lang userstars} <?=$edition['stars']?>"><!--{for $i=0; $i<$edition['editorstar'][3]; $i++}--><img src="style/star_level3.gif"/><!--{/for}--><!--{for $i=0; $i<$edition['editorstar'][2]; $i++}--><img src="style/star_level2.gif"/><!--{/for}--><!--{for $i=0; $i<$edition['editorstar'][1]; $i++}--><img src="style/star_level1.gif"/><!--{/for}--></span>
 			</td>
 			<td><?=$edition['reason']?></td>
 		</tr>

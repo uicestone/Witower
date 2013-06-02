@@ -4,7 +4,7 @@
 		<h2 class="col-h2">{lang checkCreditRule}</h2>
 		<div class="jfhl_theme i6-ff">
 		<p class="l">{lang checkCreditTip}</p>
-		<img alt="{lang checkCreditProcess}" src="style/default/jfhl/theme_bg.gif"/>
+		<img alt="{lang checkCreditProcess}" src="style/jfhl/theme_bg.gif"/>
 		</div>
 	</div>
 	
@@ -20,10 +20,10 @@
 				</a>
 					{if $gift['credit']>$user['credit1'] }
 						<p title="<?=$gift['title']?>"><a href="javascript:alert('{lang checkCreditTip2}');"><?=$gift['shorttitle']?></a>{lang needGolds}:$gift['credit']</p>
-						<a href="javascript:alert('{lang checkCreditTip2}');"  class="redeem"><img src="style/default/jfhl/nredeem.gif"/></a>
+						<a href="javascript:alert('{lang checkCreditTip2}');"  class="redeem"><img src="style/jfhl/nredeem.gif"/></a>
 					{else}					
 						<p title="<?=$gift['title']?>"><a id="title<?=$gift['id']?>" href="javascript:apply($gift['id']);"><?=$gift['shorttitle']?></a>{lang needGolds}:$gift['credit']</p>
-						<a href="javascript:apply($gift['id']);"  class="redeem"><img src="style/default/jfhl/redeem.gif"/></a>	
+						<a href="javascript:apply($gift['id']);"  class="redeem"><img src="style/jfhl/redeem.gif"/></a>	
 					{/if}
 					
 				</li>
@@ -64,7 +64,7 @@
 	<input id="gid"  type="hidden" name="gid" value="" />
 	<div class="i6-ff lp_info" style="text-align:left;line-height:22px;">
 		<div class="l j-zhong lp_img_turn">			
-			<img id="giftdiv" src="style/default/jfhl/lp_01.jpg" width="106px" height="106px"/>
+			<img id="giftdiv" src="style/jfhl/lp_01.jpg" width="106px" height="106px"/>
 		</div>
 		<h3 class="h2 blue m-t8" id="titlediv">kjhkjhkjh</h3>
 		<ul class="m-t8">
@@ -72,7 +72,7 @@
 			<li	id="descriptiondiv">lkjklj</li>
 		</ul>
 	</div> 
-	<p class="red col-p"><img src="style/default/jfhl/redeem_tips.gif"/>{lang checkCreditTip5}</p>
+	<p class="red col-p"><img src="style/jfhl/redeem_tips.gif"/>{lang checkCreditTip5}</p>
 	<ul class="m-t8 ul_l_s real_info" style="text-align:left">
 	<li><span>{lang realname}：</span><input id="truename" name="truename" type="text" class="inp_txt" value="<?=$user['truename']?>"/><label class="red">*</label><label class="red" id="v_truename">{lang importantTip}</label></li>
 	<li><span>{lang tel}：</span><input id="telephone" name="telephone" type="text" class="inp_txt" value="<?=$user['telephone']?>"/><label class="red">*</label><label class="red" id="v_telephone">{lang importantTip}</label></li>

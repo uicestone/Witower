@@ -9,14 +9,14 @@
 #bar {
 	width: 211px;
 	height: 18px;
-	background-image: url("style/default/photo/track.gif");
+	background-image: url("style/photo/track.gif");
 	background-repeat: no-repeat;
 	position: relative;
 }
 .child {
 	width: 11px;
 	height: 16px;
-	background-image: url(style/default/photo/grip.gif);
+	background-image: url(style/photo/grip.gif);
 	background-repeat: no-repeat;
 	left: 0;
 	top:3px;
@@ -73,7 +73,7 @@
 <div class="r w-710 o-v m-t10 p-b10 gl_manage_main">
 <h2 class="h3 bold">{lang editImage}</h2>
 <!--{if isset($image_html)}-->
-<img src="<!--{if isset($uid_image)}-->$uid_image<!--{else}-->style/default/user.jpg<!--{/if}-->" name="userimage" width="90" id="userimage"/>
+<img src="<!--{if isset($uid_image)}-->$uid_image<!--{else}-->style/user.jpg<!--{/if}-->" name="userimage" width="90" id="userimage"/>
 <caption>
 	<h2>{lang config_new_avatar}</h2>
 	<p> {lang select_new_picture}</p>
@@ -95,11 +95,11 @@ $image_html
 	<div class="uploaddiv">
 		<table width="250" align="left">
 			<tr>
-				<td width="23" id="Min"><img alt="{lang editImageNarrow}" src="style/default/photo/_c.gif" onMouseOver="this.src='style/default/photo/_c.gif';" onMouseOut="this.src='style/default/photo/_h.gif';" id="moresmall" class="smallbig" /></td>
+				<td width="23" id="Min"><img alt="{lang editImageNarrow}" src="style/photo/_c.gif" onMouseOver="this.src='style/photo/_c.gif';" onMouseOut="this.src='style/photo/_h.gif';" id="moresmall" class="smallbig" /></td>
 				<td width="215">
 					<div id="bar"><div class="child"></div></div>
 				</td>
-				<td id="Max"><img alt="{lang editImageEnlarge}" src="style/default/photo/c.gif" onMouseOver="this.src='style/default/photo/c.gif';" onMouseOut="this.src='style/default/photo/h.gif';" id="morebig" class="smallbig" /></td>
+				<td id="Max"><img alt="{lang editImageEnlarge}" src="style/photo/c.gif" onMouseOver="this.src='style/photo/c.gif';" onMouseOut="this.src='style/photo/h.gif';" id="morebig" class="smallbig" /></td>
 			</tr>
 		</table>
 	</div>
@@ -174,20 +174,20 @@ $image_html
 	<div class="m-t10 p-b10 sidebar gl_manage">
 		<h2 class="col-h2"><span onclick="expand('usermanage');">{lang profile}</span></h2>
 		<ul id="usermanage">
-			<li><a href="{url user-profile}" target="_self"><img alt="" src="style/default/gl_manage/grzl.gif" />{lang profile}</a></li>
-			<li><a href="{url user-editprofile}" target="_self" ><img src="style/default/gl_manage/grzl_set.gif"/>{lang editProfile}</a></li>
-			<li><a href="{url user-editpass}" target="_self"><img src="style/default/gl_manage/change_pw.gif"/>{lang editPass}</a></li>
-			<li><a href="{url user-editimage}" target="_self" class="on"><img src="style/default/gl_manage/grzl_set.gif" />{lang editImage}</a></li>
-			<li><a href="{url doc-managesave}" target="_self"><img src="style/default/gl_manage/ctbccgx.gif"/>{lang manageSave}</a></li>
-			<li><a href="{url user-invite}" target="_self"><img src="style/default/gl_manage/invite.png"/>{lang regInvite}</a></li>
+			<li><a href="{url user-profile}" target="_self"><img alt="" src="style/gl_manage/grzl.gif" />{lang profile}</a></li>
+			<li><a href="{url user-editprofile}" target="_self" ><img src="style/gl_manage/grzl_set.gif"/>{lang editProfile}</a></li>
+			<li><a href="{url user-editpass}" target="_self"><img src="style/gl_manage/change_pw.gif"/>{lang editPass}</a></li>
+			<li><a href="{url user-editimage}" target="_self" class="on"><img src="style/gl_manage/grzl_set.gif" />{lang editImage}</a></li>
+			<li><a href="{url doc-managesave}" target="_self"><img src="style/gl_manage/ctbccgx.gif"/>{lang manageSave}</a></li>
+			<li><a href="{url user-invite}" target="_self"><img src="style/gl_manage/invite.png"/>{lang regInvite}</a></li>
 		</ul>
 		<h2 class="col-h2"><span onclick="expand('userpms');">{lang shortmessage}</span></h2>
 		<ul id="userpms">
-			<li><a href="{url pms-box-inbox}" target="_self"><img alt="" src="style/default/gl_manage/sjx.gif" />{lang inbox}</a></li>
-			<li><a href="{url pms-box-outbox}" target="_self" ><img alt="" src="style/default/gl_manage/fjx.gif"/>{lang outbox}</a></li>
-			<li><a href="{url pms-sendmessage}" target="_self" ><img src="style/default/gl_manage/fdxx.gif"/>{lang sendmessage}</a></li>
-			<li><a href="{url pms-box-drafts}" target="_self"><img src="style/default/gl_manage/cgx.gif" />{lang draft}</a></li>
-			<li><a href="{url pms-blacklist}" target="_self"><img src="style/default/gl_manage/hllb.gif"/>{lang blacklist}</a></li>
+			<li><a href="{url pms-box-inbox}" target="_self"><img alt="" src="style/gl_manage/sjx.gif" />{lang inbox}</a></li>
+			<li><a href="{url pms-box-outbox}" target="_self" ><img alt="" src="style/gl_manage/fjx.gif"/>{lang outbox}</a></li>
+			<li><a href="{url pms-sendmessage}" target="_self" ><img src="style/gl_manage/fdxx.gif"/>{lang sendmessage}</a></li>
+			<li><a href="{url pms-box-drafts}" target="_self"><img src="style/gl_manage/cgx.gif" />{lang draft}</a></li>
+			<li><a href="{url pms-blacklist}" target="_self"><img src="style/gl_manage/hllb.gif"/>{lang blacklist}</a></li>
 		</ul>
 	</div>
 </div>

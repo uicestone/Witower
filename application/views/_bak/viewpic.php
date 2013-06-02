@@ -8,10 +8,10 @@ width: expression(this.width > 60 && this.width/this.height >= 1 ? 60 : true);
 height: expression(this.height > 60 && this.width/this.height < 1 ? 60 : true);
 }
 .arrleft {
-	cursor: url("style/default/arr_left.cur"), auto;
+	cursor: url("style/arr_left.cur"), auto;
 }
 .arrright {
-	cursor: url("style/default/arr_right.cur"), auto;
+	cursor: url("style/arr_right.cur"), auto;
 }
 -->
 </style>
@@ -119,14 +119,14 @@ var pic={
 	},
 	li_p_n:function(){
 		if(this.start_key==0){
-			$('#pre_li')[0].src='style/default/tpbk/view_prev2.jpg';
-			$('#next_li')[0].src='style/default/tpbk/view_next.jpg';
+			$('#pre_li')[0].src='style/tpbk/view_prev2.jpg';
+			$('#next_li')[0].src='style/tpbk/view_next.jpg';
 		}else if(this.start_key+12==this.max_num){
-			$('#pre_li')[0].src='style/default/tpbk/view_prev.jpg';
-			$('#next_li')[0].src='style/default/tpbk/view_next2.jpg';
+			$('#pre_li')[0].src='style/tpbk/view_prev.jpg';
+			$('#next_li')[0].src='style/tpbk/view_next2.jpg';
 		}else{
-			$('#pre_li')[0].src='style/default/tpbk/view_prev.jpg';
-			$('#next_li')[0].src='style/default/tpbk/view_next.jpg';
+			$('#pre_li')[0].src='style/tpbk/view_prev.jpg';
+			$('#next_li')[0].src='style/tpbk/view_next.jpg';
 		}
 	},
 	next_id:function(type) {
@@ -169,8 +169,8 @@ $(function(){
 	pic.obj = $("#p_0");
 	pic.pic_p_n();
 	if(pic.max_num<=12){
-		$('#pre_li')[0].src='style/default/tpbk/view_prev2.jpg';
-		$('#next_li')[0].src='style/default/tpbk/view_next2.jpg';
+		$('#pre_li')[0].src='style/tpbk/view_prev2.jpg';
+		$('#next_li')[0].src='style/tpbk/view_next2.jpg';
 	}else{
 		pic.li_p_n();
 	}
@@ -180,7 +180,7 @@ $(function(){
 
 <div class="tupk_view">
 <div class="m-t10  view_img">
-<a href="javascript:pic.change_list(-1)"  class="view_p"><img id="pre_li" src="style/default/tpbk/view_prev.jpg"/></a>
+<a href="javascript:pic.change_list(-1)"  class="view_p"><img id="pre_li" src="style/tpbk/view_prev.jpg"/></a>
 
 <ul class="j-zhong" id="pic_list">
 <!--{loop $piclist $key $data}-->
@@ -188,7 +188,7 @@ $(function(){
 <!--{/loop}-->
 </ul>
 
-<a href="javascript:pic.change_list(1)" class="view_n"><img id="next_li" src="style/default/tpbk/view_next.jpg" /></a>
+<a href="javascript:pic.change_list(1)" class="view_n"><img id="next_li" src="style/tpbk/view_next.jpg" /></a>
 </div>
 
 

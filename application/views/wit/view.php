@@ -13,7 +13,7 @@
     </label>
     <label id='lockimage'>
       <!--{if $doc['locked']}-->
-      <image src="style/default/lock.gif"/>
+      <image src="style/lock.gif"/>
       <!--{/if}-->
     </label>
   </h1>
@@ -189,7 +189,7 @@
   <!--{if $attach_download}-->
   <!--{loop $attachment $attach}-->
   <dl id="$attach['id']">
-    <dt><img class="fj_img" src="style/default/attachicons/<?=$attach['icon']?>.gif"/><a href="{url attachment-download-$attach['id']}" coin_down="<?=$attach['coindown']?>" attach_id = "<?=$attach['uid']?>" uid = "<?=$userid?>"  class="file_download"><?=$attach['filename']?></a><br/>
+    <dt><img class="fj_img" src="style/attachicons/<?=$attach['icon']?>.gif"/><a href="{url attachment-download-$attach['id']}" coin_down="<?=$attach['coindown']?>" attach_id = "<?=$attach['uid']?>" uid = "<?=$userid?>"  class="file_download"><?=$attach['filename']?></a><br/>
       <span class="l">
       <label class="mar-r8">({eval echo sprintf('%.2f',$attach['filesize']/1024)}k)</label>
       <label>{lang attachDownloadNum}<?=$attach['downloads']?></label>
@@ -260,15 +260,15 @@
       <!--{/if}-->
     </label>
     <!--{if $synonym_audit}-->
-    <span class="r w-110 cursor" onclick="Synonym.box($doc['did'],this)"><img src="style/default/add_synonym.gif"/><a href="javascript:void(0)" >{lang editDddSyn}</a></span>
+    <span class="r w-110 cursor" onclick="Synonym.box($doc['did'],this)"><img src="style/add_synonym.gif"/><a href="javascript:void(0)" >{lang editDddSyn}</a></span>
     <!--{/if}-->
   </p>
 </div>
 <div class="bor-ccc m-t10 notes bg-gray bookmark">
-  <p><span class="bold">{lang favourite}: </span> <a title="Favorites" onclick="addfav();"><img src='style/default/bookmark/ie.gif' border='0' style="cursor:pointer;"></a> &nbsp;
+  <p><span class="bold">{lang favourite}: </span> <a title="Favorites" onclick="addfav();"><img src='style/bookmark/ie.gif' border='0' style="cursor:pointer;"></a> &nbsp;
     <script language="javascript"src='js/bookmark.js'></script>
     <!--{if !empty($userid)}-->
-    <img id="doc_favorite" did="<?=$doc['did']?>" title="{lang keepToSpace}" alt="{lang keepToSpace}" src="style/default/bookmark/hudong.gif" style="cursor:pointer;">
+    <img id="doc_favorite" did="<?=$doc['did']?>" title="{lang keepToSpace}" alt="{lang keepToSpace}" src="style/bookmark/hudong.gif" style="cursor:pointer;">
     <!--{/if}-->
   </p>
   <!--{if isset($doclink)}-->
@@ -370,51 +370,51 @@
     <!--{if $author}-->
     <!--{if !isset($lasteditor) || (isset($lasteditor) && $lasteditor['uid']!=$author['uid'])}-->
     <dl class="col-dl twhp2">
-      <dd><a href="{url user-space-$author['uid']}" target="_blank"  class="a-img1"> <img alt="<?=$author['username']?>" title="<?=$author['username']?>" src="<!--{if $author[image]}-->$author[image]<!--{else}-->style/default/user_l.jpg<!--{/if}-->" width="38px" height="38px" /> </a></dd>
+      <dd><a href="{url user-space-$author['uid']}" target="_blank"  class="a-img1"> <img alt="<?=$author['username']?>" title="<?=$author['username']?>" src="<!--{if $author[image]}-->$author[image]<!--{else}-->style/user_l.jpg<!--{/if}-->" width="38px" height="38px" /> </a></dd>
       <dt><a href="{url user-space-$author['uid']}" target="_blank"><?=$author['username']?></a></dt>
       <dd><span style="color:<?=$author['color']?>" class="l m-r8"><?=$author['grouptitle']?></span> <span title="{lang userstars} <?=$author['stars']?>" class="l">
         <!--{for $i=0; $i<$author['userstars'][3]; $i++}-->
-        <img src="style/default/star_level3.gif"/>
+        <img src="style/star_level3.gif"/>
         <!--{/for}-->
         <!--{for $i=0; $i<$author['userstars'][2]; $i++}-->
-        <img src="style/default/star_level2.gif"/>
+        <img src="style/star_level2.gif"/>
         <!--{/for}-->
         <!--{for $i=0; $i<$author['userstars'][1]; $i++}-->
-        <img src="style/default/star_level1.gif"/>
+        <img src="style/star_level1.gif"/>
         <!--{/for}-->
         </span> </dd>
-      <dd>{lang creator} <a onclick="javascript:Message.box('<?=$author[username]?>')"   href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/default/jb.gif" title="<?=$author['credit1']?>{lang gold}"></dd>
+      <dd>{lang creator} <a onclick="javascript:Message.box('<?=$author[username]?>')"   href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/jb.gif" title="<?=$author['credit1']?>{lang gold}"></dd>
     </dl>
     <!--{/if}-->
     <!--{/if}-->
     <!--{if $author_removed}-->
     <dl class="col-dl twhp2">
-      <dd><a class="a-img1"> <img alt="{lang haveDel}" src="style/default/user_l.jpg" width="38px" height="38px" /></a></dd>
+      <dd><a class="a-img1"> <img alt="{lang haveDel}" src="style/user_l.jpg" width="38px" height="38px" /></a></dd>
       <dt>{lang userHaveDel}</dt>
       <dd>{lang creator}</dd>
     </dl>
     <!--{/if}-->
     <!--{if isset($lasteditor) }-->
     <dl class="col-dl twhp2">
-      <dd><a href="{url user-space-$lasteditor['uid']}" target="_blank"  class="a-img1"> <img alt="<?=$lasteditor['username']?>" title="<?=$lasteditor['username']?>" src="<!--{if $lasteditor[image]}-->$lasteditor[image]<!--{else}-->style/default/user_l.jpg<!--{/if}-->" width="38px" height="38px" /> </a></dd>
+      <dd><a href="{url user-space-$lasteditor['uid']}" target="_blank"  class="a-img1"> <img alt="<?=$lasteditor['username']?>" title="<?=$lasteditor['username']?>" src="<!--{if $lasteditor[image]}-->$lasteditor[image]<!--{else}-->style/user_l.jpg<!--{/if}-->" width="38px" height="38px" /> </a></dd>
       <dt><a href="{url user-space-$lasteditor['uid']}" target="_blank"><?=$lasteditor['username']?></a></dt>
       <dd><span class="l m-r8" style="color:<?=$lasteditor['color']?>" ><?=$lasteditor['grouptitle']?></span> <span title="{lang userstars} <?=$lasteditor['stars']?>" class="l">
         <!--{for $i=0; $i<$lasteditor['userstars'][3]; $i++}-->
-        <img src="style/default/star_level3.gif"/>
+        <img src="style/star_level3.gif"/>
         <!--{/for}-->
         <!--{for $i=0; $i<$lasteditor['userstars'][2]; $i++}-->
-        <img src="style/default/star_level2.gif"/>
+        <img src="style/star_level2.gif"/>
         <!--{/for}-->
         <!--{for $i=0; $i<$lasteditor['userstars'][1]; $i++}-->
-        <img src="style/default/star_level1.gif"/>
+        <img src="style/star_level1.gif"/>
         <!--{/for}-->
         </span> </dd>
-      <dd>{lang recentEditor} <a onclick="javascript:Message.box('<?=$lasteditor[username]?>')"   href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/default/jb.gif" title="<?=$lasteditor['credit1']?>{lang gold}"></dd>
+      <dd>{lang recentEditor} <a onclick="javascript:Message.box('<?=$lasteditor[username]?>')"   href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/jb.gif" title="<?=$lasteditor['credit1']?>{lang gold}"></dd>
     </dl>
     <!--{/if}-->
     <!--{if $lasteditor_removed}-->
     <dl class="col-dl twhp2">
-      <dd><a class="a-img1"> <img alt="{lang haveDel}" src="style/default/user_l.jpg" width="38px" height="38px" /></a></dd>
+      <dd><a class="a-img1"> <img alt="{lang haveDel}" src="style/user_l.jpg" width="38px" height="38px" /></a></dd>
       <dt>{lang userHaveDel}</dt>
       <dd>{lang recentEditor}</dd>
     </dl>
@@ -519,7 +519,7 @@ function lock(type){
 			var	message=xml.lastChild.firstChild.nodeValue;
 			if(message=='1'){
 				if(type=='lock'){
-					$('#lockimage').html(" &nbsp;<image src='style/default/lock.gif'>");
+					$('#lockimage').html(" &nbsp;<image src='style/lock.gif'>");
 				}else{
 					$('#lockimage').html("");
 				}
@@ -728,11 +728,11 @@ function closepop(name){
 		var s=obj.src;
 		var id=obj.id;
 		if(patrn.test(s)){
-			obj.src='style/default/open.gif';
+			obj.src='style/open.gif';
 			var t=$('#'+id).find("dd");
 			t.show();
 		}else{
-			obj.src='style/default/close.gif';
+			obj.src='style/close.gif';
 			var t=$('#'+id).find("dd");
 			t.hide();
 		}
@@ -1077,7 +1077,7 @@ var Attachment = {
 			if (!name) continue;
 			dl = form.parents("div.fj_list").find("dl:first").clone();
 			dl.find("a").text(name);
-			dl.find("img").attr("src","style/default/attachicons/"+icon+".gif");
+			dl.find("img").attr("src","style/attachicons/"+icon+".gif");
 			dl.find("dd").text(desc);
 			if (upload_success_files.indexOf(name)==-1){
 				$(files.get(i)).parent("div").remove();
@@ -1199,7 +1199,7 @@ var Attachment = {
 			closeImg:0,
 			minScrollTop:100,
 			overlay:0,
-			content:'<img title="回顶部" style="cursor:pointer" src="{WIKI_URL}/style/default/up.png" style="width:23px; height:66px" onclick="scrollToTop()"/>'
+			content:'<img title="回顶部" style="cursor:pointer" src="{WIKI_URL}/style/up.png" style="width:23px; height:66px" onclick="scrollToTop()"/>'
 		});
 	});
 

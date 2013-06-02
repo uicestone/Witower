@@ -38,7 +38,7 @@
 			<div class="main">
 				<div class="detail">
 					<div class="main">
-						<p><span name=<?=$microblog['username']?>><img src="style/default/p6.jpg" class="user_img"></span><?=$microblog['content']?></p>
+						<p><span name=<?=$microblog['username']?>><img src="style/p6.jpg" class="user_img"></span><?=$microblog['content']?></p>
 					</div>
 					<div class="tail icons">
 						<?=$microblog['time']?>
@@ -151,7 +151,7 @@
 					<option>活动</option>
 				</select>
 				<input type="text">
-				<button><img src="style/default/icon-search.png"></button>
+				<button><img src="style/icon-search.png"></button>
 			</div>
 		</div>-->
 		<div class="box">
@@ -214,14 +214,14 @@
 			</div>
 			<div class="main image">
 				<ul>
-					<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
 				</ul>
 			</div>
 		</div>

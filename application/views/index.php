@@ -36,7 +36,7 @@
 	<? foreach ($projects as $project) {//这里的单个project是c里面projects下面的子数组 然后 每个里面的 id  XX XX 对吧?>
 		<div class="box">
 			<div class="img cell">
-				<!--img src="style/default/p.jpg"-->
+				<!--img src="style/p.jpg"-->
 				<a href="/project/<?= $project['id'] ?>">
 					<img src="/uploads/images/project/<?= $project['id'];?>_100.jpg">
 				</a>
@@ -59,7 +59,7 @@
 				<p><? //=$project[summary]   ?></p>
 				<ul>
 					<? foreach ($project['comments'] as $comment) { ?>
-								<li><a href="/space/<?= $comment['user'] ?>"><!--<img src="style/default/p5.jpg">--><img src="/uploads/images/avartar/<?=$comment['user'] ?>_30.jpg"></a>
+								<li><a href="/space/<?= $comment['user'] ?>"><!--<img src="style/p5.jpg">--><img src="/uploads/images/avartar/<?=$comment['user'] ?>_30.jpg"></a>
 							<p><a href="/space/<?= $comment['user'] ?>"><?= $comment['username'] ?>：</a><?= $comment['content'] ?></p>
 						</li>
 					<? } ?>
@@ -71,7 +71,7 @@
 	<!--        
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -87,13 +87,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -102,7 +102,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -118,13 +118,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -133,7 +133,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -149,13 +149,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -164,7 +164,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -180,13 +180,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -195,7 +195,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -211,13 +211,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -226,7 +226,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -242,13 +242,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -257,7 +257,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -273,13 +273,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -288,7 +288,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -304,13 +304,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -319,7 +319,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -335,13 +335,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -350,7 +350,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -366,13 +366,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>
@@ -381,7 +381,7 @@
 			</div>
 			<div class="box">
 				<div class="img cell">
-					<img src="style/default/p.jpg">
+					<img src="style/p.jpg">
 					<p>玖城品牌策划设计</p>
 				</div>
 				<div class="details cell">
@@ -397,13 +397,13 @@
 				<div class="users cell">
 					<p>IT产业不断发展中，逐渐摸索出自己的产业发展规律，有人将他们统称为IT定律。下面这张图我们将介绍摩尔定律、安迪比尔定</p>
 					<ul>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
-						<li><img src="style/default/p5.jpg">
+						<li><img src="style/p5.jpg">
 							<p><a href="#">用户名：</a>产业不断发展中，逐渐摸索出自己的产业发展规律</p>
 						</li>
 					</ul>

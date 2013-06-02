@@ -155,11 +155,11 @@
 		var s=obj.src;
 		var id=obj.id;
 		if(patrn.test(s)){
-			obj.src='style/default/open.gif';
+			obj.src='style/open.gif';
 			var t=$('#'+id).find("dd");
 			t.show();
 		}else{
-			obj.src='style/default/close.gif';
+			obj.src='style/close.gif';
 			var t=$('#'+id).find("dd");
 			t.hide();
 		}

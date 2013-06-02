@@ -33,7 +33,7 @@
 			<!--{loop $list $key $data}-->
 			<div class="model-a">
 				<div class="main">
-					<a href="{url projectvote-view-<?=$data['p_id']?>}"><img src="style/default/3.jpg"></a>
+					<a href="{url projectvote-view-<?=$data['p_id']?>}"><img src="style/3.jpg"></a>
 					<ul>
 						<li><b>项目名称：</b><?=$data['title']?></li>
 						<li><b>项目介绍：</b><?=$data['summary']?></li>

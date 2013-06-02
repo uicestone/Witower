@@ -20,7 +20,7 @@
 						<div class="fn-right">
 							<p>您上传的头像会自动生成三种尺寸，请注意中小尺寸
 								的头像是否清晰。</p>
-							<img src="style/default/edit-photo.jpg">
+							<img src="style/edit-photo.jpg">
 						</div>
 					</div>
 				</div>
@@ -297,7 +297,7 @@
 				<ul>
 					<li><label>当前密码：</label><input type="password"></li>
 					<li><label>新密码：</label><input type="password"></li>
-					<li><label>安全强度：</label><span><img src="style/default/ps-grade.png"> 弱</span><span><img src="style/default/ps-grade-2.png"> 中</span><span><img src="style/default/ps-grade-3.png"> 强</span></li>
+					<li><label>安全强度：</label><span><img src="style/ps-grade.png"> 弱</span><span><img src="style/ps-grade-2.png"> 中</span><span><img src="style/ps-grade-3.png"> 强</span></li>
 					<li><label>确认密码：</label><input type="password"></li>
 				</ul>
 				<ul class="buttons">

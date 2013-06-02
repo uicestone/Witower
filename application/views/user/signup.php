@@ -212,10 +212,10 @@ function updateverifycode() {
 <div class="page-register">
 	<div class="title">
 		<h1>注册</h1>
-		<!--<span><img src="style/default/register-steps.png"></span>-->
+		<!--<span><img src="style/register-steps.png"></span>-->
 	</div>
 	<div class="main">
-		<div id="left"><img src="style/default/register-banner.png"></div>
+		<div id="left"><img src="style/register-banner.png"></div>
 		<div id="right">
 			<form id="registerform" method="post" action="<?=$formAction?>" onsubmit="return docheck();">
 				<ul>

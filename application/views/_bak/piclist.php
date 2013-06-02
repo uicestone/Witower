@@ -7,7 +7,7 @@ max-height:140px;
 width: expression(this.width > 136 && this.width/this.height >= 1 ? 136 : true);
 height: expression(this.height > 136 && this.width/this.height < 1 ? 136 : true);
 }
-.on{background:url(style/default/col_h2_on_bg.gif) repeat-x left top;}
+.on{background:url(style/col_h2_on_bg.gif) repeat-x left top;}
 -->
 </style>
 <div class="l w-230 tpbk_sideba">

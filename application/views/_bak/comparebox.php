@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset={WIKI_CHARSET}" />
 <title><?=$navtitle?> <?=$setting['site_name']?> <?=$setting['seo_title']?> - Powered by HDWiki!</title>
-<link href="style/default/hdwiki.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="style/hdwiki.css" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="js/jquery.js"></script>
 <style>
 .LeftFrame, .RightFrame{

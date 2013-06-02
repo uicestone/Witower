@@ -12,7 +12,7 @@
 </div>
 <div class="r w-230">
 <div class="m-t10 columns">
-<h2 class=" m-t10 m-lr8"><img alt="" src="style/default/dwsct_tit.gif"/></h2>
+<h2 class=" m-t10 m-lr8"><img alt="" src="style/dwsct_tit.gif"/></h2>
 <p class="col-p">{lang cooperatedocTip1}</p>
 <p class="col-p">{lang cooperatedocTip2}</p>
 <p class="col-p">{lang cooperatedocTip3}</p>

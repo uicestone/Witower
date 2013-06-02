@@ -62,19 +62,19 @@
 <div class="m-t10 p-b10 sidebar gl_manage">
 	<h2 class="col-h2"><span onclick="expand('usermanage');">{lang profile}</span></h2>	
 	<ul id="usermanage">
-		<li><a href="{url user-profile}" target="_self" class="on"><img alt="" src="style/default/gl_manage/grzl.gif" />个人资料</a></li>
-		<li><a href="{url user-editprofile}" target="_self" ><img src="style/default/gl_manage/grzl_set.gif"/>个人资料设置</a></li>
-		<li><a href="{url user-editpass}" target="_self"><img src="style/default/gl_manage/change_pw.gif"/>修改密码</a></li>
-		<li><a href="{url user-editimage}" target="_self"><img src="style/default/gl_manage/grzl_set.gif" />修改头像</a></li>
-		<li><a href="{url doc-managesave}" target="_self"><img src="style/default/gl_manage/ctbccgx.gif"/>词条保存草稿箱</a></li>
+		<li><a href="{url user-profile}" target="_self" class="on"><img alt="" src="style/gl_manage/grzl.gif" />个人资料</a></li>
+		<li><a href="{url user-editprofile}" target="_self" ><img src="style/gl_manage/grzl_set.gif"/>个人资料设置</a></li>
+		<li><a href="{url user-editpass}" target="_self"><img src="style/gl_manage/change_pw.gif"/>修改密码</a></li>
+		<li><a href="{url user-editimage}" target="_self"><img src="style/gl_manage/grzl_set.gif" />修改头像</a></li>
+		<li><a href="{url doc-managesave}" target="_self"><img src="style/gl_manage/ctbccgx.gif"/>词条保存草稿箱</a></li>
 	</ul>
 	<h2 class="col-h2"><span onclick="expand('userpms');">短消息</span></h2>		
 	<ul id="userpms">
-		<li><a href="{url pms-box-inbox}" target="_self"><img alt="" src="style/default/gl_manage/sjx.gif" />收件箱</a></li>
-		<li><a href="{url pms-box-outbox}" target="_self" ><img src="style/default/gl_manage/fjx.gif"/>发件箱</a></li>
-		<li><a href="{url pms-sendmessage}" target="_self" ><img src="style/default/gl_manage/fdxx.gif"/>发短消息</a></li>
-		<li><a href="{url pms-box-drafts}" target="_self"><img src="style/default/gl_manage/cgx.gif" />草稿箱</a></li>
-		<li><a href="{url pms-blacklist}" target="_self"><img src="style/default/gl_manage/hllb.gif"/>忽略列表</a></li>
+		<li><a href="{url pms-box-inbox}" target="_self"><img alt="" src="style/gl_manage/sjx.gif" />收件箱</a></li>
+		<li><a href="{url pms-box-outbox}" target="_self" ><img src="style/gl_manage/fjx.gif"/>发件箱</a></li>
+		<li><a href="{url pms-sendmessage}" target="_self" ><img src="style/gl_manage/fdxx.gif"/>发短消息</a></li>
+		<li><a href="{url pms-box-drafts}" target="_self"><img src="style/gl_manage/cgx.gif" />草稿箱</a></li>
+		<li><a href="{url pms-blacklist}" target="_self"><img src="style/gl_manage/hllb.gif"/>忽略列表</a></li>
 	</ul>
 </div>
 </div>

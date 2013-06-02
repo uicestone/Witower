@@ -6,7 +6,7 @@
 
 		<div class="model model-b">
 			<div class="main">
-				<div><img src="style/default/us_pic.jpg"><br>
+				<div><img src="style/us_pic.jpg"><br>
 					<span>
 						<!--{if $project[follow]}-->
 						<span class="add_attention">已关注</span>
@@ -28,7 +28,7 @@
 					</li>
 				</ul>
 				<div class="descript">
-					<div class="fn-left"><img src="style/default/5.jpg"></div><div class="fn-right">
+					<div class="fn-left"><img src="style/5.jpg"></div><div class="fn-right">
 						<p><?= $project['e_summary'] ?><a href="#">[了解更多]</a></p>
 						<div class="button">
 							<div class="fn-left">
@@ -56,14 +56,14 @@
 				<div class="detail">
 					<div class="title">公司介绍</div>
 					<div class="main">
-						<img src="style/default/5.jpg">
+						<img src="style/5.jpg">
 						<p><?= $project['uc_summary'] ?></p>
 					</div>
 				</div>
 				<div class="detail">
 					<div class="title">产品说明</div>
 					<div class="main">
-						<img src="style/default/5.jpg">
+						<img src="style/5.jpg">
 						<p><?= $project['summary'] ?></p>
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 					</div>
 					<div class="flags">
 						<!--{if !$vote_status}-->
-						<img src="style/default/flag.png"><img src="style/default/flag.png"><img src="style/default/flag.png">
+						<img src="style/flag.png"><img src="style/flag.png"><img src="style/flag.png">
 						<!--{/if}-->
 					</div>                         
 
@@ -93,11 +93,11 @@
 					<table>
 						<!--{loop $candidates $key $data}-->
 						<tr userId="u888" voteNum="3" voteTotalNum="30" percent="70">
-							<td><img src="style/default/us_pic.jpg"></td>
+							<td><img src="style/us_pic.jpg"></td>
 							<td><?= $data['people_name'] ?></td>
 							<td class="images">
 								<!--{if !$vote_status}-->                                    
-								<img src="style/default/flag-off.png"><img src="style/default/flag-off.png"><img src="style/default/flag-off.png"><input name="uid_<?= $data['uid'] ?>" type="hidden">                                    
+								<img src="style/flag-off.png"><img src="style/flag-off.png"><img src="style/flag-off.png"><input name="uid_<?= $data['uid'] ?>" type="hidden">                                    
 								<!--{/if}-->
 							</td>
 							<td><div class="bar <?= $data['color'] ?>" style="width:<?= $data['width'] ?>px;"></div><span><?= $data['vote'] ?> (<?= $data['percentage'] ?>%)</span></td>
@@ -125,7 +125,7 @@
 				<div class="detail">
 					<div class="main">
 						<p><span>@<?= $data['people_name'] ?>：</span><?= $data['comment'] ?></p>
-						<img src="style/default/us_p1.jpg">
+						<img src="style/us_p1.jpg">
 					</div>
 					<div class="tail icons">
 						今天12:03 来自新浪微博
@@ -154,7 +154,7 @@
 				<ul>
 					<!--{loop $project['person_list'] $key $data}-->
 					<li>
-						<img src="style/default/8.jpg"><a href="index.php?user-space-<?= $data['uid'] ?>"><span><?= $data['people_name'] ?></span></a>
+						<img src="style/8.jpg"><a href="index.php?user-space-<?= $data['uid'] ?>"><span><?= $data['people_name'] ?></span></a>
 						<!--{if $data[follow]}-->
 						<span class="add_attention">已关注</span>
 						<!--{else}-->
@@ -226,12 +226,12 @@
 					<!--{loop $ta_focus_co $key $value}-->
 					<li>
 						<a href="#"><img src="<?= $value['image'] ?>" width="40px" height="40px"></a>
-						<!--<a href="#"><img src="style/default/flag.png"></a>-->
+						<!--<a href="#"><img src="style/flag.png"></a>-->
 						<span><?= $value['co_name'] ?></span>
 						<p><?= $value['summary'] ?></p>
 					</li>
 					<!--{/loop}-->
-					<!--<li> <a href="#"><img src="style/default/flag.png"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>-->
+					<!--<li> <a href="#"><img src="style/flag.png"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>-->
 				</ul>
 			</div>
 		</div>

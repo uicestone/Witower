@@ -2,7 +2,7 @@
 	<div class="title"><h3>每日推荐</h3></div>
 	<div class="main">
 		<div class="info">
-			<a href="/project/view/<?=$recommended_project['id']?>"><img src="uploads/images/project/<?=$recommended_project['id']?>_100.jpg"><!--<img src="style/default/pro_p1.jpg">--></a>
+			<a href="/project/view/<?=$recommended_project['id']?>"><img src="uploads/images/project/<?=$recommended_project['id']?>_100.jpg"><!--<img src="style/pro_p1.jpg">--></a>
 			<ul>
 				<li><b>发布企业：</b><?=$recommended_project['company_name']?>
 					<!--{if $recommend_project[follow]}-->

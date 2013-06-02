@@ -1,6 +1,6 @@
 <?$this->view('header')?>
 <div id="contentEditor">
-<link  rel="stylesheet" type="text/css" href="style/default/editor.css" media="all" />
+<link  rel="stylesheet" type="text/css" href="style/editor.css" media="all" />
 <link href="js/jqeditor/skins/skin_base.css" rel="stylesheet" type="text/css" media="all" />
 <style>
 #tags input{width:50%;margin-bottom:2px;}
@@ -129,7 +129,7 @@
 
 <ul>
 		<li class="my">
-	<img src="style/default/us_pic.jpg">
+	<img src="style/us_pic.jpg">
 	<a href="#">
 	一灯大师
 	</a>
@@ -145,11 +145,11 @@
 <div class="participator">
 	<h3>谁编辑过：</h3>
                 <ul>
-                     <li><img src="style/default/8.jpg"><a href="#"><span>真的疯了</span></a></li>
-                     <li><img src="style/default/8.jpg"><a href="#"><span>真的疯了</span></a></li>
-                     <li><img src="style/default/8.jpg"><a href="#"><span>真的疯了</span></a></li>
-                     <li><img src="style/default/8.jpg"><a href="#"><span>真的疯了</span></a></li>
-                     <li><img src="style/default/8.jpg"><a href="#"><span>真的疯了</span></a></li>
+                     <li><img src="style/8.jpg"><a href="#"><span>真的疯了</span></a></li>
+                     <li><img src="style/8.jpg"><a href="#"><span>真的疯了</span></a></li>
+                     <li><img src="style/8.jpg"><a href="#"><span>真的疯了</span></a></li>
+                     <li><img src="style/8.jpg"><a href="#"><span>真的疯了</span></a></li>
+                     <li><img src="style/8.jpg"><a href="#"><span>真的疯了</span></a></li>
                 </ul>
             </div>
 </div>

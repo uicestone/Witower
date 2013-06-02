@@ -31,7 +31,7 @@
 <div class="r w-230">
 	<!--
 	<div class="ad">
-		<a href="#" target="_blank"><img src="style/default/ad-230.jpg"/></a>
+		<a href="#" target="_blank"><img src="style/ad-230.jpg"/></a>
 	</div>
 	-->
 	<div class="columns ad">

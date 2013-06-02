@@ -55,7 +55,7 @@ function docheck(){
 		<h1>登录</h1>
 	</div>
 	<div class="main">
-		<div id="left"><img src="style/default/register-banner.png"></div>
+		<div id="left"><img src="style/register-banner.png"></div>
 		<div id="right">
 			<!--form id="registerform" method="post" action="<?=$formAction?>" onsubmit="return docheck();"-->
 			<form name="box-login" action="{url user-login}" method="post" onsubmit="return docheck();">

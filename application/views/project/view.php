@@ -29,7 +29,7 @@
 					</li>
 				</ul>
 				<div class="descript">
-					<div class="fn-left"><img src="style/default/5.jpg"></div><div class="fn-right">
+					<div class="fn-left"><img src="style/5.jpg"></div><div class="fn-right">
 						<p><?= $project['summary'] ?><a href="#">[了解更多]</a></p>
 						<div class="button">
 							<div class="fn-left">
@@ -63,14 +63,14 @@
 				<div class="detail">
 					<div class="title"><h3>公司介绍</h3></div>
 					<div class="main">
-						<img src="style/default/5.jpg">
+						<img src="style/5.jpg">
 						<p>杭州疑现“卖肾基地” 一颗肾行价3.5万元】据媒体报道，杭州一小区内存在非法肾源供养基地，住在“卖肾基地肾基地”中的都是年轻男子，卖肾原因有还债、嫌打工赚钱慢等。该基地内有30余名供”中的都是年轻男子，国内统一行价3.5万元。记者5月28日获悉，杭州警方目前已介入调查。</p>
 					</div>
 				</div>
 				<div class="detail">
 					<div class="title"><h3>产品说明</h3></div>
 					<div class="main">
-						<img src="style/default/5.jpg">
+						<img src="style/5.jpg">
 						<p>杭州疑现“卖肾基地” 一颗肾行价3.5万元】据媒体报道，杭州一小区内存在非法肾源供养基地，住在“卖肾基地肾基地”中的都是年轻男子，卖肾原因有还债、嫌打工赚钱慢等。该基地内有30余名供”中的都是年轻男子，国内统一行价3.5万元。记者5月28日获悉，杭州警方目前已介入调查。</p>
 					</div>
 				</div>
@@ -142,7 +142,7 @@
 				<ul>
 					<?foreach($participants as $project){?>
 					<li>
-						<img src="style/default/8.jpg"><a href="/space/<?= $project['id'] ?>"><span><?= $project['name'] ?></span></a>
+						<img src="style/8.jpg"><a href="/space/<?= $project['id'] ?>"><span><?= $project['name'] ?></span></a>
 						<!--{if $data[follow]}-->
 						<span class="add_attention">已关注</span>
 						<!--{else}-->
@@ -214,12 +214,12 @@
 					<!--{loop $ta_focus_co $key $value}-->
 					<li>
 						<a href="#"><img src="<?= $value['image'] ?>" width="40px" height="40px"></a>
-						<!--<a href="#"><img src="style/default/p6.jpg"></a>-->
+						<!--<a href="#"><img src="style/p6.jpg"></a>-->
 						<span><?= $value['co_name'] ?></span>
 						<p><?= $value['summary'] ?></p>
 					</li>
 					<!--{/loop}-->
-					<!--<li> <a href="#"><img src="style/default/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>-->
+					<!--<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>-->
 				</ul>
 			</div>
 		</div>

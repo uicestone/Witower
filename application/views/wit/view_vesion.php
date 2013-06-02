@@ -100,17 +100,17 @@
 	<h2 class="col-h2">{lang docMessage}</h2>
 	<!--{if $author}-->
 	<dl class="col-dl twhp2">
-	<dd><a href="{url user-space-$edition['authorid']}" target="_blank"  class="a-img1"><img src="<!--{if $author[image]}-->$author[image]<!--{else}-->style/default/user_l.jpg<!--{/if}-->" width="38px" height="38px"/></a></dd>
+	<dd><a href="{url user-space-$edition['authorid']}" target="_blank"  class="a-img1"><img src="<!--{if $author[image]}-->$author[image]<!--{else}-->style/user_l.jpg<!--{/if}-->" width="38px" height="38px"/></a></dd>
 	<dt><a href="{url user-space-$edition['authorid']}" target="_self"><?=$edition['author']?></a></dt>
 	<dd><span style="color:<?=$author['color']?>" class="l m-r8"><?=$author['grouptitle']?></span>
-	<span title="{lang userstars} <?=$author['stars']?>" class="l"><!--{for $i=0; $i<$author['editorstar'][3]; $i++}--><img src="style/default/star_level3.gif"/><!--{/for}--><!--{for $i=0; $i<$author['editorstar'][2]; $i++}--><img src="style/default/star_level2.gif"/><!--{/for}--><!--{for $i=0; $i<$author['editorstar'][1]; $i++}--><img src="style/default/star_level1.gif"/><!--{/for}--></span>
+	<span title="{lang userstars} <?=$author['stars']?>" class="l"><!--{for $i=0; $i<$author['editorstar'][3]; $i++}--><img src="style/star_level3.gif"/><!--{/for}--><!--{for $i=0; $i<$author['editorstar'][2]; $i++}--><img src="style/star_level2.gif"/><!--{/for}--><!--{for $i=0; $i<$author['editorstar'][1]; $i++}--><img src="style/star_level1.gif"/><!--{/for}--></span>
 	</dd>
-	<dd>{lang editionCreator} <a onclick="return Message.box('<?=$edition['author']?>')" href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/default/jb.gif" title="<?=$author['credit1']?>{lang gold}"></dd>
+	<dd>{lang editionCreator} <a onclick="return Message.box('<?=$edition['author']?>')" href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/jb.gif" title="<?=$author['credit1']?>{lang gold}"></dd>
 	</dl>
 	<!--{else}-->
 	<dl class="col-dl twhp2">
 	<dd><a class="a-img1">
-	<img alt="{lang haveDel}" src="style/default/user_l.jpg" width="38px" height="38px" /></a></dd>
+	<img alt="{lang haveDel}" src="style/user_l.jpg" width="38px" height="38px" /></a></dd>
 	<dt>{lang userHaveDel}</dt>
 	<dd>{lang editionCreator}</dd>
 	</dl>
@@ -125,7 +125,7 @@
 	</div>
 	<!--
 	<div class="ad">
-	<a href="#" target="_blank"><img src="style/default/ad-230.jpg"/></a>
+	<a href="#" target="_blank"><img src="style/ad-230.jpg"/></a>
 	</div>
 	-->
 	<!--{if $audit}-->
