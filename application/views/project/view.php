@@ -35,7 +35,7 @@
 							<div class="fn-left">
 
 
-								<!-- Baidu Button BEGIN -->
+								<!-- 分享按钮 -->
 								<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
 									<a class="bds_qzone"></a>
 									<a class="bds_tsina"></a>
@@ -49,7 +49,7 @@
 								<script type="text/javascript">
 									document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000)
 								</script>
-								<!-- Baidu Button END -->                            
+								<!-- 分享按钮 -->
 
 
 							</div>
