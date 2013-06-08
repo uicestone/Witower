@@ -1,14 +1,14 @@
 <div id="footer">
 	<div class="service">
 		<div class="title">
-			<span><a href="/index.php">主页</a></span>
+			<span><a href="/">主页</a></span>
 		</div>
 		<div class="main">
 			<!--{loop $article_footer_list $key $value}-->
-			<dl class="cat-<?= $value[no] ?>">
-				<dt><a href="index.php?help-content-<?= $value[id] ?>"><?= $value[title] ?></a></dt>
+			<dl class="cat-<?//= $value[no] ?>">
+				<dt><a href="index.php?help-content-<?//= $value[id] ?>"><?//= $value[title] ?></a></dt>
 				<!--{loop $value[son_list] $s_key $s_value}-->
-				<dd><a href="index.php?help-content-<?= $s_value[id] ?>"><?= $s_value[title] ?></a></dd>
+				<dd><a href="index.php?help-content-<?//= $s_value[id] ?>"><?//= $s_value[title] ?></a></dd>
 				<!--{/loop}-->
 			</dl>
 			<!--{/loop}-->
@@ -18,9 +18,9 @@
 		<li>
 			<!--{loop $article_bottom_list $key $value}-->
 			<!--{if $key==0}-->
-			<a class="f6" href="index.php?help-content-<?= $value[id] ?>">$value[title]</a>
+			<a class="f6" href="index.php?help-content-<?//= $value[id] ?>"></a>
 			<!--{else}-->
-			&#12288;|&#12288;<a class="f6" href="index.php?help-content-<?= $value[id] ?>">$value[title]</a>
+			&#12288;|&#12288;<a class="f6" href="index.php?help-content-<?//= $value[id] ?>"></a>
 			<!--{/if}-->
 			<!--{/loop}-->
 		</li>

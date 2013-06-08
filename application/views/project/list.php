@@ -22,14 +22,14 @@
 				<!--{elseif $type=='starttime'}-->最新项目
 				<!--{else}-->
 				项目列表
-				<!--{/if}-->		
+				<!--{/if}-->
 			</h3>
 			<ul>
 				<li <!--{if 0 == $order}-->class="on"<!--{/if}-->><a href="{url list}">默认</a></li>
 				<!--{loop $order_list $key $data}-->
 				<li <!--{if $data['id'] == $order}-->class="on"<!--{/if}--> ><a href="{url $cat-search-tag-0-money-$money-time-$time-user-$user-order-$data['id']}" ><?=$data['name']?></a></li>
 				<!--{/loop}-->
-			</ul>			
+			</ul>
 		</div>
 		<div class="main">
 			<div class="model-a">

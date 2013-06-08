@@ -51,8 +51,8 @@
 		<dt><strong name="order">[0]</strong><span></span></dt>
 		<dd name="url"></dd>
 		<dd name="edit">
-			<a href="javascript:;" onclick="docReference.edit(this);return false;">{lang edit}</a> 
-			| <a name="remove" href="javascript:;" onclick="docReference.remove(this);return false;">{lang remove}</a>
+			<a href="javascript:;" >{lang edit}</a> 
+			| <a name="remove" href="javascript:;" >{lang remove}</a>
 		</dd>
 	</dl>
 	<!--{loop $referencelist $i $ref}-->
@@ -60,8 +60,8 @@
 		<dt><strong name="order">[{eval echo ($i+1)}]</strong><span><?=$ref[name]?></span></dt>
 		<dd name="url"><?=$ref[url]?></dd>
 		<dd name="edit">
-			<a href="javascript:;" onclick="docReference.edit(this);return false;">{lang edit}</a> 
-			| <a name="remove" href="javascript:;" onclick="docReference.remove(this);return false;">{lang remove}</a>
+			<a href="javascript:;" >{lang edit}</a> 
+			| <a name="remove" href="javascript:;" >{lang remove}</a>
 		</dd>
 	</dl>
 	<!--{/loop}-->
@@ -84,9 +84,9 @@
 		</dd>
 		
 		<dd>
-			<a id="save_1" href="javascript:;" onclick="docReference.save();return false;">{lang save}</a>
+			<a id="save_1" href="javascript:;" >{lang save}</a>
 			<span id="save_0" style="display:none">{lang save}</span>
-			<a href="javascript:;" onclick="docReference.reset();return false;">{lang reset}</a>
+			<a href="javascript:;" >{lang reset}</a>
 		</dd>
 	</dl>
 </div>
@@ -121,7 +121,7 @@
 
 <div class="pushbutton">
 	<input name="publishsubmit" class="conserve" type="submit" value="{lang publish}" />
-	<input type="button" value="{lang logout}" onclick="abort();"/>
+	<input type="button" value="{lang logout}" />
 </div>
 </form>
 
@@ -163,33 +163,7 @@
 <style>
 .jqe-plugin-HdImage .uploadBoxTop span.last_span {display:none;}
 </style>
-<script type="text/javascript">
-<!--{if $filter_external }-->
-var g_filterExternal = 1;
-<!--{else}-->
-var g_filterExternal = 0;
-<!--{/if}-->
-<!--{if ($doc_verification_edit_code && ($page_action == 'edit'||$page_action == 'editsection' )) || ($doc_verification_create_code && $page_action == 'create')}-->
-var g_check_code = "1";
-<!--{else}-->
-var g_check_code = "0";
-<!--{/if}-->
-var g_page_action = "$page_action";
-var g_logout_editor = "{url doc-unseteditlock-$doc['did']-$page_action}";
-var g_docid = "$doc['did']";
-var savetime=<?=$savetime?>;
-var g_content_md5='';
 
-var g_img_big="$g_img_big";
-var g_img_small="$g_img_small";
-var jqe_static_url = './js/jqeditor';
-</script>
-<script type="text/javascript" src="./js/jquery.js"></script>
-<script type="text/javascript" src="./js/jqeditor/jqeditor-hdwiki-1.0.3.min.js"></script>
-<script type="text/javascript" src="./js/jqeditor/hdwiki.js"></script>
-<script type="text/javascript">
-isAutoSave();
-</script>
 </div>
 
 <?$this->view('footer')?>

@@ -1,33 +1,5 @@
 <?$this->view('header')?>
-<!--{if $audit}-->
-<script>
-	function partsection(){
-		$('#fullsection').css('display','block');
-		$('#partsection').css('display','none');
-		$("#hidesection > li:gt(3)").css('display','none');
-	}
-	function fullsection(){
-		$('#fullsection').css('display','none');
-		$('#partsection').css('display','block');
-		$("#hidesection > li:gt(3)").css('display','block');
-	}
-	function unexcellent(){
-		$.post(
-			"index.php?edition-unexcellent",{eid:$edition['eid']},
-			function(xml){
-				var message=xml.lastChild.firstChild.nodeValue;
-				if(message=='1'){
-					alert('{lang editProfileTip1}');
-				}else if(message=='-1'){
-					alert('{lang parameterError}');
-				}else{
-					alert('{lang viewDocTip3}');
-				}
-			}
-		);
-	}
-</script>
-<!--{/if}-->
+
  
 <div class="w-950 hd_map">
 <a href="index.php" target="_blank"><?=$setting['site_name']?></a> &gt;&gt; <a href="{url doc-view-$edition['did']}"><?=$edition['title']?></a> &gt;&gt; {lang edition}
@@ -73,7 +45,7 @@
 				<!--{/loop}-->
 			</ul>
 			<!--{if count($sectionlist) > 4}-->
-			<p><a href="javascript:void(0);" onclick="partsection();"  id="partsection" style="display:none">[{lang showPart}]</a><a href="javascript:void(0);" onclick="fullsection();" id="fullsection">[{lang showAll}]</a></p>
+			<p><a href="javascript:void(0);" id="partsection" style="display:none">[{lang showPart}]</a><a href="javascript:void(0);" " id="fullsection">[{lang showAll}]</a></p>
 			<!--{/if}-->
 		</fieldset>
 		<!--{/if}-->
@@ -105,7 +77,7 @@
 	<dd><span style="color:<?=$author['color']?>" class="l m-r8"><?=$author['grouptitle']?></span>
 	<span title="{lang userstars} <?=$author['stars']?>" class="l"><!--{for $i=0; $i<$author['editorstar'][3]; $i++}--><img src="style/star_level3.gif"/><!--{/for}--><!--{for $i=0; $i<$author['editorstar'][2]; $i++}--><img src="style/star_level2.gif"/><!--{/for}--><!--{for $i=0; $i<$author['editorstar'][1]; $i++}--><img src="style/star_level1.gif"/><!--{/for}--></span>
 	</dd>
-	<dd>{lang editionCreator} <a onclick="return Message.box('<?=$edition['author']?>')" href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/jb.gif" title="<?=$author['credit1']?>{lang gold}"></dd>
+	<dd>{lang editionCreator} <a  href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/default/jb.gif" title="<?=$author['credit1']?>{lang gold}"></dd>
 	</dl>
 	<!--{else}-->
 	<dl class="col-dl twhp2">
@@ -133,7 +105,7 @@
 	<h2 class="col-h2">{lang editionManage}</h2>
 	<form method="post">
 	<dl>
-	<dd class="a-c"><input name="Button2" type="button" value="{lang editionTip11}" class="m-lr8 btn_inp" onclick="window.location='{url edition-remove-<?=$doc['did']?>-<?=$edition['eid']?>}'"/><input name="Button3" type="button" value="{lang editionTip12}" class="m-lr8 btn_inp" onclick="unexcellent();"/>
+	<dd class="a-c"><input name="Button2" type="button" value="{lang editionTip11}" class="m-lr8 btn_inp" /><input name="Button3" type="button" value="{lang editionTip12}" class="m-lr8 btn_inp""/>
 	</dd>
 	</dl>
 	</form>

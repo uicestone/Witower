@@ -2,6 +2,7 @@
 class Project extends WT_Controller{
 	function __construct() {
 		parent::__construct();
+		$this->load->model('project_model','project');
 	}
 	
 	/**
@@ -9,24 +10,7 @@ class Project extends WT_Controller{
 	 */
 	function index(){
 		
-		$recommended_project=array(
-			'id'=>1,
-			'name'=>'项目名字',
-			'summary'=>'简介有木有',
-			'date_start'=>'2012-08-05',
-			'date_end'=>'2012-09-05',
-			'bonus'=>'10000.00',
-			'labels'=>array('可乐','广告'),
-			'comments'=>array(
-				array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-				array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-			),
-			//'reposts'=>10 项目的转发删了，不要了
-			'comments_count'=>2,
-			'favorites'=>3,
-			'company'=>2,
-			'company_name'=>'可口可乐'
-		);
+		$recommended_project=$this->project->fetch($this->config->user_item('recommended_project'));
 		
 		$active_project=10;
 		

@@ -99,8 +99,8 @@
 							 <td><img src="/uploads/images/projects/<?=$project[p_id]?>.jpg" width="80px"></td>
 							 <td><?=$project[summary]?></td>
 								<td>发布：<br><?=$project[start_time]?><br>截止：<br><?=$project[end_time]?></td>
-								<td><button class="btn btn-small" type="button" onclick="window.open('/?project-view-<?=$project[p_id]?>')">查看</button><br>
-									<button class="btn btn-small" type="button" onclick="location.href='/?user-editproject-<?=$project[p_id]?>'">修改</button><br></td>
+								<td><button class="btn btn-small" type="button" >查看</button><br>
+									<button class="btn btn-small" type="button" >修改</button><br></td>
 									6个投票中的项目
 								</td>-->
 							</tr>

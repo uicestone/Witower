@@ -8,6 +8,20 @@ class User extends WT_Controller{
 	 * 注册页面
 	 */
 	function signup(){
+		
+		if($this->input->post('signup')){
+			$user_id=$this->user->add(array(
+				'name'=>$this->input->post('username'),
+				'password'=>$this->input->post('password'),
+				'email'=>$this->input->post('email')
+			));
+			
+			$this->user->sessionLogin($user_id);
+			
+			redirect();
+			
+		}
+		
 		$this->load->view('user/signup');
 	}
 	
@@ -15,7 +29,21 @@ class User extends WT_Controller{
 	 * 登陆页面
 	 */
 	function login(){
+		
+		if($this->input->post('login')){
+			$user=$this->user->verify($this->input->post('username'), $this->input->post('password'));
+			if($user){
+				$this->user->sessionLogin($user['id']);
+				redirect('');
+			}
+		}
+		
 		$this->load->view('user/login');
+	}
+	
+	function logout(){
+		$this->user->sessionLogout();
+		redirect('');
 	}
 	
 	/**

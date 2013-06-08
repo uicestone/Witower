@@ -1,96 +1,5 @@
 <?$this->view('header')?>
-<script type="text/javascript">
-function compare(){
-	var docs;
-	try{
-		document.documentElement.scrollTop=0;
-		if($("input[name='eid[]']").length==null){
-			alert("{lang editionTip1}");
-		}else{
-			switch($("input:checked").length){
-				case 0:
-				alert("{lang editionTip2}");
-				break;
-				case 1:
-				alert("{lang editionTip3}");
-				break;
-				case 2:
-				$("form[name='editionform']").attr('target',"_blank");
-				$("form[name='editionform']").attr('action',"index.php?edition-compare");
-				$("form[name='editionform']").submit();
-				break;
-				default:
-				alert("{lang editionTip4}");
-				break;
-			}
-		}
-	}catch(e){
-		alert("{lang editionTip2}");
-	}
-}
-function removedoc(){
-	if($("input[name='eid[]']").length==null){
-		alert("{lang editionTip1}");
-	}else{
-		if($("input:checked").length<1){
-			alert("{lang editionTip5}");
-			return false;
-		}
-	}
-	if(confirm("{lang editionTip6}")==false){
-		return false;
-	}else{
-		$("form[name='editionform']").attr('target',"_self");
-		$("form[name='editionform']").attr('action',"index.php?edition-remove");
-		$("form[name='editionform']").submit();
-	}
-}
 
-function excellence(){
-	if($("input[name='eid[]']").length==null){
-		alert("{lang editionTip1}");
-	}else{
-		if($("input:checked").length<1){
-			alert("{lang editionTip7}");
-			return false;
-		}
-	}
-	if(confirm("{lang editionTip8}")==false){
-		return false;
-	}else{
-		$("form[name='editionform']").attr('target',"_self");
-		$("form[name='editionform']").attr('action',"index.php?edition-excellent");
-		$("form[name='editionform']").submit();
-	}
-}
-
-function copy(){
-	if($("input[name='eid[]']").length==null){
-		alert("{lang editionTip1}");
-	}else{
-		if($("input:checked").length!=1){
-			alert("{lang editionTip9}");
-			return false;
-		}
-	}
-	if(confirm("{lang editionTip10}")==false){
-		return false;
-	}else{
-		$("form[name='editionform']").attr('target',"_self");
-		$("form[name='editionform']").attr('action',"index.php?edition-copy");
-		$("form[name='editionform']").submit();
-	}	
-}
-$(function(){
-	$('.model tr.fields').mouseenter(function(){
-		$(this).children('td:first').append('<button type="button" class="btn" style="float:right;" onclick="location.href=\'/?edition-choose-'+$(this).find('td:first input:first').val()+'\'">选择</button>');
-	})
-	
-	.mouseleave(function(){
-		$(this).find('button.btn').hide(500).remove();
-	});
-});
-</script>
 <div class="version">
 	<div class="model">
 		<div class="title"><h3>版本</h3></div>
@@ -126,8 +35,8 @@ $(function(){
 	</table>
 </div>
 <div class="operation_btn">	
-	<input type="button" class="btn btn-primary" onclick="compare();" value="{lang compare}" class="btn_inp"/>
-	<!--{if $checkable['remove']}--><!--<input type="button" onclick="removedoc();" value="{lang remove}" class="btn_inp"/>--><!--{/if}-->	
+	<input type="button" class="btn btn-primary" value="{lang compare}" class="btn_inp"/>
+	<!--{if $checkable['remove']}--><!--<input type="button" value="{lang remove}" class="btn_inp"/>--><!--{/if}-->	
 </div>
 </form>
 	</div>
