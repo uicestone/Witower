@@ -15,7 +15,7 @@ class Project_model extends WT_Model{
 		);
 	}
 	
-	function fetch($id){
+	function fetch($id=NULL){
 		$project=parent::fetch($id);
 		$project['company_name']=$this->user->fetch($project['company'],'name');
 		return $project;
@@ -30,6 +30,14 @@ class Project_model extends WT_Model{
 			$this->db->select('COUNT(*) AS `count`',false);
 		}
 		
+		if(isset($args['sum'])){
+			$this->db->select("SUM(`{$args['sum']}`) AS sum");
+		}
+		
+		if(isset($args['is_active']) && $args['is_active']){
+			$this->db->where('CURDATE() >= project.date_start AND CURDATE()<=project.date_end',NULL,false);
+		}
+		
 		return parent::getList($args);
 	}
 	
@@ -38,7 +46,10 @@ class Project_model extends WT_Model{
 	 * @param int $project_id
 	 * @return array
 	 */
-	function getComments($project_id){
+	function getComments($project_id=NULL){
+		
+		is_null($project_id) && $project_id=$this->id;
+		
 		$this->db->select('version_comment.*')
 			->from('version_comment')
 			->join('version','version.id = version_comment.version','inner')
@@ -58,9 +69,11 @@ class Project_model extends WT_Model{
 	 * @param type $project_id
 	 * @return type
 	 */
-	function getTags($project_id){
+	function getTags($project_id=NULL){
 		
 		$project=$this->fetch($project_id);
+		
+		is_null($project_id) && $project_id=$this->id;
 		
 		$this->db->select('tag.*')
 			->from('tag')
@@ -70,6 +83,17 @@ class Project_model extends WT_Model{
 		$result=$this->db->get()->result_array();
 		
 		return array_sub($result,'name');
+	}
+	
+	function countWits($project_id=NULL){
+		is_null($project_id) && $project_id=$this->id;
+		return $this->db->from('wit')->where('project',$project_id)->count_all_results();
+	}
+	
+	function countVersions($project_id=NULL){
+		is_null($project_id) && $project_id=$this->id;
+		$project_id=intval($project_id);
+		return $this->db->from('version')->where("wit IN (SELECT id FROM wit WHERE project  = $project_id)")->count_all_results();
 	}
 	
 }

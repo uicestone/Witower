@@ -1,6 +1,7 @@
 <? $this->view('header') ?>
 <div id="content" class="page-vote">
 	<div class="breadcrumb">
+		投票
 	</div>
 	<div class="model recommend">
 		<div class="title"><h3>每日热门投票</h3></div>
@@ -90,8 +91,8 @@
 							<li><b>投票时间：</b><?= $project['date_start'] ?> 至 <?= $project['date_end'] ?></li>
 							<li class="tags">
 								<b>标签：</b>
-								<?foreach($project['labels'] as $labels){?>
-								<a href="#"><?= $labels ?></a>
+								<?foreach($project['tags'] as $tags){?>
+								<a href="#"><?= $tags ?></a>
 								<?}?>
 							</li>
 						</ul>
@@ -101,12 +102,8 @@
 					</div>
 					<?}?>
 
-
-
 				</div>
 			</div>
-
-
 
 			<div class="model-d fn-right">
 				<h4>热门投票</h4>
@@ -123,8 +120,8 @@
 							<li><b>投票时间：</b><?= $project['date_start'] ?> 至 <?= $project['date_end'] ?></li>
 							<li class="tags">
 								<b>标签：</b>
-								<?foreach($project['labels'] as $labels){?>
-								<a href="#"><?= $labels ?></a>
+								<?foreach($project['tags'] as $tags){?>
+								<a href="#"><?= $tags ?></a>
 								<?}?>
 							</li>
 						</ul>

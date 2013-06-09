@@ -1,7 +1,7 @@
 图片路径和命名规则
 数字为宽度
 
-用户头像
+用户/公司头像
 /uploads/images/avartar/{user_id}_30.jpg
 /uploads/images/avartar/{user_id}_100.jpg
 /uploads/images/avartar/{user_id}_200.jpg

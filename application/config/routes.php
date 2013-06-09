@@ -43,6 +43,7 @@ $route['404_override'] = '';
 
 $route['project/(:num)'] = 'project/view/$1';
 $route['wit/(:num)'] = 'wit/view/$1';
+$route['wit/add'] = 'wit/edit';
 $route['vote/(:num)'] = 'vote/view/$1';
 $route['login'] = 'user/login';
 $route['logout'] = 'user/logout';

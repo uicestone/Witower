@@ -45,6 +45,7 @@
 * @property User_model $user
 * @property Version_model $version
 * @property Wit_model $wit
+* @property Witower_model $witower
 */
 
 class CI_Controller {};

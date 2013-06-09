@@ -38,7 +38,7 @@
 			<div class="img cell">
 				<!--img src="style/p.jpg"-->
 				<a href="/project/<?= $project['id'] ?>">
-					<img src="/uploads/images/project/<?= $project['id'];?>_100.jpg">
+					<img src="/uploads/images/project/<?= $project['id'];?>_200.jpg">
 				</a>
 				<p><?= $project['name'] ?></p>
 			</div>

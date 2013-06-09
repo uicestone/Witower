@@ -14,7 +14,8 @@ class Wit extends WT_Controller{
 	/**
 	 * 单个版本的编辑页面
 	 */
-	function edit(){
+	function edit($id=NULL){
+		$this->wit->id=$id;
 		$this->load->view('wit/edit');
 	}
 	

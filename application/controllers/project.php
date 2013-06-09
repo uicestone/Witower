@@ -11,10 +11,14 @@ class Project extends WT_Controller{
 	function index(){
 		
 		$recommended_project=$this->project->fetch($this->config->user_item('recommended_project'));
+		$recommended_project['tags']=$this->project->getTags($recommended_project['id']);
 		
-		$active_project=10;
+		$result_active_projects_count=$this->project->getList(array('is_active'=>true,'count'=>true));
+		$active_projects=$result_active_projects_count[0]['count'];
 		
-		$participants=171;
+		$result_participants=$this->project->getList(array('is_active'=>true,'sum'=>'participants'));
+		
+		$participants=$result_participants[0]['sum'];
 		
 		$hot_tags=array('设计','包装','LOGO平面','网站','UI','广告','制作');
 		
@@ -24,235 +28,49 @@ class Project extends WT_Controller{
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 		
-		$latest_projects=array(
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			),
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			)
-		);
+		$projects['latest']=$this->project->getList(array('orderby'=>'date_start desc','limit'=>10));
 		
-		$hotprojects = array(
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			),
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			),
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			),
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			)
-		);
+		$projects['hot']=$this->project->getList(array('orderby'=>'participants desc','limit'=>10));
 		
-		$bonus_projects = array(
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			),
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			),
-			array(
-				'id'=>1,
-				'name'=>'项目名字',
-				'summary'=>'简介有木有',
-				'date_start'=>'2012-08-05',
-				'date_end'=>'2012-09-05',
-				'bonus'=>'10000.00',
-				'labels'=>array('可乐','广告'),
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				//'reposts'=>10 项目的转发删了，不要了
-				'comments_count'=>2,
-				'favorites'=>3,
-				'company'=>2,
-				'company_name'=>'可口可乐'
-			)
-		);
+		$projects['high_bonus']=$this->project->getList(array('orderby'=>'bonus desc','limit'=>10));
 		
-//		$hot_projects=$latest_projects;
-//		
-//		$high_bonus_projects=$latest_projects;
-
-		$this->load->view('project/list',compact('recommended_project','active_project','participants','hot_tags','money','date','people','latest_projects','hotprojects','bonus_projects'));
+		foreach($projects as &$projects_column){
+			foreach($projects_column as &$project){
+				$project['tags']=$this->project->getTags($project['id']);
+				$project['comments']=$this->project->getComments($project['id']);
+				$project['comments_count']=count($project['comments']);
+			}
+		}
+		
+		$this->load->view('project/list',compact('recommended_project','active_projects','participants','hot_tags','money','date','people','projects'));
 	}
 	
 	/**
 	 * 项目详情页
 	 */
-	function view(){
+	function view($id){
 		
-		$project=array(
-			'id'=>1,
-			'name'=>'',
-			'summary'=>'',
-			'date_start'=>'2012-08-05',
-			'date_end'=>'2012-09-05',
-			'bonus'=>'10000.00',
-			'labels'=>array('可乐','广告'),
-			'comments'=>array(
-				array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-				array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-			),
-			//'reposts'=>10 项目的转发删了，不要了
-			'comments_count'=>2,
-			'favorites'=>3,
-			'company'=>2,
-			'company_name'=>'可口可乐'
-		);
+		$this->load->model('company_model','company');
+		$this->load->model('product_model','product');
+		$this->load->model('wit_model','wit');
 		
-		$wits=array(
-			array(
-				'id'=>1,
-				'title'=>'创意标题1',
-				'content'=>'什么叫同义词11111？同义词，是表达的意义相同但是名称不同的词条，例如：“北京”和“北京市”是同义词。为了避免不同用户提交名称不同而内容相同的词条，造成资源浪费和重复劳动，互动百科会将概念相同的词条添加为同义',
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				'comments_count'=>2
-			),
-			array(
-				'id'=>2,
-				'title'=>'创意标题2',
-				'content'=>'什么叫同义词22222？同义词，是表达的意义相同但是名称不同的词条，例如：“北京”和“北京市”是同义词。为了避免不同用户提交名称不同而内容相同的词条，造成资源浪费和重复劳动，互动百科会将概念相同的词条添加为同义',
-				'comments'=>array(
-					array('id'=>1,'content'=>'Nike的Air系列不错。','user'=>5,'username'=>'user_01'),
-					array('id'=>1,'content'=>'顶楼上。','user'=>6,'username'=>'user_02')
-				),
-				'comments_count'=>2
-			),
-		);
+		$this->project->id=$id;
 		
-		$participants=array(
-			array('id'=>1,'name'=>'user1'),
-			array('id'=>2,'name'=>'user2'),
-		);
+		$project=$this->project->fetch();
+		$project['tags']=$this->project->getTags();
+		$project['comments']=$this->project->getComments();
+		$project['comments_count']=count($project['comments']);
+		$project['versions']=$this->project->countVersions();
+		$product=$this->product->fetch($project['product']);
+		$company=$this->company->fetch($project['company']);
+		
+		$wits=$this->wit->getList(array('in_project'=>$project['id']));
+		
+		foreach($wits as &$wit){
+			$wit['comments']=$this->wit->getComments($wit['id']);
+		}
+		
+		$participants=$this->user->getList(array('in_project'=>$project['id']));
 		
 		$participants_count=count($participants);
 		

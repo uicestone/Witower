@@ -1,41 +1,38 @@
 <?$this->view('header')?>
 <div id="content" class="page-list">
 	<div class="breadcrumb">
+		项目
 	</div>
 
-	<?$this->view('project/inner_recommend')?>
+	<?$this->view('project/recommended')?>
 
 	<div class="search">
 		<div class="title">
-			<b class="s14">项目统计</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进行的项目：<b class="s18"><?=$active_project?></b>         &nbsp;&nbsp;&nbsp;参与的人数：<b class="s18"><?=$participants?></b>人
+			<b class="s14">项目统计</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进行的项目：<b class="s18"><?=$active_projects?></b>         &nbsp;&nbsp;&nbsp;参与的人数：<b class="s18"><?=$participants?></b>人
 		</div>
 
-		<?$this->view('project/inner_search')?>
+		<?$this->view('project/search')?>
 
 	</div>
 
 	<div class="model">
 		<div class="title">
 			<h3>
-				<!--{if $type=='hot'}-->人气项目
-				<!--{elseif $type=='money'}-->项目金额
-				<!--{elseif $type=='starttime'}-->最新项目
-				<!--{else}-->
+				人气项目
+				项目金额
+				最新项目
 				项目列表
-				<!--{/if}-->
 			</h3>
 			<ul>
-				<li <!--{if 0 == $order}-->class="on"<!--{/if}-->><a href="{url list}">默认</a></li>
-				<!--{loop $order_list $key $data}-->
-				<li <!--{if $data['id'] == $order}-->class="on"<!--{/if}--> ><a href="{url $cat-search-tag-0-money-$money-time-$time-user-$user-order-$data['id']}" ><?=$data['name']?></a></li>
-				<!--{/loop}-->
+				<li class="on"><a href="{url list}">默认</a></li>
+				<li class="on"><a href="{url $cat-search-tag-0-money-$money-time-$time-user-$user-order-$data['id']}" ><?//=$data['name']?></a></li>
 			</ul>
 		</div>
 		<div class="main">
 			<div class="model-a">
 				<h4>最新项目</h4>
 
-				<?foreach($latest_projects as $project){?>
+				<?foreach($projects['latest'] as $project){?>
 				<div class="main">
                                     <a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
@@ -46,8 +43,8 @@
 						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
 						<li class="tags">
 							<b>标签：</b>
-							<?foreach($project['labels'] as $labels){?>
-								<a href="<?=$labels?>"><?=$labels?></a>
+							<?foreach($project['tags'] as $tags){?>
+								<a href="<?=$tags?>"><?=$tags?></a>
 							<?}?>
 						</li>
 					</ul>
@@ -65,7 +62,7 @@
 			<div class="model-a">
 				<h4>人气项目</h4>
 
-				<?foreach($hotprojects as $project){?>
+				<?foreach($projects['hot'] as $project){?>
 				<div class="main">
 					<a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
@@ -76,8 +73,8 @@
 						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
 						<li class="tags">
 							<b>标签：</b>
-							<?foreach($project['labels'] as $labels){?>
-								<a href="<?=$labels?>"><?=$labels?></a>
+							<?foreach($project['tags'] as $tags){?>
+								<a href="<?=$tags?>"><?=$tags?></a>
 							<?}?>
 						</li>
 					</ul>
@@ -95,7 +92,7 @@
 			<div class="model-a">
 				<h4>项目金额</h4>
 
-				<?foreach($bonus_projects as $project){?>
+				<?foreach($projects['high_bonus'] as $project){?>
 				<div class="main">
 					<a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
@@ -106,8 +103,8 @@
 						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
 						<li class="tags">
 							<b>标签：</b>
-							<?foreach($project['labels'] as $labels){?>
-								<a href="<?=$labels?>"><?=$labels?></a>
+							<?foreach($project['tags'] as $tags){?>
+								<a href="<?=$tags?>"><?=$tags?></a>
 							<?}?>
 						</li>
 					</ul>

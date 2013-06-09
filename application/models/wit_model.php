@@ -14,16 +14,23 @@ class Wit_model extends WT_Model{
 	
 	/**
 	 * 获得一个创意下所有版本的评论
-	 * @param type $wit_id
-	 * @return type
+	 * @param int $wit_id
+	 * @return array
 	 */
 	function getComments($wit_id){
-		$this->db->select('version_comment.*, wit.id AS wit')
+		$this->db->select('version_comment.*, version.wit')
 			->from('version_comment')
 			->join('version','version.id = version_comment.version','inner')
 			->where('version.wit',$wit_id);
 		
 		return $this->db->get()->result_array();
+	}
+	
+	function getList($args=array()){
+		if(isset($args['in_project'])){
+			$this->db->where('project',$args['in_project']);
+		}
+		return parent::getList($args);
 	}
 }
 ?>

@@ -2,25 +2,25 @@
 	<div class="title"><h3>每日推荐</h3></div>
 	<div class="main">
 		<div class="info">
-			<a href="/project/view/<?=$recommended_project['id']?>"><img src="uploads/images/project/<?=$recommended_project['id']?>_100.jpg"><!--<img src="style/pro_p1.jpg">--></a>
+			<a href="/project/<?=$recommended_project['id']?>"><img src="uploads/images/project/<?=$recommended_project['id']?>_100.jpg"><!--<img src="style/pro_p1.jpg">--></a>
 			<ul>
 				<li><b>发布企业：</b><?=$recommended_project['company_name']?>
-					<!--{if $recommend_project[follow]}-->
-						<span class="add_attention">已关注</span>
-					<!--{else}-->
-						<a href="javascript:void(0);" class="add_attention" uid="<?=$recommended_project['id']?>">加关注</a>
-					<!--{/if}-->
+<?if($this->user->hasFollowed($recommended_project['company'])){?>
+					<span class="add_attention">已关注</span>
+<?}else{?>
+					<a href="javascript:void(0);" class="add_attention" uid="<?=$recommended_project['company']?>">加关注</a>
+<?}?>
 				</li>
-				<li><b>项目名称：</b><a href="/project/view/<?=$recommended_project['id']?>"><?=$recommended_project['name']?></a></li>
+				<li><b>项目名称：</b><a href="/project/<?=$recommended_project['id']?>"><?=$recommended_project['name']?></a></li>
 				<li><b>项目介绍：</b><?=$recommended_project['summary']?></li>
 				<li><b>项目金额：</b><?=$recommended_project['bonus']?>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>截止日期：</b><?=$recommended_project['date_end']?></li>
 				<li>标签：
 					<span class="tags">
-						<?foreach($recommended_project['labels'] as $labels){?>
-								<a href="/list/search/tag/<?=$labels?>"><?=$labels?></a>
+						<?foreach($recommended_project['tags'] as $tags){?>
+								<a href="/list/search/tag/<?=$tags?>"><?=$tags?></a>
 						<?}?>
 					</span>
-					<a class="btn-c" href="/project/view/<?=$recommended_project['id']?>">我要参与</a>
+					<a class="btn-c" href="/project/<?=$recommended_project['id']?>">我要参与</a>
 				</li>
 			</ul>
 

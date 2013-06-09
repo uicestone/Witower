@@ -23,21 +23,22 @@ class User_model extends WT_Model{
 			$this->name=$user['name'];
 		}
 		
-		//获取存在数据库中的用户配置项
-		$this->db->from('user_config')
-			->where('user',$this->id);
-		
-		$config=array_sub($this->db->get()->result_array(),'value','name');
-		
-		array_walk($config, function(&$value){
-			$decoded=json_decode($value);
-			if(!is_null($decoded)){
-				$value=$decoded;
-			}
-		});
-		
-		$this->config->user=$config;
-
+	}
+	
+	/**
+	 * 获得存于数据库中的user_config项
+	 * @return type
+	 */
+	function getConfig(){
+		$this->db->from('user_config')->where('user',$this->id);
+		return array_sub($this->db->get()->result_array(),'value','item');
+	}
+	
+	function getList($args=array()){
+		if(isset($args['in_project'])){
+			$this->db->where("id IN (SELECT user FROM version WHERE wit IN (SELECT id FROM wit WHERE project{$this->db->escape_int_array($args['in_project'])}))");
+		}
+		return parent::getList($args);
 	}
 	
 	/**
@@ -145,7 +146,7 @@ class User_model extends WT_Model{
 		$this->db->from('company')
 			->where('id',$user_id);
 		
-		if($this->db->count_all()){
+		if($this->db->count_all_results()){
 			return true;
 		}
 		

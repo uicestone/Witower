@@ -6,7 +6,7 @@
  */
 class WT_Config extends CI_Config{
 	
-	var $company=array();
+	var $witower=array();
 	var $user=array();
 	var $session=array();
 	
@@ -20,11 +20,17 @@ class WT_Config extends CI_Config{
 	 */
 	function user_item($item){
 		
-		$plain_config = array_merge($this->company,$this->user,$this->session);
+		//TODO 给上级配置增加禁止覆盖选项
+		$plain_config = array_merge($this->witower,$this->user,$this->session);
 		
 		$global = array_prefix($plain_config, $item);
 		
 		if($global!==array()){
+			$decoded=json_decode($global);
+			if(!is_null($decoded)){
+				$global=$decoded;
+			}
+		
 			return $global;
 		}
 		
