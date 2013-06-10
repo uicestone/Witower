@@ -21,7 +21,7 @@
 					<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
 					<li><b>被编辑次数：</b><?= $project['versions'] ?>次
 						<b>被讨论次数：</b><?= $project['comments_count'] ?>次<b>
-						项目截止日期：</b><?= $project['date_end'] ?>
+						项目截止日期：</b><?= $project['wit_end'] ?>
 					</li>
 					<li><b>活动状态：</b>进行中 </li>
 					<li class="tags">
@@ -92,11 +92,11 @@
 	<div id="right" class="sidebar">
 		<div class="box">
 			<div class="title">
-				<h3>参与人员（<?= $participants_count ?>）</h3><a href="#" class="more">more</a>
+				<h3>参与人员（<?= $witters_count ?>）</h3><a href="#" class="more">more</a>
 			</div>
 			<div class="main participator">
 				<ul>
-					<?foreach($participants as $participant){?>
+					<?foreach($witters as $participant){?>
 					<li>
 						<img src="/uploads/images/avartar/<?=$participant['id']?>_100.jpg" width="50"><a href="/space/<?= $participant['id'] ?>"><span><?= $participant['name'] ?></span></a>
 <?if($this->user->hasFollowed($participant['id'])){?>

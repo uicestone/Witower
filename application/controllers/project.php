@@ -16,9 +16,9 @@ class Project extends WT_Controller{
 		$result_active_projects_count=$this->project->getList(array('is_active'=>true,'count'=>true));
 		$active_projects=$result_active_projects_count[0]['count'];
 		
-		$result_participants=$this->project->getList(array('is_active'=>true,'sum'=>'participants'));
+		$result_witters=$this->project->getList(array('is_active'=>true,'sum'=>'witters'));
 		
-		$participants=$result_participants[0]['sum'];
+		$witters=$result_witters[0]['sum'];
 		
 		$hot_tags=array('设计','包装','LOGO平面','网站','UI','广告','制作');
 		
@@ -28,9 +28,9 @@ class Project extends WT_Controller{
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 		
-		$projects['latest']=$this->project->getList(array('orderby'=>'date_start desc','limit'=>10));
+		$projects['latest']=$this->project->getList(array('orderby'=>'wit_start desc','limit'=>10));
 		
-		$projects['hot']=$this->project->getList(array('orderby'=>'participants desc','limit'=>10));
+		$projects['hot']=$this->project->getList(array('orderby'=>'witters desc','limit'=>10));
 		
 		$projects['high_bonus']=$this->project->getList(array('orderby'=>'bonus desc','limit'=>10));
 		
@@ -42,7 +42,7 @@ class Project extends WT_Controller{
 			}
 		}
 		
-		$this->load->view('project/list',compact('recommended_project','active_projects','participants','hot_tags','money','date','people','projects'));
+		$this->load->view('project/list',compact('recommended_project','active_projects','witters','hot_tags','money','date','people','projects'));
 	}
 	
 	/**
@@ -70,9 +70,9 @@ class Project extends WT_Controller{
 			$wit['comments']=$this->wit->getComments($wit['id']);
 		}
 		
-		$participants=$this->user->getList(array('in_project'=>$project['id']));
+		$witters=$this->user->getList(array('in_project'=>$project['id']));
 		
-		$participants_count=count($participants);
+		$witters_count=count($witters);
 		
 		$hot_tags=array('设计','包装','Logo平面','网站');
 		
@@ -87,7 +87,7 @@ class Project extends WT_Controller{
 		);
 		$collection_tags = array('设计','包装');
 		
-		$this->load->view('project/view',  compact('project','wits','hot_tags','participants','participants_count','recommended_projects','recommended_votes','Collection_tags'));
+		$this->load->view('project/view',  compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes','Collection_tags'));
 	}
 }
 ?>

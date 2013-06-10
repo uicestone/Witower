@@ -8,7 +8,11 @@
 
 	<div class="search">
 		<div class="title">
-			<b class="s14">项目统计</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进行的项目：<b class="s18"><?=$active_projects?></b>         &nbsp;&nbsp;&nbsp;参与的人数：<b class="s18"><?=$participants?></b>人
+			<b class="s14">项目统计</b>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			进行的项目：<b class="s18"><?=$active_projects?></b>
+			&nbsp;&nbsp;&nbsp;
+			参与的人数：<b class="s18"><?=$witters?></b>人
 		</div>
 
 		<?$this->view('project/search')?>
@@ -34,13 +38,13 @@
 
 				<?foreach($projects['latest'] as $project){?>
 				<div class="main">
-                                    <a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
+                                    <a href="/project/<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
 						<li><b>发布企业：</b><?=$project['company_name']?></li>
 						<li><b>项目金额：</b><?=$project['bonus']?></li>
-						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
+						<li><b>项目时间：</b><?=$project['wit_start']?> 至 <?=$project['wit_end']?></li>
 						<li class="tags">
 							<b>标签：</b>
 							<?foreach($project['tags'] as $tags){?>
@@ -70,7 +74,7 @@
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
 						<li><b>发布企业：</b><?=$project['company_name']?></li>
 						<li><b>项目金额：</b><?=$project['bonus']?></li>
-						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
+						<li><b>项目时间：</b><?=$project['wit_start']?> 至 <?=$project['wit_end']?></li>
 						<li class="tags">
 							<b>标签：</b>
 							<?foreach($project['tags'] as $tags){?>
@@ -100,7 +104,7 @@
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
 						<li><b>发布企业：</b><?=$project['company_name']?></li>
 						<li><b>项目金额：</b><?=$project['bonus']?></li>
-						<li><b>项目时间：</b><?=$project['date_start']?> 至 <?=$project['date_end']?></li>
+						<li><b>项目时间：</b><?=$project['wit_start']?> 至 <?=$project['wit_end']?></li>
 						<li class="tags">
 							<b>标签：</b>
 							<?foreach($project['tags'] as $tags){?>

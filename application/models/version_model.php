@@ -26,5 +26,17 @@ class Version_model extends WT_Model{
 		return $this->db->get()->result_array();
 		
 	}
+	
+	/**
+	 * 给一个版本打分，并将版本作者列为候选人
+	 * 将写入version表
+	 * 并累加project_candidate表
+	 * 根据打分人是企业还是管理员，判断打在score_company还是score_wit上
+	 * @param int $version_id
+	 * @todo
+	 */
+	function score($version_id){
+		
+	}
 }
 ?>

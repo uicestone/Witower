@@ -7,11 +7,13 @@ class Project_model extends WT_Model{
 			'product'=>'所属产品',
 			'name'=>'项目名称',
 			'summary'=>'项目介绍',
-			'date_start'=>'开始日期',
-			'date_end'=>'结束日期',
+			'wit_start'=>'创意开始日期',
+			'wit_end'=>'创意结束日期',
+			'vote_start'=>'投票开始日期',
+			'vote_end'=>'投票结束日期',
 			'bonus'=>'悬赏奖金',
 			'company'=>'公司',
-			'participants'=>'参与人数'
+			'witters'=>'参与人数'
 		);
 	}
 	
@@ -35,7 +37,11 @@ class Project_model extends WT_Model{
 		}
 		
 		if(isset($args['is_active']) && $args['is_active']){
-			$this->db->where('CURDATE() >= project.date_start AND CURDATE()<=project.date_end',NULL,false);
+			$this->db->where('CURDATE() >= project.wit_start AND CURDATE() <= project.wit_end',NULL,false);
+		}
+		
+		if(isset($args['is_voting']) && $args['is_voting']){
+			$this->db->where('CURDATE() >= project.vote_start AND CURDATE() <= project.vote_end',NULL,false);
 		}
 		
 		return parent::getList($args);
@@ -94,6 +100,89 @@ class Project_model extends WT_Model{
 		is_null($project_id) && $project_id=$this->id;
 		$project_id=intval($project_id);
 		return $this->db->from('version')->where("wit IN (SELECT id FROM wit WHERE project  = $project_id)")->count_all_results();
+	}
+	
+	/**
+	 * 
+	 * @param int $project_id
+	 * @return array 
+	 *	array(
+	 *		array(
+	 *			'percentage'=>0.5,
+	 *			'votes'=>2,
+	 *			'candidate'=>5,
+	 *			'candidate_name'=>'user_1'
+	 *		),
+	 *		array(
+	 *			'percentage'=>0.5,
+	 *			'votes'=>2,
+	 *			'candidate'=>6,
+	 *			'candidate_name'=>'user_2'
+	 *		)
+	 *	)
+	 */
+	function getCandidates($project_id=NULL){
+		is_null($project_id) && $project_id=$this->id;
+		
+		$this->db->from('project_candidate')
+			->where('project',$project_id);
+		
+		$candidates=$this->db->get()->result_array();
+		
+		foreach($candidates as &$candidate){
+			$candidate['id']=$candidate['candidate'];
+			$candidate['name']=$this->user->fetch($candidate['id'],'name');
+			$candidate['percentage']=round($candidate['votes']/$this->countVotes($project_id),3);
+		}
+		
+		return $candidates;
+	}
+	
+	/**
+	 * 获得一个项目的投票总数
+	 * @param int $project_id
+	 * @return int
+	 */
+	function countVotes($project_id=NULL){
+		is_null($project_id) && $project_id=$this->id;
+		
+		$this->db->select('SUM(votes) AS sum',false)
+			->from('project_vote');
+		
+		if($project_id!==false){
+			$this->db->where('project',$project_id);
+		}
+		
+		return $this->db->get()->row()->sum;
+	}
+	
+	/**
+	 * 获得一个项目的投票人总数
+	 * @param int $project_id
+	 * @return int
+	 */
+	function countVoters($project_id=NULL){
+		is_null($project_id) && $project_id=$this->id;
+		
+		$this->db->select('COUNT(voter) AS count',false)
+			->from('project_vote');
+		
+		if($project_id!==false){
+			$this->db->where('project',$project_id);
+		}
+		
+		return $this->db->get()->row()->count;
+	}
+	
+	/**
+	 * 用户给一个候选人投票
+	 * 将写入project_vote表，并累加project_candidate表
+	 * @param int $candidate
+	 * @param int $votes
+	 * @todo
+	 */
+	function vote($candidate, $votes){
+		
 	}
 	
 }

@@ -44,13 +44,13 @@
 			</div>
 			<div class="details cell">
 				项目金额 ：<span class="price"><?= $project['bonus'] ?>元</span><br>
-				截止日期 ： <?=$project['date_end'] ?><br>
+				截止日期 ： <?=$project['wit_end']?><br>
 				标签：
 				<? foreach ($project['tags'] as $tag) { ?>
 					<a class="f3" href="#"><?= $tag ?></a>
 				<? } ?>
 				<ul>
-					<a href="/project/<?= $project['id'] ?>"><li class="cat-1" title="参与">(<?= $project['participants'] ?>)</li></a>
+					<a href="/project/<?= $project['id'] ?>"><li class="cat-1" title="参与">(<?= $project['witters'] ?>)</li></a>
 					<a href="/project/<?= $project['id'] ?>"><li class="cat-2" title="讨论">(<?= $project['comments_count'] ?>)</li></a>
 					<a href="/project/<?= $project['id'] ?>"><li class="cat-3" title="收藏">(<?= $project['favorites'] ?>)</li></a>
 				</ul>

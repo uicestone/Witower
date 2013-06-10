@@ -7,7 +7,7 @@
 		<div class="title"><h3>每日热门投票</h3></div>
 		<div class="main">
 			<div class="info">
-				<a href="<?= $recommended_voting_project['id'] ?>}"><img src="uploads/images/project/<?=$recommended_voting_project['id']?>_100.jpg"></a>
+				<a href="/vote/<?=$recommended_voting_project['id']?>"><img src="/uploads/images/project/<?=$recommended_voting_project['id']?>_100.jpg"></a>
 				<ul>
 					<li><b>发布企业：</b><?= $recommended_voting_project['company_name'] ?>
 						<!--{if $recommend_project[follow]}-->
@@ -34,45 +34,41 @@
 			<div class="statistics">
 				<div class="main">
 					<ul>
-						<?foreach($recommended_voting_project['candidates'] as $project){?>
-						<li><b><?= $project['percentage'] ?>%</b>的人投票给<span><a href="<?=$project['user']?>"><?=$project['username']?></a></span><br>
+						<?foreach($recommended_voting_project['candidates'] as $candidate){?>
+						<li><b><?= $candidate['percentage']*100 ?>%</b>的人投票给<span><a href="<?=$candidate['id']?>"><?=$candidate['name']?></a></span><br>
 							<ul>
-								<li>当前投票数：<?= $recommended_voting_project['voters_count'] ?>票</li>
-								<li>投票时间：<?= $recommended_voting_project['date_start'] ?> 至 <?= $recommended_voting_project['date_end'] ?></li>
+								<li>当前投票数：<?= $recommended_voting_project['votes'] ?>票</li>
+								<li>投票时间：<?= $recommended_voting_project['vote_start'] ?> 至 <?= $recommended_voting_project['vote_end'] ?></li>
 							</ul>
-							<a class="btn-a" href="<?= $recommended_voting_project['id'] ?>">我要投票</a>
+							<a class="btn-a" href="/vote/<?= $recommended_voting_project['id'] ?>">我要投票</a>
 						</li>
 						<?}?>
 					</ul>
 				</div>
-				<div class="tail"><a href="{url projectvote-view-<?= $recommend_project['p_id'] ?>}"><< 更多候选名单</a></div>
+				<div class="tail"><a href="#"><< 更多候选名单</a></div>
 			</div>
 		</div>
 	</div>
 	<div class="search">
 		<div class="title">
-			<b class="s14">投票统计</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进行的投票：<b class="s18"><?= $project_count ?></b>            &nbsp;&nbsp;&nbsp;投票总数：<b class="s18"><?= $user_count ?></b>票
+			<b class="s14">投票统计</b>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			进行的投票：<b class="s18"><?= $active_projects ?></b>
+			&nbsp;&nbsp;&nbsp;
+			投票总数：<b class="s18"><?= $sum_votes ?></b>票
 		</div>
 
-		<? $this->view('vote/inner_vote_search') ?>
+		<? $this->view('vote/search') ?>
 
 	</div>
 
 	<div class="model list">
 		<div class="title">
 			<h3>
-				<!--{if $type=='hot'}-->热门投票
-				<!--{elseif $type=='starttime'}-->最新投票
-				<!--{else}-->
+				热门投票
+				最新投票
 				投票进行时
-				<!--{/if}-->		
 			</h3>
-			<ul>
-				<li <!--{if 0 == $order}-->class="on"<!--{/if}-->><a href="{url vote}">默认</a></li>
-				<!--{loop $order_list $key $data}-->
-				<li <!--{if $data['id'] == $order}-->class="on"<!--{/if}--> ><a href="{url $cat-search-tag-$tag-money-$money-time-$time-user-$user-joinin-$joinin-order-$data['id']}" ><?= $data['name'] ?></a></li>
-				<!--{/loop}-->
-			</ul>			
 		</div>
 		<div class="main">
 
@@ -80,15 +76,15 @@
 				<h4>最新投票</h4>
 				<div class="content">
 
-					<?foreach($voting_projects as $project){?>
+					<?foreach($voting_projects['latest'] as $project){?>
 					<div class="box">
-						<a href="{url projectvote-view-<?= $project['id'] ?>}"><img src="uploads/images/project/<?=$project['id']?>.jpg"></a>
+						<a href="/project/<?= $project['id'] ?>}"><img src="/uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 						<ul>
 							<li><b>项目名称：</b><?= $project['name'] ?></li>
 							<li><b>项目介绍：</b><?= $project['summary'] ?></li>
 							<li><b>发布企业：</b><?= $project['company_name'] ?></li>
 							<li><b>项目金额：</b><?= $project['bonus'] ?></li>
-							<li><b>投票时间：</b><?= $project['date_start'] ?> 至 <?= $project['date_end'] ?></li>
+							<li><b>投票时间：</b><?= $project['vote_start'] ?> 至 <?= $project['vote_end'] ?></li>
 							<li class="tags">
 								<b>标签：</b>
 								<?foreach($project['tags'] as $tags){?>
@@ -97,7 +93,7 @@
 							</li>
 						</ul>
 						<div class="join">
-							<p><?= $data['total_vote'] ?><?=$project['votes']?>票/<?=$project['voters_count']?>人</p>   <a href="{url projectvote-view-<?= $data['p_id'] ?>}" >我要投票</a>
+							<p><?=$project['votes']?>票/<?=$project['voters']?>人</p><a href="/vote/<?=$project['id']?>">我要投票</a>
 						</div>
 					</div>
 					<?}?>
@@ -109,15 +105,15 @@
 				<h4>热门投票</h4>
 				<div class="content">
 
-					<?foreach($voting_projects as $project){?>
+					<?foreach($voting_projects['hot'] as $project){?>
 					<div class="box">
-						<a href="{url projectvote-view-<?= $project['id'] ?>}"><img src="uploads/images/project/<?=$project['id']?>.jpg"></a>
+						<a href="{url projectvote-view-<?= $project['id'] ?>}"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 						<ul>
 							<li><b>项目名称：</b><?= $project['name'] ?></li>
 							<li><b>项目介绍：</b><?= $project['summary'] ?></li>
 							<li><b>发布企业：</b><?= $project['company_name'] ?></li>
 							<li><b>项目金额：</b><?= $project['bonus'] ?></li>
-							<li><b>投票时间：</b><?= $project['date_start'] ?> 至 <?= $project['date_end'] ?></li>
+							<li><b>投票时间：</b><?= $project['vote_start'] ?> 至 <?= $project['vote_end'] ?></li>
 							<li class="tags">
 								<b>标签：</b>
 								<?foreach($project['tags'] as $tags){?>
@@ -126,7 +122,7 @@
 							</li>
 						</ul>
 						<div class="join">
-							<p><?= $data['total_vote'] ?><?=$project['votes']?>票/<?=$project['voters_count']?>人</p>   <a href="{url projectvote-view-<?= $data['p_id'] ?>}" >我要投票</a>
+							<p><?=$project['votes']?>票/<?=$project['voters']?>人</p><a href="/vote/<?=$project['id']?>">我要投票</a>
 						</div>
 					</div>
 					<?}?>
