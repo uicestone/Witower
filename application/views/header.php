@@ -6,11 +6,9 @@
 		<meta name="keywords" content="<?//=$setting['seo_keywords']?>" />
 		<meta name="description" content="<?//=$setting['seo_description']?>" />
 		<base href="<?=$this->config->item('site_url')?>/" />
-		<link rel="stylesheet" type="text/css" href="style/base.css"><!--元素reset-->
 		<link rel="stylesheet" type="text/css" href="style/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="style/tango/skin.css"><!--跟用户头像有关的样式-->
 		<link rel="stylesheet" type="text/css" href="style/common.css"><!--全局样式-->
-		<link rel="stylesheet" type="text/css" href="js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css">
 
 		<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery.masonry.min.js"></script>

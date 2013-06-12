@@ -12,6 +12,7 @@ class Project extends WT_Controller{
 		
 		$recommended_project=$this->project->fetch($this->config->user_item('recommended_project'));
 		$recommended_project['tags']=$this->project->getTags($recommended_project['id']);
+		$recommended_project['comments']=$this->project->getComments($recommended_project['id']);
 		
 		$result_active_projects_count=$this->project->getList(array('is_active'=>true,'count'=>true));
 		$active_projects=$result_active_projects_count[0]['count'];

@@ -7,17 +7,16 @@
 	<div id="left">
 		<div class="model model-b">
 			<div class="main">
-				<div><img src="/uploads/images/avartar/<?=$project['company']?>_100.jpg"><br>
-					<span>
+				<div class="info">
+					<a href="/space/<?=$project['company']?>"><img src="/uploads/images/avartar/<?=$project['company']?>_100.jpg"></a>
+				<ul>
+					<li><b>发布企业：</b><?= $project['company_name'] ?>
 <?if($this->user->hasFollowed($project['company'])){?>
 						<span class="add_attention">已关注</span>
 <?}else{?>
 						<a href="javascript:void(0);" class="add_attention" uid="<?=$project['company']?>">加关注</a>
 <?}?>
-					</span>
-				</div>
-				<ul>
-					<li><b>发布企业：</b><?= $project['company_name'] ?></li>
+					</li>
 					<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
 					<li><b>被编辑次数：</b><?= $project['versions'] ?>次
 						<b>被讨论次数：</b><?= $project['comments_count'] ?>次<b>
@@ -27,10 +26,11 @@
 					<li class="tags">
 						<b>标签：</b>
 						<?foreach($project['tags'] as $tag){?>
-						<a href="{url list-search-tag-$data['tag_id']}"><?= $tag ?></a>
+						<a href="#"><?= $tag ?></a>
 						<?}?>
 					</li>
 				</ul>
+				</div>
 				<div class="descript">
 					<div class="fn-left"><img src="/uploads/images/project/<?=$project['id']?>_100.jpg"></div><div class="fn-right">
 						<p><?=$project['summary']?></p>

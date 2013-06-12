@@ -1,5 +1,4 @@
 <?$this->view('header')?>
-<script type="text/javascript" src="js/function.js"></script>
 
 <div class="page-register">
 	<div class="title">
@@ -18,8 +17,6 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript"> 
-//$('#email').focus();
-</script>
+
 <div class="c-b"></div>
 <?$this->view('footer')?>

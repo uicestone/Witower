@@ -7,24 +7,29 @@
 
 		<div class="model model-b">
 			<div class="main">
-				<div><img src="/uploads/images/avartar/<?=$project['company']?>_100.jpg" /><br>
-					<span>
-						<span class="add_attention">已关注</span>
-						<a href="javascript:void(0);" class="add_attention" uid="<?= $project['company'] ?>">加关注</a>
-					</span>
+				<div class="info">
+					<img src="/uploads/images/avartar/<?=$project['company']?>_100.jpg" />
+					<ul>
+						<li><b>发布企业：</b><?= $project['company_name'] ?>
+							<span>
+	<?if($this->user->hasFollowed($project['company'])){?>
+								<span class="add_attention">已关注</span>
+	<?}else{?>
+								<a href="javascript:void(0);" class="add_attention" uid="<?=$project['company']?>">加关注</a>
+	<?}?>
+							</span>
+						</li>
+						<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
+						<li><b>被编辑次数：</b><?=$versions?>次<b>被讨论次数：</b><?=count($comments)?>次<b>投票截止日期：</b><?= $project['vote_end'] ?></li>
+						<li><b>活动状态：</b>投票中</li>
+						<li class="tags">
+							<b>标签：</b>
+	<?foreach($project['tags'] as $tag){?>
+							<a href="＃"><?= $tag ?></a>
+	<?}?>
+						</li>
+					</ul>
 				</div>
-				<ul>
-					<li><b>发布企业：</b><?= $project['company_name'] ?></li>
-					<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
-					<li><b>被编辑次数：</b><?=$versions?>次<b>被讨论次数：</b><?=count($comments)?>次<b>投票截止日期：</b><?= $project['vote_end'] ?></li>
-					<li><b>活动状态：</b>投票中</li>
-					<li class="tags">
-						<b>标签：</b>
-<?foreach($project['tags'] as $tag){?>
-						<a href="＃"><?= $tag ?></a>
-<?}?>
-					</li>
-				</ul>
 				<div class="descript">
 					<div class="fn-left"><img src="/uploads/images/project/<?=$project['id']?>_100.jpg"></div><div class="fn-right">
 						<p><?= $project['summary'] ?></p>

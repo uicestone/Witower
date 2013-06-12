@@ -21,16 +21,7 @@
 
 	<div class="model">
 		<div class="title">
-			<h3>
-				人气项目
-				项目金额
-				最新项目
-				项目列表
-			</h3>
-			<ul>
-				<li class="on"><a href="{url list}">默认</a></li>
-				<li class="on"><a href="{url $cat-search-tag-0-money-$money-time-$time-user-$user-order-$data['id']}" ><?//=$data['name']?></a></li>
-			</ul>
+			<h3>项目排行榜</h3>
 		</div>
 		<div class="main">
 			<div class="model-a">

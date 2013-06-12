@@ -8,24 +8,23 @@ function tabChange(title,content){
 		$(content).hide();
 		$(content).eq(i).show();
 		e.preventDefault();
-		})
+		});
 	});
-	}
+}
 
-
-$(document).ready(function() {
+$(function() {
 
 	$(".page-company").each(function(){
 		var $title = $(this).find("#right .main .nav li");
 		var $content = $(this).find("#right .main .show_content");
 		tabChange($title,$content);
-	})
+	});
 
 
 	var Request = {};
-	Request.r1 = "/index.php?user-getmicroblogcomments-";
-	Request.flags = "index.php?projectvote-vote-1-";
-	Request.addAttention = "index.php?user-addfocus-";
+	Request.r1 = 'user/getstatuscomments/';
+	Request.flags = '/vote-vote-1-';
+	Request.addAttention = '/user/follow/';
 
 	$("a[href = '#']").click(function(e){e.preventDefault();});// prevent every anchor default event
 
@@ -41,13 +40,10 @@ $(document).ready(function() {
 		visible:10
 	});
 
-
-
-
 	 // Totop
 	var GoToTop = (function(){
 		$(window).scroll(function(){
-			if($(this).scrollTop()!=0){
+			if($(this).scrollTop()!==0){
 				$('#goToTop').fadeIn();}
 			else{
 				$('#goToTop').fadeOut();} });
@@ -66,7 +62,7 @@ $(document).ready(function() {
 			count++;
 			var td = $(this)[0];
 			var $input = $(this).find("input");
-			if($.data(td, "num") == undefined){
+			if($.data(td, "num") === undefined){
 				$.data(td, "num",0);
 				$input.val(0);
 			}else{}
@@ -77,7 +73,7 @@ $(document).ready(function() {
 				$.data(td, "num",(num+1));
 			});
 			$input.val(num+1);
-			if(count == 3){
+			if(count === 3){
 				$(".flags img").each(function(){
 					$(this).attr("src","style/flag-off.png");
 				});
@@ -98,12 +94,7 @@ $(document).ready(function() {
 			$(".voting table td.images img").attr("src","style/flag-off.png");
 			$(".flags img").attr("src","style/flag.png");
 		});
-
-
-
 	}());
-
-
 
 	var Comment = (function(){
 		$(".model").on("click",".btn-comment",function(){
@@ -115,17 +106,6 @@ $(document).ready(function() {
 			
 			return false;
 
-/*			$.get(Request.r1 + microblogId,function(data){
-
-				var contentHtml = "";
-				$.each(data,function(i,val){
-					contentHtml += "<li><p>" + val["content"] + "<span>" + val["time"] + "</span><img src=" + val["username"] + " /></p></li>"
-				});
-
-				
-
-			},"json");
-*/
 		})
 		
 		.on('click','[name="comment-content-submit"]',function(){
@@ -145,9 +125,9 @@ $(document).ready(function() {
 	var addAttention = (function(){
 		$(".add_attention").mouseup(function(){
 			var userId = $(this).attr("uid");
-			var $self = $(this)
+			var $self = $(this);
 			$.get(Request.addAttention + userId,function(data){
-				if(data == "success"){
+				if(data === 'success'){
 					$self.html("已关注").removeClass("add_attention").addClass("added").unbind("mouseup");
 				}else{}
 			});

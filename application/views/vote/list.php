@@ -8,25 +8,26 @@
 		<div class="main">
 			<div class="info">
 				<a href="/vote/<?=$recommended_voting_project['id']?>"><img src="/uploads/images/project/<?=$recommended_voting_project['id']?>_100.jpg"></a>
+				<a class="btn-a pull-right" href="/vote/<?= $recommended_voting_project['id'] ?>">我要投票</a>
 				<ul>
 					<li><b>发布企业：</b><?= $recommended_voting_project['company_name'] ?>
-						<!--{if $recommend_project[follow]}-->
+<?if($this->user->hasFollowed($recommended_voting_project['company'])){?>
 						<span class="add_attention">已关注</span>
-						<!--{else}-->
-						<a href="javascript:void(0);" class="pl f3 add_attention" uid="<?= $recommended_voting_project['id'] ?>">加关注</a>
-						<!--{/if}-->
+<?}else{?>
+						<a href="javascript:void(0);" class="add_attention" uid="<?=$recommended_voting_project['company']?>">加关注</a>
+<?}?>
 					</li>
-					<li><b>项目名称：</b><a href="{url projectvote-view-<?= $recommended_voting_project['id'] ?>}"><?= $recommended_voting_project['name'] ?></a></li>
+					<li><b>项目名称：</b><a href="/vote/<?= $recommended_voting_project['id'] ?>}"><?= $recommended_voting_project['name'] ?></a></li>
 					<li><b>项目介绍：</b><?= $recommended_voting_project['summary'] ?></li>
-					<li><b>当前人数：</b><?= $recommended_voting_project['votes'] ?>人</li>
+					<li><b>当前人数：</b><?= count($recommended_voting_project['voters']) ?>人</li>
 				</ul>
 			</div>
 			<div class="scroll-img">
 				<div class="fn-left"><p>他们已经投票</p></div>
 				<div class="fn-right">
 					<ul id="mycarousel" class="jcarousel-skin-tango">
-						<?foreach($recommended_voting_project['voters'] as $project){?>
-						<li><a href="index.php?user-space-<?= $project['id'] ?>"><img src="uploads/images/avartar/<?=$project['id']?>_30.jpg"><span><?= $project['name'] ?></span></a></li>
+						<?foreach($recommended_voting_project['voters'] as $voter){?>
+						<li><a href="/space/<?= $voter['id'] ?>"><img src="uploads/images/avartar/<?=$voter['id']?>_100.jpg" width="65px" height="65px"><span><?= $voter['name'] ?></span></a></li>
 						<?}?>
 					</ul>
 				</div>
@@ -40,7 +41,6 @@
 								<li>当前投票数：<?= $recommended_voting_project['votes'] ?>票</li>
 								<li>投票时间：<?= $recommended_voting_project['vote_start'] ?> 至 <?= $recommended_voting_project['vote_end'] ?></li>
 							</ul>
-							<a class="btn-a" href="/vote/<?= $recommended_voting_project['id'] ?>">我要投票</a>
 						</li>
 						<?}?>
 					</ul>
@@ -64,11 +64,7 @@
 
 	<div class="model list">
 		<div class="title">
-			<h3>
-				热门投票
-				最新投票
-				投票进行时
-			</h3>
+			<h3>投票排行榜</h3>
 		</div>
 		<div class="main">
 
@@ -78,23 +74,25 @@
 
 					<?foreach($voting_projects['latest'] as $project){?>
 					<div class="box">
-						<a href="/project/<?= $project['id'] ?>}"><img src="/uploads/images/project/<?=$project['id']?>_200.jpg"></a>
+						<a href="/project/<?= $project['id'] ?>"><img src="/uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 						<ul>
 							<li><b>项目名称：</b><?= $project['name'] ?></li>
 							<li><b>项目介绍：</b><?= $project['summary'] ?></li>
 							<li><b>发布企业：</b><?= $project['company_name'] ?></li>
 							<li><b>项目金额：</b><?= $project['bonus'] ?></li>
 							<li><b>投票时间：</b><?= $project['vote_start'] ?> 至 <?= $project['vote_end'] ?></li>
-							<li class="tags">
-								<b>标签：</b>
-								<?foreach($project['tags'] as $tags){?>
-								<a href="#"><?= $tags ?></a>
-								<?}?>
+							<li class="last">
+								<span class="tags">
+									<b>标签：</b>
+									<?foreach($project['tags'] as $tags){?>
+									<a href="#"><?= $tags ?></a>
+									<?}?>
+								</span>
+								<div class="join">
+									<p><?=$project['votes']?>票/<?=$project['voters']?>人</p><a href="/vote/<?=$project['id']?>">我要投票</a>
+								</div>
 							</li>
 						</ul>
-						<div class="join">
-							<p><?=$project['votes']?>票/<?=$project['voters']?>人</p><a href="/vote/<?=$project['id']?>">我要投票</a>
-						</div>
 					</div>
 					<?}?>
 
@@ -114,16 +112,18 @@
 							<li><b>发布企业：</b><?= $project['company_name'] ?></li>
 							<li><b>项目金额：</b><?= $project['bonus'] ?></li>
 							<li><b>投票时间：</b><?= $project['vote_start'] ?> 至 <?= $project['vote_end'] ?></li>
-							<li class="tags">
-								<b>标签：</b>
-								<?foreach($project['tags'] as $tags){?>
-								<a href="#"><?= $tags ?></a>
-								<?}?>
+							<li class="last">
+								<span class="tags">
+									<b>标签：</b>
+									<?foreach($project['tags'] as $tags){?>
+									<a href="#"><?= $tags ?></a>
+									<?}?>
+								</span>
+								<div class="join">
+									<p><?=$project['votes']?>票/<?=$project['voters']?>人</p><a href="/vote/<?=$project['id']?>">我要投票</a>
+								</div>
 							</li>
 						</ul>
-						<div class="join">
-							<p><?=$project['votes']?>票/<?=$project['voters']?>人</p><a href="/vote/<?=$project['id']?>">我要投票</a>
-						</div>
 					</div>
 					<?}?>
 
