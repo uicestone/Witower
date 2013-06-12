@@ -12,11 +12,8 @@
 		<link rel="stylesheet" type="text/css" href="style/common.css"><!--全局样式-->
 		<link rel="stylesheet" type="text/css" href="js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css">
 
-		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
-		<!--<script type="text/javascript" src="style/bootstrap/js/bootstrap.js"></script>-->
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="js/jquery.masonry.min.js"></script>
-		<!--<script type="text/javascript" src="js/login.js"></script>-->
 		<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 	</head>
