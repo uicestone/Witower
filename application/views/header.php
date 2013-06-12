@@ -6,19 +6,19 @@
 		<meta name="keywords" content="<?//=$setting['seo_keywords']?>" />
 		<meta name="description" content="<?//=$setting['seo_description']?>" />
 		<base href="<?=$this->config->item('site_url')?>/" />
-		<link rel="stylesheet" type="text/css" href="style/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="style/tango/skin.css"><!--跟用户头像有关的样式-->
-		<link rel="stylesheet" type="text/css" href="style/common.css"><!--全局样式-->
+		<link rel="stylesheet" type="text/css" href="/style/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/style/tango/skin.css">
+		<link rel="stylesheet" type="text/css" href="/style/common.css">
 
-		<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
-		<script type="text/javascript" src="js/jquery.masonry.min.js"></script>
-		<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
-		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.masonry.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.jcarousel.min.js"></script>
+		<script type="text/javascript" src="/js/common.js"></script>
 	</head>
 	<body>
 		<div id="wrapper">
 			<div id="header">
-				<div class="logo"><img src="style/logo.gif"></div>
+				<div class="logo"><img src="/style/logo.gif"></div>
 				<div class="menu">
 					<ul>
 						<li><a href="/">首页</a></li>
