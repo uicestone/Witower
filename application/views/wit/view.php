@@ -260,12 +260,12 @@
       <!--{/if}-->
     </label>
     <!--{if $synonym_audit}-->
-    <span class="r w-110 cursor" ><img src="style/default/add_synonym.gif"/><a href="javascript:void(0)" >{lang editDddSyn}</a></span>
+    <span class="r w-110 cursor" ><img src="style/add_synonym.gif"/><a href="javascript:void(0)" >{lang editDddSyn}</a></span>
     <!--{/if}-->
   </p>
 </div>
 <div class="bor-ccc m-t10 notes bg-gray bookmark">
-  <p><span class="bold">{lang favourite}: </span> <a title="Favorites" ><img src='style/default/bookmark/ie.gif' border='0' style="cursor:pointer;"></a> &nbsp;
+  <p><span class="bold">{lang favourite}: </span> <a title="Favorites" ><img src='style/bookmark/ie.gif' border='0' style="cursor:pointer;"></a> &nbsp;
     <script language="javascript"src='js/bookmark.js'></script>
     <!--{if !empty($userid)}-->
     <img id="doc_favorite" did="<?=$doc['did']?>" title="{lang keepToSpace}" alt="{lang keepToSpace}" src="style/bookmark/hudong.gif" style="cursor:pointer;">
@@ -383,7 +383,7 @@
         <img src="style/star_level1.gif"/>
         <!--{/for}-->
         </span> </dd>
-      <dd>{lang creator} <a  href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/default/jb.gif" title="<?=$author['credit1']?>{lang gold}"></dd>
+      <dd>{lang creator} <a  href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/jb.gif" title="<?=$author['credit1']?>{lang gold}"></dd>
     </dl>
     <!--{/if}-->
     <!--{/if}-->
@@ -409,7 +409,7 @@
         <img src="style/star_level1.gif"/>
         <!--{/for}-->
         </span> </dd>
-      <dd>{lang recentEditor} <a href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/default/jb.gif" title="<?=$lasteditor['credit1']?>{lang gold}"></dd>
+      <dd>{lang recentEditor} <a href="javascript:void(0)">{lang sendmessage}</a> &nbsp;&nbsp;<img src="style/jb.gif" title="<?=$lasteditor['credit1']?>{lang gold}"></dd>
     </dl>
     <!--{/if}-->
     <!--{if $lasteditor_removed}-->

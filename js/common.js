@@ -73,17 +73,17 @@ $(document).ready(function() {
 			var num = $.data(td, "num");
 
 			$(this).find("img:lt(" + (num + 1) + ")").each(function(){
-				$(this).attr("src","style/default/flag.png");
+				$(this).attr("src","style/flag.png");
 				$.data(td, "num",(num+1));
 			});
 			$input.val(num+1);
 			if(count == 3){
 				$(".flags img").each(function(){
-					$(this).attr("src","style/default/flag-off.png");
+					$(this).attr("src","style/flag-off.png");
 				});
 			}else{
 				$(".flags img:gt(" + (2-count) + ")").each(function(){
-					$(this).attr("src","style/default/flag-off.png");
+					$(this).attr("src","style/flag-off.png");
 				});
 			}
 		});
@@ -95,8 +95,8 @@ $(document).ready(function() {
 				$.data($(this)[0], "num",0);
 				$(this).find("input").val(0);
 			});
-			$(".voting table td.images img").attr("src","style/default/flag-off.png");
-			$(".flags img").attr("src","style/default/flag.png");
+			$(".voting table td.images img").attr("src","style/flag-off.png");
+			$(".flags img").attr("src","style/flag.png");
 		});
 
 

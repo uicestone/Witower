@@ -46,8 +46,25 @@ class Vote extends WT_Controller{
 	/**
 	 * 项目投票详情查看页
 	 */
-	function view(){
-		$this->load->view('vote/view');
+	function view($id){
+		
+		$this->project->id=$id;
+		
+		$project=$this->project->fetch();
+		
+		$project['tags']=$this->project->getTags();
+		
+		$comments=$this->project->getComments();
+		
+		$versions=$this->project->countVersions();
+		
+		$candidates=$this->project->getCandidates();
+		
+		$voters=$this->user->getList(array('voted_project'=>$this->project->id));
+		
+		$sum_votes=$this->project->countVotes();
+		
+		$this->load->view('vote/view', compact('project','versions','comments','candidates','sum_votes','voters'));
 	}
 	
 }
