@@ -44,6 +44,10 @@ class Project_model extends WT_Model{
 			$this->db->where('CURDATE() >= project.vote_start AND CURDATE() <= project.vote_end',NULL,false);
 		}
 		
+		if(isset($args['company'])){
+			$this->db->where('project.company',$args['company']);
+		}
+		
 		return parent::getList($args);
 	}
 	

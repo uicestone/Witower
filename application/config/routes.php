@@ -54,5 +54,8 @@ $route['home/profile'] = 'user/profile';
 $route['home/project'] = 'user/project';
 $route['space/(:num)'] = 'user/space/$1';
 
+$route['company/addproduct'] = 'company/editproduct';
+$route['company/addproject'] = 'company/editproject';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -32,9 +32,9 @@
 						<li><a href="/home"><?=$this->user->name?></a> |</li>
 						<li><a href="/message">消息</a>|</li>
 						<li><a href="/score">积分</a>|</li>
-						<li><a href="/profile">个人资料</a>|</li>
+						<li><a href="/profile">资料</a>|</li>
 <?	if($this->user->isCompany()){?>
-						<li><a href="/user/management">我的项目</a>|</li>
+						<li><a href="/company/product">管理</a>|</li>
 <?	}?>
 <?}?>
 <?if($this->user->isLogged()){?>

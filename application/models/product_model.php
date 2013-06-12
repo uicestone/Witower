@@ -19,5 +19,14 @@ class Product_model extends WT_Model{
 		
 		return array_sub($result,'name');
 	}
+	
+	function getList(array $args=array()){
+		
+		if(isset($args['company'])){
+			$this->db->where('product.company',$args['company']);
+		}
+		
+		return parent::getList($args);
+	}
 }
 ?>

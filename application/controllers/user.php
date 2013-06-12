@@ -75,13 +75,6 @@ class User extends WT_Controller{
 	}
 	
 	/**
-	 * 企业的项目管理
-	 */
-	function management(){
-		$this->load->view('user/project');
-	}
-	
-	/**
 	 * 达人列表
 	 */
 	function master(){
