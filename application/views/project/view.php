@@ -39,7 +39,7 @@
 
 							</div>
 							<div class="fn-right">
-								<a class="btn-c" href="/wit/add">发布创意</a>
+								<a class="btn  btn-primary" href="/wit/add?project=<?=$project['id']?>">发布创意</a>
 							</div>
 
 						</div>
@@ -150,6 +150,4 @@
 	</div>
 </div>
 
-
-<?
-$this->view('footer')?>
+<?$this->view('footer')?>

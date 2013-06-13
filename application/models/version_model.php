@@ -4,12 +4,12 @@ class Version_model extends WT_Model{
 		parent::__construct();
 		$this->table='version';
 		$this->fields=array(
-			'wit'=>'所属创意',
-			'content'=>'内容',
-			'score_wit'=>'智塔打分',
-			'score_company'=>'企业打分',
-			'user'=>'用户',
-			'time'=>'时间'
+			'wit'=>NULL,//所属创意
+			'content'=>'',//内容
+			'score_wit'=>0,//智塔打分
+			'score_company'=>0,//企业打分
+			'user'=>NULL,//用户
+			'time'=>$this->date->now,//时间
 		);
 	}
 

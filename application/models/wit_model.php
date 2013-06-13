@@ -4,11 +4,12 @@ class Wit_model extends WT_Model{
 		parent::__construct();
 		$this->table='wit';
 		$this->fields=array(
-			'project'=>'所属项目',
-			'content'=>'最新内容',
-			'user'=>'用户',
-			'time'=>'时间',
-			'selected'=>'选中'
+			'project'=>NULL,//所属项目
+			'name'=>'',//创意标题
+			'content'=>'',//最新内容
+			'user'=>NULL,//用户
+			'time'=>$this->date->now,//时间
+			'selected'=>false//选中
 		);
 	}
 	
