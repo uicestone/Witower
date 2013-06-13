@@ -10,6 +10,7 @@
 * @property CI_Cart $cart
 * @property WT_Config $config
 * @property WT_Controller $controller
+* @property Date $date
 * @property CI_Email $email
 * @property CI_Encrypt $encrypt
 * @property CI_Exceptions $exceptions
@@ -40,6 +41,7 @@
 * @property CI_Xmlrpc $xmlrpc
 * @property CI_Xmlrpcs $xmlrpcs
 * @property CI_Zip $zip
+* @property Company_model $company
 * @property Product_model $product
 * @property Project_model $project
 * @property User_model $user
@@ -51,6 +53,7 @@
 class CI_Controller {};
 
 /**
+* @property WT_Date $date
 * @property CI_DB_mysql_driver $db
 * @property CI_DB_active_record $db
 * @property User_model $user

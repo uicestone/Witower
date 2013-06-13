@@ -7,10 +7,11 @@ class User_model extends WT_Model{
 		parent::__construct();
 		
 		$this->table='user';
+		
 		$this->fields=array(
-			'name'=>'用户名',
-			'password'=>'密码',
-			'email'=>'电子邮件'
+			'name'=>'',//用户名
+			'password'=>'',//密码
+			'email'=>''//电子邮件
 		);
 
 		if(is_null($uid)){

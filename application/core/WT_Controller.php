@@ -7,6 +7,7 @@ class WT_Controller extends CI_Controller{
 		
 		$this->load->model('witower_model','witower');
 		$this->load->model('user_model','user');
+		$this->load->model('company_model','company');
 		
 		$this->config->witower=$this->witower->getConfig();
 		$this->config->user=$this->user->getConfig();

@@ -4,16 +4,18 @@ class Project_model extends WT_Model{
 		parent::__construct();
 		$this->table='project';
 		$this->fields=array(
-			'product'=>'所属产品',
-			'name'=>'项目名称',
-			'summary'=>'项目介绍',
-			'wit_start'=>'创意开始日期',
-			'wit_end'=>'创意结束日期',
-			'vote_start'=>'投票开始日期',
-			'vote_end'=>'投票结束日期',
-			'bonus'=>'悬赏奖金',
-			'company'=>'公司',
-			'witters'=>'参与人数'
+			'product'=>NULL,//所属产品
+			'name'=>'',//项目名称
+			'summary'=>'',//项目介绍
+			'wit_start'=>$this->date->today,//创意开始日期
+			'wit_end'=>date('Y-m-d',strtotime('+30 Days')),//创意结束日期
+			'vote_start'=>date('Y-m-d',strtotime('+33 Days')),//投票开始日期
+			'vote_end'=>date('Y-m-d',strtotime('+43 Days')),//投票结束日期
+			'bonus'=>0.00,//悬赏奖金
+			'company'=>NULL,//公司
+			'witters'=>0,//参与人数
+			'voters'=>0,//投票人数
+			'favorites'=>0//收藏数
 		);
 	}
 	

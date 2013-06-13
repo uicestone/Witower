@@ -56,6 +56,8 @@ $route['space/(:num)'] = 'user/space/$1';
 
 $route['company/addproduct'] = 'company/editproduct';
 $route['company/addproject'] = 'company/editproject';
+$route['company/product/(:num)'] ='company/editproduct/$1';
+$route['company/project/(:num)'] ='company/editproject/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

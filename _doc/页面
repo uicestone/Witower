@@ -15,3 +15,9 @@ uri				controller			view			discription
 /home/profile	user/profile		user/profile	用户资料
 /home/project	user/project		user/project	我的项目列表
 /space/{id}		user/space			user/space		用户主页/动态
+/company/product		company/product		company/product			企业产品列表
+/company/project		company/project		company/project			企业项目列表
+/company/addproduct		company/editProduct	company/product_edit	企业添加产品
+/company/addproject		company/editProject	company/project_edit	企业添加项目
+/company/product/{id}	company/editProduct	company/product_edit	企业编辑产品
+/company/project/{id}	company/editProject	company/project_edit	企业编辑项目

@@ -58,11 +58,54 @@ class Company extends WT_Controller{
 	}
 	
 	function project(){
-		$this->load->view('company/project');
+		
+		$projects=$this->project->getList(array('company'=>$this->user->id));
+		
+		foreach($projects as &$project){
+			$project['product_name']=$this->product->fetch($project['product'],'name');
+		}
+		
+		$this->load->view('company/project', compact('projects'));
 	}
 	
-	function editProject(){
-		$this->load->view('company/project_edit');
+	function editProject($id=NULL){
+		
+		$this->project->id=$id;
+		
+		if($this->input->post('submit')!==false){
+			
+			$data=array(
+				'name'=>$this->input->post('name'),
+				'summary'=>$this->input->post('summary'),
+				'product'=>$this->input->post('product'),
+				'company'=>$this->user->id,
+				'wit_start'=>$this->input->post('start'),
+				'wit_end'=>$this->input->post('end'),
+				'bonus'=>$this->input->post('bonus')
+			);
+
+			//TODO 上传和更新产品图片文件
+			if(is_null($this->project->id)){
+				$this->project->add($data);
+			}
+			else{
+				$this->project->update($data);
+			}
+			
+			redirect('company/project');
+		}
+		
+		if(is_null($this->project->id)){
+			$project=$this->project->fields;
+			$project['product']=$this->input->get('product');
+		}
+		else{
+			$project=$this->project->fetch();
+		}
+		
+		$products=$this->product->getArray(array('company'=>$this->user->id),'name','id');
+		
+		$this->load->view('company/project_edit', compact('project','products'));
 	}
 }
 ?>

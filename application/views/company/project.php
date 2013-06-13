@@ -12,26 +12,27 @@
 				</div>
 				<div class="show_content">
 					<form>
-						<button class="btn" type="button" onclick="location.href='/?user-editproject'">增加新项目</button>
+						<button class="btn" type="button" onclick="location.href='/company/addproject'">增加新项目</button>
 						<table class="table table-bordered">
 							<thead>
-								<tr> <td>编号</td><td>项目名称</td>
-									<td>所属产品</td>
-									<td>图片</td><td style="width: 70px;">描述</td><td style="width:100px;">时间</td><td>操作</td><!--<td>统计</td>--></tr>
+								<tr><td>项目名称</td>
+									<td style="width:50px">产品</td>
+									<td>图片</td><td style="width: 70px;">描述</td><td>时间</td><td>操作</td>
+								</tr>
 							</thead>
 							<tbody>
+<?foreach($projects as $project){?>
 								<tr>
-								 <td><?=$project[p_id]?></td>
-								 <td><?=$project[title]?></td>
-								 <td><?=$project[product_name]?></td>
-								 <td><img src="/uploads/images/projects/<?=$project[p_id]?>.jpg" width="80px"></td>
-								 <td><?=$project[summary]?></td>
-									<td>发布：<br><?=$project[start_time]?><br>截止：<br><?=$project[end_time]?></td>
-									<td><button class="btn btn-small" type="button" >查看</button><br>
-										<button class="btn btn-small" type="button" >修改</button><br></td>
-										6个投票中的项目
+									<td><?=$project['name']?></td>
+									<td><?=$project['product_name']?></td>
+									<td class="image"><img src="/uploads/images/project/<?=$project['id']?>_100.jpg"></td>
+									<td class="descript"><?=$project['summary']?></td>
+									<td style="width: 100px">发布：<br><?=$project['wit_start']?><br>截止：<br><?=$project['wit_end']?></td>
+									<td style="width: 48px;"><a href="/project/<?=$project['id']?>" class="btn btn-small">查看</a><br>
+										<a href="/company/project/<?=$project['id']?>" class="btn btn-small">修改</a><br>
 									</td>
 								</tr>
+<?}?>
 							</tbody>
 						</table>
 					</form>

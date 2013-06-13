@@ -24,8 +24,8 @@
 									<td><img src="/uploads/images/product/<?=$product['id']?>_100.jpg"></td>
 									<td><?=$product['description']?></td>
 									<td>
-										<button class="btn btn-small" type="button" onclick="location.href='/company/editproduct/<?=$product['id']?>'">修改</button><br>
-										<button class="btn btn-small" type="button" onclick="window.open('/company/createproject/<?=$product['id']?>')">发布项目</button>
+										<a class="btn btn-small" href="/company/product/<?=$product['id']?>">修改</a><br>
+										<a class="btn btn-small" href="/company/addproject?product=<?=$product['id']?>">发布项目</a>
 									</td>
 									<td>
 										<?=$product['projects_witting']?>个进行中的项目<br>

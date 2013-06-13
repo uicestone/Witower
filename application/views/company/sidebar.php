@@ -1,6 +1,13 @@
 	<div id="left" class="sidebar">
 		<div class="box list">
 			<ul class="nav nav-list">
+				<li<?if(uri_string()==='company/product'){?> class="active"<?}?>><a href="/company/product">产品管理</a></li>
+				<li<?if(uri_string()==='company/project'){?> class="active"<?}?>><a href="/company/project">项目管理</a></li>
+				<li class="divider"></li>
+			  </ul>
+		</div>
+		<div class="box list">
+			<ul class="nav nav-list">
 				<li class="nav-header">寻求帮助</li>
 				<li><a href="#">如何快速发布项目活动？</a></li>
 				<li><a href="#">正等待你选出后选人</a></li>

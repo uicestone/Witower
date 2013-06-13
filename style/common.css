@@ -27,7 +27,6 @@ body .fn-hide{display:none;}
 #left,.fn-left{float:left;}
 #right,.fn-right{float:right;}
 body a{color: #999;}
-body a:hover{color: #00e0ff!important;}
 .hr{border-top:1px solid #999;font-size: 0;height: 0;margin: 10px 0;}
 p{line-height: 162%;}
 
@@ -47,6 +46,7 @@ paginator  ******/
 #header{height:75px;}
 #header div{float: left;}
 #header a{color: #fff;text-decoration: none;}
+#header a:hover{color: #00e0ff}
 #header ul li{float: left;}
 #header .logo{ margin: 2px 0 0;}
 #header .menu{ margin:22px 0 0 20px;}
