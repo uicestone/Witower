@@ -21,9 +21,9 @@
 				<div class="logo"><img src="/style/logo.gif"></div>
 				<div class="menu">
 					<ul>
-						<li><a href="/">首页</a></li>
-						<li><a href="/project">项目</a></li>
-						<li><a href="/vote">投票</a></li>
+						<li<?if(uri_string()===''){?> class="current-menu-item"<?}?>><a href="/">首页</a></li>
+						<li<?if(uri_string()==='project'){?> class="current-menu-item"<?}?>><a href="/project">项目</a></li>
+						<li<?if(uri_string()==='vote'){?> class="current-menu-item"<?}?>><a href="/vote">投票</a></li>
 					</ul>
 				</div>
 				<div class="login">
