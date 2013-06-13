@@ -4,8 +4,9 @@ class Product_model extends WT_Model{
 		parent::__construct();
 		$this->table='product';
 		$this->fields=array(
-			'name'=>'产品名称',
-			'company'=>'公司'
+			'name'=>'',//产品名称
+			'description'=>'',//描述
+			'company'=>$this->user->id//公司
 		);
 	}
 	

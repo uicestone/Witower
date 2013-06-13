@@ -573,6 +573,9 @@ page-home  ******/
 .page-company #right .main{padding:10px;}
 
 .page-company #right .table{margin-top: 10px;}
+.page-company #right .table td.image{width: 100px;}
+.page-company #right .table td.descript{width: 40%;}
+.page-company #right .table .btn{margin-bottom: 5px;}
 
 
 .vote-search-a{color:#004856;}

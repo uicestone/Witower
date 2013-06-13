@@ -30,6 +30,11 @@ class Wit_model extends WT_Model{
 		if(isset($args['in_project'])){
 			$this->db->where('project',$args['in_project']);
 		}
+		
+		if(isset($args['in_product'])){
+			$this->db->where("project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])})");
+		}
+		
 		return parent::getList($args);
 	}
 }

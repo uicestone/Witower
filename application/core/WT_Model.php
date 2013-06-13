@@ -52,8 +52,17 @@ class WT_Model extends CI_Model{
 	 */
 	function add(array $data){
 		$data=array_intersect_key($data, $this->fields);
-		$this->db->insert('user',$data);
+		$this->db->insert($this->table,$data);
 		return $this->db->insert_id();
+	}
+	
+	function update(array $data, $id=NULL){
+		$data=array_intersect_key($data, $this->fields);
+		
+		is_null($id) && $id=$this->id;
+		
+		$this->db->where($this->table.'.id', $id)
+			->update($this->table,$data);
 	}
 	
 	/**
