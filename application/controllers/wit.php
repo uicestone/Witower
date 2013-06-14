@@ -65,6 +65,7 @@ class Wit extends WT_Controller{
 			}
 
 			$this->version->add(array(
+				'project'=>$project['id'],
 				'wit'=>$this->wit->id,
 				'content'=>$this->input->post('content'),
 				'user'=>$this->user->id,

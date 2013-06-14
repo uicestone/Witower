@@ -4,6 +4,7 @@ class Version_model extends WT_Model{
 		parent::__construct();
 		$this->table='version';
 		$this->fields=array(
+			'project'=>NULL,//所属项目
 			'wit'=>NULL,//所属创意
 			'content'=>'',//内容
 			'score_wit'=>0,//智塔打分
@@ -49,15 +50,46 @@ class Version_model extends WT_Model{
 	}
 	
 	/**
-	 * 给一个版本打分，并将版本作者列为候选人
+	 * 给一组版本打分，并将版本作者列为候选人
 	 * 将写入version表
 	 * 并累加project_candidate表
-	 * 根据打分人是企业还是管理员，判断打在score_company还是score_wit上
-	 * @param int $version_id
-	 * @todo
+	 * @todo 根据打分人是企业还是管理员，判断打在score_company还是score_wit上
+	 * @param array $version_score
+	 *	array(
+	 *		version_id => score
+	 *	)
 	 */
-	function score($version_id){
+	function score($version_score){
 		
+		$this->load->model('wit_model','wit');
+		
+		foreach($version_score as $version_id => $score){
+			$version=$this->fetch($version_id);
+			
+			$this->db->update('version',array('score_company'=>$score),array('id'=>$version_id));
+			
+			$result_candidate=$this->db->from('project_candidate')
+				->where('candidate',$version['user'])
+				->where('project',$version['project'])
+				->get()->result_array();
+			
+			
+			if(!$result_candidate && $score>0){
+				//还木有这个候选人，我们先插入
+				$this->db->insert('project_candidate',array(
+					'candidate'=>$version['user'],
+					'project'=>$version['project'],
+					'score_company'=>$score
+				));
+			}
+			else{
+				$this->db->set('score_company',"`score_company` - {$version['score_company']} + $score")//TODO score未转义
+					->where('candidate',$version['user'])
+					->where('project',$version['project'])
+					->update('project_candidate');
+			}
+			
+		}
 	}
 }
 ?>

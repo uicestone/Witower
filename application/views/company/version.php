@@ -11,7 +11,7 @@
 				<div class="tab">
 				</div>
 				<div class="show_content">
-					<form>
+					<form method="post">
 						<table class="table table-bordered">
 							<thead>
 								<tr><td>创意标题</td>
@@ -29,12 +29,13 @@
 									<td><?=$version['content']?></td>
 									<td><?=date('Y-m-d',$version['time'])?></td>
 									<td>
-										<input type="text" name="score[<?=$version['id']?>]" />
+										<input type="text" name="score[<?=$version['id']?>]" value="<?=$version['score_company']?>" />
 									</td>
 								</tr>
 <?}?>								
 							</tbody>
 						</table>
+						<button type="submit" name="submit" class="btn">保存</button>
 					</form>
 				</div>
 			</div>
