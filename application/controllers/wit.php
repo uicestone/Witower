@@ -10,8 +10,17 @@ class Wit extends WT_Controller{
 	/**
 	 * 单条创意的查看页面，包含多个版本
 	 */
-	function view(){
-		$this->load->view('wit/view');
+	function view($id){
+		
+		$this->wit->id=$id;
+		
+		$versions=$this->version->getList(array('wit'=>$this->wit->id));
+		
+		foreach($versions as &$version){
+			$version['author_name']=$this->user->fetch($version['user'],'name');
+		}
+		
+		$this->load->view('wit/view', compact('versions'));
 	}
 	
 	/**

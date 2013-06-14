@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title><?//=$navtitle?><?//=$setting['site_name']?> <?//=$setting['seo_title']?></title>
+		<title>智塔</title>
 		<meta name="keywords" content="<?//=$setting['seo_keywords']?>" />
 		<meta name="description" content="<?//=$setting['seo_description']?>" />
 		<base href="<?=$this->config->item('site_url')?>/" />

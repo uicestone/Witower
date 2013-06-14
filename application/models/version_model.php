@@ -27,6 +27,15 @@ class Version_model extends WT_Model{
 		
 	}
 	
+	function getList($args = array()) {
+		
+		if(isset($args['wit'])){
+			$this->db->where('wit',$args['wit']);
+		}
+		
+		return parent::getList($args);
+	}
+	
 	/**
 	 * 给一个版本打分，并将版本作者列为候选人
 	 * 将写入version表

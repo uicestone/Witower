@@ -35,6 +35,8 @@ $(function() {
 			columnWidth : 196
 		});
 	});
+	
+	$container.children('.box').show();
 
 	$('#mycarousel').jcarousel({
 		visible:10

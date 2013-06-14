@@ -13,7 +13,7 @@
 
 <div class="water">
 	<? foreach ($projects as $project) {//这里的单个project是c里面projects下面的子数组 然后 每个里面的 id  XX XX 对吧?>
-		<div class="box">
+		<div class="box" style="display: none;">
 			<div class="img cell">
 				<!--img src="style/p.jpg"-->
 				<a href="/project/<?= $project['id'] ?>">
