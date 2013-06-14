@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: 127.0.0.1
--- 生成日期: 2013 年 06 月 12 日 08:25
+-- 生成日期: 2013 年 06 月 14 日 13:50
 -- 服务器版本: 5.5.30-log
 -- PHP 版本: 5.3.15
 
@@ -25,6 +25,7 @@ USE `witower`;
 CREATE TABLE IF NOT EXISTS `company` (
   `id` int(11) NOT NULL,
   `description` text NOT NULL,
+  `total_bonus` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -32,10 +33,10 @@ CREATE TABLE IF NOT EXISTS `company` (
 -- 转存表中的数据 `company`
 --
 
-INSERT INTO `company` (`id`, `description`) VALUES
-(1, ''),
-(2, ''),
-(3, '');
+INSERT INTO `company` (`id`, `description`, `total_bonus`) VALUES
+(1, '', '1000000.00'),
+(2, '', '50000.00'),
+(3, '', '400000.00');
 
 -- --------------------------------------------------------
 
@@ -62,24 +63,50 @@ INSERT INTO `config` (`id`, `item`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `nav`
+--
+
+CREATE TABLE IF NOT EXISTS `nav` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `ui_name` varchar(255) NOT NULL,
+  `uri` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `nav`
+--
+
+INSERT INTO `nav` (`id`, `group`, `name`, `ui_name`, `uri`) VALUES
+(1, 'primary', 'index', '首页', ''),
+(2, 'primary', 'project', '项目', 'project'),
+(3, 'primary', 'vote', '投票', 'vote');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `product`
 --
 
 CREATE TABLE IF NOT EXISTS `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `description` text NOT NULL,
   `company` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`company`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `company`) VALUES
-(1, '雪碧', 3),
-(2, 'Bouns系列运动鞋', 1);
+INSERT INTO `product` (`id`, `name`, `description`, `company`) VALUES
+(1, '雪碧', '晶晶亮 透心凉', 3),
+(2, 'Bouns系列运动鞋', '', 1),
+(3, '百事可乐', '产品描述产品描述产品描述产品描述产品描述产品描述产品描述', 3);
 
 -- --------------------------------------------------------
 
@@ -133,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   KEY `users` (`witters`),
   KEY `vote_start` (`vote_start`),
   KEY `vote_end` (`vote_end`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `project`
@@ -141,7 +168,8 @@ CREATE TABLE IF NOT EXISTS `project` (
 
 INSERT INTO `project` (`id`, `product`, `name`, `summary`, `wit_start`, `wit_end`, `vote_start`, `vote_end`, `bonus`, `company`, `witters`, `voters`, `favorites`) VALUES
 (1, 2, 'Adidas Bouns运动鞋春季校园推广', 'Adidas公司计划在2014年春季推出Bouns Max 2014款运动鞋', '2013-01-01', '2013-06-30', '2013-07-09', '2013-08-09', '5000.00', 1, 1, 0, 1),
-(2, 1, '雪碧2013校园推广', '雪碧2013校园推广', '2013-01-01', '2013-06-04', '2013-06-07', '2013-07-07', '8000.00', 3, 0, 0, 0);
+(2, 1, '雪碧2013校园推广', '雪碧2013校园推广', '2013-01-01', '2013-06-04', '2013-06-07', '2013-07-07', '8000.00', 3, 0, 0, 0),
+(3, 3, '百事可乐2013校园推广', '祝你百事可乐！', '2013-06-13', '2013-07-13', '0000-00-00', '0000-00-00', '2000.00', 3, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -166,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `project_candidate` (
 --
 
 INSERT INTO `project_candidate` (`id`, `candidate`, `project`, `votes`, `score_wit`, `score_company`) VALUES
-(1, 5, 2, 3, '6.00', '5.00');
+(1, 5, 2, 5, '6.00', '5.00');
 
 -- --------------------------------------------------------
 
@@ -204,17 +232,18 @@ CREATE TABLE IF NOT EXISTS `project_vote` (
   `voter` int(11) NOT NULL,
   `votes` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `project-voter-candidate` (`project`,`voter`,`candidate`),
+  UNIQUE KEY `project-candidate-voter` (`project`,`candidate`,`voter`),
   KEY `candidate` (`candidate`),
   KEY `voter` (`voter`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `project_vote`
 --
 
 INSERT INTO `project_vote` (`id`, `project`, `candidate`, `voter`, `votes`) VALUES
-(1, 2, 5, 6, 3);
+(1, 2, 5, 6, 3),
+(2, 2, 5, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -253,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `email` (`email`),
   KEY `password` (`password`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- 转存表中的数据 `user`
@@ -264,7 +293,8 @@ INSERT INTO `user` (`id`, `name`, `password`, `email`) VALUES
 (2, 'Nike', '123', 'market@nike.com'),
 (3, '百事', '123', 'market@pepsi.com'),
 (5, 'uicestone', '123', 'uicestone@gmail.com'),
-(6, 'mouse', '123', 'mouse@gmail.com');
+(6, 'mouse', '123', 'mouse@gmail.com'),
+(7, 'bull', '123', 'bull@witower.com');
 
 -- --------------------------------------------------------
 
@@ -413,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `version` (
   KEY `user` (`user`),
   KEY `time` (`time`),
   KEY `wit` (`wit`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `version`
@@ -421,7 +451,11 @@ CREATE TABLE IF NOT EXISTS `version` (
 
 INSERT INTO `version` (`id`, `wit`, `content`, `score_wit`, `score_company`, `user`, `time`) VALUES
 (1, 1, '这是一段文案', 7, 6, 5, 0),
-(2, 2, '文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容', 6, 5, 5, 0);
+(2, 2, '文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容', 6, 5, 5, 0),
+(5, 5, '<p>Bouns气垫，一飞冲天。Bouns气垫，一飞冲天。</p>\n<p>Bouns气垫，一飞冲天。Bouns气垫，一飞冲天。</p>', 0, 0, 5, 1371131484),
+(6, 1, '<p>这是一段文案</p>\n<p>编辑</p>', 0, 0, 5, 1371131823),
+(7, 2, '<p>文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容</p>', 0, 0, 5, 1371137424),
+(8, 6, '<p>晶晶亮，透心凉</p>\n<p>晶晶亮，透心凉</p>', 0, 0, 7, 1371180762);
 
 -- --------------------------------------------------------
 
@@ -466,15 +500,17 @@ CREATE TABLE IF NOT EXISTS `wit` (
   KEY `project` (`project`),
   KEY `user` (`user`),
   KEY `time` (`time`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `wit`
 --
 
 INSERT INTO `wit` (`id`, `name`, `content`, `project`, `user`, `time`, `selected`) VALUES
-(1, '文案标题1', '这是一段文案', 1, 5, 0, 0),
-(2, '雪碧广告文案', '文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容', 2, 5, 0, 0);
+(1, '文案标题1', '<p>这是一段文案</p>\n<p>编辑</p>', 1, 5, 1371131823, 0),
+(2, '雪碧广告文案', '<p>文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容文案内容</p>', 2, 5, 1371137424, 0),
+(5, 'Bouns气垫，一飞冲天', '<p>Bouns气垫，一飞冲天。Bouns气垫，一飞冲天。</p>\n<p>Bouns气垫，一飞冲天。Bouns气垫，一飞冲天。</p>', 1, 5, 1371131484, 0),
+(6, '晶晶亮，透心凉', '<p>晶晶亮，透心凉</p>\n<p>晶晶亮，透心凉</p>', 2, 7, 1371180762, 0);
 
 --
 -- 限制导出的表
