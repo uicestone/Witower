@@ -33,6 +33,18 @@ class Version_model extends WT_Model{
 			$this->db->where('wit',$args['wit']);
 		}
 		
+		if(isset($args['in_project'])){
+			$this->db->where("wit IN (SELECT id FROM wit WHERE project{$this->db->escape_int_array($args['in_project'])})");
+		}
+		
+		if(isset($args['in_product'])){
+			$this->db->where("wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])}))");
+		}
+		
+		if(isset($args['company'])){
+			$this->db->where("wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE company{$this->db->escape_int_array($args['company'])}))");
+		}
+		
 		return parent::getList($args);
 	}
 	

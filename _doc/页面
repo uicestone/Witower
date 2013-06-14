@@ -21,3 +21,4 @@ uri				controller			view			discription
 /company/addproject		company/editProject	company/project_edit	企业添加项目
 /company/product/{id}	company/editProduct	company/product_edit	企业编辑产品
 /company/project/{id}	company/editProject	company/project_edit	企业编辑项目
+/company/version		company/version		company/version			企业版本管理

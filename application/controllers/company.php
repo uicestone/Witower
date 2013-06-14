@@ -5,6 +5,7 @@ class Company extends WT_Controller{
 		$this->load->model('product_model','product');
 		$this->load->model('project_model','project');
 		$this->load->model('wit_model','wit');
+		$this->load->model('version_model','version');
 	}
 	
 	function product(){
@@ -106,6 +107,35 @@ class Company extends WT_Controller{
 		$products=$this->product->getArray(array('company'=>$this->user->id),'name','id');
 		
 		$this->load->view('company/project_edit', compact('project','products'));
+	}
+	
+	function version(){
+		
+		$version_list_args=array('company'=>$this->user->id);
+		
+		if($this->input->get('wit')!==false){
+			$version_list_args['wit']=$this->input->get('wit');
+		}
+		
+		if($this->input->get('project')!==false){
+			$version_list_args['in_project']=$this->input->get('project');
+		}
+		
+		if($this->input->get('product')!==false){
+			$version_list_args['in_product']=$this->input->get('product');
+		}
+		
+		$versions=$this->version->getList($version_list_args);
+		
+		foreach($versions as &$version){
+			$wit=$this->wit->fetch($version['wit']);
+			$project=$this->project->fetch($wit['project']);
+			
+			$version['wit_name']=$wit['name'];
+			$version['project_name']=$project['name'];
+		}
+		
+		$this->load->view('company/version', compact('versions'));
 	}
 }
 ?>
