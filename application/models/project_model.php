@@ -185,14 +185,45 @@ class Project_model extends WT_Model{
 	}
 	
 	/**
-	 * 用户给一个候选人投票
+	 * 用户给一组候选人投票
 	 * 将写入project_vote表，并累加project_candidate表
-	 * @param int $candidate
-	 * @param int $votes
-	 * @todo
+	 * @param array $candidates
 	 */
-	function vote($candidate, $votes){
+	function vote($candidates_votes, $project_id=NULL){
+		is_null($project_id) && $project_id=$this->id;
 		
+		foreach($candidates_votes as $candidate => $votes){
+			$project_vote=array(
+				'project'=>$project_id,
+				'candidate'=>$candidate,
+				'voter'=>$this->user->id,
+				'votes'=>$votes
+			);
+			
+			$this->db->insert('project_vote',$project_vote);
+			
+			$this->db->set('votes', "`votes` + {$this->db->escape($votes)}", false)
+				->where('candidate', $candidate)
+				->where('project',$project_id)
+				->update('project_candidate');
+		}
+	}
+	
+	function hasUserVoted($project_id=NULL ,$user_id=NULL){
+		is_null($user_id) && $user_id=$this->user->id;
+		is_null($project_id) && $project_id=$this->id;
+		
+		$voted_candidates=$this->db
+			->where('project',$project_id)
+			->where('voter',$user_id)
+			->count_all('project_vote');
+		
+		if($voted_candidates>0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 }

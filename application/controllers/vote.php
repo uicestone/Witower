@@ -64,7 +64,13 @@ class Vote extends WT_Controller{
 		
 		$sum_votes=$this->project->countVotes();
 		
-		$this->load->view('vote/view', compact('project','versions','comments','candidates','sum_votes','voters'));
+		$voted=$this->project->hasUserVoted();
+		
+		if($this->input->post('vote')!==false){
+			$this->project->vote($this->input->post('candidate'));
+		}
+		
+		$this->load->view('vote/view', compact('project','versions','comments','candidates','sum_votes','voters','voted'));
 	}
 	
 }

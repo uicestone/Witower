@@ -52,19 +52,22 @@
 			</div>
 		</div>
 		<div class="model model-b voting">
-			<form action="{url projectvote-vote}" id="voteForm" method="post">
-				<input name="pid" type="hidden" value="<?= $project['id'] ?>">
+			<form id="voteForm" method="post">
 				<div class="title"><h3>候选人名单及投票</h3></div>
 				<div class="tail">
 					<div class="button-set">
+<?if($voted){?>
 						您已经投票了！
-						<button type="submit" class="btn-a">投 票</button>
-						<button type="reset" class="btn-a">重 选</button>                            
+<?}else{?>
+						<button type="submit" name="vote" class="btn-a">投 票</button>
+						<button type="reset" class="btn-a">重 选</button>
+<?}?>						
 					</div>
+<?if(!$voted){?>
 					<div class="flags">
 						<img src="style/flag.png"><img src="style/flag.png"><img src="style/flag.png">
 					</div>                         
-
+<?}?>						
 				</div>
 				<div class="main">
 					<table>
@@ -72,9 +75,11 @@
 						<tr>
 							<td><img src="/uploads/images/avartar/<?=$candidate['id']?>_100.jpg" /></td>
 							<td><?=$candidate['name']?></td>
+<?if(!$voted){?>
 							<td class="images">
-								<img src="style/flag-off.png"><img src="style/flag-off.png"><img src="style/flag-off.png"><input name="uid_<?//= $data['uid'] ?>" type="hidden">                                    
+								<img src="style/flag-off.png"><img src="style/flag-off.png"><img src="style/flag-off.png"><input name="candidate[<?=$candidate['id'] ?>]" type="hidden">                                    
 							</td>
+<?}?>						
 							<td><div class="bar <?//= $data['color'] ?>" style="width:<?//= $data['width'] ?>px;"></div><span><?=$candidate['votes']?> (<?=$candidate['votes']/$sum_votes*100?>%)</span></td>
 							<td><a href="#">Ta的贡献</a></td>
 						</tr>
@@ -83,9 +88,12 @@
 				</div>
 				<div class="tail">
 					<div class="button-set">
+<?if($voted){?>
 						您已经投票了！
-						<button type="submit" class="btn-a">投 票</button>
-						<button type="reset" class="btn-a">重 选</button>                            
+<?}else{?>
+						<button type="submit" name="vote" class="btn-a">投 票</button>
+						<button type="reset" class="btn-a">重 选</button>
+<?}?>						
 					</div>
 				</div>
 			</form>
