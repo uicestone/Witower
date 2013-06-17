@@ -105,8 +105,11 @@ class User extends WT_Controller{
 	/**
 	 * 可兑换积分列表
 	 */
-	function score(){
-		$this->load->view('user/score');
+	function bonus(){
+		
+		$bonus=$this->user->getBonusList();
+		
+		$this->load->view('user/bonus',compact('bonus'));
 	}
 	
 	/**

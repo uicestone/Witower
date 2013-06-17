@@ -30,20 +30,23 @@ class Version_model extends WT_Model{
 	
 	function getList($args = array()) {
 		
+		$this->db->join('user','user.id = version.user','inner')
+			->select('version.*, user.name username');
+		
 		if(isset($args['wit'])){
-			$this->db->where('wit',$args['wit']);
+			$this->db->where('version.wit',$args['wit']);
 		}
 		
 		if(isset($args['in_project'])){
-			$this->db->where("wit IN (SELECT id FROM wit WHERE project{$this->db->escape_int_array($args['in_project'])})");
+			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project{$this->db->escape_int_array($args['in_project'])})");
 		}
 		
 		if(isset($args['in_product'])){
-			$this->db->where("wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])}))");
+			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])}))");
 		}
 		
 		if(isset($args['company'])){
-			$this->db->where("wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE company{$this->db->escape_int_array($args['company'])}))");
+			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE company{$this->db->escape_int_array($args['company'])}))");
 		}
 		
 		return parent::getList($args);
@@ -73,7 +76,6 @@ class Version_model extends WT_Model{
 				->where('project',$version['project'])
 				->get()->result_array();
 			
-			
 			if(!$result_candidate && $score>0){
 				//还木有这个候选人，我们先插入
 				$this->db->insert('project_candidate',array(
@@ -88,7 +90,6 @@ class Version_model extends WT_Model{
 					->where('project',$version['project'])
 					->update('project_candidate');
 			}
-			
 		}
 	}
 }

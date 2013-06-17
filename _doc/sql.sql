@@ -1,3 +1,6 @@
+-- 同步版本表中的所在项目
+update version inner join wit on wit.id = version.wit set version.project = wit.project;
+
 -- 根据版本打分更新候选人分数
 create temporary table version_grouped
 select id,project,sum(score_company) sum, user from version

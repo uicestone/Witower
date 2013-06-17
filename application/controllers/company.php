@@ -115,7 +115,7 @@ class Company extends WT_Controller{
 			$this->version->score($this->input->post('score'));
 		}
 		
-		$version_list_args=array('company'=>$this->user->id);
+		$version_list_args=array('company'=>$this->user->id,'orderby'=>'id desc');
 		
 		if($this->input->get('wit')!==false){
 			$version_list_args['wit']=$this->input->get('wit');

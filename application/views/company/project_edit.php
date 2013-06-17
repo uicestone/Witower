@@ -1,8 +1,14 @@
 <?$this->view('header')?>
 <div id="content" class="page-company">
-	<div class="breadcrumb">
-		<strong>企业</strong> >> 编辑项目
-	</div>
+	<ul class="breadcrumb">
+		<li>
+			<strong><a href="#">企业</a></strong>
+			<span class="divider">/</span>
+		</li>
+		<li>
+			编辑项目
+		</li>
+	</ul>
 	<?$this->view('company/sidebar')?>
 	<div id="right">
 		<div class="model">

@@ -10,12 +10,12 @@
 		<div class="main">
 			<div class="info">
 				<a href="/vote/<?=$recommended_voting_project['id']?>"><img src="/uploads/images/project/<?=$recommended_voting_project['id']?>_100.jpg"></a>
-				<a class="btn-a pull-right" href="/vote/<?= $recommended_voting_project['id'] ?>">我要投票</a>
+				<a class="btn btn-primary pull-right" href="/vote/<?= $recommended_voting_project['id'] ?>">我要投票</a>
 				<ul>
 					<li><b>发布企业：</b><?= $recommended_voting_project['company_name'] ?>
 						<?followButton($recommended_voting_project['company'])?>
 					</li>
-					<li><b>项目名称：</b><a href="/vote/<?= $recommended_voting_project['id'] ?>}"><?= $recommended_voting_project['name'] ?></a></li>
+					<li><b>项目名称：</b><a href="/vote/<?= $recommended_voting_project['id'] ?>"><?= $recommended_voting_project['name'] ?></a></li>
 					<li><b>项目介绍：</b><?= $recommended_voting_project['summary'] ?></li>
 					<li><b>当前人数：</b><?= count($recommended_voting_project['voters']) ?>人</li>
 				</ul>
@@ -36,7 +36,7 @@
 						<?foreach($recommended_voting_project['candidates'] as $candidate){?>
 						<li><b><?= $candidate['percentage']*100 ?>%</b>的人投票给<span><a href="<?=$candidate['id']?>"><?=$candidate['name']?></a></span><br>
 							<ul>
-								<li>当前投票数：<?= $recommended_voting_project['votes'] ?>票</li>
+								<li>当前投票数：<?= $candidate['votes'] ?>票</li>
 								<li>投票时间：<?= $recommended_voting_project['vote_start'] ?> 至 <?= $recommended_voting_project['vote_end'] ?></li>
 							</ul>
 						</li>

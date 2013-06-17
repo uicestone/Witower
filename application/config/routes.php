@@ -54,6 +54,7 @@ $route['home/profile'] = 'user/profile';
 $route['home/project'] = 'user/project';
 $route['space/(:num)'] = 'user/space/$1';
 $route['profile'] = 'user/profile';
+$route['bonus'] = 'user/bonus';
 
 $route['company/addproduct'] = 'company/editproduct';
 $route['company/addproject'] = 'company/editproject';

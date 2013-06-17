@@ -286,5 +286,17 @@ class User_model extends WT_Model{
 		return $this->db->insert_id();
 	}
 	
+	function getBonusList($user=NULL){
+		is_null($user) && $user=$this->id;
+		
+		$this->db
+			->from('user_bonus')
+			->join('project','user_bonus.project = project.id','inner')
+			->where('user_bonus.user',$user)
+			->select('user_bonus.*, project.name project_name');
+		
+		return $this->db->get()->result_array();
+	}
+	
 }
 ?>

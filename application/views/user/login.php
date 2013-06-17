@@ -5,9 +5,9 @@
 		<h1>登录</h1>
 	</div>
 	<div class="main">
-		<div id="left"><img src="style/register-banner.png"></div>
+		<div id="left"><img src="/style/register-banner.png"></div>
 		<div id="right">
-			<form name="box-login" action="/user/login" method="post">
+			<form name="box-login" action="/login" method="post">
 				<ul>
 					<li><span>用户名/E-mail：</span><input name="username" tabindex="3" id="email"  type="text" class="inp_txt" /></li>
 					<li><span>密码：</span><input name="password" tabindex="4" id="password" type="password" class="inp_txt" /></li>

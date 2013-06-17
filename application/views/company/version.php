@@ -1,45 +1,51 @@
-<?$this->view('header')?>
+<? $this->view('header') ?>
 <div id="content" class="page-company">
-	<div class="breadcrumb">
-		<strong>企业</strong> >> 创意版本
-	</div>
-	<?$this->view('company/sidebar')?>
+	<ul class="breadcrumb">
+		<li>
+			<strong><a href="#">企业</a></strong>
+			<span class="divider">/</span>
+		</li>
+		<li>
+			创意版本
+		</li>
+	</ul>
+	<? $this->view('company/sidebar') ?>
 	<div id="right">
 		<div class="model">
 			<div class="title"><h3>创意版本</h3></div>
 			<div class="main">
-				<div class="tab">
-				</div>
-				<div class="show_content">
-					<form method="post">
-						<table class="table table-bordered">
-							<thead>
-								<tr><td>创意标题</td>
-									<td>项目</td>
-									<td>内容</td>
-									<td>时间</td>
-									<td>评分</td>
-								</tr>
-							</thead>
-							<tbody>
-<?foreach($versions as $version){?>
+				<form method="post">
+					<table class="table table-bordered">
+						<thead>
+							<tr><th id="name">创意标题</th>
+								<th id="project">项目</th>
+								<th>内容</th>
+								<th id="date">作者/时间</th>
+								<th id="score">评分</th>
+							</tr>
+						</thead>
+						<tbody>
+							<? foreach ($versions as $version) { ?>
 								<tr>
-									<td><?=$version['wit_name']?></td>
-									<td><?=$version['project_name']?></td>
-									<td><?=$version['content']?></td>
-									<td><?=date('Y-m-d',$version['time'])?></td>
-									<td>
-										<input type="text" name="score[<?=$version['id']?>]" value="<?=$version['score_company']?>" />
+									<td id="name"><?= $version['wit_name'] ?></td>
+									<td id="project"><?= $version['project_name'] ?></td>
+									<td><?= $version['content'] ?></td>
+									<td id="date">
+										<p><?= $version['username'] ?></p>
+										<p><?= date('Y-m-d', $version['time']) ?></p>
+									</td>
+									<td id="score">
+										<input type="text" name="score[<?= $version['id'] ?>]" value="<?= $version['score_company'] ?>" />
 									</td>
 								</tr>
-<?}?>								
-							</tbody>
-						</table>
-						<button type="submit" name="submit" class="btn">保存</button>
-					</form>
-				</div>
+							<? } ?>								
+						</tbody>
+					</table>
+					<button type="submit" name="submit" class="btn">保存</button>
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<?$this->view('footer')?>
+<?
+$this->view('footer')?>

@@ -209,14 +209,14 @@ class Project_model extends WT_Model{
 		}
 	}
 	
-	function hasUserVoted($project_id=NULL ,$user_id=NULL){
+	function hasUserVoted($project_id=NULL, $user_id=NULL){
 		is_null($user_id) && $user_id=$this->user->id;
 		is_null($project_id) && $project_id=$this->id;
 		
 		$voted_candidates=$this->db
 			->where('project',$project_id)
 			->where('voter',$user_id)
-			->count_all('project_vote');
+			->count_all_results('project_vote');
 		
 		if($voted_candidates>0){
 			return true;

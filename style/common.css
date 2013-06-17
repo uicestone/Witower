@@ -3,7 +3,7 @@ html{color:#333;background:#fff;-webkit-text-size-adjust:100%;-ms-text-size-adju
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
-body,button,input,select,textarea{font:13px/1.5 tahoma,arial,SimSun;}
+body,button,input,select,textarea{font:13px/1.5 tahoma,arial,'Microsoft Yahei';}
 table{border-collapse:collapse;border-spacing:0;}
 th{text-align:inherit;}
 fieldset,img{border:0;}
@@ -14,7 +14,6 @@ address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500;}
 ol,ul{list-style:none;}
 caption,th{text-align:left;}
 h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500;}
-h1,h2,h3,h4,h5,h6,span,dt,th{font-family: "微软雅黑";}
 q:before,q:after{content:'';}
 sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
 sup{top:-0.5em;}sub{bottom:-0.25em;}
@@ -36,6 +35,7 @@ body{background: url("head-bg.png") repeat-x center 0;}
 #content{position: relative;}
 #content:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
 #content .login{margin: 10px 0;}
+.add-follow{font-size: 0.7em; padding:0.2em 0.6em;}
 
 /*
 *
@@ -243,7 +243,7 @@ model-view */
 .model-view #right .title h3{float: left;font-size: 14px;color: #333;font-weight: bold;line-height: 20px;}
 .model-view #right .title .more{float: right;font-size: 10px;font-family: "microsoft yahei";margin-top:12px; }
 .model-view #right .main{margin: 10px 0;}
-.model-view #right .main ul li a{line-height: 220%;color: #666;}
+.model-view #right .main ul li a{color: #666;}
 .model-view #right .main.image ul li{margin: 0 0 10px 0;}
 .model-view #right .main.image img{float: left;border:3px solid #ccc;margin: 0 10px 0 0;}
 .model-view #right .main.image span{color: #333;}
@@ -573,7 +573,12 @@ page-home  ******/
 .page-company #right .main{padding:10px;}
 
 .page-company #right .table{margin-top: 10px;}
-.page-company #right .table td.image{width: 100px;}
+.page-company #right .table th#name{width:8em;}
+.page-company #right .table th#project{width:8em;}
+.page-company #right .table th#date{width:6em;}
+.page-company #right .table th#score{width:3em;}
+.page-company #right .table td#score input[type=text]{width:50px;}
+.page-company #right .table td.image img{width: 100px;}
 .page-company #right .table td.descript{width: 40%;}
 .page-company #right .table .btn{margin-bottom: 5px;}
 

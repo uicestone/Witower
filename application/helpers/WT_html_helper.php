@@ -43,11 +43,11 @@ function followButton($uid){
 	$CI=&get_instance();
 	if($CI->user->hasFollowed($uid)){
 ?>
-<span class="add-follow btn">已关注</span>
+<a href="#" class="add-follow btn">已关注</a>
 <?php
 	}elseif($uid==$CI->user->id){
 ?>
-<span class="add-follow btn">我自己</span>
+<a href="#" class="add-follow btn">我自己</a>
 <?php		
 	}else{
 ?>

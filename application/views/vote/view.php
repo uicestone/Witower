@@ -59,13 +59,13 @@
 <?if($voted){?>
 						您已经投票了！
 <?}else{?>
-						<button type="submit" name="vote" class="btn-a">投 票</button>
-						<button type="reset" class="btn-a">重 选</button>
+						<button type="submit" name="vote" class="btn btn-primary">投 票</button>
+						<button type="reset" class="btn">重 选</button>
 <?}?>						
 					</div>
 <?if(!$voted){?>
 					<div class="flags">
-						<img src="style/flag.png"><img src="style/flag.png"><img src="style/flag.png">
+						<img src="/style/flag.png"><img src="/style/flag.png"><img src="/style/flag.png">
 					</div>                         
 <?}?>						
 				</div>
@@ -73,11 +73,11 @@
 					<table>
 <?foreach($candidates as $candidate){?>
 						<tr>
-							<td><img src="/uploads/images/avartar/<?=$candidate['id']?>_100.jpg" /></td>
+							<td><img src="/uploads/images/avartar/<?=$candidate['id']?>_100.jpg" width="100px" height="100px"></td>
 							<td><?=$candidate['name']?></td>
 <?if(!$voted){?>
 							<td class="images">
-								<img src="style/flag-off.png"><img src="style/flag-off.png"><img src="style/flag-off.png"><input name="candidate[<?=$candidate['id'] ?>]" type="hidden">                                    
+								<img src="/style/flag-off.png"><img src="/style/flag-off.png"><img src="/style/flag-off.png"><input name="candidate[<?=$candidate['id'] ?>]" type="hidden">                                    
 							</td>
 <?}?>						
 							<td><div class="bar <?//= $data['color'] ?>" style="width:<?//= $data['width'] ?>px;"></div><span><?=$candidate['votes']?> (<?=$candidate['votes']/$sum_votes*100?>%)</span></td>
@@ -91,8 +91,8 @@
 <?if($voted){?>
 						您已经投票了！
 <?}else{?>
-						<button type="submit" name="vote" class="btn-a">投 票</button>
-						<button type="reset" class="btn-a">重 选</button>
+						<button type="submit" name="vote" class="btn btn-primary">投 票</button>
+						<button type="reset" class="btn">重 选</button>
 <?}?>						
 					</div>
 				</div>
@@ -112,12 +112,8 @@
 				<ul>
 <?foreach($voters as $voter){?>
 					<li>
-						<img src="/uploads/images/avartar/<?=$voter['id']?>_30.jpg"><a href="/space/<?=$voter['id']?>"><span><?=$voter['name']?></span></a>
-						<!--{if $data[follow]}-->
-						<span class="add_attention">已关注</span>
-						<!--{else}-->
-						<a href="javascript:void(0);" class="add_attention" uid="<?=$voter['id']?>">加关注</a>
-						<!--{/if}-->                        
+						<img src="/uploads/images/avartar/<?=$voter['id']?>_100.jpg" width="50px" height="50px"><a href="/space/<?=$voter['id']?>"><span><?=$voter['name']?></span></a>
+						<?followButton($voter['id'])?>                    
 					</li>
 <?}?>	
 				</ul>
