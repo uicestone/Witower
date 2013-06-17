@@ -89,5 +89,10 @@ class Project extends WT_Controller{
 		
 		$this->load->view('project/view',  compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes'));
 	}
+	
+	function end($id){
+		$this->project->bonusAllocate($id);
+		redirect('company/project');
+	}
 }
 ?>

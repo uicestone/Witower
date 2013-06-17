@@ -226,5 +226,30 @@ class Project_model extends WT_Model{
 		}
 	}
 	
+	function bonusAllocate($project_id=NULL){
+		is_null($project_id) && $project_id=$this->id;
+		$project=$this->fetch($project_id);
+		$sum=$this->db
+			->select('SUM(votes) votes, SUM(score_witower) score_witower, SUM(score_company) score_company')
+			->from('project_candidate')
+			->where('project',$project_id)
+			->get()->row_array();
+		
+		$candidates=$this->getCandidates($project_id);
+		
+		foreach($candidates as &$candidate){
+			$candidate['percentage_votes']=$candidate['votes']/$sum['votes'];
+			$candidate['percentage_score_company']=$candidate['score_company']/$sum['score_company'];
+			$candidate['percentage_score_witower']=$candidate['score_witower']/$sum['score_witower'];
+			$candidate['bonus']=
+				($candidate['percentage_votes']*0.2
+				+$candidate['percentage_score_company']*0.4
+				+$candidate['percentage_score_witower']*0.4)
+				*$project['bonus'];
+			
+			$this->user->addBonus($candidate['id'],$project_id,$candidate['bonus']);
+		}
+	}
+	
 }
 ?>

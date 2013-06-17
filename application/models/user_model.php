@@ -298,5 +298,16 @@ class User_model extends WT_Model{
 		return $this->db->get()->result_array();
 	}
 	
+	function addBonus($user, $project, $bonus){
+		$this->db->insert('user_bonus',array(
+			'user'=>$user,
+			'bonus'=>$bonus,
+			'project'=>$project,
+			'time'=>$this->date->now
+		));
+		
+		return $this->db->insert_id();
+	}
+	
 }
 ?>

@@ -7,7 +7,7 @@ class Version_model extends WT_Model{
 			'project'=>NULL,//所属项目
 			'wit'=>NULL,//所属创意
 			'content'=>'',//内容
-			'score_wit'=>0,//智塔打分
+			'score_witower'=>0,//智塔打分
 			'score_company'=>0,//企业打分
 			'user'=>NULL,//用户
 			'time'=>$this->date->now,//时间
