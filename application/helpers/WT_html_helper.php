@@ -38,4 +38,21 @@ function forceExport(){
 	ob_end_clean();   //清空并关闭输出缓冲区
 	echo str_repeat(' ',1024);
 }
+
+function followButton($uid){
+	$CI=&get_instance();
+	if($CI->user->hasFollowed($uid)){
+?>
+<span class="add-follow btn">已关注</span>
+<?php
+	}elseif($uid==$CI->user->id){
+?>
+<span class="add-follow btn">我自己</span>
+<?php		
+	}else{
+?>
+<a href="#" class="add-follow btn" user="<?=$uid?>">加关注</a>
+<?php
+	}
+}
 ?>

@@ -1,8 +1,14 @@
 <? $this->view('header') ?>
 <div id="content" class="page-viewvote model-view">
-	<div class="breadcrumb">
-		投票 > <?=$project['name']?>
-	</div>
+	<ul class="breadcrumb">
+		<li>
+			<strong><a href="#">投票</a></strong>
+			<span class="divider">/</span>
+		</li>
+		<li>
+			<?=$project['name']?>
+		</li>
+	</ul>
 	<div id="left">
 
 		<div class="model model-b">
@@ -11,13 +17,7 @@
 					<img src="/uploads/images/avartar/<?=$project['company']?>_100.jpg" />
 					<ul>
 						<li><b>发布企业：</b><?= $project['company_name'] ?>
-							<span>
-	<?if($this->user->hasFollowed($project['company'])){?>
-								<span class="add_attention">已关注</span>
-	<?}else{?>
-								<a href="javascript:void(0);" class="add_attention" uid="<?=$project['company']?>">加关注</a>
-	<?}?>
-							</span>
+							<span><?followButton($project['company'])?></span>
 						</li>
 						<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
 						<li><b>被编辑次数：</b><?=$versions?>次<b>被讨论次数：</b><?=count($comments)?>次<b>投票截止日期：</b><?= $project['vote_end'] ?></li>

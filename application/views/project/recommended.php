@@ -5,11 +5,7 @@
 			<a href="/project/<?=$recommended_project['id']?>"><img src="uploads/images/project/<?=$recommended_project['id']?>_100.jpg"><!--<img src="style/pro_p1.jpg">--></a>
 			<ul>
 				<li><b>发布企业：</b><?=$recommended_project['company_name']?>
-<?if($this->user->hasFollowed($recommended_project['company'])){?>
-					<span class="add_attention">已关注</span>
-<?}else{?>
-					<a href="javascript:void(0);" class="add_attention" uid="<?=$recommended_project['company']?>">加关注</a>
-<?}?>
+					<?followButton($recommended_project['company'])?>
 				</li>
 				<li><b>项目名称：</b><a href="/project/<?=$recommended_project['id']?>"><?=$recommended_project['name']?></a></li>
 				<li><b>项目介绍：</b><?=$recommended_project['summary']?></li>

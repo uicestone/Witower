@@ -9,10 +9,19 @@ $(function(){
 });
 </script>
 <div id="content" class="page-witedit model-view">
-	<div class="breadcrumb">
-		<?=$project['name']?> >> 编辑创意
-	</div>
-
+	<ul class="breadcrumb">
+		<li>
+			<strong><a href="#">项目</a></strong>
+			<span class="divider">/</span>
+		</li>
+		<li>
+			<?=$project['name']?>
+			<span class="divider">/</span>
+		</li>
+		<li>
+			<a href="#">编辑创意</a>
+		</li>
+	</ul>
 	<div id="left">
 		<div class="model model-b">
 			<div class="main">

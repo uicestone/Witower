@@ -1,8 +1,14 @@
 <? $this->view('header') ?>
 <div id="content" class="page-viewproject model-view">
-	<div class="breadcrumb">
-		项目 > <?=$project['name']?>
-	</div>
+	<ul class="breadcrumb">
+		<li>
+			<strong><a href="#">项目</a></strong>
+			<span class="divider">/</span>
+		</li>
+		<li>
+			<?=$project['name']?>
+		</li>
+	</ul>
 
 	<div id="left">
 		<div class="model model-b">
@@ -11,11 +17,7 @@
 					<a href="/space/<?=$project['company']?>"><img src="/uploads/images/avartar/<?=$project['company']?>_100.jpg"></a>
 				<ul>
 					<li><b>发布企业：</b><?= $project['company_name'] ?>
-<?if($this->user->hasFollowed($project['company'])){?>
-						<span class="add_attention">已关注</span>
-<?}else{?>
-						<a href="javascript:void(0);" class="add_attention" uid="<?=$project['company']?>">加关注</a>
-<?}?>
+						<?followButton($project['company'])?>
 					</li>
 					<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
 					<li><b>被编辑次数：</b><?= $project['versions'] ?>次
@@ -96,14 +98,10 @@
 			</div>
 			<div class="main participator">
 				<ul>
-					<?foreach($witters as $participant){?>
+					<?foreach($witters as $witter){?>
 					<li>
-						<img src="/uploads/images/avartar/<?=$participant['id']?>_100.jpg" width="50"><a href="/space/<?= $participant['id'] ?>"><span><?= $participant['name'] ?></span></a>
-<?if($this->user->hasFollowed($participant['id'])){?>
-						<span class="add_attention">已关注</span>
-<?}else{?>
-						<a href="javascript:void(0);" class="add_attention" uid="<?=$participant['id']?>">加关注</a>
-<?}?>
+						<img src="/uploads/images/avartar/<?=$witter['id']?>_100.jpg" width="50"><a href="/space/<?= $witter['id'] ?>"><span><?= $witter['name'] ?></span></a>
+						<?followButton($witter['id'])?>
 					</li>
 					<?}?>
 				</ul>

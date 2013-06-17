@@ -130,6 +130,7 @@ paginator  ******/
 
 
 /*page-list*/
+.page-list .main .model-a img {width: 200px; height:200px;}
 /*model*/
 .model{overflow: hidden;border:10px solid #fff;background: #eee;box-shadow: 5px 7px 15px rgba(0,0,0,0.7); border-radius: 3px;}
 .model .title{background: #ccc;height: 30px;line-height: 30px;}
@@ -350,7 +351,7 @@ page-register  ******/
 /*
 *
 breadcrumb  ******/
-.breadcrumb{margin: 10px 0; box-shadow: 1px 1px 3px #000;}
+.breadcrumb{box-shadow: 1px 1px 3px #000;}
 
 /*
 *
@@ -453,7 +454,7 @@ page-home  ******/
 					color:#3E3E3E;display:block;height:28px;margin-left:4px;padding:6px 8px 0 0;text-align:center; font-weight:normal;}
 .style_01 .novice a:hover {background-position:left -220px;color:#FF6600;text-decoration:none;}
 .style_01 .more,.style_02 .more{color:#666;}
-.style_01 .qh-h2 {zoom:1;oveflow:hidden;}
+.style_01 .qh-h2 {zoom:1;overflow:hidden;}
 .style_01 .qh-h2 a{padding-top:4px;}
 
 .style_02{border:1px solid #c9c9c9;background:url("style/02_h2.gif") repeat-x}
@@ -544,7 +545,6 @@ page-home  ******/
 .page-user .sub_comment img.user_img{width:30px;height: 30px;float: right;}
 .page-user .sub_comment p{}
 
-.add_attention{font-weight: bold;color: #00e0ff;margin: 0 5px;font-size: 10px;}
 .added{margin: 0 5px;font-size: 10px;}
 .added:hover{color: #999!important;text-decoration: none;}
 

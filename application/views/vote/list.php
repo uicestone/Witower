@@ -1,8 +1,10 @@
 <? $this->view('header') ?>
 <div id="content" class="page-vote">
-	<div class="breadcrumb">
-		投票
-	</div>
+	<ul class="breadcrumb">
+		<li>
+			<strong><a href="#">投票</a></strong>
+		</li>
+	</ul>
 	<div class="model recommend">
 		<div class="title"><h3>每日热门投票</h3></div>
 		<div class="main">
@@ -11,11 +13,7 @@
 				<a class="btn-a pull-right" href="/vote/<?= $recommended_voting_project['id'] ?>">我要投票</a>
 				<ul>
 					<li><b>发布企业：</b><?= $recommended_voting_project['company_name'] ?>
-<?if($this->user->hasFollowed($recommended_voting_project['company'])){?>
-						<span class="add_attention">已关注</span>
-<?}else{?>
-						<a href="javascript:void(0);" class="add_attention" uid="<?=$recommended_voting_project['company']?>">加关注</a>
-<?}?>
+						<?followButton($recommended_voting_project['company'])?>
 					</li>
 					<li><b>项目名称：</b><a href="/vote/<?= $recommended_voting_project['id'] ?>}"><?= $recommended_voting_project['name'] ?></a></li>
 					<li><b>项目介绍：</b><?= $recommended_voting_project['summary'] ?></li>

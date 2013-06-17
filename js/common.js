@@ -1,25 +1,11 @@
-function tabChange(title,content){
-	$(content).not(":first").hide(); //Hide all content
-	$(title).eq(0).addClass("curr active").show(); //Activate first tab
-	$(title).each(function(i) {
-		$(this).click(function(e){
-		$(title).removeClass("curr active"); //Remove any "curr" class
-		$(this).addClass("curr active"); //Add "curr" class to selected tab
-		$(content).hide();
-		$(content).eq(i).show();
-		e.preventDefault();
+$(function() {
+	
+	$('.add-follow[user]').on('click.add-follow',function(){
+		var follow_button=$(this);
+		$.post('/user/addfollow/'+follow_button.attr('user'),function(){
+			follow_button.text('已关注').off('.add-follow');
 		});
 	});
-}
-
-$(function() {
-
-	$(".page-company").each(function(){
-		var $title = $(this).find("#right .main .nav li");
-		var $content = $(this).find("#right .main .show_content");
-		tabChange($title,$content);
-	});
-
 
 	var Request = {};
 	Request.r1 = 'user/getstatuscomments/';

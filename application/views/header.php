@@ -5,12 +5,12 @@
 		<title>智塔</title>
 		<meta name="keywords" content="<?//=$setting['seo_keywords']?>" />
 		<meta name="description" content="<?//=$setting['seo_description']?>" />
-		<base href="<?=$this->config->item('site_url')?>/" />
 		<link rel="stylesheet" type="text/css" href="/style/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/style/tango/skin.css">
 		<link rel="stylesheet" type="text/css" href="/style/common.css">
 
 		<script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="/style/bootstrap/js/bootstrap.js"></script>
 		<script type="text/javascript" src="/js/jquery.masonry.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.jcarousel.min.js"></script>
 		<script type="text/javascript" src="/js/common.js"></script>
@@ -30,7 +30,6 @@
 					<ul>
 <?if($this->user->isLogged()){?>
 						<li><a href="/home"><?=$this->user->name?></a> |</li>
-						<li><a href="/message">消息</a>|</li>
 						<li><a href="/score">积分</a>|</li>
 						<li><a href="/profile">资料</a>|</li>
 <?	if($this->user->isCompany()){?>

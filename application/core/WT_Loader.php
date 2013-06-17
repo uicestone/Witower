@@ -78,6 +78,6 @@ class WT_Loader extends CI_Loader{
 		$hash=filemtime($path);
 		return '<link rel="stylesheet" href="/'.$path.'?'.$hash.'" type="text/css" />'."\n";
 	}
-
+	
 }
 ?>

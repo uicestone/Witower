@@ -175,11 +175,115 @@ class User_model extends WT_Model{
 	 * @return array 资料项
 	 */
 	function getProfiles($user_id=NULL){
-		if(is_null($user_id)){
-			$user_id=$this->id;
-		}
+		is_null($user_id) && $user_id=$this->id;
+		
+		$this->db->from('user_profile')
+			->where('user',$user_id);
+		
+		$result=$this->db->get()->result_array();
+		
+		$profiles=array_sub($result,'content','name');
 		
 		return $profiles;
+	}
+	
+	/**
+	 * 获得一个用户或一个用户关注的用户的状态列表
+	 * @param int $uid 为NULL时返回当前用户关注的用户的状态
+	 * @param string $type
+	 * @return array
+	 */
+	function getStatusList($uid=NULL, $type=NULL){
+		
+		$this->db
+			->select('user_status.*, user.name username')
+			->from('user_status')
+			->join('user','user_status.user = user.id','inner')
+			->order_by('id desc');
+		
+		if(is_null($uid)){
+			$this->db->where("user_status.user = {$this->user->id} OR user_status.user IN (SELECT idol FROM user_follow WHERE fan = {$this->user->id})",NULL,false);
+		}
+		else{
+			$this->db->where('user_status.user',$uid);
+		}
+		
+		if(isset($type)){
+			$this->db->where('type',$type);
+		}
+		
+		return $this->db->get()->result_array();
+	}
+	
+	/**
+	 * 获得一个状态的评论列表
+	 * @param int $status_id
+	 * @return array
+	 */
+	function getStatusCommentList($status_id){
+		$this->db
+			->select('user_status_comment.*, user.name username')
+			->from('user_status_comment')
+			->join('user','user_status_comment.user = user.id','inner')
+			->where('user_status_comment.status',$status_id);
+		
+		return $this->db->get()->result_array();
+	}
+	
+	/**
+	 * 添加一条状态
+	 * @param string $content
+	 * @param int $uid
+	 * @param string $type
+	 * @param string $url
+	 * @return int
+	 */
+	function addStatus($content, $uid=NULL, $type=NULL, $url=NULL){
+		
+		is_null($uid) && $uid=$this->user->id;
+		
+		$this->db->insert('user_status',array(
+			'user'=>$uid,
+			'type'=>$type,
+			'content'=>$content,
+			'url'=>$url,
+			'time'=>$this->date->now
+		));
+		
+		return $this->db->insert_id();
+	}
+	
+	/**
+	 * 添加一条状态评论
+	 * @param int $status_id
+	 * @param string $content
+	 * @param int $uid
+	 * @return int
+	 */
+	function addStatusComment($status_id, $content, $uid=NULL){
+		is_null($uid) && $uid=$this->user->id;
+		
+		$this->db->insert('user_status_comment',array(
+			'status'=>$status_id,
+			'content'=>$content,
+			'user'=>$uid,
+			'time'=>$this->date->now
+		));
+		
+		return $this->db->insert_id();
+	}
+	
+	/**
+	 * 将一个用户添加到当前用户的关注列表
+	 * @param int $idol 被关注人user.id
+	 * @return int
+	 */
+	function addFollow($idol){
+		$this->db->insert('user_follow',array(
+			'idol'=>$idol,
+			'fan'=>$this->user->id
+		));
+		return $this->db->insert_id();
 	}
 	
 }

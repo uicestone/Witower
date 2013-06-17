@@ -1,8 +1,10 @@
 <?$this->view('header')?>
 <div id="content" class="page-list">
-	<div class="breadcrumb">
-		项目
-	</div>
+	<ul class="breadcrumb">
+		<li>
+			<strong><a href="#">项目</a></strong>
+		</li>
+	</ul>
 
 	<?$this->view('project/recommended')?>
 
@@ -59,7 +61,7 @@
 
 				<?foreach($projects['hot'] as $project){?>
 				<div class="main">
-					<a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
+					<a href="/project/<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
@@ -89,7 +91,7 @@
 
 				<?foreach($projects['high_bonus'] as $project){?>
 				<div class="main">
-					<a href="project-view-<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
+					<a href="/project/<?=$project['id']?>"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 					<ul>
 						<li><b>项目名称：</b><?=$project['name']?></li>
 						<li><b>项目介绍：</b><?=$project['summary']?></li>
