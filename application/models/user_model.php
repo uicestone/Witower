@@ -14,16 +14,13 @@ class User_model extends WT_Model{
 			'email'=>''//电子邮件
 		);
 
-		if(is_null($uid)){
-			$uid=$this->session->userdata('user/id');
-		}
+		is_null($uid) && $uid=$this->session->userdata('user/id');
 		
 		if($uid){
 			$user=$this->fetch($uid);
 			$this->id=$user['id'];
 			$this->name=$user['name'];
 		}
-		
 	}
 	
 	/**
@@ -166,8 +163,23 @@ class User_model extends WT_Model{
 	 * 更新当前用户资料项
 	 * @param array $profiles
 	 */
-	function updateProfiles(array $profiles){
+	function updateProfiles(array $profiles, $user_id=NULL){
 		
+		is_null($user_id) && $user_id=$this->id;
+		$origin=$this->getProfiles($user_id);
+		
+		$insert=array_diff_key($profiles, $origin);
+		$update=array_intersect_key($profiles, $origin);
+		
+		$set=array();
+		foreach($insert as $key => $value){
+			$set[]=array('user'=>$user_id,'name'=>$key,'content'=>$value);
+		}
+		$set && $this->db->insert_batch('user_profile',$set);
+		
+		foreach($update as $key => $value){
+			$this->db->update('user_profile',array('content'=>$value),array('user'=>$user_id,'name'=>$key));
+		}
 	}
 	
 	/**

@@ -1,4 +1,15 @@
 <? $this->view('header') ?>
+<script type="text/javascript">
+$(function(){
+	$(':input').on('change',function(){
+		$(this).attr('changed',true);
+	});
+	
+	$('form').on('submit',function(){
+		$(this).find(':input:not([changed], button, :file)').prop('disabled',true);
+	});
+});
+</script>
 <div id="content" class="model-view page-home">
 	<ul class="breadcrumb">
 		<li>
@@ -10,21 +21,25 @@
 		</li>
 	</ul>
 	<div id="left">
-		<form>
+		<form method="post" enctype="multipart/form-data">
 			<div class="model model-b tab-content">
 				<div id="avartar" class="main tab-pane fade in active">
 					<div class="warning">
-						<p>注：仅支持JPG、GIF、PNG图片文件，且文件小于5M</p>
+						<p>注：仅支持JPG图片文件</p>
 					</div>
 					<div>
 						<div class="model-lr model-uploadPhoto">
 							<div class="fn-left">
-								<input type="file" name="avatar">
+								<input type="file" name="avartar">
 							</div>
 							<div class="fn-right">
 								<p>您上传的头像会自动生成三种尺寸，请注意中小尺寸
 									的头像是否清晰。</p>
-								<img src="style/edit-photo.jpg">
+<?if(file_exists('./uploads/images/avartar/'.$this->user->id.'.jpg')){?>
+								<img src="/uploads/images/avartar/<?=$this->user->id?>_200.jpg" class="pull-left">
+								<img src="/uploads/images/avartar/<?=$this->user->id?>_100.jpg" class="pull-right">
+								<img src="/uploads/images/avartar/<?=$this->user->id?>_30.jpg" class="pull-right" style="margin-top: 30px;">
+<?}?>
 							</div>
 						</div>
 					</div>
@@ -158,7 +173,7 @@
 					</ul>
 				</div>
 				<ul class="buttons">
-					<li><button type="submit" name="update" value="1" class="btn btn-primary">保存</button></li>
+					<li><button type="submit" name="submit" class="btn btn-primary">保存</button></li>
 				</ul>
 			</div>
 		</form>

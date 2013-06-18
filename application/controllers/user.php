@@ -51,6 +51,70 @@ class User extends WT_Controller{
 	 */
 	function profile(){
 		
+		if($this->input->post('submit')!==false){
+			try{
+				
+				is_array($this->input->post('user')) && $this->user->update($this->input->post('user'));
+				
+				is_array($this->input->post('profiles')) && $this->user->updateProfiles($this->input->post('profiles'));
+				
+				$this->load->library('upload',array(
+					'upload_path'=>'./uploads/',
+					'allowed_types'=>'jpg'
+				));
+				
+				if(!$_FILES['avartar']['error']){
+					if(!$this->upload->do_upload('avartar')){
+						throw new Exception($this->upload->display_errors());
+					}
+
+					$upload_data=$this->upload->data();
+
+					$this->load->library('image_lib');
+
+					$this->image_lib->initialize(array(
+						'source_image'=>$upload_data['full_path'],
+						'maintain_ratio'=>true,
+						'width'=>200,
+						'height'=>200,
+						'new_image'=>'./uploads/images/avartar/'.$this->user->id.'_200.jpg'
+					));
+
+					$this->image_lib->resize();
+
+					$this->image_lib->clear();
+
+					$this->image_lib->initialize(array(
+						'source_image'=>$upload_data['full_path'],
+						'maintain_ratio'=>true,
+						'width'=>100,
+						'height'=>100,
+						'new_image'=>'./uploads/images/avartar/'.$this->user->id.'_100.jpg'
+					));
+
+					$this->image_lib->resize();
+
+					$this->image_lib->clear();
+
+					$this->image_lib->initialize(array(
+						'source_image'=>$upload_data['full_path'],
+						'maintain_ratio'=>true,
+						'width'=>30,
+						'height'=>30,
+						'new_image'=>'./uploads/images/avartar/'.$this->user->id.'_30.jpg'
+					));
+
+					$this->image_lib->resize();
+
+					$this->image_lib->clear();
+
+					rename($upload_data['full_path'],'./uploads/images/avartar/'.$this->user->id.'.jpg');
+				}
+				
+			}catch(Exception $e){
+			}
+		}
+		
 		$user=$this->user->fetch();
 		
 		$profiles=$this->user->getProfiles();
