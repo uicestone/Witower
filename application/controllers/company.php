@@ -31,21 +31,63 @@ class Company extends WT_Controller{
 		
 		if($this->input->post('submit')!==false){
 			
-			$data=array(
-				'name'=>$this->input->post('name'),
-				'description'=>$this->input->post('description'),
-				'company'=>$this->user->id
-			);
-
-			//TODO 上传和更新产品图片文件
-			if(is_null($this->product->id)){
-				$this->product->add($data);
-			}
-			else{
-				$this->product->update($data);
-			}
+			try{
 			
-			redirect('company/product');
+				$data=array(
+					'name'=>$this->input->post('name'),
+					'description'=>$this->input->post('description'),
+					'company'=>$this->user->id
+				);
+
+				if(is_null($this->product->id)){
+					$this->product->id=$this->product->add($data);
+				}
+				else{
+					$this->product->update($data);
+				}
+
+				$this->load->library('upload',array(
+					'upload_path'=>'./uploads/',
+					'allowed_types'=>'jpg'
+				));
+				
+				if(!$_FILES['image']['error'] && !$this->upload->do_upload('image')){
+					throw new Exception($this->upload->display_errors());
+				}
+
+				$upload_data=$this->upload->data();
+				
+				$this->load->library('image_lib',array(
+					'source_image'=>$upload_data['full_path'],
+					'maintain_ratio'=>true,
+					'width'=>200,
+					'height'=>200,
+					'new_image'=>'./uploads/images/product/'.$this->product->id.'_200.jpg'
+				));
+				
+				$this->image_lib->resize();
+				
+				$this->image_lib->clear();
+				
+				$this->image_lib->initialize(array(
+					'source_image'=>$upload_data['full_path'],
+					'maintain_ratio'=>true,
+					'width'=>100,
+					'height'=>100,
+					'new_image'=>'./uploads/images/product/'.$this->product->id.'_100.jpg'
+				));
+				
+				$this->image_lib->resize();
+				
+				$this->image_lib->clear();
+				
+				rename($upload_data['full_path'], './uploads/images/product/'.$this->product->id.'.jpg');
+				
+				redirect('company/product');
+				
+			}
+			catch(Exception $e){
+			}
 		}
 		
 		if(is_null($this->product->id)){
@@ -75,25 +117,65 @@ class Company extends WT_Controller{
 		
 		if($this->input->post('submit')!==false){
 			
-			$data=array(
-				'name'=>$this->input->post('name'),
-				'summary'=>$this->input->post('summary'),
-				'product'=>$this->input->post('product'),
-				'company'=>$this->user->id,
-				'wit_start'=>$this->input->post('start'),
-				'wit_end'=>$this->input->post('end'),
-				'bonus'=>$this->input->post('bonus')
-			);
+			try{
+				$data=array(
+					'name'=>$this->input->post('name'),
+					'summary'=>$this->input->post('summary'),
+					'product'=>$this->input->post('product'),
+					'company'=>$this->user->id,
+					'wit_start'=>$this->input->post('start'),
+					'wit_end'=>$this->input->post('end'),
+					'bonus'=>$this->input->post('bonus')
+				);
 
-			//TODO 上传和更新产品图片文件
-			if(is_null($this->project->id)){
-				$this->project->add($data);
+				if(is_null($this->project->id)){
+					$this->project->id=$this->project->add($data);
+				}
+				else{
+					$this->project->update($data);
+				}
+				
+				$this->load->library('upload',array(
+					'upload_path'=>'./uploads/',
+					'allowed_types'=>'jpg'
+				));
+				
+				if(!$_FILES['image']['error'] && !$this->upload->do_upload('image')){
+					throw new Exception($this->upload->display_errors());
+				}
+
+				$upload_data=$this->upload->data();
+				
+				$this->load->library('image_lib',array(
+					'source_image'=>$upload_data['full_path'],
+					'maintain_ratio'=>true,
+					'width'=>200,
+					'height'=>200,
+					'new_image'=>'./uploads/images/project/'.$this->project->id.'_200.jpg'
+				));
+				
+				$this->image_lib->resize();
+				
+				$this->image_lib->clear();
+				
+				$this->image_lib->initialize(array(
+					'source_image'=>$upload_data['full_path'],
+					'maintain_ratio'=>true,
+					'width'=>100,
+					'height'=>100,
+					'new_image'=>'./uploads/images/project/'.$this->project->id.'_100.jpg'
+				));
+				
+				$this->image_lib->resize();
+				
+				$this->image_lib->clear();
+				
+				rename($upload_data['full_path'], './uploads/images/project/'.$this->project->id.'.jpg');
+
+				redirect('company/project');
+				
+			}catch(Exception $e){
 			}
-			else{
-				$this->project->update($data);
-			}
-			
-			redirect('company/project');
 		}
 		
 		if(is_null($this->project->id)){
