@@ -85,7 +85,7 @@ class Version_model extends WT_Model{
 				));
 			}
 			else{
-				$this->db->set('score_company',"`score_company` - {$version['score_company']} + $score")//TODO score未转义
+				$this->db->set('score_company',"`score_company` - {$version['score_company']} + $score",false)//TODO score未转义
 					->where('candidate',$version['user'])
 					->where('project',$version['project'])
 					->update('project_candidate');

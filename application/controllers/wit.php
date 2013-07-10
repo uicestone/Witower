@@ -29,6 +29,20 @@ class Wit extends WT_Controller{
 	function edit($id=NULL){
 		$this->wit->id=$id;
 		
+		if(is_null($this->wit->id)){
+			
+			$project=$this->project->fetch($this->input->get('project'));
+			
+			$wit=$this->wit->fields;
+			
+		}
+		else{
+			
+			$wit=$this->wit->fetch($this->wit->id);
+			
+			$project=$this->project->fetch($wit['project']);
+		}
+		
 		if($this->input->post('submit')!==false){
 			if(is_null($this->wit->id)){
 				//新创意
