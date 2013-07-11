@@ -341,11 +341,7 @@ page-register  ******/
 .page-register .title  span{float: right;margin: 16px 20px 0 0;}
 .page-register .main{padding: 20px;overflow: hidden;}
 .page-register #left{border-right: 1px dashed #ddd;padding: 0 20px 0 0;}
-.page-register #right{}
-.page-register #right li{margin: 0 0 10px 0;}
-.page-register #right span{display: inline-block;width: 100px;text-align: right;}
-.page-register #right input.inp_txt{border: 1px solid #eee;}
-.page-register #right label{display: inline-block;width: 240px;text-indent: 1em;}
+.page-register .label-important{max-width:170px; white-space:pre-line;}
 
 /*
 *

@@ -2,21 +2,55 @@
 <div class="page-register">
 	<div class="title">
 		<h1>注册</h1>
-		<!--<span><img src="style/register-steps.png"></span>-->
 	</div>
 	<div class="main">
 		<div id="left"><img src="style/register-banner.png"></div>
-		<div id="right">
-			<form id="registerform" method="post" action="/signup">
-				<ul>
-					<input name="forward"   type="hidden" value='<?=$forward?>' />
-					<li><span>E-mail：</span><input name="email" id="email"  type="text" class="inp_txt" /></li>
-					<li><span>用户名：</span><input name="username" id="username" type="text" class="inp_txt" /></li>
-					<li><span>密码：</span><input name="password" id="password" type="password" class="inp_txt" /></li>
-					<li><span>确认密码：</span><input name="repassword" id="repassword" type="password" class="inp_txt" /></li>
-					<li><span></span><input name="agree" id="agree" type="checkbox"  checked="checked" />同意"<a href="#" target="_blank">Witower智塔用户协议</a>" </li>
-					<li><span></span><input name="signup" type="submit" value="注册" class="btn_inp btn-c" /><label><a href="/login">已有账号，立即登录</a></label></li>
-				</ul>
+		<div class="pull-left">
+			<form id="registerform" method="post" action="/signup" class="form-horizontal">
+				<input name="forward"   type="hidden" value='<?//=$forward?>' />
+				<div class="control-group">
+					<label class="control-label" for="email">E-mail：</label>
+					<div class="controls">
+						<input name="email" id="email" type="text" value="<?=set_value('email')?>" />
+						<span class="label label-important"><?=form_error('email')?></span>
+					</div>
+				</div>				
+				<div class="control-group">
+					<label class="control-label" for="username">用户名：</label>
+					<div class="controls">
+						<input name="username" id="username"  type="text" value="<?=set_value('username')?>" />
+						<span class="label label-important"><?=form_error('username')?></span>
+					</div>
+				</div>				
+				<div class="control-group">
+					<label class="control-label" for="password">密码：</label>
+					<div class="controls">
+						<input name="password" id="password"  type="password" />
+						<span class="label label-important"><?=form_error('password')?></span>
+					</div>
+				</div>				
+				<div class="control-group">
+					<label class="control-label" for="repassword">确认密码：</label>
+					<div class="controls">
+						<input name="repassword" id="repassword"  type="password" />
+						<span class="label label-important"><?=form_error('repassword')?></span>
+					</div>
+				</div>				
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox" for="agree">
+							<input name="agree" id="agree" type="checkbox"<?=set_checkbox('agree','on')?> />
+							<span>同意"<a href="#" target="_blank">Witower智塔用户协议</a>"</span>
+							<span class="label label-important"><?=form_error('agree')?></span>
+						</label>
+					</div>
+				</div>				
+				<div class="control-group">
+					<div class="controls">
+						<button name="signup" type="submit" class="btn btn-primary">注册</button>
+						<label class="checkbox inline"><a href="/login">已有账号，立即登录</a></label>
+					</div>
+				</div>				
 			</form>
 		</div>
 	</div>

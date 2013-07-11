@@ -9,36 +9,62 @@ class User extends WT_Controller{
 	 */
 	function signup(){
 		
-		if($this->input->post('signup')){
-			$user_id=$this->user->add(array(
-				'name'=>$this->input->post('username'),
-				'password'=>$this->input->post('password'),
-				'email'=>$this->input->post('email')
-			));
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules(array(
+			array('field'=>'email','label'=>'E-mail','rules'=>'required|valid_email|is_unique[user.email]'),
+			array('field'=>'username','label'=>'用户名','rules'=>'required|is_unique[user.name]'),
+			array('field'=>'password','label'=>'密码','rules'=>'required'),
+			array('field'=>'repassword','label'=>'重复密码','rules'=>'required|matches[password]'),
+		))
+			->set_message('matches','两次%s输入不一致')
+			->set_message('test','同意用户协议')
+			->set_rules('agree','同意用户协议','callback__agree');
+		
+		if($this->input->post('signup')!==false){
 			
-			$this->user->sessionLogin($user_id);
-			
-			redirect();
-			
+			if($this->form_validation->run()!==false){
+				$user_id=$this->user->add(array(
+					'name'=>$this->input->post('username'),
+					'password'=>$this->input->post('password'),
+					'email'=>$this->input->post('email')
+				));
+				
+				$this->user->sessionLogin($user_id);
+
+				redirect($this->input->post('forward'));
+			}
 		}
 		
 		$this->load->view('user/signup');
 	}
 	
+	function _agree($value){
+		if(is_null($value)){
+			$this->form_validation->set_message('_agree', '请同意“用户协议”');
+			return false;
+		}
+		return true;
+	}
+		
 	/**
 	 * 登陆页面
 	 */
 	function login(){
 		
-		if($this->input->post('login')){
+		$alert=array();
+		
+		if($this->input->post('login')!==false){
 			$user=$this->user->verify($this->input->post('username'), $this->input->post('password'));
 			if($user){
 				$this->user->sessionLogin($user['id']);
-				redirect('');
+				redirect($this->input->post('forward'));
+			}else{
+				$alert[]=array('title'=>'错误：','message'=>'用户名或密码错误');
 			}
 		}
 		
-		$this->load->view('user/login');
+		$this->load->view('user/login',compact('alert'));
 	}
 	
 	function logout(){
