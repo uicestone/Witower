@@ -79,5 +79,33 @@ class WT_Loader extends CI_Loader{
 		return '<link rel="stylesheet" href="/'.$path.'?'.$hash.'" type="text/css" />'."\n";
 	}
 	
+	/**
+	 * 输出一个上传的图片资源的img html
+	 * @param 图片类型 avatar, project, product...
+	 * @param int $id
+	 * @param int $size 图片资源尺寸
+	 * @param int $display_size 显示尺寸
+	 * @return string img html
+	 */
+	function image($type,$id,$size=false,$display_size=false){
+		$suffix='';
+		if($size){
+			$suffix='_'.$size;
+		}
+
+		$display_size_html='';
+		if($display_size){
+			$display_size_html=' width="'.$display_size.'" height="'.$display_size.'"';
+		}
+		
+		if(file_exists('uploads/images/'.$type.'/'.$id.$suffix.'.jpg')){
+			return '<img src="/uploads/images/'.$type.'/'.$id.$suffix.'.jpg"'.$display_size_html.' />';
+		}
+		else{
+			return '<img src="/uploads/images/'.$type.'/0'.$suffix.'.jpg"'.$display_size_html.' />';
+		}
+		
+	}
+	
 }
 ?>

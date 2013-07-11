@@ -35,7 +35,6 @@ body{background: url("head-bg.png") repeat-x center 0;}
 #content{position: relative;}
 #content:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
 #content .login{margin: 10px 0;}
-.add-follow{font-size: 0.7em; padding:0.2em 0.6em;}
 
 /*
 *

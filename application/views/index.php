@@ -12,12 +12,11 @@
 </div>
 
 <div class="water">
-	<? foreach ($projects as $project) {//这里的单个project是c里面projects下面的子数组 然后 每个里面的 id  XX XX 对吧?>
+	<? foreach ($projects as $project) {?>
 		<div class="box" style="display: none;">
 			<div class="img cell">
-				<!--img src="style/p.jpg"-->
 				<a href="/project/<?= $project['id'] ?>">
-					<img src="/uploads/images/project/<?= $project['id'];?>_200.jpg">
+					<?=$this->image('project',$project['id'],200)?>
 				</a>
 				<p><?= $project['name'] ?></p>
 			</div>
@@ -38,7 +37,7 @@
 				<p><? //=$project[summary]   ?></p>
 				<ul>
 					<? foreach ($project['comments'] as $comment) { ?>
-								<li><a href="/space/<?= $comment['user'] ?>"><!--<img src="style/p5.jpg">--><img src="/uploads/images/avatar/<?=$comment['user'] ?>_30.jpg"></a>
+								<li><a href="/space/<?= $comment['user'] ?>"><?=$this->image('avatar',$comment['user'],30)?></a>
 							<p><a href="/space/<?= $comment['user'] ?>"><?= $comment['username'] ?>：</a><?= $comment['content'] ?></p>
 						</li>
 					<? } ?>

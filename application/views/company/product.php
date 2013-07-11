@@ -23,7 +23,7 @@
 						<? foreach ($products as $product) { ?>								
 							<tr> 
 								<td><?= $product['name'] ?></td>
-								<td class="image"><img src="/uploads/images/product/<?= $product['id'] ?>_100.jpg"></td>
+								<td class="image"><?=$this->image('product',$product['id'],100)?></td>
 								<td><?= $product['description'] ?></td>
 								<td>
 									<a class="btn btn-small" href="/company/product/<?= $product['id'] ?>">修改</a><br>

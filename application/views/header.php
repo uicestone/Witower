@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<?=doctype('html5')?>
+
 <html lang="zh-CN">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>智塔</title>
-		<meta name="keywords" content="<?//=$setting['seo_keywords']?>" />
-		<meta name="description" content="<?//=$setting['seo_description']?>" />
+		<meta name="keywords" content="<?=$this->config->user_item('keywords')?>" />
+		<meta name="description" content="<?=$this->config->user_item('description')?>" />
 		<link rel="stylesheet" type="text/css" href="/style/bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/style/tango/skin.css">
 		<link rel="stylesheet" type="text/css" href="/style/common.css">

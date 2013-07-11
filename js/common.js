@@ -1,9 +1,13 @@
 $(function() {
 	
+	$('a[disabled="disabled"]').on('click',function(event){
+		event.preventDefault();
+	}).removeClass('btn-primary');
+	
 	$('.add-follow[user]').on('click.add-follow',function(){
 		var follow_button=$(this);
 		$.post('/user/addfollow/'+follow_button.attr('user'),function(){
-			follow_button.text('已关注').off('.add-follow');
+			follow_button.text('\u5DF2\u5173\u6CE8').off('.add-follow');
 		});
 	});
 

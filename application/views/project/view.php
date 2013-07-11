@@ -14,7 +14,7 @@
 		<div class="model model-b">
 			<div class="main">
 				<div class="info">
-					<a href="/space/<?=$project['company']?>"><img src="/uploads/images/avatar/<?=$project['company']?>_100.jpg"></a>
+					<a href="/space/<?=$project['company']?>"><?=$this->image('avatar',$project['company'],100)?></a>
 				<ul>
 					<li><b>发布企业：</b><?= $project['company_name'] ?>
 						<?followButton($project['company'])?>
@@ -34,14 +34,21 @@
 				</ul>
 				</div>
 				<div class="descript">
-					<div class="fn-left"><img src="/uploads/images/project/<?=$project['id']?>_100.jpg"></div><div class="fn-right">
+					<div class="fn-left"><?=$this->image('project',$project['id'],100)?></div><div class="fn-right">
 						<p><?=$project['summary']?></p>
 						<div class="button">
 							<div class="fn-left">
 
 							</div>
 							<div class="fn-right">
-								<a class="btn  btn-primary" href="/wit/add?project=<?=$project['id']?>">发布创意</a>
+								<a class="btn btn-primary"
+<?if(in_array($this->user->id,array_sub($wits,'user'))){?>
+								   disabled="disabled" title="您已经发起了1个创意"
+<?}?>
+<?if(count($wits)>=$this->config->user_item('max_wits_per_project')){?>
+								   disabled="disabled" title="本项目创意限额已满"
+<?}?>
+								   href="/wit/add?project=<?=$project['id']?>">发布创意</a>
 							</div>
 
 						</div>
@@ -50,14 +57,14 @@
 				<div class="detail">
 					<div class="title"><h3>公司介绍</h3></div>
 					<div class="main">
-						<img src="/uploads/images/avatar/<?=$project['company']?>_100.jpg">
+						<?=$this->image('avatar',$project['company'],100)?>
 						<p>杭州疑现“卖肾基地” 一颗肾行价3.5万元】据媒体报道，杭州一小区内存在非法肾源供养基地，住在“卖肾基地肾基地”中的都是年轻男子，卖肾原因有还债、嫌打工赚钱慢等。该基地内有30余名供”中的都是年轻男子，国内统一行价3.5万元。记者5月28日获悉，杭州警方目前已介入调查。</p>
 					</div>
 				</div>
 				<div class="detail">
 					<div class="title"><h3>产品说明</h3></div>
 					<div class="main">
-						<img src="/uploads/images/product/<?=$project['product']?>_100.jpg">
+						<?=$this->image('product',$project['product'],100)?>
 						<p>杭州疑现“卖肾基地” 一颗肾行价3.5万元】据媒体报道，杭州一小区内存在非法肾源供养基地，住在“卖肾基地肾基地”中的都是年轻男子，卖肾原因有还债、嫌打工赚钱慢等。该基地内有30余名供”中的都是年轻男子，国内统一行价3.5万元。记者5月28日获悉，杭州警方目前已介入调查。</p>
 					</div>
 				</div>
@@ -100,7 +107,7 @@
 				<ul>
 					<?foreach($witters as $witter){?>
 					<li>
-						<img src="/uploads/images/avatar/<?=$witter['id']?>_100.jpg" width="50"><a href="/space/<?= $witter['id'] ?>"><span><?= $witter['name'] ?></span></a>
+						<?=$this->image('avatar',$witter['id'],100,50)?><a href="/space/<?= $witter['id'] ?>"><span><?= $witter['name'] ?></span></a>
 						<?followButton($witter['id'])?>
 					</li>
 					<?}?>
