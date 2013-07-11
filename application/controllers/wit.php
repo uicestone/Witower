@@ -30,22 +30,19 @@ class Wit extends WT_Controller{
 		$this->wit->id=$id;
 		
 		if(is_null($this->wit->id)){
-			
+			//对于新建创意，项目信息从url获取
 			$project=$this->project->fetch($this->input->get('project'));
-			
 			$wit=$this->wit->fields;
-			
 		}
 		else{
-			
+			//对于已有创意，项目信息从创意信息中获取
 			$wit=$this->wit->fetch($this->wit->id);
-			
 			$project=$this->project->fetch($wit['project']);
 		}
 		
 		if($this->input->post('submit')!==false){
 			if(is_null($this->wit->id)){
-				//新创意
+				//新创意，那么添加创意信息
 				$this->wit->id=$this->wit->add(array(
 					'name'=>$this->input->post('name'),
 					'content'=>$this->input->post('content'),
@@ -53,24 +50,34 @@ class Wit extends WT_Controller{
 					'user'=>$this->user->id,
 					'time'=>$this->date->now
 				));
-				
 			}
 			else{
-				//已有创意，添加版本
+				//已有创意，更新一下创意信息
 				$this->wit->update(array(
 					'content'=>$this->input->post('content'),
 					'user'=>$this->user->id,
 					'time'=>$this->date->now
 				));
 			}
-
-			$this->version->add(array(
-				'project'=>$project['id'],
-				'wit'=>$this->wit->id,
-				'content'=>$this->input->post('content'),
-				'user'=>$this->user->id,
-				'time'=>$this->date->now
-			));
+			
+			//添加一个版本
+			if($wit['user']===$this->user->id){
+				//如果创意的最后修改人就是本人，那么执行热修改，不创建新版本
+				$this->version->update(array(
+					'content'=>$this->input->post('content'),
+					'time'=>$this->date->now
+				),$wit['latest_version']);
+			}else{
+				$wit['latest_version']=$this->version->add(array(
+					'project'=>$project['id'],
+					'wit'=>$this->wit->id,
+					'content'=>$this->input->post('content'),
+					'user'=>$this->user->id,
+					'time'=>$this->date->now
+				));
+			}
+			
+			$this->wit->update(array('latest_version'=>$wit['latest_version']));
 			
 			redirect('project/'.$project['id']);
 		}

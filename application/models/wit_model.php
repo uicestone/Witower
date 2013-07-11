@@ -9,7 +9,8 @@ class Wit_model extends WT_Model{
 			'content'=>'',//最新内容
 			'user'=>NULL,//用户
 			'time'=>$this->date->now,//时间
-			'selected'=>false//选中
+			'selected'=>false,//选中
+			'latest_version'=>NULL//最新版本
 		);
 	}
 	
