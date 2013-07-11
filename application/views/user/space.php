@@ -36,7 +36,7 @@
 			<div class="main">
 				<div class="detail">
 					<div class="main">
-						<p><span name=<?=$status['username']?>><img src="/uploads/images/avartar/<?=$status['user']?>_100.jpg" class="user_img"></span><?=$status['content']?></p>
+						<p><span name=<?=$status['username']?>><img src="/uploads/images/avatar/<?=$status['user']?>_100.jpg" class="user_img"></span><?=$status['content']?></p>
 					</div>
 					<div class="tail icons">
 						<?=date('Y-m-d H:i:s',$status['time'])?>
@@ -55,7 +55,7 @@
 <?	foreach($status['comments'] as $status_comment){?>
 							<li>
 								<p class="content"><?=$status_comment['content']?></p><span class="time"><?=$status_comment['time']?></span>
-								<span class="avatar"><a href="/space/<?=$status_comment['user']?>"><img src="/uploads/images/avartar/<?=$status_comments['user']?>_30.jpg" class="user_img"></a></span>
+								<span class="avatar"><a href="/space/<?=$status_comment['user']?>"><img src="/uploads/images/avatar/<?=$status_comments['user']?>_30.jpg" class="user_img"></a></span>
 							</li>
 <?	}?>
 						</ul>
@@ -99,7 +99,7 @@
 		</form>
 		<div class="box my-box">
 			<div>
-				<img src="/uploads/images/avartar/<?=$user['id']?>_100.jpg" />
+				<img src="/uploads/images/avatar/<?=$user['id']?>_100.jpg" />
 				<h1><?=$user['name']?></h1>
 				<p><?followButton($user['id'])?></p>
 			</div>

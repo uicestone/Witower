@@ -25,7 +25,7 @@
 				<div class="fn-right">
 					<ul id="mycarousel" class="jcarousel-skin-tango">
 						<?foreach($recommended_voting_project['voters'] as $voter){?>
-						<li><a href="/space/<?= $voter['id'] ?>"><img src="uploads/images/avartar/<?=$voter['id']?>_100.jpg" width="65px" height="65px"><span><?= $voter['name'] ?></span></a></li>
+						<li><a href="/space/<?= $voter['id'] ?>"><img src="uploads/images/avatar/<?=$voter['id']?>_100.jpg" width="65px" height="65px"><span><?= $voter['name'] ?></span></a></li>
 						<?}?>
 					</ul>
 				</div>

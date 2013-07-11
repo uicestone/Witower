@@ -23,22 +23,22 @@ $(function(){
 	<div id="left">
 		<form method="post" enctype="multipart/form-data">
 			<div class="model model-b tab-content">
-				<div id="avartar" class="main tab-pane fade in active">
+				<div id="avatar" class="main tab-pane fade in active">
 					<div class="warning">
 						<p>注：仅支持JPG图片文件</p>
 					</div>
 					<div>
 						<div class="model-lr model-uploadPhoto">
 							<div class="fn-left">
-								<input type="file" name="avartar">
+								<input type="file" name="avatar">
 							</div>
 							<div class="fn-right">
 								<p>您上传的头像会自动生成三种尺寸，请注意中小尺寸
 									的头像是否清晰。</p>
-<?if(file_exists('./uploads/images/avartar/'.$this->user->id.'.jpg')){?>
-								<img src="/uploads/images/avartar/<?=$this->user->id?>_200.jpg" class="pull-left">
-								<img src="/uploads/images/avartar/<?=$this->user->id?>_100.jpg" class="pull-right">
-								<img src="/uploads/images/avartar/<?=$this->user->id?>_30.jpg" class="pull-right" style="margin-top: 30px;">
+<?if(file_exists('./uploads/images/avatar/'.$this->user->id.'.jpg')){?>
+								<img src="/uploads/images/avatar/<?=$this->user->id?>_200.jpg" class="pull-left">
+								<img src="/uploads/images/avatar/<?=$this->user->id?>_100.jpg" class="pull-right">
+								<img src="/uploads/images/avatar/<?=$this->user->id?>_30.jpg" class="pull-right" style="margin-top: 30px;">
 <?}?>
 							</div>
 						</div>
@@ -187,7 +187,7 @@ $(function(){
 				<dd><a href="#career" data-toggle="tab">职业信息</a></dd>
 				<dd><a href="#tags" data-toggle="tab">个人标签</a></dd>
 				<dd><a href="#address" data-toggle="tab">收货地址</a></dd>
-				<dd class="active"><a href="#avartar" data-toggle="tab">修改头像</a></dd>
+				<dd class="active"><a href="#avatar" data-toggle="tab">修改头像</a></dd>
 			</dl>
 			<dl class="nav nav-tabs">
 				<dt>帐号安全</dt>

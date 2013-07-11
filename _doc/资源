@@ -2,10 +2,10 @@
 数字为宽度
 
 用户/公司头像
-/uploads/images/avartar/{user_id}_30.jpg
-/uploads/images/avartar/{user_id}_100.jpg
-/uploads/images/avartar/{user_id}_200.jpg
-/uploads/images/avartar/{user_id}.jpg
+/uploads/images/avatar/{user_id}_30.jpg
+/uploads/images/avatar/{user_id}_100.jpg
+/uploads/images/avatar/{user_id}_200.jpg
+/uploads/images/avatar/{user_id}.jpg
 
 项目
 /uploads/images/project/{project_id}_100.jpg

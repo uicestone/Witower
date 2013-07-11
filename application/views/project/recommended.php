@@ -26,7 +26,7 @@
 			<div class="fn-right">
 				<ul id="mycarousel" class="jcarousel-skin-tango">
 					<?foreach($recommended_project['comments'] as $comment){?>
-						<li><a href="/user/space/<?=$comment['user']?>"><img src="uploads/images/avartar/<?=$comment['user']?>_100.jpg" width="65px" height="65px"><span><?=$comment['username']?></span></a></li>
+						<li><a href="/user/space/<?=$comment['user']?>"><img src="uploads/images/avatar/<?=$comment['user']?>_100.jpg" width="65px" height="65px"><span><?=$comment['username']?></span></a></li>
 					<?}?>
 				</ul>
 			</div>

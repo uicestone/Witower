@@ -14,7 +14,7 @@
 		<div class="model model-b">
 			<div class="main">
 				<div class="info">
-					<img src="/uploads/images/avartar/<?=$project['company']?>_100.jpg" />
+					<img src="/uploads/images/avatar/<?=$project['company']?>_100.jpg" />
 					<ul>
 						<li><b>发布企业：</b><?= $project['company_name'] ?>
 							<span><?followButton($project['company'])?></span>
@@ -38,7 +38,7 @@
 				<div class="detail">
 					<div class="title">公司介绍</div>
 					<div class="main">
-						<img src="/uploads/images/avartar/<?=$project['company']?>_100.jpg" />
+						<img src="/uploads/images/avatar/<?=$project['company']?>_100.jpg" />
 						<p><?//TODO= $company['description'] ?></p>
 					</div>
 				</div>
@@ -73,7 +73,7 @@
 					<table>
 <?foreach($candidates as $candidate){?>
 						<tr>
-							<td><img src="/uploads/images/avartar/<?=$candidate['id']?>_100.jpg" width="100px" height="100px"></td>
+							<td><img src="/uploads/images/avatar/<?=$candidate['id']?>_100.jpg" width="100px" height="100px"></td>
 							<td><?=$candidate['name']?></td>
 <?if(!$voted){?>
 							<td class="images">
@@ -112,7 +112,7 @@
 				<ul>
 <?foreach($voters as $voter){?>
 					<li>
-						<img src="/uploads/images/avartar/<?=$voter['id']?>_100.jpg" width="50px" height="50px"><a href="/space/<?=$voter['id']?>"><span><?=$voter['name']?></span></a>
+						<img src="/uploads/images/avatar/<?=$voter['id']?>_100.jpg" width="50px" height="50px"><a href="/space/<?=$voter['id']?>"><span><?=$voter['name']?></span></a>
 						<?followButton($voter['id'])?>                    
 					</li>
 <?}?>	

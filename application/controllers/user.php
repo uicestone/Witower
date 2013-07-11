@@ -63,8 +63,8 @@ class User extends WT_Controller{
 					'allowed_types'=>'jpg'
 				));
 				
-				if(!$_FILES['avartar']['error']){
-					if(!$this->upload->do_upload('avartar')){
+				if(!$_FILES['avatar']['error']){
+					if(!$this->upload->do_upload('avatar')){
 						throw new Exception($this->upload->display_errors());
 					}
 
@@ -77,7 +77,7 @@ class User extends WT_Controller{
 						'maintain_ratio'=>true,
 						'width'=>200,
 						'height'=>200,
-						'new_image'=>'./uploads/images/avartar/'.$this->user->id.'_200.jpg'
+						'new_image'=>'./uploads/images/avatar/'.$this->user->id.'_200.jpg'
 					));
 
 					$this->image_lib->resize();
@@ -89,7 +89,7 @@ class User extends WT_Controller{
 						'maintain_ratio'=>true,
 						'width'=>100,
 						'height'=>100,
-						'new_image'=>'./uploads/images/avartar/'.$this->user->id.'_100.jpg'
+						'new_image'=>'./uploads/images/avatar/'.$this->user->id.'_100.jpg'
 					));
 
 					$this->image_lib->resize();
@@ -101,14 +101,14 @@ class User extends WT_Controller{
 						'maintain_ratio'=>true,
 						'width'=>30,
 						'height'=>30,
-						'new_image'=>'./uploads/images/avartar/'.$this->user->id.'_30.jpg'
+						'new_image'=>'./uploads/images/avatar/'.$this->user->id.'_30.jpg'
 					));
 
 					$this->image_lib->resize();
 
 					$this->image_lib->clear();
 
-					rename($upload_data['full_path'],'./uploads/images/avartar/'.$this->user->id.'.jpg');
+					rename($upload_data['full_path'],'./uploads/images/avatar/'.$this->user->id.'.jpg');
 				}
 				
 			}catch(Exception $e){

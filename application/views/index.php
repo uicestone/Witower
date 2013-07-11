@@ -38,7 +38,7 @@
 				<p><? //=$project[summary]   ?></p>
 				<ul>
 					<? foreach ($project['comments'] as $comment) { ?>
-								<li><a href="/space/<?= $comment['user'] ?>"><!--<img src="style/p5.jpg">--><img src="/uploads/images/avartar/<?=$comment['user'] ?>_30.jpg"></a>
+								<li><a href="/space/<?= $comment['user'] ?>"><!--<img src="style/p5.jpg">--><img src="/uploads/images/avatar/<?=$comment['user'] ?>_30.jpg"></a>
 							<p><a href="/space/<?= $comment['user'] ?>"><?= $comment['username'] ?>：</a><?= $comment['content'] ?></p>
 						</li>
 					<? } ?>
