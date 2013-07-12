@@ -32,7 +32,7 @@ class User extends WT_Controller{
 				
 				$this->user->sessionLogin($user_id);
 
-				redirect($this->input->post('forward'));
+				redirect(urldecode($this->input->post('forward')));
 			}
 		}
 		
@@ -52,13 +52,17 @@ class User extends WT_Controller{
 	 */
 	function login(){
 		
+		if($this->user->isLogged()){
+			redirect();
+		}
+		
 		$alert=array();
 		
 		if($this->input->post('login')!==false){
 			$user=$this->user->verify($this->input->post('username'), $this->input->post('password'));
 			if($user){
 				$this->user->sessionLogin($user['id']);
-				redirect($this->input->post('forward'));
+				redirect(urldecode($this->input->post('forward')));
 			}else{
 				$alert[]=array('title'=>'错误：','message'=>'用户名或密码错误');
 			}
@@ -214,6 +218,16 @@ class User extends WT_Controller{
 	 */
 	function partner(){
 		
+	}
+	
+	function addToBlacklist($user_id){
+		$this->user->addGroup('blacklist', $user_id);
+		redirect('space/'.$user_id);
+	}
+	
+	function removeFromBlacklist($user_id){
+		$this->user->removeGroup('blacklist', $user_id);
+		redirect('space/'.$user_id);
 	}
 	
 }

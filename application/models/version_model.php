@@ -4,11 +4,14 @@ class Version_model extends WT_Model{
 		parent::__construct();
 		$this->table='version';
 		$this->fields=array(
+			'num'=>0,//创意下的版本号
 			'project'=>NULL,//所属项目
 			'wit'=>NULL,//所属创意
+			'name'=>'',//标题
 			'content'=>'',//内容
 			'score_witower'=>0,//智塔打分
 			'score_company'=>0,//企业打分
+			'hidden'=>0,//隐藏（用于处理不良）
 			'user'=>NULL,//用户
 			'time'=>$this->date->now,//时间
 		);
@@ -28,6 +31,16 @@ class Version_model extends WT_Model{
 		
 	}
 	
+	/**
+	 * 
+	 * @param array $args
+	 *	wit
+	 *	in_project
+	 *	in_product
+	 *	company
+	 *	hidden	false (default), null, true
+	 * @return array
+	 */
 	function getList($args = array()) {
 		
 		$this->db->join('user','user.id = version.user','inner')
@@ -47,6 +60,12 @@ class Version_model extends WT_Model{
 		
 		if(isset($args['company'])){
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE company{$this->db->escape_int_array($args['company'])}))");
+		}
+		
+		if(!array_key_exists('hidden', $args) || $args['hidden']===false){
+			$this->db->where('version.hidden = FALSE');
+		}elseif($args===true){
+			$this->db->where('version.hidden = TRUE');
 		}
 		
 		return parent::getList($args);
@@ -91,6 +110,11 @@ class Version_model extends WT_Model{
 					->update('project_candidate');
 			}
 		}
+	}
+	
+	function remove($version_id){
+		$this->db->update('version',array('hidden'=>true),array('id'=>$version_id));
+		return $this->db->affected_rows();
 	}
 }
 ?>

@@ -32,7 +32,7 @@ class WT_Model extends CI_Model{
 		}
 		
 		if(!$row){
-			show_error('item not found');
+			show_error('"'.$this->table.' '.$id.'" item not found');
 		}
 		
 		if(is_null($field)){
@@ -63,6 +63,14 @@ class WT_Model extends CI_Model{
 		
 		$this->db->where($this->table.'.id', $id)
 			->update($this->table,$data);
+	}
+	
+	function addCount($field,$project_id=NULL){
+		is_null($project_id) && $project_id=$this->id;
+		$this->db
+			->set($field,'`'.$field.'` + 1',false)
+			->where('id',$project_id)
+			->update($this->table);
 	}
 	
 	/**

@@ -1,11 +1,5 @@
 <?$this->view('header')?>
 <div id="content" class="page-list">
-	<ul class="breadcrumb">
-		<li>
-			<strong><a href="#">项目</a></strong>
-		</li>
-	</ul>
-
 	<?$this->view('project/recommended')?>
 
 	<div class="search">

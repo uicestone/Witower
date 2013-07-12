@@ -3,6 +3,7 @@
 	<div class="main">
 		<div class="info">
 			<a href="/project/<?=$recommended_project['id']?>"><?=$this->image('project',$recommended_project['id'],100)?></a>
+			<a class="btn btn-primary pull-right" href="/project/<?=$recommended_project['id']?>">我要参与</a>
 			<ul>
 				<li><b>发布企业：</b><?=$recommended_project['company_name']?>
 					<?followButton($recommended_project['company'])?>
@@ -16,7 +17,6 @@
 								<a href="/list/search/tag/<?=$tags?>"><?=$tags?></a>
 						<?}?>
 					</span>
-					<a class="btn-c" href="/project/<?=$recommended_project['id']?>">我要参与</a>
 				</li>
 			</ul>
 

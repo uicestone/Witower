@@ -6,7 +6,7 @@
 	<div class="main">
 		<div id="left"><img src="style/register-banner.png"></div>
 		<div class="pull-left">
-			<form id="registerform" method="post" action="/signup" class="form-horizontal">
+			<form id="registerform" method="post" class="form-horizontal">
 				<input name="forward"   type="hidden" value='<?//=$forward?>' />
 				<div class="control-group">
 					<label class="control-label" for="email">E-mail：</label>
@@ -48,7 +48,7 @@
 				<div class="control-group">
 					<div class="controls">
 						<button name="signup" type="submit" class="btn btn-primary">注册</button>
-						<label class="checkbox inline"><a href="/login">已有账号，立即登录</a></label>
+						<label class="checkbox inline"><a href="/login<?if($this->input->get()){?>?<?=http_build_query((array)$this->input->get())?><?}?>">已有账号，立即登录</a></label>
 					</div>
 				</div>				
 			</form>

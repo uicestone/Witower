@@ -1,10 +1,5 @@
 <? $this->view('header') ?>
 <div id="content" class="page-vote">
-	<ul class="breadcrumb">
-		<li>
-			<strong><a href="#">投票</a></strong>
-		</li>
-	</ul>
 	<div class="model recommend">
 		<div class="title"><h3>每日热门投票</h3></div>
 		<div class="main">
@@ -72,7 +67,7 @@
 
 					<?foreach($voting_projects['latest'] as $project){?>
 					<div class="box">
-						<a href="/project/<?= $project['id'] ?>"><img src="/uploads/images/project/<?=$project['id']?>_200.jpg"></a>
+						<a href="/vote/<?= $project['id'] ?>"><img src="/uploads/images/project/<?=$project['id']?>_200.jpg"></a>
 						<ul>
 							<li><b>项目名称：</b><?= $project['name'] ?></li>
 							<li><b>项目介绍：</b><?= $project['summary'] ?></li>
@@ -103,7 +98,7 @@
 
 					<?foreach($voting_projects['hot'] as $project){?>
 					<div class="box">
-						<a href="{url projectvote-view-<?= $project['id'] ?>}"><img src="uploads/images/project/<?=$project['id']?>_200.jpg"></a>
+						<a href="/vote/<?= $project['id'] ?>"><?=$this->image('project',$project['id'],200)?></a>
 						<ul>
 							<li><b>项目名称：</b><?= $project['name'] ?></li>
 							<li><b>项目介绍：</b><?= $project['summary'] ?></li>

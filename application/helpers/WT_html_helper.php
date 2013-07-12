@@ -49,9 +49,13 @@ function followButton($uid){
 ?>
 <a href="#" class="add-follow btn btn-mini">我自己</a>
 <?php		
-	}else{
+	}elseif($CI->user->isLogged()){
 ?>
 <a href="#" class="add-follow btn btn-mini" user="<?=$uid?>">加关注</a>
+<?php
+	}else{
+?>
+<a href="/login?<?=http_build_query(array('forward'=>substr($CI->input->server('REQUEST_URI'),1)))?>" class="add-follow btn btn-mini" user="<?=$uid?>">加关注</a>
 <?php
 	}
 }

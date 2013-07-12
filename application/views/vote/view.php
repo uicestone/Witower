@@ -20,8 +20,12 @@
 							<span><?followButton($project['company'])?></span>
 						</li>
 						<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
-						<li><b>被编辑次数：</b><?=$versions?>次<b>被讨论次数：</b><?=count($comments)?>次<b>投票截止日期：</b><?= $project['vote_end'] ?></li>
-						<li><b>活动状态：</b>投票中</li>
+						<li>
+							<b>被编辑次数：</b><?=$versions?>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>被讨论次数：</b><?=count($comments)?>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<b>投票截止日期：</b><?= $project['vote_end'] ?>
+						</li>
+						<li><b>活动状态：</b><?=$project['status']?></li>
 						<li class="tags">
 							<b>标签：</b>
 	<?foreach($project['tags'] as $tag){?>
@@ -56,14 +60,16 @@
 				<div class="title"><h3>候选人名单及投票</h3></div>
 				<div class="tail">
 					<div class="button-set">
-<?if($voted){?>
+<?if($project['status']!=='投票中'){?>
+						项目不在投票阶段
+<?}elseif($voted){?>
 						您已经投票了！
 <?}else{?>
 						<button type="submit" name="vote" class="btn btn-primary">投 票</button>
 						<button type="reset" class="btn">重 选</button>
 <?}?>						
 					</div>
-<?if(!$voted){?>
+<?if($project['status']==='投票中' && !$voted){?>
 					<div class="flags">
 						<img src="/style/flag.png"><img src="/style/flag.png"><img src="/style/flag.png">
 					</div>                         
@@ -80,15 +86,19 @@
 								<img src="/style/flag-off.png"><img src="/style/flag-off.png"><img src="/style/flag-off.png"><input name="candidate[<?=$candidate['id'] ?>]" type="hidden">                                    
 							</td>
 <?}?>						
-							<td><div class="bar <?//= $data['color'] ?>" style="width:<?//= $data['width'] ?>px;"></div><span><?=$candidate['votes']?> (<?=$candidate['votes']/$sum_votes*100?>%)</span></td>
-							<td><a href="#">Ta的贡献</a></td>
+							<td>
+								<div class="bar <?//= $data['color'] ?>" style="width:<?//= $data['width'] ?>px;"></div>
+								<span><?=$candidate['votes']?> (<?if($sum_votes==0){?>尚无投票<?}else{?><?=round($candidate['votes']/$sum_votes*100,1)?>%<?}?>)</span></td>
+							<td><a href="#"><!--TODO-->Ta的贡献</a></td>
 						</tr>
 <?}?>
 					</table>
 				</div>
 				<div class="tail">
 					<div class="button-set">
-<?if($voted){?>
+<?if($project['status']!=='投票中'){?>
+						项目不在投票阶段
+<?}elseif($voted){?>
 						您已经投票了！
 <?}else{?>
 						<button type="submit" name="vote" class="btn btn-primary">投 票</button>

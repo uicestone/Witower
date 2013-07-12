@@ -51,12 +51,19 @@ class Vote extends WT_Controller{
 		$this->project->id=$id;
 		
 		if($this->input->post('vote')!==false){
+			
+			if(!$this->user->isLogged()){
+				redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+			}
+		
+			$this->project->addCount('voters');
 			$this->project->vote($this->input->post('candidate'));
 		}
 		
 		$project=$this->project->fetch();
 		
 		$project['tags']=$this->project->getTags();
+		$project['status']=$this->project->getStatus($project);
 		
 		$comments=$this->project->getComments();
 		

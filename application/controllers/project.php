@@ -21,6 +21,7 @@ class Project extends WT_Controller{
 		
 		$witters=$result_witters[0]['sum'];
 		
+		//TODO 热门标签
 		$hot_tags=array('设计','包装','LOGO平面','网站','UI','广告','制作');
 		
 		$money = array('100-1000','1000-5000','5000,10000','10000-15000');
@@ -29,11 +30,11 @@ class Project extends WT_Controller{
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 		
-		$projects['latest']=$this->project->getList(array('orderby'=>'wit_start desc','limit'=>10));
+		$projects['latest']=$this->project->getList(array('is_active'=>true,'orderby'=>'wit_start desc','limit'=>10));
 		
-		$projects['hot']=$this->project->getList(array('orderby'=>'witters desc','limit'=>10));
+		$projects['hot']=$this->project->getList(array('is_active'=>true,'orderby'=>'witters desc','limit'=>10));
 		
-		$projects['high_bonus']=$this->project->getList(array('orderby'=>'bonus desc','limit'=>10));
+		$projects['high_bonus']=$this->project->getList(array('is_active'=>true,'orderby'=>'bonus desc','limit'=>10));
 		
 		foreach($projects as &$projects_column){
 			foreach($projects_column as &$project){
@@ -62,6 +63,7 @@ class Project extends WT_Controller{
 		$project['comments']=$this->project->getComments();
 		$project['comments_count']=count($project['comments']);
 		$project['versions']=$this->project->countVersions();
+		$project['status']=$this->project->getStatus($project);
 		$product=$this->product->fetch($project['product']);
 		$company=$this->company->fetch($project['company']);
 		

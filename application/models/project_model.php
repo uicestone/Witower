@@ -251,5 +251,25 @@ class Project_model extends WT_Model{
 		}
 	}
 	
+	function getStatus($project=NULL){
+		is_null($project) && $project=$this->id;
+		if(!is_array($project)){
+			$project=$this->fetch($project);
+		}
+		
+		if($this->date->today >= $project['wit_start'] && $this->date->today <= $project['wit_end']){
+			return '进行中';
+		}
+		elseif($this->date->today > $project['wit_end'] && $this->date->today < $project['vote_start']){
+			return '企业打分';
+		}
+		elseif($this->date->today >= $project['vote_start'] && $this->date->today <= $project['vote_end']){
+			return '投票中';
+		}
+		else{
+			return '已结束';
+		}
+	}
+	
 }
 ?>

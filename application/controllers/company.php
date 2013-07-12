@@ -6,6 +6,11 @@ class Company extends WT_Controller{
 		$this->load->model('project_model','project');
 		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
+
+		if(!$this->user->isLogged()){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
 	}
 	
 	function product(){

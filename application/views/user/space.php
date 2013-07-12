@@ -2,11 +2,15 @@
 <div id="content" class="page-user model-view">
 	<ul class="breadcrumb">
 		<li>
-			<strong><a href="#">用户</a></strong>
+			<strong>用户</strong>
 			<span class="divider">/</span>
 		</li>
 		<li>
-			<a href="#">我的首页</a>
+<?if($user['id']==$this->user->id){?>
+			我的首页
+<?}else{?>
+			<?=$user['name']?>
+<?}?>
 		</li>
 	</ul>
 	<div id="left">
@@ -94,7 +98,7 @@
 	</div>
 	<div id="right" class="sidebar">
 		<form method="post" action="/?user-search" class="form-search" style="margin-top:10px;">
-			<input type="text" name='keyword' placeholder="搜索用户" style="width: 140px;" />
+			<input type="text" name='keyword' placeholder="搜索用户" style="margin-left:10px; width: 125px;" />
 			<button type="submit" name="search" class="btn">搜索</button>
 		</form>
 		<div class="box my-box">
@@ -102,6 +106,12 @@
 				<img src="/uploads/images/avatar/<?=$user['id']?>_100.jpg" />
 				<h1><?=$user['name']?></h1>
 				<p><?followButton($user['id'])?></p>
+<?if($this->user->isLogged('usermanager') && !$this->user->inGroup('blacklist',$user['id'])){?>
+				<p><a href="/user/addtoblacklist/<?=$user['id']?>" class="btn btn-mini">加入黑名单</a></p>
+<?}?>
+<?if($this->user->inGroup('blacklist',$user['id'])){?>
+				<p><a href="/user/removefromblacklist/<?=$user['id']?>" class="btn btn-mini">移出黑名单</a></p>
+<?}?>
 			</div>
 			<table>
 				<tr>

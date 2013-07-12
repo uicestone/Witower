@@ -39,5 +39,10 @@ class Wit_model extends WT_Model{
 		
 		return parent::getList($args);
 	}
+	
+	function countVersions($wit_id=NULL){
+		is_null($wit_id) && $wit_id=$this->id;
+		return $this->db->from('version')->where('wit',$wit_id)->count_all_results();
+	}
 }
 ?>

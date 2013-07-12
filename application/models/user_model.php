@@ -2,6 +2,7 @@
 class User_model extends WT_Model{
 	
 	var $name;
+	var $group;
 	
 	function __construct($uid=NULL){
 		parent::__construct();
@@ -11,7 +12,8 @@ class User_model extends WT_Model{
 		$this->fields=array(
 			'name'=>'',//用户名
 			'password'=>'',//密码
-			'email'=>''//电子邮件
+			'email'=>'',//电子邮件
+			'group'=>''//用户组
 		);
 
 		is_null($uid) && $uid=$this->session->userdata('user/id');
@@ -20,7 +22,15 @@ class User_model extends WT_Model{
 			$user=$this->fetch($uid);
 			$this->id=$user['id'];
 			$this->name=$user['name'];
+			$this->group=explode(',',$user['group']);
 		}
+	}
+	
+	function fetch($uid=NULL,$field=NULL,$query=NULL){
+		if(is_null($uid) && is_null($this->id)){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		return parent::fetch($uid,$field,$query);
 	}
 	
 	/**
@@ -120,10 +130,27 @@ class User_model extends WT_Model{
 		$this->session->sess_destroy();
 	}
 
-	function isLogged(){
-		if($this->id){
+	function isLogged($group=NULL){
+		if(is_null($group) && $this->id){
 			return true;
 		}
+		
+		if(!is_null($group) && $this->id && in_array($group,$this->group)){
+			return true;
+		}
+		
+		return false;
+	}
+	
+	function inGroup($group, $user_id=NULL){
+		is_null($user_id) && $user_id=$this->id;
+		
+		$groups=explode(',',$this->fetch($user_id,'group'));
+
+		if($this->id && in_array($group,$groups)){
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -321,5 +348,23 @@ class User_model extends WT_Model{
 		return $this->db->insert_id();
 	}
 	
+	function addGroup($group,$user_id=NULL){
+		is_null($user_id) && $user_id=$this->id;
+		$groups=explode(',',$this->fetch($user_id,'group'));
+		if($groups[0]===''){
+			array_shift($groups);
+		}
+		!in_array($group,$groups) && $groups[]=$group;
+		$this->db->update($this->table,array('group'=>implode(',',$groups)), array('id'=>$user_id));
+		return $this->db->affected_rows();
+	}
+	
+	function removeGroup($group,$user_id=NULL){
+		is_null($user_id) && $user_id=$this->id;
+		$groups=explode(',',$this->fetch($user_id,'group'));
+		array_remove_value($groups, $group);
+		$this->db->update($this->table,array('group'=>implode(',',$groups)), array('id'=>$user_id));
+		return $this->db->affected_rows();
+	}
 }
 ?>
