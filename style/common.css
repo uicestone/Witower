@@ -35,7 +35,7 @@ body{background: url("head-bg.png") repeat-x center 0;}
 #content{position: relative;}
 #content:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
 #content .login{margin: 10px 0;}
-
+.ellipsis{word-wrap:normal;	overflow:hidden;white-space:nowrap;	text-overflow: ellipsis;}
 /*
 *
 paginator  ******/
@@ -78,10 +78,7 @@ paginator  ******/
 .water .box .img{text-align: center;background: #fff;}
 .water .box .img img{width:100%;}
 .water .box .img p{text-align: left;font-size: 14px;color: #333;}
-.water .box .details ul li{float: left;padding: 0 0 0 14px;margin: 0 10px 0 0;}
-.water .box .details ul li.cat-1{background: url("ic.gif") no-repeat 0 5px;}
-.water .box .details ul li.cat-2{background: url("ic1.gif") no-repeat 0 5px;}
-.water .box .details ul li.cat-3{background: url("ic2.gif") no-repeat 0 5px;}
+.water .box .details ul li{float: left;margin: 0 10px 0 0;}
 .water .box .users{padding:0;}
 .water .box .users > p{padding: 8px;}
 .water .box .users ul li{border-top: 1px solid #ddd;clear: both;}
@@ -105,11 +102,6 @@ paginator  ******/
 .service .title span{display:block;width: 50px;text-align: center;border-right: 1px solid #ccc;line-height: 30px;}
 .service .main{padding: 20px 0 0 0;}
 .service .main dl{float: left;padding:0 0 0 40px;width: 125px;margin:0 0 0 30px;}
-.service .main dl.cat-1{background: url("ic3.gif") no-repeat 0 0;}
-.service .main dl.cat-2{background: url("ic4.gif") no-repeat 0 0;}
-.service .main dl.cat-3{background: url("ic5.gif") no-repeat 0 0;}
-.service .main dl.cat-4{background: url("ic6.gif") no-repeat 0 0;}
-.service .main dl.cat-5{background: url("ic7.gif") no-repeat 0 0;}
 .service .main dl dt{}
 .service .main dl dt a{color:#666;font-size: 18px;font-weight: normal;}
 .service .main dl dd{line-height: 3;}
@@ -119,14 +111,6 @@ paginator  ******/
 .tail.icons {border-top: 1px solid #ccc;padding: 10px 0;overflow: hidden;}
 .tail.icons ul{float: right;}
 .tail.icons ul li{float: left;margin: 0 0 0 10px;}
-.tail.icons ul li a{padding: 0 0 0 16px;font-size: 12px;}
-.tail.icons ul li.cat-1 a{background: url("ic.gif") no-repeat 0 2px;}
-.tail.icons ul li.cat-1 a:hover{background: url("ic_1.gif") no-repeat 0 2px;}
-.tail.icons ul li.cat-2 a{background: url("ic1.gif") no-repeat 0 2px;}
-.tail.icons ul li.cat-2 a:hover{background: url("ic1_1.gif") no-repeat 0 2px;}
-.tail.icons ul li.cat-3 a{background: url("ic10.gif") no-repeat 0 2px;}
-.tail.icons ul li.cat-3 a:hover{background: url("ic10_1.gif") no-repeat 0 2px;}
-
 
 /*page-list*/
 .page-list .main .model-a img {width: 200px;}
@@ -166,7 +150,7 @@ paginator  ******/
 .model-b .descript .button .fn-right,.model-b .descript .button .fn-left {width:auto;}
 .model-b .detail {overflow: hidden;margin: 0 0 10px;}
 .model-b .detail .title{background: #fff;text-indent: 10px;font-size: 16px;border:1px solid #ddd;}
-.model-b .detail .title a{float: right;margin: 0 10px 0 0;font-size: 10px;font-family: "microsoft yahei";}
+.model-b .detail .title .right a{float: right;margin: 0 10px 0 0;font-size: 10px;font-family: "microsoft yahei";}
 .model-b .detail .main{margin: 10px 0;overflow: hidden;}
 .model-b .detail .main img{float:left;margin: 10px;}
 .model-b .detail .main p span{color: #67dfd9;}
@@ -237,8 +221,8 @@ model-view */
 .model-view #right{width: 219px;border:1px solid #ddd;background: #f3f3f3;}
 .model-view #left{width:750px;}
 .model-view #right .box{overflow: hidden;border-bottom: 1px solid #ddd;padding: 10px;}
-.model-view #right .participator ul li{float:left;}
-.model-view #right .participator ul li span{display: block;}
+.model-view #right .participator ul li{float:left; margin-right:10px; width:50px;}
+.model-view #right .participator ul li span{display: block; text-align: center;}
 .model-view #right .participator ul li b{display: block;}
 .model-view #right .title{overflow: hidden;}
 .model-view #right .title h3{float: left;font-size: 14px;color: #333;font-weight: bold;line-height: 20px;}
@@ -270,16 +254,6 @@ model-view */
 .model-view #right dt{margin-top: 5px;}
 .model-view #right dd{padding-left: 20px;line-height: 2;}
 .model-view #right a:hover{text-decoration: none;}
-.model-view #right .my-nav dd.cat-1{background: url("us_me1.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-2{background: url("us_me2.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-3{background: url("us_me3.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-4{background: url("us_me4.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-5{background: url("us_me5.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-6{background: url("us_me6.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-7{background: url("us_me7.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-8{background: url("us_me8.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-9{background: url("us_me9.gif") no-repeat 0 center;}
-.model-view #right .my-nav dd.cat-10{background: url("us_me10.gif") no-repeat 0 center;}
 
 .model-view #right .com-box{}
 .model-view #right .com-box button{border: none;cursor: pointer;}
@@ -291,10 +265,10 @@ model-view */
 page-viewvote */
 .page-viewvote .voting{}
 .page-viewvote .voting table {width: 100%;}
-.page-viewvote .voting table tr{border-bottom: 1px dotted #999;}
+.page-viewvote .voting table{border-top: 1px dotted #999; border-bottom: 1px dotted #999;}
 .page-viewvote .voting table td{padding: 5px;}
 .page-viewvote .voting table td input[type=checkbox]{margin:0 10px 0 0;}
-.page-viewvote .voting table td div.bar{width: 100px;height: 14px;float: left;margin: 0 10px 0 0;}
+.page-viewvote .voting table td div.bar{width: 100px;height: 14px;float: left;margin: 0 10px 0 0;height: 20px; float: left; margin: 0 10px 0 0; border-radius: 3px;}
 .page-viewvote .voting .tail{text-align: center;margin: 10px 0;overflow: hidden; padding: 0 10px;}
 .blue{background: #50e8f5;}
 .red{background: #f51675;}
