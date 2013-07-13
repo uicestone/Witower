@@ -2,7 +2,7 @@
 <div id="content" class="page-company">
 	<ul class="breadcrumb">
 		<li>
-			<strong><a href="#">企业</a></strong>
+			<strong>企业</strong>
 			<span class="divider">/</span>
 		</li>
 		<li>

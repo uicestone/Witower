@@ -89,7 +89,7 @@ class Project extends WT_Controller{
 			array('id'=>2,'name'=>'可口可乐广告'),
 		);
 		
-		$this->load->view('project/view',  compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes'));
+		$this->load->view('project/view',  compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes','product','company'));
 	}
 	
 	function end($id){

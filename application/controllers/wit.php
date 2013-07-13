@@ -7,17 +7,60 @@ class Wit extends WT_Controller{
 		$this->load->model('version_model','version');
 	}
 	
-	/**
-	 * 单条创意的查看页面，包含多个版本
-	 */
 	function view($id){
+		$this->wit->id=$id;
+		
+		if($this->input->post('score')!==false){
+			$this->version->score($this->input->post('score'));
+		}
+		
+		if($this->input->post('select')!==false){
+			$this->wit->select();
+		}
+		
+		if($this->input->post('remove')!==false){
+			$this->wit->update(array('deleted'=>true));
+		}
+		
+		if($this->input->post('removeversion')!==false){
+			$this->version->remove($this->input->post('removeversion'));
+		}
+		
+		$wit=$this->wit->fetch();
+		$witters=$this->user->getList(array('in_wit'=>$this->wit->id));
+		$project=$this->project->fetch($wit['project']);
+		$versions=$this->wit->countVersions();
+		
+		if($this->input->get('version')){
+			$result=$this->version->getList(array('num'=>$this->input->get('version'),'wit'=>$wit['id']));
+			if(isset($result[0])){
+				$version=$result[0];
+			}else{
+				$version=$this->version->fetch($wit['latest_version']);
+			}
+		}else{
+			$version=$this->version->fetch($wit['latest_version']);
+		}
+		
+		$first_version=$this->version->getList(array('orderby'=>'num desc','limit'=>1))[0];
+		
+		$previous_version=$this->version->getPrevious($version['id']);
+		$next_version=$this->version->getNext($version['id']);
+		
+		$this->load->view('wit/view',compact('wit','witters','project','version','versions','first_version','previous_version','next_version'));
+	}
+	
+	/**
+	 * 单条创意的版本查看页面
+	 */
+	function versions($id){
 		
 		$this->wit->id=$id;
 		
 		$args=array('wit'=>$this->wit->id);
 		
 		if($this->user->isLogged('witeditor')){
-			$args['hidden']=NULL;
+			$args['deleted']=NULL;
 		}
 		
 		$versions=$this->version->getList($args);
@@ -29,7 +72,7 @@ class Wit extends WT_Controller{
 			$version['author_name']=$this->user->fetch($version['user'],'name');
 		}
 		
-		$this->load->view('wit/view', compact('versions','wit','project'));
+		$this->load->view('wit/versions', compact('versions','wit','project'));
 	}
 	
 	/**
@@ -131,6 +174,8 @@ class Wit extends WT_Controller{
 		}
 		
 		$this->version->remove($version_id);
+		
+		redirect($this->input->server('HTTP_REFERER'));
 	}
 	
 }

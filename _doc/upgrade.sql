@@ -13,7 +13,6 @@ group by wit
 )version_grouped
 on version_grouped.wit=wit.id
 set wit.latest_version=version_grouped.id;
--- server upgraded
 
 ALTER TABLE  `version` ADD  `num` INT NOT NULL AFTER  `id`;
 update wit set latest_version = null;
@@ -27,3 +26,7 @@ ALTER TABLE  `version` ADD  `hidden` BOOLEAN NOT NULL AFTER  `score_company`;
 ALTER TABLE  `version` ADD FOREIGN KEY (  `project` ) REFERENCES  `witower`.`project` (
 `id`
 ) ON DELETE NO ACTION ON UPDATE CASCADE ;
+-- server upgraded
+
+ALTER TABLE  `wit` ADD  `deleted` BOOLEAN NOT NULL AFTER  `selected`;
+ALTER TABLE  `version` CHANGE  `hidden`  `deleted` TINYINT( 1 ) NOT NULL;

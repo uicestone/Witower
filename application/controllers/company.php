@@ -7,7 +7,7 @@ class Company extends WT_Controller{
 		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
 
-		if(!$this->user->isLogged()){
+		if(!$this->user->isCompany()){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
@@ -206,27 +206,32 @@ class Company extends WT_Controller{
 		
 		if($this->input->get('wit')!==false){
 			$version_list_args['wit']=$this->input->get('wit');
+			$wit=$this->wit->fetch($this->input->get('wit'));
+			$project=$this->project->fetch($wit['project']);
 		}
 		
 		if($this->input->get('project')!==false){
 			$version_list_args['in_project']=$this->input->get('project');
+			$project=$this->project->fetch($this->input->get('project'));
 		}
 		
 		if($this->input->get('product')!==false){
 			$version_list_args['in_product']=$this->input->get('product');
+			$product=$this->product->fetch($this->input->get('product'));
 		}
 		
 		$versions=$this->version->getList($version_list_args);
 		
-		foreach($versions as &$version){
+		array_walk($versions, function(&$version){
 			$wit=$this->wit->fetch($version['wit']);
+			
 			$project=$this->project->fetch($wit['project']);
 			
 			$version['wit_name']=$wit['name'];
 			$version['project_name']=$project['name'];
-		}
+		});
 		
-		$this->load->view('company/version', compact('versions'));
+		$this->load->view('company/version', compact('versions','wit','project','product'));
 	}
 }
 ?>

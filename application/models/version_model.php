@@ -11,7 +11,7 @@ class Version_model extends WT_Model{
 			'content'=>'',//内容
 			'score_witower'=>0,//智塔打分
 			'score_company'=>0,//企业打分
-			'hidden'=>0,//隐藏（用于处理不良）
+			'deleted'=>0,//隐藏（用于处理不良）
 			'user'=>NULL,//用户
 			'time'=>$this->date->now,//时间
 		);
@@ -38,7 +38,7 @@ class Version_model extends WT_Model{
 	 *	in_project
 	 *	in_product
 	 *	company
-	 *	hidden	false (default), null, true
+	 *	deleted	false (default), null, true
 	 * @return array
 	 */
 	function getList($args = array()) {
@@ -48,6 +48,10 @@ class Version_model extends WT_Model{
 		
 		if(isset($args['wit'])){
 			$this->db->where('version.wit',$args['wit']);
+		}
+		
+		if(isset($args['num'])){
+			$this->db->where('version.num',$args['num']);
 		}
 		
 		if(isset($args['in_project'])){
@@ -62,10 +66,10 @@ class Version_model extends WT_Model{
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE company{$this->db->escape_int_array($args['company'])}))");
 		}
 		
-		if(!array_key_exists('hidden', $args) || $args['hidden']===false){
-			$this->db->where('version.hidden = FALSE');
+		if(!array_key_exists('deleted', $args) || $args['deleted']===false){
+			$this->db->where('version.deleted = FALSE');
 		}elseif($args===true){
-			$this->db->where('version.hidden = TRUE');
+			$this->db->where('version.deleted = TRUE');
 		}
 		
 		return parent::getList($args);
@@ -113,8 +117,54 @@ class Version_model extends WT_Model{
 	}
 	
 	function remove($version_id){
-		$this->db->update('version',array('hidden'=>true),array('id'=>$version_id));
+		$wit=$this->db->select('wit.*')
+			->from('wit')
+			->join('version','version.id = wit.latest_version','inner')
+			->where('version.id',$version_id)
+			->get()->row_array();
+		
+		if($wit){
+			//要删除的版本是本创意最新版本，则将次新版本替换到最新版本
+			$previous_version=$this->getPrevious($version_id);
+			if($previous_version){
+				$this->db->update('wit',array(
+					'name'=>$previous_version['name'],
+					'content'=>$previous_version['content'],
+					'user'=>$previous_version['user'],
+					'time'=>$previous_version['time'],
+					'latest_version'=>$previous_version['id']
+				),array('id'=>$wit['id']));
+			}else{
+				//TODO 不能删除最后一个版本
+			}
+		}
+		
+		if(!$wit || $previous_version){
+			$this->db->update('version',array('deleted'=>true),array('id'=>$version_id));
+		}
+		
 		return $this->db->affected_rows();
+	}
+	
+	function getPrevious($version_id){
+		$this->db->from('version')
+			->where('id <',$version_id)
+			->where('deleted',false)
+			->where("wit = (SELECT wit FROM version WHERE id = $version_id)",NULL,false)
+			->order_by('id', 'desc')
+			->limit(1);
+		
+		return $this->db->get()->row_array();
+	}
+	
+	function getNext($version_id){
+		$this->db->from('version')
+			->where('id >',$version_id)
+			->where("wit = (SELECT wit FROM version WHERE id = $version_id)",NULL,false)
+			->where('deleted',false)
+			->limit(1);
+		
+		return $this->db->get()->row_array();
 	}
 }
 ?>

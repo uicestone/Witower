@@ -2,7 +2,7 @@
 <div id="content" class="page-company">
 	<ul class="breadcrumb">
 		<li>
-			<strong><a href="#">企业</a></strong>
+			<strong>企业</strong>
 			<span class="divider">/</span>
 		</li>
 		<li>
@@ -27,11 +27,13 @@
 							<tr>
 								<td><?= $project['name'] ?></td>
 								<td><?= $project['product_name'] ?></td>
-								<td class="image"><?=$this->image('project',$product['project'],100)?></td>
+								<td class="image"><?=$this->image('product',$project['product'],100)?></td>
 								<td class="descript"><?= $project['summary'] ?></td>
 								<td style="width: 100px">发布：<br><?= $project['wit_start'] ?><br>截止：<br><?= $project['wit_end'] ?></td>
-								<td style="width: 48px;"><a href="/project/<?= $project['id'] ?>" class="btn btn-small">查看</a><br>
+								<td style="width: 48px;">
+									<a href="/project/<?= $project['id'] ?>" class="btn btn-small">查看</a><br>
 									<a href="/company/project/<?= $project['id'] ?>" class="btn btn-small">修改</a><br>
+									<a href="/company/version?project=<?=$project['id']?>" class="btn btn-small">创意</a><br>
 								</td>
 							</tr>
 						<? } ?>

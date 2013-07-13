@@ -6,7 +6,7 @@
 			<span class="divider">/</span>
 		</li>
 		<li>
-			<?=$project['name']?>
+			<a href="/project/<?=$project['id']?>"><?=$project['name']?></a>
 		</li>
 	</ul>
 
@@ -33,8 +33,9 @@
 					</li>
 				</ul>
 				</div>
-				<div class="descript">
-					<div class="fn-left"><?=$this->image('project',$project['id'],100)?></div><div class="fn-right">
+				<div class="info">
+					<?=$this->image('project',$project['id'],100)?>
+					<div>
 						<p><?=$project['summary']?></p>
 						<div class="button">
 							<div class="fn-left">
@@ -57,20 +58,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="detail">
-					<div class="title"><h3>公司介绍</h3></div>
-					<div class="main">
-						<?=$this->image('avatar',$project['company'],100)?>
-						<p>杭州疑现“卖肾基地” 一颗肾行价3.5万元】据媒体报道，杭州一小区内存在非法肾源供养基地，住在“卖肾基地肾基地”中的都是年轻男子，卖肾原因有还债、嫌打工赚钱慢等。该基地内有30余名供”中的都是年轻男子，国内统一行价3.5万元。记者5月28日获悉，杭州警方目前已介入调查。</p>
-					</div>
-				</div>
-				<div class="detail">
-					<div class="title"><h3>产品说明</h3></div>
-					<div class="main">
-						<?=$this->image('product',$project['product'],100)?>
-						<p>杭州疑现“卖肾基地” 一颗肾行价3.5万元】据媒体报道，杭州一小区内存在非法肾源供养基地，住在“卖肾基地肾基地”中的都是年轻男子，卖肾原因有还债、嫌打工赚钱慢等。该基地内有30余名供”中的都是年轻男子，国内统一行价3.5万元。记者5月28日获悉，杭州警方目前已介入调查。</p>
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="model model-b">
@@ -80,22 +67,42 @@
 				<?foreach($wits as $wit){?>
 				<div class="detail">
 					<div class="title">
-						<h3><?= $wit['name'] ?></h3>
-						<a href="/wit/<?=$wit['id']?>" target="_blank">版本</a>
-						<?if($project['status']==='进行中'){?><a href="/wit/edit/<?=$wit['id']?>" class="edit">编辑</a><?}?>
+						<h3><a href="/wit/<?=$wit['id']?>"><?= $wit['name'] ?></a><?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?></h3>
+						<span class="right">
+							<a href="/wit/versions/<?=$wit['id']?>" target="_blank">版本</a>
+							<?if($project['status']==='进行中'){?><a href="/wit/edit/<?=$wit['id']?>" class="edit">编辑</a><?}?>
+						</span>
 					</div>
 					<div class="main">
 						<p><?= $wit['content'] ?></p>
 					</div>
 					<div class="tail icons">
 						<ul>
-							<li class="cat-2"><a href="#">(<?=count($wit['comments'])?>)</a></li>
+							<!--TODO 项目查看页创意评论--><li><span class="icon-comment"></span><a href="#">(<?=count($wit['comments'])?>)</a></li>
 						</ul>
 					</div>
 				</div>
 				<?}?>
 
 
+			</div>
+		</div>
+		<div class="model model-b">
+			<div class="main">
+				<div class="detail">
+					<div class="title"><h3>公司介绍</h3></div>
+					<div class="main">
+						<?=$this->image('avatar',$project['company'],100)?>
+						<?=$company['description']?>
+					</div>
+				</div>
+				<div class="detail">
+					<div class="title"><h3>产品说明</h3></div>
+					<div class="main">
+						<?=$this->image('product',$project['product'],100)?>
+						<?=$product['description']?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

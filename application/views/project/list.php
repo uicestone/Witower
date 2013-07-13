@@ -42,9 +42,9 @@
 				</div>
 				<div class="tail icons">
 					<ul>
-						<li class="cat-1"><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
-						<li class="cat-2"><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
-						<li class="cat-3"><a href="/project/<?=$project['id']?>">(<?=$project['company']?>)</a></li>
+						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['witters']?>)</a></li>
+						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
+						<li><span class="icon-heart"></span><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
 					</ul>
 				</div>
 				<?}?>
@@ -72,9 +72,9 @@
 				</div>
 				<div class="tail icons">
 					<ul>
-						<li class="cat-1"><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
-						<li class="cat-2"><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
-						<li class="cat-3"><a href="/project/<?=$project['id']?>">(<?=$project['company']?>)</a></li>
+						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['witters']?>)</a></li>
+						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
+						<li><span class="icon-heart"></span><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
 					</ul>
 				</div>
 				<?}?>
@@ -102,9 +102,9 @@
 				</div>
 				<div class="tail icons">
 					<ul>
-						<li class="cat-1"><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
-						<li class="cat-2"><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
-						<li class="cat-3"><a href="/project/<?=$project['id']?>">(<?=$project['company']?>)</a></li>
+						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['witters']?>)</a></li>
+						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
+						<li><span class="icon-heart"></span><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
 					</ul>
 				</div>
 				<?}?>

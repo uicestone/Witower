@@ -42,7 +42,21 @@ class Wit_model extends WT_Model{
 	
 	function countVersions($wit_id=NULL){
 		is_null($wit_id) && $wit_id=$this->id;
-		return $this->db->from('version')->where('wit',$wit_id)->count_all_results();
+		return $this->db->from('version')->where('deleted',false)->where('wit',$wit_id)->count_all_results();
+	}
+	
+	function select($wit_id=NULL){
+		is_null($wit_id) && $wit_id=$this->id;
+		
+		//首先将同项目下的创意都标记为未选中
+		$this->db->query("
+			UPDATE wit INNER JOIN wit t USING (project)
+			SET wit.selected = FALSE
+			WHERE t.id = ".intval($wit_id)."
+		");
+		
+		$this->update(array('selected'=>true), $wit_id);
+		return $this->db->affected_rows();
 	}
 }
 ?>

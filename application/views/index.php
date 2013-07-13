@@ -12,7 +12,7 @@
 </div>
 
 <div class="water">
-	<? foreach ($projects as $project) {?>
+<?foreach($projects as $project){?>
 		<div class="box" style="display: none;">
 			<div class="img cell">
 				<a href="/project/<?= $project['id'] ?>">
@@ -28,24 +28,24 @@
 					<a class="f3" href="#"><?= $tag ?></a>
 				<? } ?>
 				<ul>
-					<a href="/project/<?= $project['id'] ?>"><li class="cat-1" title="参与">(<?= $project['witters'] ?>)</li></a>
-					<a href="/project/<?= $project['id'] ?>"><li class="cat-2" title="讨论">(<?= $project['comments_count'] ?>)</li></a>
-					<a href="/project/<?= $project['id'] ?>"><li class="cat-3" title="收藏">(<?= $project['favorites'] ?>)</li></a>
+					<a href="/project/<?= $project['id'] ?>"><li title="参与"><span class="icon-user"></span>(<?= $project['witters'] ?>)</li></a>
+					<a href="/project/<?= $project['id'] ?>"><li title="讨论"><span class="icon-comment"></span>(<?= $project['comments_count'] ?>)</li></a>
+					<a href="/project/<?= $project['id'] ?>"><li title="收藏"><span class="icon-heart"></span>(<?= $project['favorites'] ?>)</li></a>
 				</ul>
 			</div>
 			<div class="users cell">
 				<p><? //=$project[summary]   ?></p>
 				<ul>
-					<? foreach ($project['comments'] as $comment) { ?>
-								<li><a href="/space/<?= $comment['user'] ?>"><?=$this->image('avatar',$comment['user'],30)?></a>
-							<p><a href="/space/<?= $comment['user'] ?>"><?= $comment['username'] ?>：</a><?= $comment['content'] ?></p>
-						</li>
-					<? } ?>
+<?	foreach($project['comments'] as $comment){?>
+					<li><a href="/space/<?= $comment['user'] ?>"><?=$this->image('avatar',$comment['user'],30)?></a>
+						<p><a href="/space/<?= $comment['user'] ?>"><?= $comment['username'] ?>：</a><?= $comment['content'] ?></p>
+					</li>
+<?	}?>
 				</ul>
 			</div>
 			<div class="tail cell"> <a href="/project/<?= $project['id'] ?>"> >>> </a></div>
 		</div>
-	<? } ?>
+<?}?>
 	
 </div>
 

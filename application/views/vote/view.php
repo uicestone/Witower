@@ -34,23 +34,10 @@
 						</li>
 					</ul>
 				</div>
-				<div class="descript">
-					<div class="fn-left"><img src="/uploads/images/project/<?=$project['id']?>_100.jpg"></div><div class="fn-right">
+				<div class="info">
+					<?=$this->image('project',$project['id'],100)?>
+					<div>
 						<p><?= $project['summary'] ?></p>
-					</div>
-				</div>
-				<div class="detail">
-					<div class="title">公司介绍</div>
-					<div class="main">
-						<img src="/uploads/images/avatar/<?=$project['company']?>_100.jpg" />
-						<p><?//TODO= $company['description'] ?></p>
-					</div>
-				</div>
-				<div class="detail">
-					<div class="title">产品说明</div>
-					<div class="main">
-						<img src="/uploads/images/product/<?=$project['product']?>_100.jpg" />
-						<p><?//TODO= $project['summary'] ?></p>
 					</div>
 				</div>
 			</div>
@@ -87,7 +74,7 @@
 							</td>
 <?}?>						
 							<td>
-								<div class="bar <?//= $data['color'] ?>" style="width:<?//= $data['width'] ?>px;"></div>
+								<div class="bar" style="width:100px; background-color:#00C"></div>
 								<span><?=$candidate['votes']?> (<?if($sum_votes==0){?>尚无投票<?}else{?><?=round($candidate['votes']/$sum_votes*100,1)?>%<?}?>)</span></td>
 							<td><a href="#"><!--TODO-->Ta的贡献</a></td>
 						</tr>
@@ -108,7 +95,24 @@
 				</div>
 			</form>
 		</div>
-
+		<div class="model model-b">
+			<div class="main">
+				<div class="detail">
+					<div class="title">公司介绍</div>
+					<div class="main">
+						<a href="/space/<?=$project['company']?>"><?=$this->image('avatar',$project['company'],100)?></a>
+						<p><?=$company['description'] ?></p>
+					</div>
+				</div>
+				<div class="detail">
+					<div class="title">产品说明</div>
+					<div class="main">
+						<?=$this->image('product',$project['product'],100)?>
+						<p><?=$product['description'] ?></p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div id="right" class="sidebar">
@@ -122,7 +126,10 @@
 				<ul>
 <?foreach($voters as $voter){?>
 					<li>
-						<img src="/uploads/images/avatar/<?=$voter['id']?>_100.jpg" width="50px" height="50px"><a href="/space/<?=$voter['id']?>"><span><?=$voter['name']?></span></a>
+						<img src="/uploads/images/avatar/<?=$voter['id']?>_100.jpg" width="50px" height="50px">
+						<a href="/space/<?=$voter['id']?>">
+							<span class="ellipsis"><?=$voter['name']?></span>
+						</a>
 						<?followButton($voter['id'])?>                    
 					</li>
 <?}?>	

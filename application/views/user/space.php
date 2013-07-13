@@ -45,7 +45,7 @@
 					<div class="tail icons">
 						<?=date('Y-m-d H:i:s',$status['time'])?>
 						<ul>
-							<li class="cat-2"><a href="#" class="btn-comment">评论(<?=count($status['comments'])?>)</a></li>
+							<li><span class="icon-comment"></span><a href="#" class="btn-comment">评论(<?=count($status['comments'])?>)</a></li>
 						</ul>
 					</div>
 					<div class="sub_comment" style="display:none">
@@ -126,24 +126,23 @@
 				</tr>
 			</table>
         </div>
+	<!--TODO 区分空间和主页，并不是已登录用户是否本人来判断-->
         <!--{if $function=='home'}-->
 		<div class="box my-nav">
 			<dl>
 				<dt>我的微博</dt>
-				<dd class="cat-1"><a href="#">提到我的</a></dd>
-				<dd class="cat-2"><a href="#">评论</a></dd>
-				<dd class="cat-3"><a href="#">私信</a></dd>
-				<dd class="cat-4"><a href="#">通知</a></dd>
-				<dd class="cat-5"><a href="#">收藏</a></dd>
-				<dd class="cat-6"><a href="#">我的邀请</a></dd>
+				<dd><span class="icon-hand-right"></span><a href="#">提到我的</a></dd>
+				<dd><span class="icon-user"></span><a href="#">评论</a></dd>
+				<dd><span class="icon-envelope"></span><a href="#">私信</a></dd>
+				<dd><span class="icon-exclamation-sign"></span><a href="#">通知</a></dd>
+				<dd><span class="icon-heart"></span><a href="#">收藏</a></dd>
+				<dd><span class="icon-th-large"></span><a href="#">我的邀请</a></dd>
 
 				<dt>我的成果</dt>
 
 				<dt>我的统计</dt>
-				<dd class="cat-7"><a href="#">活动数量(20)</a></dd>
-				<dd class="cat-8"><a href="#">投票数量(15)</a></dd>
-				<!--<dd class="cat-9"><a href="#">我的积分</a></dd>-->
-				<dd class="cat-10"><a href="#">悬赏积分</a></dd>
+				<dd><span class="icon-folder-close"></span><a href="#">活动数量(<?//TODO 用户参与活动数?>)</a></dd>
+				<dd><span class="icon-align-left"></span><a href="#">投票数量(<?//用户参与投票数?>)</a></dd>
 			</dl>
 		</div>
 		<!--{elseif $function=='space'}-->

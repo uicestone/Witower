@@ -3,6 +3,7 @@ class Vote extends WT_Controller{
 	function __construct() {
 		parent::__construct();
 		$this->load->model('project_model','project');
+		$this->load->model('product_model','product');
 	}
 	
 	/**
@@ -65,6 +66,9 @@ class Vote extends WT_Controller{
 		$project['tags']=$this->project->getTags();
 		$project['status']=$this->project->getStatus($project);
 		
+		$product=$this->product->fetch($project['product']);
+		$company=$this->company->fetch($product['company']);
+		
 		$comments=$this->project->getComments();
 		
 		$versions=$this->project->countVersions();
@@ -77,7 +81,7 @@ class Vote extends WT_Controller{
 		
 		$voted=$this->project->hasUserVoted();
 		
-		$this->load->view('vote/view', compact('project','versions','comments','candidates','sum_votes','voters','voted'));
+		$this->load->view('vote/view', compact('project','versions','comments','candidates','sum_votes','voters','voted','company','product'));
 	}
 	
 }
