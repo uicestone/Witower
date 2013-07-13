@@ -79,7 +79,6 @@ class Version_model extends WT_Model{
 	 * 给一组版本打分，并将版本作者列为候选人
 	 * 将写入version表
 	 * 并累加project_candidate表
-	 * @todo 根据打分人是企业还是管理员，判断打在score_company还是score_wit上
 	 * @param array $version_score
 	 *	array(
 	 *		version_id => score
@@ -92,9 +91,11 @@ class Version_model extends WT_Model{
 		foreach($version_score as $version_id => $score){
 			$version=$this->fetch($version_id);
 			
-			$this->db->update('version',array('score_company'=>$score),array('id'=>$version_id));
+			$score_field=$this->user->isLogged('witeditor')?'score_witower':'score_company';
 			
-			$result_candidate=$this->db->from('project_candidate')
+			$this->db->update('version',array($score_field=>$score),array('id'=>$version_id));
+			
+/*			$result_candidate=$this->db->from('project_candidate')
 				->where('candidate',$version['user'])
 				->where('project',$version['project'])
 				->get()->result_array();
@@ -113,6 +114,7 @@ class Version_model extends WT_Model{
 					->where('project',$version['project'])
 					->update('project_candidate');
 			}
+ */
 		}
 	}
 	

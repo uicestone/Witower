@@ -20,6 +20,7 @@ class Wit extends WT_Controller{
 		
 		if($this->input->post('remove')!==false){
 			$this->wit->update(array('deleted'=>true));
+			$this->version->update(array('deleted'=>true),array('wit'=>$this->wit->id));
 		}
 		
 		if($this->input->post('removeversion')!==false){
@@ -47,7 +48,9 @@ class Wit extends WT_Controller{
 		$previous_version=$this->version->getPrevious($version['id']);
 		$next_version=$this->version->getNext($version['id']);
 		
-		$this->load->view('wit/view',compact('wit','witters','project','version','versions','first_version','previous_version','next_version'));
+		$score_field=$this->user->isLogged('witadmin')?'score_witower':'score_company';
+		
+		$this->load->view('wit/view',compact('wit','witters','project','version','versions','first_version','previous_version','next_version','score_field'));
 	}
 	
 	/**
@@ -112,9 +115,7 @@ class Wit extends WT_Controller{
 				//已有创意，更新一下创意信息
 				$this->wit->update(array(
 					'name'=>$this->input->post('name'),
-					'content'=>$this->input->post('content'),
-					'user'=>$this->user->id,
-					'time'=>$this->date->now
+					'content'=>$this->input->post('content')
 				));
 			}
 			

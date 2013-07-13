@@ -10,6 +10,7 @@ class Wit_model extends WT_Model{
 			'user'=>NULL,//用户
 			'time'=>$this->date->now,//时间
 			'selected'=>false,//选中
+			'deleted'=>false,//已删除
 			'latest_version'=>NULL//最新版本
 		);
 	}
@@ -45,6 +46,11 @@ class Wit_model extends WT_Model{
 		return $this->db->from('version')->where('deleted',false)->where('wit',$wit_id)->count_all_results();
 	}
 	
+	/**
+	 * 将一个创意标记为选中
+	 * 将此创意下的版本作者添加到候选人，并计算分数
+	 * @param int $wit_id
+	 */
 	function select($wit_id=NULL){
 		is_null($wit_id) && $wit_id=$this->id;
 		
@@ -56,6 +62,22 @@ class Wit_model extends WT_Model{
 		");
 		
 		$this->update(array('selected'=>true), $wit_id);
+		
+		
+		$wit=$this->fetch($wit_id);
+		
+		//删除同项目所有候选人
+		$this->db->delete('project_candidate',array('project'=>$wit['project']));
+		
+		//添加候选人并对分数求和
+		$this->db->query("
+			INSERT INTO project_candidate (candidate, project, score_witower, score_company)
+			SELECT user, project, SUM(score_witower), SUM(score_company)
+			FROM version
+			WHERE wit = ".intval($wit_id)." AND deleted = FALSE
+			GROUP BY user
+		");
+		
 		return $this->db->affected_rows();
 	}
 }

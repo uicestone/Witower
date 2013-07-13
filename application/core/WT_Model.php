@@ -61,8 +61,13 @@ class WT_Model extends CI_Model{
 		
 		is_null($id) && $id=$this->id;
 		
-		$this->db->where($this->table.'.id', $id)
-			->update($this->table,$data);
+		if(is_array($id)){
+			$this->db->where($id);
+		}else{
+			$this->db->where($this->table.'.id', $id);
+		}
+		
+		$this->db->update($this->table,$data);
 	}
 	
 	function addCount($field,$project_id=NULL){

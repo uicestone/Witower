@@ -17,5 +17,15 @@ class Company_model extends User_model{
 			$this->total_bonus=$company['total_bonus'];
 		}
 	}
+	
+	function freezeBonus($amount,$company=NULL){
+		is_null($company) && $company=$this->id;
+		$this->db->set('frozen_bonus','`frozen_bonus` + '.$amount,false)
+			->set('total_bonus','`total_bonus` - '.$amount,false)
+			->where('id',$company)
+			->update('company');
+		
+		return $this->db->affected_rows();
+	}
 }
 ?>

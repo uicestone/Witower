@@ -14,7 +14,10 @@
 		<div class="model model-b">
 			<div class="main">
 				<div class="info">
-					<img src="/uploads/images/avatar/<?=$project['company']?>_100.jpg" />
+<?if($this->user->isLogged('witadmin') && $project['status']=='投票中'){?>
+					<a href="/project/end/<?=$project['id']?>" class="btn pull-right">结束投票</a>
+<?}?>
+					<?=$this->image('avatar',$project['company'],100)?>
 					<ul>
 						<li><b>发布企业：</b><?= $project['company_name'] ?>
 							<span><?followButton($project['company'])?></span>
@@ -74,7 +77,7 @@
 							</td>
 <?}?>						
 							<td>
-								<div class="bar" style="width:100px; background-color:#00C"></div>
+								<div class="bar" style="width:<?if($sum_votes==0){?>0<?}else{?><?=round($candidate['votes']/$sum_votes*100,1)?><?}?>px; background-color:#<?=dechex(rand(0,15)),dechex(rand(0,7)),dechex(rand(0,15))?>"></div>
 								<span><?=$candidate['votes']?> (<?if($sum_votes==0){?>尚无投票<?}else{?><?=round($candidate['votes']/$sum_votes*100,1)?>%<?}?>)</span></td>
 							<td><a href="#"><!--TODO-->Ta的贡献</a></td>
 						</tr>

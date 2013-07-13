@@ -40,7 +40,7 @@
 			<div class="main">
 				<div class="detail">
 					<div class="main">
-						<p><span name=<?=$status['username']?>><img src="/uploads/images/avatar/<?=$status['user']?>_100.jpg" class="user_img"></span><?=$status['content']?></p>
+						<p><span name=<?=$status['username']?>><?=$this->image('avatar',$status['user'],100)?></span><?=$status['content']?></p>
 					</div>
 					<div class="tail icons">
 						<?=date('Y-m-d H:i:s',$status['time'])?>
@@ -59,7 +59,7 @@
 <?	foreach($status['comments'] as $status_comment){?>
 							<li>
 								<p class="content"><?=$status_comment['content']?></p><span class="time"><?=$status_comment['time']?></span>
-								<span class="avatar"><a href="/space/<?=$status_comment['user']?>"><img src="/uploads/images/avatar/<?=$status_comments['user']?>_30.jpg" class="user_img"></a></span>
+								<span class="avatar"><a href="/space/<?=$status_comment['user']?>"><?=$this->image('avatar',$status_comment['user'],100,30)?></a></span>
 							</li>
 <?	}?>
 						</ul>
@@ -103,10 +103,10 @@
 		</form>
 		<div class="box my-box">
 			<div>
-				<img src="/uploads/images/avatar/<?=$user['id']?>_100.jpg" />
+				<?=$this->image('avatar',$user['id'],100)?>
 				<h1><?=$user['name']?></h1>
 				<p><?followButton($user['id'])?></p>
-<?if($this->user->isLogged('usermanager') && !$this->user->inGroup('blacklist',$user['id'])){?>
+<?if($this->user->isLogged('useradmin') && !$this->user->inGroup('blacklist',$user['id'])){?>
 				<p><a href="/user/addtoblacklist/<?=$user['id']?>" class="btn btn-mini">加入黑名单</a></p>
 <?}?>
 <?if($this->user->inGroup('blacklist',$user['id'])){?>

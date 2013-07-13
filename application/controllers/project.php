@@ -93,7 +93,20 @@ class Project extends WT_Controller{
 	}
 	
 	function end($id){
-		$this->project->bonusAllocate($id);
+		$this->project->id=$id;
+		$this->project->bonusAllocate();
+		$project=$this->project->fetch();
+		
+		$yesterday=date('Y-m-d',time()-86400);
+		
+		$set=array('vote_end'=>$yesterday);
+		
+		if($project['vote_start']>$yesterday){
+			$set['vote_start']=$yesterday;
+		}
+
+		$this->project->update($set,$id);
+		
 		redirect('company/project');
 	}
 }

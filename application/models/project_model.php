@@ -142,7 +142,7 @@ class Project_model extends WT_Model{
 		foreach($candidates as &$candidate){
 			$candidate['id']=$candidate['candidate'];
 			$candidate['name']=$this->user->fetch($candidate['id'],'name');
-			$candidate['percentage']=round($candidate['votes']/$this->countVotes($project_id),3);
+			$candidate['percentage']=$this->countVotes($project_id)>0?round($candidate['votes']/$this->countVotes($project_id),3):0;
 		}
 		
 		return $candidates;

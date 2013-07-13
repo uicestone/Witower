@@ -10,12 +10,16 @@
 			<span class="divider">/</span>
 		</li>
 		<li>
-			<?=$wit['name']?>
+			<a href="/wit/<?=$wit['id']?>"><?=$wit['name']?></a>
 		</li>
 	</ul>
 	<div id="left">
 		<div class="model model-b">
-			<div class="title"><h3><?=$version['name']?><?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?></h3></div>
+			<div class="title">
+				<h3><?=$version['name']?></h3>
+				<?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?>
+				<?if($wit['deleted']){?><span class="icon-remove-sign" title="已删除"></span><?}?>
+			</div>
 			<div class="main">
 				<?=$version['content']?>
 			</div>
@@ -31,7 +35,7 @@
 				<ul>
 					<?foreach($witters as $witter){?>
 					<li>
-						<?=$this->image('avatar',$witter['id'],100,50)?><a href="/space/<?=$witter['id']?>"><span><?=$witter['name']?></span></a>
+						<a href="/space/<?=$witter['id']?>"><?=$this->image('avatar',$witter['id'],100,50)?><span><?=$witter['name']?></span></a>
 						<?followButton($witter['id'])?>
 					</li>
 					<?}?>
@@ -59,11 +63,13 @@
 			</div>
 			<div class="main">
 				<form class="form-inline" method="post">
-					<input type="text" name="score[<?=$version['id']?>]" value="<?=$version['score_company']?>" placeholder="打分" style="width:9em" />
+					<input type="text" name="score[<?=$version['id']?>]" value="<?=$version[$score_field]?>" placeholder="打分" style="width:9em" />
 					<button type="submit" class="btn">提交</button>
 					<br /><br />
 					<button type="submit" name="select" value="<?=$wit['id']?>" class="btn btn-primary">选中此创意</button>
+					<br /><br />
 					<button type="submit" name="removeversion" value="<?=$version['id']?>" class="btn btn-danger">删除此版本</button>
+					<button type="submit" name="remove" value="<?=$wit['id']?>" class="btn btn-danger">删除此创意</button>
 				</form>
 			</div>
 		</div>

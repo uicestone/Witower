@@ -47,8 +47,9 @@
 						<tbody>
 							<? foreach ($versions as $version) { ?>
 								<tr>
-									<td id="name"><a href="/wit/<?=$version['wit']?>" target="_blank"><?=$version['wit_name']?>
+									<td id="name"><a href="/wit/<?=$version['wit']?>" target="_blank"><?=$version['wit_name']?></a>
 										<?if(!isset($wit)){?><a href="/company/version?wit=<?=$version['wit']?>"><span class="icon-filter pull-right"></span></a><?}?>
+										<button type="submit" name="select" value="<?=$version['wit']?>" class="btn btn-small pull-right">选中</button>
 									</td>
 									<td id="num" style="text-align: center;"><a href="/version/<?=$version['id']?>" target="_blank"><?=$version['num']?></td>
 <?if(!isset($project) && !isset($wit)){?>
@@ -63,7 +64,7 @@
 										<p><?=date('Y-m-d', $version['time'])?></p>
 									</td>
 									<td id="score">
-										<input type="text" name="score[<?= $version['id'] ?>]" value="<?= $version['score_company'] ?>" />
+										<input type="text" name="score[<?= $version['id'] ?>]" value="<?= $version[$score_field] ?>" />
 									</td>
 								</tr>
 							<? } ?>								

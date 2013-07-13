@@ -7,7 +7,7 @@ class Company extends WT_Controller{
 		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
 
-		if(!$this->user->isCompany()){
+		if(!$this->user->isCompany() && !$this->user->isLogged('witeditor')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
@@ -15,7 +15,7 @@ class Company extends WT_Controller{
 	
 	function product(){
 		
-		$products=$this->product->getList(array('company'=>$this->user->id));
+		$products=$this->product->getList($this->user->isLogged('witeditor')?array():array('company'=>$this->user->id));
 		
 		foreach($products as &$product){
 			$result_projects_witting=$this->project->getList(array('count'=>true,'in_product'=>$product['id'],'is_active'=>true));
@@ -107,7 +107,7 @@ class Company extends WT_Controller{
 	
 	function project(){
 		
-		$projects=$this->project->getList(array('company'=>$this->user->id));
+		$projects=$this->project->getList($this->user->isLogged('witeditor')?array():array('company'=>$this->user->id));
 		
 		foreach($projects as &$project){
 			$project['product_name']=$this->product->fetch($project['product'],'name');
@@ -121,6 +121,7 @@ class Company extends WT_Controller{
 		$this->project->id=$id;
 		
 		if($this->input->post('submit')!==false){
+			//TODO 关键词写入和显示
 			
 			try{
 				$data=array(
@@ -130,11 +131,14 @@ class Company extends WT_Controller{
 					'company'=>$this->user->id,
 					'wit_start'=>$this->input->post('start'),
 					'wit_end'=>$this->input->post('end'),
+					'vote_start'=>date('Y-m-d',strtotime($this->input->post('end'))+3*86400),
+					'vote_end'=>date('Y-m-d',strtotime($this->input->post('end'))+6*86400),
 					'bonus'=>$this->input->post('bonus')
 				);
 
 				if(is_null($this->project->id)){
 					$this->project->id=$this->project->add($data);
+					$this->company->freezeBonus($this->input->post('bonus'));
 				}
 				else{
 					$this->project->update($data);
@@ -202,7 +206,18 @@ class Company extends WT_Controller{
 			$this->version->score($this->input->post('score'));
 		}
 		
+		if($this->input->post('select')!==false){
+			$this->wit->select($this->input->post('select'));
+		}
+		
 		$version_list_args=array('company'=>$this->user->id,'orderby'=>'id desc');
+		
+		if($this->user->isLogged('witeditor')){
+			unset($version_list_args['company']);
+			$score_field='score_witower';
+		}else{
+			$score_field='score_company';
+		}
 		
 		if($this->input->get('wit')!==false){
 			$version_list_args['wit']=$this->input->get('wit');
@@ -231,7 +246,7 @@ class Company extends WT_Controller{
 			$version['project_name']=$project['name'];
 		});
 		
-		$this->load->view('company/version', compact('versions','wit','project','product'));
+		$this->load->view('company/version', compact('versions','wit','project','product','score_field'));
 	}
 }
 ?>
