@@ -20,6 +20,16 @@ class Company_model extends User_model{
 	
 	function freezeBonus($amount,$company=NULL){
 		is_null($company) && $company=$this->id;
+		
+		$total_bonus=$this->db->select('total_bonus')
+			->from('company')
+			->where('id',$company)
+			->get()->row()->total_bonus;
+		
+		if($total_bonus<$amount){
+			throw new Exception(lang('insufficient_bonus'));
+		}
+		
 		$this->db->set('frozen_bonus','`frozen_bonus` + '.$amount,false)
 			->set('total_bonus','`total_bonus` - '.$amount,false)
 			->where('id',$company)

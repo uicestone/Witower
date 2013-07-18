@@ -52,7 +52,7 @@ class WT_Model extends CI_Model{
 	 */
 	function add(array $data){
 		$data=array_intersect_key($data, $this->fields);
-		$this->db->insert($this->table,$data);
+		$this->db->insert($this->table,array_merge($this->fields,$data));
 		return $this->db->insert_id();
 	}
 	
@@ -133,6 +133,59 @@ class WT_Model extends CI_Model{
 	
 	function getArray($args=array(),$keyname='name',$keyname_forkey='id'){
 		return array_sub($this->getList($args),$keyname,$keyname_forkey);
+	}
+	
+	
+	function getTags($id){
+		$this->db->select('tag.name')
+			->from("{$this->table}_tag")
+			->join('tag',"tag.id = {$this->table}_tag.{$this->table}",'inner')
+			->where("{$this->table}_tag.{$this->table}",$id);
+		
+		return array_sub($this->db->get()->result_array(),'name');
+	}
+	
+	function addTags(array $tags, $id=NULL){
+		is_null($id) && $id=$this->id;
+		
+		$insert=array_diff($tags,array_sub($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'name'));
+		$set=array();
+		foreach($insert as $tag_name){
+			$set[]=array('name'=>$tag_name);
+		}
+		$this->db->insert_batch('tag', $set);
+		
+		$tag_ids=array_sub($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
+		
+		$set=array();
+		foreach($tag_ids as $tag_id){
+			$set[]=array($this->table=>$id,'tag'=>$tag_id);
+		}
+		$this->db->insert_batch("{$this->table}_tag",$set);
+		
+		return $this->db->affected_rows();
+	}
+	
+	function removeTags(array $tags, $id){
+		is_null($id) && $id=$this->id;
+		
+		$tag_ids=array_sub($this->db->select('id')->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
+		
+		$this->db->where_in($this->table,$tag_ids)->delete("{$this->table}_tag");
+		
+		return $this->db->affected_rows();
+	}
+	
+	function updateTags(array $tags,$id=NULL){
+		is_null($id) && $id=$this->id;
+		
+		$current=$this->getTags($id);
+		
+		$insert=array_diff($tags,$current);
+		$delete=array_diff($current,$tags);
+		
+		$insert && $this->addTags($insert, $id);
+		$delete && $this->removeTags($delete, $id);
 	}
 	
 	function pagination($db_active_record, $is_group_query=false, $field_for_distinct_count=NULL){

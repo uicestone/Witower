@@ -36,6 +36,8 @@ class Company extends WT_Controller{
 		
 		if($this->input->post('submit')!==false){
 			
+			$alert=array();
+			
 			try{
 			
 				$data=array(
@@ -92,6 +94,9 @@ class Company extends WT_Controller{
 				
 			}
 			catch(Exception $e){
+				if($e->getMessage()){
+					$alert[]=array('type'=>'error','message'=>$e->getMessage());
+				}
 			}
 		}
 		
@@ -121,9 +126,22 @@ class Company extends WT_Controller{
 		$this->project->id=$id;
 		
 		if($this->input->post('submit')!==false){
-			//TODO 关键词写入和显示
+			
+			$alert=array();
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules(array(
+				array('field'=>'name','label'=>'项目名称','rules'=>'required'),
+				array('field'=>'product','label'=>'所属产品','rules'=>'required'),
+				array('field'=>'bonus','label'=>'悬赏金额','rules'=>'required|numeric|greater_than[0]'),
+			));
 			
 			try{
+				
+				if($this->form_validation->run()===false){
+					throw new Exception();
+				}
+				
 				$data=array(
 					'name'=>$this->input->post('name'),
 					'summary'=>$this->input->post('summary'),
@@ -131,18 +149,20 @@ class Company extends WT_Controller{
 					'company'=>$this->user->id,
 					'wit_start'=>$this->input->post('start'),
 					'wit_end'=>$this->input->post('end'),
-					'vote_start'=>date('Y-m-d',strtotime($this->input->post('end'))+3*86400),
-					'vote_end'=>date('Y-m-d',strtotime($this->input->post('end'))+6*86400),
 					'bonus'=>$this->input->post('bonus')
 				);
 
 				if(is_null($this->project->id)){
+					$this->company->freezeBonus($this->input->post('bonus'));//TODO 奖金余额不足错误提示要放到行内
 					$this->project->id=$this->project->add($data);
-					$this->company->freezeBonus($this->input->post('bonus'));
 				}
 				else{
+					unset($data['bonus']);
 					$this->project->update($data);
 				}
+				
+				$tags=preg_split('/[\s|，|,]+/',$this->input->post('tags'));				
+				$this->project->updateTags($tags);
 				
 				$this->load->library('upload',array(
 					'upload_path'=>'./uploads/',
@@ -184,6 +204,9 @@ class Company extends WT_Controller{
 				redirect('company/project');
 				
 			}catch(Exception $e){
+				if($e->getMessage()){
+					$alert[]=array('type'=>'error','message'=>$e->getMessage());
+				}
 			}
 		}
 		
@@ -196,8 +219,9 @@ class Company extends WT_Controller{
 		}
 		
 		$products=$this->product->getArray(array('company'=>$this->user->id),'name','id');
+		$tags=$this->project->getTags();
 		
-		$this->load->view('company/project_edit', compact('project','products'));
+		$this->load->view('company/project_edit', compact('project','products','tags','alert'));
 	}
 	
 	function version(){

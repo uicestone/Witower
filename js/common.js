@@ -10,6 +10,14 @@ $(function() {
 			follow_button.text('\u5DF2\u5173\u6CE8').off('.add-follow');
 		});
 	});
+	
+	$('.label-info').siblings('input')
+		.on('focus',function(){
+			$(this).siblings('.label-info').fadeIn(500)
+		})
+		.on('blur',function(){
+			$(this).siblings('.label-info').fadeOut(500)
+		});
 
 	var Request = {};
 	Request.r1 = 'user/getstatuscomments/';

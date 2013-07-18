@@ -27,8 +27,8 @@
 							<tr>
 								<td><?= $project['name'] ?></td>
 								<td><?= $project['product_name'] ?></td>
-								<td class="image"><?=$this->image('product',$project['product'],100)?></td>
-								<td class="descript"><?= $project['summary'] ?></td>
+								<td class="image"><?=$this->image('project',$project['id'],100)?></td>
+								<td class="descript"><?=str_getSummary($project['summary'],150)?></td>
 								<td style="width: 100px">发布：<br><?= $project['wit_start'] ?><br>截止：<br><?= $project['wit_end'] ?></td>
 								<td style="width: 48px;">
 									<a href="/project/<?= $project['id'] ?>" class="btn btn-small">查看</a><br>

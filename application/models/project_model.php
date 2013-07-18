@@ -11,7 +11,7 @@ class Project_model extends WT_Model{
 			'wit_end'=>date('Y-m-d',strtotime('+30 Days')),//创意结束日期
 			'vote_start'=>date('Y-m-d',strtotime('+33 Days')),//投票开始日期
 			'vote_end'=>date('Y-m-d',strtotime('+43 Days')),//投票结束日期
-			'bonus'=>0.00,//悬赏奖金
+			'bonus'=>NULL,//悬赏奖金
 			'company'=>NULL,//公司
 			'witters'=>0,//参与人数
 			'voters'=>0,//投票人数
