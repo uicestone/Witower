@@ -70,7 +70,7 @@
 						<div class="control-group">
 							<label class="control-label">关键词</label>
 							<div class="controls">
-								<input type="text" name="tags" value="<?=implode(', ',$tags)?>" />
+								<input type="text" name="tags" value="<?=isset($tags)?implode(', ',$tags):''?>" />
 							</div>
 						</div>
 						<div class="control-group">
