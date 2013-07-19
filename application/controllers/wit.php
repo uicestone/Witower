@@ -119,9 +119,14 @@ class Wit extends WT_Controller{
 				));
 			}
 			
+			isset($wit['latest_version']) && $latest_version=$this->version->fetch($wit['latest_version']);
+			
 			//添加一个版本
-			if($wit['user']===$this->user->id){
+			if((isset($latest_version) && $latest_version['user']===$this->user->id)
 				//如果创意的最后修改人就是本人，那么执行热修改，不创建新版本
+				|| strip_tags($latest_version['content']==strip_tags($this->input->post('content')))
+				//去格式以后无更改，那也不创建新版本，用户也不保存——帮别人改格式是义务劳动
+			){
 				$this->version->update(array(
 					'name'=>$this->input->post('name'),
 					'content'=>$this->input->post('content'),

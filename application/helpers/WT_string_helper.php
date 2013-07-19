@@ -4,6 +4,9 @@ function str_getSummary($str,$length=28){
 	 * $length，宽度计量的长度，1为一个ASCII字符的宽度，汉字为2
 	 * $char_length，字符计量的长度，UTF8的汉字为3
 	 */
+	
+	$str=strip_tags($str);
+	
 	$char_length=$length/2*3;
 	$str_origin=$str;
 	for($i=0,$j=0;$i<$char_length && $j<$length;$i++,$j++){

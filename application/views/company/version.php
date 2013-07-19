@@ -9,8 +9,8 @@
 			<a href="/company/version">创意版本</a>
 <?if(isset($wit) || isset($project)){?>
 			<span class="divider">/</span>
-		</li>
 <?}?>
+		</li>
 <?if(isset($wit)){?>
 		<li>
 			<a href="/company/version?project=<?=$project['id']?>"><?=$project['name']?></a>
@@ -39,7 +39,7 @@
 <?if(!isset($project) && !isset($wit)){?>
 								<th id="project">项目</th>
 <?}?>
-								<th>内容</th>
+								<th id="content">内容</th>
 								<th id="date">作者/时间</th>
 								<th id="score">评分</th>
 							</tr>
@@ -51,14 +51,14 @@
 										<?if(!isset($wit)){?><a href="/company/version?wit=<?=$version['wit']?>"><span class="icon-filter pull-right"></span></a><?}?>
 										<button type="submit" name="select" value="<?=$version['wit']?>" class="btn btn-small pull-right">选中</button>
 									</td>
-									<td id="num" style="text-align: center;"><a href="/version/<?=$version['id']?>" target="_blank"><?=$version['num']?></td>
+									<td id="num" style="text-align: center;"><a href="/wit/<?=$version['wit']?>?version=<?=$version['num']?>" target="_blank"><?=$version['num']?></td>
 <?if(!isset($project) && !isset($wit)){?>
 									<td id="project">
 										<a href="/project/<?=$version['project']?>" target="_blank"><?=$version['project_name']?></a>
 										<?if(!isset($project)){?><a href="/company/version?project=<?=$version['project']?>"><span class="icon-filter pull-right"></span></a><?}?>
 									</td>
 <?}?>
-									<td><?=str_getSummary($version['content'],164)?></td>
+									<td id="content"><?=str_getSummary($version['content'],164)?></td>
 									<td id="date">
 										<p><?=$version['username']?></p>
 										<p><?=date('Y-m-d', $version['time'])?></p>
