@@ -1,3 +1,10 @@
 <?php
+$lang['admin']='管理';
+$lang['company']='企业';
 $lang['insufficient_bonus']='奖金余额不足';
+$lang['preparing']='准备中';
+$lang['witting']='进行中';
+$lang['buffering']='打分中';
+$lang['voting']='投票中';
+$lang['end']='已结束';
 ?>

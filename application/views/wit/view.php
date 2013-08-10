@@ -56,20 +56,37 @@
 				<a <?if(isset($next_version['num'])){?>href="/wit/<?=$wit['id']?>?version=<?=$next_version['num']?>"<?}?> class="btn<?if(!$next_version){?> disabled<?}?>">较新版本</a>
 			</div>
 		</div>
-<?if($this->user->isLogged('witeditor') || $this->user->id==$project['id']){?>
+<?if($this->user->isLogged('wit') || $this->user->id==$project['company']){?>
 		<div class="box">
 			<div class="title">
-				<h3>操作</h3>
+				<h3>版本操作</h3>
 			</div>
 			<div class="main">
-				<form class="form-inline" method="post">
-					<input type="text" name="score[<?=$version['id']?>]" value="<?=$version[$score_field]?>" placeholder="打分" style="width:9em" />
-					<button type="submit" class="btn">提交</button>
-					<br /><br />
-					<button type="submit" name="select" value="<?=$wit['id']?>" class="btn btn-primary">选中此创意</button>
-					<br /><br />
-					<button type="submit" name="removeversion" value="<?=$version['id']?>" class="btn btn-danger">删除此版本</button>
-					<button type="submit" name="remove" value="<?=$wit['id']?>" class="btn btn-danger">删除此创意</button>
+				<form class="form form-inline" method="post">
+					<div class="control-group">
+						<input type="text" name="score[<?=$version['id']?>]" value="<?=$version[$score_field]?>" placeholder="打分" style="width:9em" />
+						<button type="submit" class="btn">打分</button>
+					</div>
+					<div class="control-group">
+						<button type="submit" name="removeversion" value="<?=$version['id']?>" class="btn btn-danger">删除</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="box">
+			<div class="title">
+				<h3>创意操作</h3>
+			</div>
+			<div class="main">
+				<form class="form form-inline" method="post">
+<?	if($project['status']==='buffering'){?>
+<?		if($wit['selected']){?>
+					<a href="/wit/unselect/<?=$wit['id']?>" class="btn">取消选中</a>
+<?		}else{?>
+					<a href="/wit/select/<?=$wit['id']?>" class="btn btn-primary">选中</a>
+<?		}?>
+<?	}?>
+					<button type="submit" name="remove" value="<?=$wit['id']?>" class="btn btn-danger">删除</button>
 				</form>
 			</div>
 		</div>

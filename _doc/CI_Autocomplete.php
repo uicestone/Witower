@@ -42,6 +42,7 @@
 * @property CI_Xmlrpcs $xmlrpcs
 * @property CI_Zip $zip
 * @property Company_model $company
+* @property Finance_model $finance
 * @property Product_model $product
 * @property Project_model $project
 * @property User_model $user

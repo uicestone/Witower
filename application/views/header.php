@@ -31,10 +31,13 @@
 					<ul>
 <?if($this->user->isLogged()){?>
 						<li><a href="/home"><?=$this->user->name?></a> |</li>
-						<li><a href="/bonus">积分</a>|</li>
 						<li><a href="/profile">资料</a>|</li>
-<?	if($this->user->isCompany() || $this->user->isLogged('witeditor')){?>
-						<li><a href="/company/product">管理</a>|</li>
+						<li><a href="/finance">积分</a>|</li>
+<?	if($this->user->isCompany()){?>
+						<li><a href="/company/product">管理</a>|</li><?//TODO 企业管理首页?>
+<?	}?>
+<?	if($this->user->isLogged('witower')){?>
+						<li><a href="/admin">管理</a>|</li><?//TODO 智塔管理首页?>
 <?	}?>
 <?}?>
 <?if($this->user->isLogged()){?>

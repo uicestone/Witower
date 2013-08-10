@@ -51,8 +51,8 @@ class WT_Model extends CI_Model{
 	 * @param array $data
 	 */
 	function add(array $data){
-		$data=array_intersect_key($data, $this->fields);
-		$this->db->insert($this->table,array_merge($this->fields,$data));
+		$data=array_merge($this->fields,array_intersect_key($data, $this->fields));
+		$this->db->insert($this->table,$data);
 		return $this->db->insert_id();
 	}
 	
@@ -82,6 +82,7 @@ class WT_Model extends CI_Model{
 	 * 
 	 * @param array $args
 	 * name
+	 * count_all_results
 	 * orderby string or array
 	 * limit string, array OR 'pagination'
 	 * @return array
@@ -99,6 +100,18 @@ class WT_Model extends CI_Model{
 		
 		if(isset($args['name'])){
 			$this->db->like($this->table.'.name',$args['name']);
+		}
+		
+		if(array_key_exists('id_in',$args)){
+			if(!$args['id_in']){
+				$this->db->where('FALSE',NULL,false);
+			}else{
+				$this->db->where_in($this->table.'.id',$args['id_in']);
+			}
+		}
+		
+		if(isset($args['count_all_results']) && $args['count_all_results']){
+			return $this->db->count_all_results();
 		}
 		
 		//复制一个DB对象用来计算行数，因为计算行数需要运行sql，将清空DB对象中属性
@@ -131,10 +144,29 @@ class WT_Model extends CI_Model{
 	}
 	
 	
-	function getArray($args=array(),$keyname='name',$keyname_forkey='id'){
+	function getArray(array$args=array(),$keyname='name',$keyname_forkey='id'){
 		return array_sub($this->getList($args),$keyname,$keyname_forkey);
 	}
 	
+	function getRow(array $args=array()){
+		!isset($args['limit']) && $args['limit']=1;
+		$result=$this->getList($args);
+		if(isset($result[0])){
+			return $result[0];
+		}else{
+			return array();
+		}
+	}
+	
+	function sum($field, array $args=array()){
+		$this->db->select_sum($field);
+		$result=$this->getRow($args);
+		return $result[$field]?$result[$field]:0;
+	}
+	
+	function count(array $args=array()){
+		return $this->getList($args+array('count_all_results'=>true));
+	}
 	
 	function getTags($id){
 		$this->db->select('tag.name')
@@ -187,7 +219,7 @@ class WT_Model extends CI_Model{
 		$insert && $this->addTags($insert, $id);
 		$delete && $this->removeTags($delete, $id);
 	}
-	
+
 	function pagination($db_active_record, $is_group_query=false, $field_for_distinct_count=NULL){
 		
 		if($is_group_query){

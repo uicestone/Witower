@@ -12,7 +12,7 @@ class Project_model extends WT_Model{
 			'vote_start'=>date('Y-m-d',strtotime('+33 Days')),//投票开始日期
 			'vote_end'=>date('Y-m-d',strtotime('+43 Days')),//投票结束日期
 			'bonus'=>NULL,//悬赏奖金
-			'company'=>NULL,//公司
+			'company'=>$this->user->id,//公司
 			'witters'=>0,//参与人数
 			'voters'=>0,//投票人数
 			'favorites'=>0//收藏数
@@ -25,25 +25,35 @@ class Project_model extends WT_Model{
 		return $project;
 	}
 	
+	/**
+	 * 
+	 * @param array $args
+	 *	status (preparing, witting, buffering, voting, end)
+	 *	in_product
+	 *	company
+	 * @return type
+	 */
 	function getList($args = array()) {
 		
 		$this->db->join('user','user.id = project.company','inner')
-			->select('project.*, user.name AS company_name');
+			->select('project.*, user.name company_name');
 		
-		if(isset($args['count'])){
-			$this->db->select('COUNT(*) AS `count`',false);
-		}
-		
-		if(isset($args['sum'])){
-			$this->db->select("SUM(`{$args['sum']}`) AS sum");
-		}
-		
-		if(isset($args['is_active']) && $args['is_active']){
-			$this->db->where('CURDATE() >= project.wit_start AND CURDATE() <= project.wit_end',NULL,false);
-		}
-		
-		if(isset($args['is_voting']) && $args['is_voting']){
-			$this->db->where('CURDATE() >= project.vote_start AND CURDATE() <= project.vote_end',NULL,false);
+		if(array_key_exists('status', $args)){
+			if($args['status']==='preparing'){
+				$this->db->where('CURDATE() < project.wit_start',NULL,false);
+			}
+			elseif($args['status']==='witting'){
+				$this->db->where('CURDATE() >= project.wit_start AND CURDATE() <= project.wit_end',NULL,false);
+			}
+			elseif($args['status']==='buffering'){
+				$this->db->where('CURDATE() > project.wit_end AND CURDATE() < project.vote_start',NULL,false);
+			}
+			elseif($args['status']==='voting'){
+				$this->db->where('CURDATE() >= project.vote_start AND CURDATE() <= project.vote_end',NULL,false);
+			}
+			elseif($args['status']==='end'){
+				$this->db->where('CURDATE() > project.vote_end',NULL,false);
+			}
 		}
 		
 		if(isset($args['in_product'])){
@@ -257,17 +267,20 @@ class Project_model extends WT_Model{
 			$project=$this->fetch($project);
 		}
 		
-		if($this->date->today >= $project['wit_start'] && $this->date->today <= $project['wit_end']){
-			return '进行中';
+		if($this->date->today < $project['wit_start']){
+			return 'preparing';
+		}
+		elseif($this->date->today >= $project['wit_start'] && $this->date->today <= $project['wit_end']){
+			return 'witting';
 		}
 		elseif($this->date->today > $project['wit_end'] && $this->date->today < $project['vote_start']){
-			return '企业打分';
+			return 'buffering';
 		}
 		elseif($this->date->today >= $project['vote_start'] && $this->date->today <= $project['vote_end']){
-			return '投票中';
+			return 'voting';
 		}
 		else{
-			return '已结束';
+			return 'end';
 		}
 	}
 	

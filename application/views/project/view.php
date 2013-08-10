@@ -24,7 +24,7 @@
 						<b>被讨论次数：</b><?= $project['comments_count'] ?>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						<b>项目截止日期：</b><?= $project['wit_end'] ?>
 					</li>
-					<li><b>活动状态：</b><?=$project['status']?></li>
+					<li><b>活动状态：</b><?=lang($project['status'])?></li>
 					<li class="tags">
 						<b>标签：</b>
 						<?foreach($project['tags'] as $tag){?>
@@ -49,7 +49,7 @@
 <?if(count($wits)>=$this->config->user_item('max_wits_per_project')){?>
 								   disabled="disabled" title="本项目创意限额已满"
 <?}?>
-<?if($project['status']!=='进行中'){?>
+<?if($project['status']!=='witting'){?>
 								   disabled="disabled" title="项目不在征集创意状态"
 <?}?>
 								   href="/wit/add?project=<?=$project['id']?>">发布创意</a>
@@ -70,7 +70,7 @@
 						<h3><a href="/wit/<?=$wit['id']?>"><?= $wit['name'] ?></a><?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?></h3>
 						<span class="right">
 							<a href="/wit/versions/<?=$wit['id']?>" target="_blank">版本</a>
-							<?if($project['status']==='进行中'){?><a href="/wit/edit/<?=$wit['id']?>" class="edit">编辑</a><?}?>
+							<?if($project['status']==='witting'){?><a href="/wit/edit/<?=$wit['id']?>" class="edit">编辑</a><?}?>
 						</span>
 					</div>
 					<div class="main">

@@ -14,13 +14,8 @@ class Wit extends WT_Controller{
 			$this->version->score($this->input->post('score'));
 		}
 		
-		if($this->input->post('select')!==false){
-			$this->wit->select();
-		}
-		
 		if($this->input->post('remove')!==false){
-			$this->wit->update(array('deleted'=>true));
-			$this->version->update(array('deleted'=>true),array('wit'=>$this->wit->id));
+			$this->wit->remove();
 		}
 		
 		if($this->input->post('removeversion')!==false){
@@ -30,6 +25,7 @@ class Wit extends WT_Controller{
 		$wit=$this->wit->fetch();
 		$witters=$this->user->getList(array('in_wit'=>$this->wit->id));
 		$project=$this->project->fetch($wit['project']);
+		$project['status']=$this->project->getStatus($project['id']);
 		$versions=$this->wit->countVersions();
 		
 		if($this->input->get('version')){
@@ -37,7 +33,7 @@ class Wit extends WT_Controller{
 			if(isset($result[0])){
 				$version=$result[0];
 			}else{
-				$version=$this->version->fetch($wit['latest_version']);
+				redirect('wit/'.$wit['id']);
 			}
 		}else{
 			$version=$this->version->fetch($wit['latest_version']);
@@ -48,7 +44,7 @@ class Wit extends WT_Controller{
 		$previous_version=$this->version->getPrevious($version['id']);
 		$next_version=$this->version->getNext($version['id']);
 		
-		$score_field=$this->user->isLogged('witadmin')?'score_witower':'score_company';
+		$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
 		
 		$this->load->view('wit/view',compact('wit','witters','project','version','versions','first_version','previous_version','next_version','score_field'));
 	}
@@ -62,7 +58,7 @@ class Wit extends WT_Controller{
 		
 		$args=array('wit'=>$this->wit->id);
 		
-		if($this->user->isLogged('witeditor')){
+		if($this->user->isLogged('wit')){
 			$args['deleted']=NULL;
 		}
 		
@@ -175,13 +171,23 @@ class Wit extends WT_Controller{
 		$version=$this->version->fetch($version_id);
 		$project=$this->project->fetch($version['project']);
 		
-		if($this->user->id != $project['company'] && !$this->user->isLogged('witeditor')){
+		if($this->user->id != $project['company'] && !$this->user->isLogged('wit')){
 			return;
 		}
 		
 		$this->version->remove($version_id);
 		
-		redirect($this->input->server('HTTP_REFERER'));
+		redirect($this->input->server('HTTP_REFERER'),'php','');
+	}
+	
+	function select($wit_id){
+		$this->wit->select($wit_id);
+		redirect($this->input->server('HTTP_REFERER'),'php','');
+	}
+	
+	function unselect($wit_id){
+		$this->wit->unselect($wit_id);
+		redirect($this->input->server('HTTP_REFERER'),'php','');
 	}
 	
 }

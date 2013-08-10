@@ -27,7 +27,7 @@
 							<th>版本</th>
 							<th>时间</th>
 							<th>作者</th>
-<?if($this->user->isLogged('witeditor')){?>
+<?if($this->user->isLogged('wit')){?>
 							<th>操作</th>
 <?}?>
 						</tr>
@@ -43,14 +43,14 @@
 							</td>
 							<td><?= date('Y-m-d H:i:s',$version['time']) ?></td>
 							<td><a href="/space/<?=$version['user']?>" ><?= $version['author_name'] ?></a></td>
-<?	if($this->user->isLogged('witeditor')){?>
+<?	if($this->user->isLogged('wit')){?>
 							<td>
 								<a href="/wit/removeversion/<?=$version['id']?>" class="btn btn-small">删除</a>
 							</td>
 <?	}?>
 						</tr>
 						<tr class="summary">
-							<td colspan="<?if($this->user->isLogged('witeditor')){?>4<?}else{?>3<?}?>">
+							<td colspan="<?if($this->user->isLogged('wit')){?>4<?}else{?>3<?}?>">
 								<?= $version['content'] ?>
 							</td>
 						</tr>

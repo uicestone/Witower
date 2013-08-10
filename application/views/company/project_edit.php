@@ -2,17 +2,21 @@
 <div id="content" class="page-company">
 	<ul class="breadcrumb">
 		<li>
-			<strong>企业</strong>
+			<strong><?=lang(uri_segment(1))?></strong>
 			<span class="divider">/</span>
 		</li>
 		<li>
-			编辑项目
+			<a href="/<?=uri_segment(1)?>/project">项目管理</a>
+			<span class="divider">/</span>
+		</li>
+		<li>
+			<?if(isset($project['id'])){?>编辑项目 <?=$project['name']?><?}else{?>添加项目<?}?>
 		</li>
 	</ul>
-	<?$this->view('company/sidebar')?>
+	<? $this->view(uri_segment(1).'/sidebar') ?>
 	<div id="right">
 		<div class="model">
-			<div class="title"><h3>编辑项目</h3></div>
+			<div class="title"><h3><?if(isset($project['id'])){?>编辑项目 <?=$project['name']?><?}else{?>添加项目<?}?></h3></div>
 			<div class="main">
 				<div class="show_content">
 					<?$this->view('alert')?>
@@ -62,9 +66,9 @@
 						<div class="control-group">
 							<label class="control-label">悬赏金额</label>
 							<div class="controls">
-								<input type="text" name="bonus" value="<?=set_value('bonus',$project['bonus'])?>" placeholder="￥" title="保存后不能修改"<?if($project['bonus']){?> class="uneditable-input"<?}?>>
+								<input type="text" name="bonus" value="<?=set_value('bonus',$project['bonus'])?>" placeholder="￥" title="保存后不能修改"<?if(isset($project['id'])){?> class="uneditable-input"<?}?>>
 								<span class="label label-important"><?=form_error('bonus')?></span>
-								<span class="label label-info" style="display:none">目前可用悬赏金额是 <?=$this->company->total_bonus?> 元</span>
+								<span class="label label-info" style="display:none">目前可用悬赏积分是 <?=$this->finance->sum(array('user'=>$project['company'],'item'=>'可用悬赏积分'))?> 元</span>
 							</div>
 						</div>
 						<div class="control-group">

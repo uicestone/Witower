@@ -6,26 +6,15 @@
  * 对于js跳转，输出js代码交给浏览器完成跳转，因此会发生内容输出
  * $unsetPara目前只适用于js跳转，用以将原来url中的某个变量去除
  */
-function redirect($url='',$method='php',$unsetPara=NULL,$jump_to_top_frame=false){
+function redirect($url='',$method='php',$base_url=NULL){
 	$CI=&get_instance();
-	$base_url=$CI->config->item('base_url');
+	is_null($base_url) && $base_url=$CI->config->item('base_url');
 	
 	if($method=='php'){
-		if(is_null($unsetPara)){
-			header("location:{$base_url}".$url);
-		}else{
-			$query_string='?';
-			$glue='';
-			foreach($_GET as $k=>$v){
-				if($k!=$unsetPara){
-					$query_string.=$glue.$k.'='.$v;
-					$glue='&';
-				}
-			}
-			header('location:'.$q);//待开发
-		}
-	}elseif($method=='js'){
-		echo '<script>'.(is_null($unsetPara)?($jump_to_top_frame?'top.':'')."location.href='{$base_url}".$url."';":"location.href=unsetURLPar('".$url."','".$unsetPara."');").'</script>';
+		header("location:{$base_url}".$url);
+	}
+	elseif($method=='js'){
+		echo "<script>location.href='$base_url.$url</script>";
 	}
 	exit;
 }

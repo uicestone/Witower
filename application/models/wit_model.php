@@ -7,8 +7,8 @@ class Wit_model extends WT_Model{
 			'project'=>NULL,//所属项目
 			'name'=>'',//创意标题
 			'content'=>'',//最新内容
-			'user'=>NULL,//用户
-			'time'=>$this->date->now,//时间
+			'user'=>NULL,//创建者
+			'time'=>$this->date->now,//创建时间
 			'selected'=>false,//选中
 			'deleted'=>false,//已删除
 			'latest_version'=>NULL//最新版本
@@ -38,6 +38,10 @@ class Wit_model extends WT_Model{
 			$this->db->where("project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])})");
 		}
 		
+		if(!isset($args['deleted']) || !$args['deleted']){
+			$this->db->where('deleted',false);
+		}
+		
 		return parent::getList($args);
 	}
 	
@@ -54,20 +58,9 @@ class Wit_model extends WT_Model{
 	function select($wit_id=NULL){
 		is_null($wit_id) && $wit_id=$this->id;
 		
-		//首先将同项目下的创意都标记为未选中
-		$this->db->query("
-			UPDATE wit INNER JOIN wit t USING (project)
-			SET wit.selected = FALSE
-			WHERE t.id = ".intval($wit_id)."
-		");
+		$this->unselect($wit_id);
 		
 		$this->update(array('selected'=>true), $wit_id);
-		
-		
-		$wit=$this->fetch($wit_id);
-		
-		//删除同项目所有候选人
-		$this->db->delete('project_candidate',array('project'=>$wit['project']));
 		
 		//添加候选人并对分数求和
 		$this->db->query("
@@ -79,6 +72,31 @@ class Wit_model extends WT_Model{
 		");
 		
 		return $this->db->affected_rows();
+	}
+	
+	function unselect($wit_id=NULL){
+		is_null($wit_id) && $wit_id=$this->id;
+		
+		$wit=$this->fetch($wit_id);
+		
+		//首先将同项目下的创意都标记为未选中
+		$this->db->query("
+			UPDATE wit INNER JOIN wit t USING (project)
+			SET wit.selected = FALSE
+			WHERE t.id = ".intval($wit_id)."
+		");
+		
+		//删除同项目所有候选人
+		$this->db->delete('project_candidate',array('project'=>$wit['project']));
+	}
+	
+	function remove($wit_id=NULL){
+		is_null($wit_id) && $wit_id=$this->id;
+		
+		$this->unselect($wit_id);
+		
+		$this->wit->update(array('deleted'=>true));
+		$this->version->update(array('deleted'=>true),array('wit'=>$this->wit->id));
 	}
 }
 ?>

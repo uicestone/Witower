@@ -26,7 +26,28 @@ ALTER TABLE  `version` ADD  `hidden` BOOLEAN NOT NULL AFTER  `score_company`;
 ALTER TABLE  `version` ADD FOREIGN KEY (  `project` ) REFERENCES  `witower`.`project` (
 `id`
 ) ON DELETE NO ACTION ON UPDATE CASCADE ;
--- server upgraded
 
 ALTER TABLE  `wit` ADD  `deleted` BOOLEAN NOT NULL AFTER  `selected`;
 ALTER TABLE  `version` CHANGE  `hidden`  `deleted` TINYINT( 1 ) NOT NULL;
+
+CREATE TABLE IF NOT EXISTS `finance` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` decimal(10,2) NOT NULL,
+  `item` varchar(255) NOT NULL,
+  `summary` varchar(255) NOT NULL,
+  `datetime` datetime NOT NULL,
+  `project` int(11) DEFAULT NULL,
+  `user` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `amount` (`amount`),
+  KEY `datetime` (`datetime`),
+  KEY `time` (`time`),
+  KEY `user` (`user`),
+  KEY `project` (`project`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `account`
+  ADD CONSTRAINT `account_ibfk_2` FOREIGN KEY (`project`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+-- server upgraded

@@ -4,7 +4,7 @@ class User_model extends WT_Model{
 	var $name;
 	var $group;
 	
-	function __construct($uid=NULL){
+	function __construct(){
 		parent::__construct();
 		
 		$this->table='user';
@@ -15,14 +15,16 @@ class User_model extends WT_Model{
 			'email'=>'',//电子邮件
 			'group'=>''//用户组
 		);
-
+	}
+	
+	function init($uid=NULL){
 		is_null($uid) && $uid=$this->session->userdata('user/id');
 		
 		if($uid){
 			$user=$this->fetch($uid);
 			$this->id=$user['id'];
 			$this->name=$user['name'];
-			$this->group=explode(',',$user['group']);
+			$this->group=preg_split('/[,|\s]+?/',$user['group']);
 		}
 	}
 	
@@ -327,18 +329,6 @@ class User_model extends WT_Model{
 			'fan'=>$this->user->id
 		));
 		return $this->db->insert_id();
-	}
-	
-	function getBonusList($user=NULL){
-		is_null($user) && $user=$this->id;
-		
-		$this->db
-			->from('user_bonus')
-			->join('project','user_bonus.project = project.id','inner')
-			->where('user_bonus.user',$user)
-			->select('user_bonus.*, project.name project_name');
-		
-		return $this->db->get()->result_array();
 	}
 	
 	function addBonus($user, $project, $bonus){

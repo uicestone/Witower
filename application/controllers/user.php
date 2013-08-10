@@ -197,13 +197,12 @@ class User extends WT_Controller{
 	}
 	
 	/**
-	 * 可兑换积分列表
+	 * 积分和资金列表
 	 */
-	function bonus(){
-		
-		$bonus=$this->user->getBonusList();
-		
-		$this->load->view('user/bonus',compact('bonus'));
+	function finance(){
+		$this->load->model('finance_model','finance');
+		$accounts=$this->finance->getList(array('user'=>$this->user->id));
+		$this->load->view('user/finance',compact('accounts'));
 	}
 	
 	/**

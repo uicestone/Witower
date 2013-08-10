@@ -32,3 +32,7 @@ TRUNCATE TABLE  `user_profile`;
 delete from user_status;
 delete from user;
 ALTER TABLE  `user` AUTO_INCREMENT =1;
+
+ALTER TABLE `company`
+  DROP `total_bonus`,
+  DROP `frozen_bonus`;

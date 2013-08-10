@@ -17,8 +17,7 @@ class Vote extends WT_Controller{
 		$recommended_voting_project['candidates']=$this->project->getCandidates($recommended_voting_project['id']);
 		$recommended_voting_project['votes']=$this->project->countVotes($recommended_voting_project['id']);
 
-		$result_voting_projects=$this->project->getList(array('count'=>true,'is_voting'=>true));
-		$active_projects=$result_voting_projects[0]['count'];
+		$active_projects=$this->project->count(array('status'=>'voting'));
 		
 		$sum_votes=$this->project->countVotes(false);
 		
@@ -30,8 +29,8 @@ class Vote extends WT_Controller{
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 
-		$voting_projects['hot']=$this->project->getList(array('is_voting'=>true,'orderby'=>'voters desc','limit'=>10));
-		$voting_projects['latest']=$this->project->getList(array('is_voting'=>true,'orderby'=>'vote_start desc','limit'=>10));
+		$voting_projects['hot']=$this->project->getList(array('status'=>'voting','orderby'=>'voters desc','limit'=>10));
+		$voting_projects['latest']=$this->project->getList(array('status'=>'voting','orderby'=>'vote_start desc','limit'=>10));
 		
 		foreach($voting_projects as &$projects_column){
 			foreach($projects_column as &$voting_project){

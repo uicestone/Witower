@@ -54,12 +54,22 @@ $route['home/profile'] = 'user/profile';
 $route['home/project'] = 'user/project';
 $route['space/(:num)'] = 'user/space/$1';
 $route['profile'] = 'user/profile';
-$route['bonus'] = 'user/bonus';
+$route['finance'] = 'user/finance';
 
 $route['company/addproduct'] = 'company/editproduct';
 $route['company/addproject'] = 'company/editproject';
 $route['company/product/(:num)'] ='company/editproduct/$1';
 $route['company/project/(:num)'] ='company/editproject/$1';
+
+$route['admin/product'] = 'company/product';
+$route['admin/product/(:any)'] = 'company/product/$1';
+$route['admin/project'] = 'company/project';
+$route['admin/project/(:any)'] = 'company/project/$1';
+$route['admin/wit'] = 'company/wit';
+$route['admin/wit/(:any)'] = 'company/wit/$1';
+$route['admin/version'] = 'company/version';
+$route['admin/version/(:any)'] = 'company/version/$1';
+$route['admin/versioncompare'] = 'company/versioncompare';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

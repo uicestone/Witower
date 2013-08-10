@@ -4,7 +4,7 @@
 		<div class="title"><h3>每日热门投票</h3></div>
 		<div class="main">
 			<div class="info">
-				<a href="/vote/<?=$recommended_voting_project['id']?>"><img src="/uploads/images/project/<?=$recommended_voting_project['id']?>_100.jpg"></a>
+				<a href="/vote/<?=$recommended_voting_project['id']?>"><?=$this->image('project',$recommended_voting_project['id'],100)?></a>
 				<a class="btn btn-primary pull-right" href="/vote/<?= $recommended_voting_project['id'] ?>">我要投票</a>
 				<ul>
 					<li><b>发布企业：</b><?= $recommended_voting_project['company_name'] ?>
@@ -20,7 +20,7 @@
 				<div class="fn-right">
 					<ul id="mycarousel" class="jcarousel-skin-tango">
 						<?foreach($recommended_voting_project['voters'] as $voter){?>
-						<li><a href="/space/<?= $voter['id'] ?>"><img src="uploads/images/avatar/<?=$voter['id']?>_100.jpg" width="65px" height="65px"><span><?= $voter['name'] ?></span></a></li>
+						<li><a href="/space/<?= $voter['id'] ?>"><?=$this->image('avatar',$voter['id'],'50','65')?><span><?= $voter['name'] ?></span></a></li>
 						<?}?>
 					</ul>
 				</div>

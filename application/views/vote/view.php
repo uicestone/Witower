@@ -14,7 +14,7 @@
 		<div class="model model-b">
 			<div class="main">
 				<div class="info">
-<?if($this->user->isLogged('witadmin') && $project['status']=='投票中'){?>
+<?if($this->user->isLogged('witadmin') && $project['status']=='witting'){?>
 					<a href="/project/end/<?=$project['id']?>" class="btn pull-right">结束投票</a>
 <?}?>
 					<?=$this->image('avatar',$project['company'],100)?>
@@ -28,7 +28,7 @@
 							<b>被讨论次数：</b><?=count($comments)?>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<b>投票截止日期：</b><?= $project['vote_end'] ?>
 						</li>
-						<li><b>活动状态：</b><?=$project['status']?></li>
+						<li><b>活动状态：</b><?=lang($project['status'])?></li>
 						<li class="tags">
 							<b>标签：</b>
 	<?foreach($project['tags'] as $tag){?>
@@ -50,7 +50,7 @@
 				<div class="title"><h3>候选人名单及投票</h3></div>
 				<div class="tail">
 					<div class="button-set">
-<?if($project['status']!=='投票中'){?>
+<?if($project['status']!=='voting'){?>
 						项目不在投票阶段
 <?}elseif($voted){?>
 						您已经投票了！
@@ -59,7 +59,7 @@
 						<button type="reset" class="btn">重 选</button>
 <?}?>						
 					</div>
-<?if($project['status']==='投票中' && !$voted){?>
+<?if($project['status']==='voting' && !$voted){?>
 					<div class="flags">
 						<img src="/style/flag.png"><img src="/style/flag.png"><img src="/style/flag.png">
 					</div>                         

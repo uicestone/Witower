@@ -78,43 +78,15 @@ class Version_model extends WT_Model{
 	/**
 	 * 给一组版本打分，并将版本作者列为候选人
 	 * 将写入version表
-	 * 并累加project_candidate表
 	 * @param array $version_score
 	 *	array(
 	 *		version_id => score
 	 *	)
 	 */
 	function score($version_score){
-		
-		$this->load->model('wit_model','wit');
-		
 		foreach($version_score as $version_id => $score){
-			$version=$this->fetch($version_id);
-			
-			$score_field=$this->user->isLogged('witeditor')?'score_witower':'score_company';
-			
-			$this->db->update('version',array($score_field=>$score),array('id'=>$version_id));
-			
-/*			$result_candidate=$this->db->from('project_candidate')
-				->where('candidate',$version['user'])
-				->where('project',$version['project'])
-				->get()->result_array();
-			
-			if(!$result_candidate && $score>0){
-				//还木有这个候选人，我们先插入
-				$this->db->insert('project_candidate',array(
-					'candidate'=>$version['user'],
-					'project'=>$version['project'],
-					'score_company'=>$score
-				));
-			}
-			else{
-				$this->db->set('score_company',"`score_company` - {$version['score_company']} + $score",false)//TODO score未转义
-					->where('candidate',$version['user'])
-					->where('project',$version['project'])
-					->update('project_candidate');
-			}
- */
+			$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
+			$this->update(array($score_field=>$score), $version_id);
 		}
 	}
 	

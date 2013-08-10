@@ -17,7 +17,7 @@ h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500;}
 q:before,q:after{content:'';}
 sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
 sup{top:-0.5em;}sub{bottom:-0.25em;}
-a{color: #777;}
+a{color: #444;}
 a:hover{text-decoration:underline;}
 ins,a{text-decoration:none;}
 .fn-clear:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
@@ -28,6 +28,7 @@ body .fn-hide{display:none;}
 #right,.fn-right{float:right;}
 .hr{border-top:1px solid #999;font-size: 0;height: 0;margin: 10px 0;}
 p{line-height: 162%;}
+input[type=file]{line-height:0;height:1.5em;}
 
 #wrapper{ width: 980px;margin: 0 auto;}
 html{background: url("bg.gif");}
@@ -36,6 +37,8 @@ body{background: url("head-bg.png") repeat-x center 0;}
 #content:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
 #content .login{margin: 10px 0;}
 .ellipsis{word-wrap:normal;	overflow:hidden;white-space:nowrap;	text-overflow: ellipsis;}
+ins {background-color: #c6ffc6;text-decoration: none;}
+del {background-color: #ffc6c6;}
 /*
 *
 paginator  ******/
@@ -151,6 +154,7 @@ paginator  ******/
 .model-b .detail {overflow: hidden;margin: 0 0 10px;}
 .model-b .detail .title{background: #fff;text-indent: 10px;font-size: 16px;border:1px solid #ddd;}
 .model-b .detail .title .right a{float: right;margin: 0 10px 0 0;font-size: 10px;font-family: "microsoft yahei";}
+.model-b .detail .author{font-size: 1.1em; text-align: right;padding-right: 10px;background: #EEE; height:1.5em; line-height: 1.5; border-bottom:1px solid #DDD;}
 .model-b .detail .main{margin: 10px 0;overflow: hidden;}
 .model-b .detail .main img{float:left;margin: 10px;}
 
@@ -546,12 +550,17 @@ page-home  ******/
 .page-company #right .table th#name{width:8em;}
 .page-company #right .table th#project{width:8em;}
 .page-company #right .table th#date{width:6em;}
-.page-company #right .table th#score{width:3em;}
-.page-company #right .table td#score input[type=text]{width:50px;}
+.page-company #right .table th#score{width:3.5em;}
+.page-company #right .table th#author{width:6em;}
+.page-company #right .table th#latest-author{width:6em;}
+.page-company #right .table th#versions{width:5em;}
 .page-company #right .table td.image img{width: 100px;}
 .page-company #right .table td.descript{width: 40%;}
 .page-company #right .table .btn{margin-bottom: 5px;}
-
+.page-company #right .nav-tabs{margin-top:6px;border-bottom:none;}
+.page-company #right .nav-tabs li{margin:0}
+.page-company #right .nav-tabs .active a{background:#EEE;}
+.page-company #right .nav-tabs a{line-height:0.5;}
 
 .vote-search-a{color:#004856;}
 /*base style*/
