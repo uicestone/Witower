@@ -5,6 +5,12 @@ class Project extends WT_Controller{
 		$this->load->model('project_model','project');
 	}
 	
+	function match($term){
+		$term=urldecode($term);
+		$project=$this->project->getList(array('name'=>$term));
+		$this->output->set_output(json_encode($project));
+	}
+
 	/**
 	 * 项目列表页
 	 */
@@ -105,5 +111,6 @@ class Project extends WT_Controller{
 		
 		redirect('company/project');
 	}
+	
 }
 ?>

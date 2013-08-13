@@ -61,6 +61,9 @@ $route['company/addproject'] = 'company/editproject';
 $route['company/product/(:num)'] ='company/editproduct/$1';
 $route['company/project/(:num)'] ='company/editproject/$1';
 
+$route['admin/addfinance'] = 'admin/editfinance';
+$route['admin/addcompany'] = 'admin/editcompany';
+$route['admin/adduser'] = 'admin/edituser';
 $route['admin/product'] = 'company/product';
 $route['admin/product/(:any)'] = 'company/product/$1';
 $route['admin/project'] = 'company/project';

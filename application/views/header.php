@@ -6,14 +6,16 @@
 		<title>智塔</title>
 		<meta name="keywords" content="<?=$this->config->user_item('keywords')?>" />
 		<meta name="description" content="<?=$this->config->user_item('description')?>" />
-		<link rel="stylesheet" type="text/css" href="/style/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/style/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="/style/bootstrap/datepicker.css">
 		<link rel="stylesheet" type="text/css" href="/style/tango/skin.css">
 		<link rel="stylesheet" type="text/css" href="/style/common.css">
 
 		<script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
-		<script type="text/javascript" src="/style/bootstrap/js/bootstrap.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.masonry.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.jcarousel.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript" src="/js/common.js"></script>
 	</head>
 	<body>

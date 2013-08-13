@@ -4,6 +4,12 @@ class User extends WT_Controller{
 		parent::__construct();
 	}
 	
+	function match($term){
+		$term=urldecode($term);
+		$project=$this->user->getList(array('name'=>$term));
+		$this->output->set_output(json_encode($project));
+	}
+	
 	/**
 	 * 注册页面
 	 */

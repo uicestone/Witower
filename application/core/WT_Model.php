@@ -16,20 +16,13 @@ class WT_Model extends CI_Model{
 	 * @param int $id
 	 * @return array
 	 */
-	function fetch($id=NULL,$field=NULL,$query=NULL){
+	function fetch($id=NULL,$field=NULL){
 		
 		is_null($id) && $id=$this->id;
 		
 		$id=intval($id);
 		
-		$row=array();
-		
-		if(is_null($query)){
-			$row=$this->db->from($this->table)->where($this->table.'.id',$id)->get()->row_array();
-		}
-		else{
-			$row=$this->db->query($query)->row_array();
-		}
+		$row=$this->db->from($this->table)->where($this->table.'.id',$id)->get()->row_array();
 		
 		if(!$row){
 			show_error('"'.$this->table.' '.$id.'" item not found');

@@ -14,6 +14,11 @@ class Finance_model extends WT_Model{
 		);
 	}
 	
+	function fetch($id = NULL, $field = NULL) {
+		$this->db->select('DATE(datetime) date, TIME(datetime) time', FALSE);
+		return parent::fetch($id, $field);
+	}
+	
 	/**
 	 * @param array $args
 	 *	item
@@ -58,6 +63,15 @@ class Finance_model extends WT_Model{
 	
 	function sum(array $args=array()){
 		return parent::sum('amount', $args);
+	}
+	
+	function matchItems($term){
+		$this->db->select('item, COUNT(*) sum', FALSE)
+			->from('finance')
+			->group_by('item')
+			->order_by('sum desc');
+		$result=$this->db->get()->result_array();
+		return array_sub($result,'item');
 	}
 	
 }
