@@ -25,7 +25,13 @@ $(function(){
 	});
 	
 	$(':input').on('typeahead:selected',function(event,item){
+		console.log('selected');
 		$($(this).data('id-element')).val(item.id);
+	})
+	.on('change',function(event){
+		if($(this).val()==='' && $(this).data('id-element')){
+			$($(this).data('id-element')).val('');
+		}
 	});
 	
 });
@@ -99,7 +105,7 @@ $(function(){
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button class="btn btn-primary" type="submit" name="submit">确定</button>
+								<button class="btn btn-primary" type="submit" name="submit">保存</button>
 							</div>
 						</div>
 					</form>

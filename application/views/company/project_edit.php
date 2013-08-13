@@ -40,6 +40,8 @@
 						<div class="control-group">
 							<label class="control-label">项目图片</label>
 							<div class="controls">
+								<?=$this->image('project',isset($project['id'])?$project['id']:NULL,200,220)?>
+								<br>
 								<input type="file" name="image">
 							</div>
 						</div>
@@ -79,7 +81,10 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button class="btn btn-primary" type="submit" name="submit">确定</button>
+								<button class="btn btn-primary" type="submit" name="submit">保存</button>
+<?if(uri_segment(1)==='admin'){?>
+								<a href="/admin/finance?project=<?=$project['id']?>" class="btn">财务</a>
+<?}?>
 							</div>
 						</div>
 					</form>

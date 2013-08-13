@@ -64,12 +64,22 @@ $route['company/project/(:num)'] ='company/editproject/$1';
 $route['admin/addfinance'] = 'admin/editfinance';
 $route['admin/addcompany'] = 'admin/editcompany';
 $route['admin/adduser'] = 'admin/edituser';
+
+$route['admin/finance/(:num)'] = 'admin/editfinance/$1';
+$route['admin/company/(:num)'] = 'admin/editcompany/$1';
+$route['admin/user/(:num)'] = 'admin/edituser/$1';
+
 $route['admin/product'] = 'company/product';
+$route['admin/product/(:num)'] = 'company/editproduct/$1';
 $route['admin/product/(:any)'] = 'company/product/$1';
+
 $route['admin/project'] = 'company/project';
+$route['admin/project/(:num)'] = 'company/editproject/$1';
 $route['admin/project/(:any)'] = 'company/project/$1';
+
 $route['admin/wit'] = 'company/wit';
 $route['admin/wit/(:any)'] = 'company/wit/$1';
+
 $route['admin/version'] = 'company/version';
 $route['admin/version/(:any)'] = 'company/version/$1';
 $route['admin/versioncompare'] = 'company/versioncompare';

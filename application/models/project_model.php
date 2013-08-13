@@ -30,6 +30,7 @@ class Project_model extends WT_Model{
 	 * @param array $args
 	 *	status (preparing, witting, buffering, voting, end)
 	 *	in_product
+	 *	get_product_name
 	 *	company
 	 * @return type
 	 */
@@ -58,6 +59,11 @@ class Project_model extends WT_Model{
 		
 		if(isset($args['in_product'])){
 			$this->db->where('project.product',$args['in_product']);
+		}
+		
+		if(array_key_exists('get_product_name', $args) && $args['get_product_name']){
+			$this->db->join('product','product.id = project.product','inner')
+				->select('product.name product_name');
 		}
 		
 		if(isset($args['company'])){

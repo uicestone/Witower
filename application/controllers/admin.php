@@ -26,12 +26,17 @@ class Admin extends WT_Controller{
 		
 		$this->load->model('finance_model','finance');
 		
-		$finance_records=$this->finance->getList(array('order_by'=>'id desc'));
+		$args=array('order_by'=>'id desc','get_username'=>true,'get_project_name'=>true);
 		
-		array_walk($finance_records,function(&$finance_record){
-			$finance_record['username']=$this->user->fetch($finance_record['user'],'name');
-			$finance_record['project_name']=isset($finance_record['project'])?$this->project->fetch($finance_record['project'])['name']:NULL;
-		});
+		if($this->input->get('user')!==false){
+			$args['user']=$this->input->get('user');
+		}
+		
+		if($this->input->get('project')!==false){
+			$args['project']=$this->input->get('project');
+		}
+		
+		$finance_records=$this->finance->getList($args);
 		
 		$this->load->view('admin/finance',compact('finance_records'));
 		
@@ -103,12 +108,8 @@ class Admin extends WT_Controller{
 		else{
 			$finance=$this->finance->fetch();
 			
-			if($this->uri->segment(1)==='company' && $finance['company']!=$this->user->id){
-				show_error('no permission to finance'.$this->finance->id);
-			}
-			
 			$finance['username']=$this->user->fetch($finance['user'])['name'];
-			$finance['project_name']=$this->project->fetch($finance['project'])['name'];
+			$finance['project_name']=$finance['project']?$this->project->fetch($finance['project'])['name']:NULL;
 			
 		}
 		
@@ -121,12 +122,67 @@ class Admin extends WT_Controller{
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
+		$companies=$this->company->getList();
+		
+		$this->load->view('admin/company',compact('companies'));
+		
 	}
 	
 	function editCompany($id=NULL){
 		if(!$this->user->isLogged('company')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
+		
+		$this->company->id=$id;
+		
+		if($this->input->post('submit')!==false){
+			
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules(array(
+				array('field'=>'id','label'=>'用户','rules'=>'required'),
+			));
+			
+			$alert=array();
+			
+			try{
+			
+				if($this->form_validation->run()===false){
+					throw new Exception;
+				}
+				
+				$data=array(
+					'id'=>$this->input->post('id'),
+					'description'=>$this->input->post('description'),
+				);
+
+				//写入操作要放在全部表单验证以后
+				if(is_null($this->company->id)){
+					$this->company->id=$this->company->add($data);
+				}
+				else{
+					$this->company->update($data);
+				}
+
+				redirect($this->uri->segment(1).'/company');
+				
+			}
+			catch(Exception $e){
+				if($e->getMessage()){
+					$alert[]=array('type'=>'error','message'=>$e->getMessage());
+				}
+			}
+		}
+		
+		if(is_null($this->company->id)){
+			$company=$this->company->fields;
+		}
+		else{
+			$company=$this->company->fetch();
+		}
+		
+		$this->load->view('admin/company_edit',compact('company','alert'));
+		
 	}
 	
 	function user(){
@@ -134,12 +190,71 @@ class Admin extends WT_Controller{
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
+		$users=$this->user->getList();
+		
+		$this->load->view('admin/user',compact('users'));
+		
 	}
 	
 	function editUser($id=NULL){
 		if(!$this->user->isLogged('user')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
+		
+		$this->user->id=$id;
+		
+		if($this->input->post('submit')!==false){
+			
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules(array(
+				array('field'=>'name','label'=>'用户名','rules'=>'required'),
+				array('field'=>'email','label'=>'电子邮件','rules'=>'required')
+			));
+			
+			$alert=array();
+			
+			try{
+			
+				if($this->form_validation->run()===false){
+					throw new Exception;
+				}
+				
+				$data=array(
+					'name'=>$this->input->post('name'),
+					'password'=>$this->input->post('password'),
+					'email'=>$this->input->post('email'),
+					'group'=>$this->input->post('group')
+				);
+
+				//写入操作要放在全部表单验证以后
+				if(is_null($this->user->id)){
+					$this->user->id=$this->user->add($data);
+				}
+				else{
+					$this->user->update($data);
+				}
+
+				redirect($this->uri->segment(1).'/user');
+				
+			}
+			catch(Exception $e){
+				if($e->getMessage()){
+					$alert[]=array('type'=>'error','message'=>$e->getMessage());
+				}
+			}
+		}
+		
+		if(is_null($this->user->id)){
+			$user=$this->user->fields;
+		}
+		else{
+			$user=$this->user->fetch();
+			$profiles=$this->user->getProfiles($this->user->id);
+		}
+		
+		$this->load->view('admin/user_edit',compact('user','profiles','alert'));
+		
 	}
 }
 ?>

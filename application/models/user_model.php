@@ -20,6 +20,10 @@ class User_model extends WT_Model{
 	function init($uid=NULL){
 		is_null($uid) && $uid=$this->session->userdata('user/id');
 		
+		if(is_null($uid) && is_null($this->id)){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
 		if($uid){
 			$user=$this->fetch($uid);
 			$this->id=$user['id'];
@@ -28,11 +32,22 @@ class User_model extends WT_Model{
 		}
 	}
 	
-	function fetch($uid=NULL,$field=NULL,$query=NULL){
-		if(is_null($uid) && is_null($this->id)){
-			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+	function add(array $data) {
+
+		if(!$data['password']){
+			unset($data['password']);
 		}
-		return parent::fetch($uid,$field,$query);
+		
+		return parent::add($data);
+	}
+	
+	function update(array $data, $id = NULL) {
+
+		if(!$data['password']){
+			unset($data['password']);
+		}
+		
+		return parent::update($data, $id);
 	}
 	
 	/**
@@ -46,7 +61,7 @@ class User_model extends WT_Model{
 	
 	function getList($args=array()){
 		
-		$this->db->select('user.id, user.name, user.email');
+		$this->db->select('user.id, user.name, user.email, user.group');
 		
 		if(isset($args['in_project'])){
 			$this->db->where("id IN (SELECT user FROM version WHERE wit IN (SELECT id FROM wit WHERE project{$this->db->escape_int_array($args['in_project'])}))");
@@ -360,5 +375,6 @@ class User_model extends WT_Model{
 		$this->db->update($this->table,array('group'=>implode(',',$groups)), array('id'=>$user_id));
 		return $this->db->affected_rows();
 	}
+	
 }
 ?>

@@ -293,7 +293,7 @@ class Company extends WT_Controller{
 			$tags=$this->project->getTags();
 		}
 		
-		$products=$this->product->getArray(array('company'=>$this->user->id),'name','id');
+		$products=$this->product->getArray(array('company'=>$project['company']),'name','id');
 		
 		$this->load->view('company/project_edit', compact('project','products','tags','alert'));
 	}

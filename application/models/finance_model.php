@@ -14,8 +14,22 @@ class Finance_model extends WT_Model{
 		);
 	}
 	
+	function add(array $data) {
+		if(empty($data['project'])){
+			$data['project']=NULL;
+		}
+		return parent::add($data);
+	}
+	
+	function update(array $data, $id = NULL) {
+		if(empty($data['project'])){
+			$data['project']=NULL;
+		}
+		return parent::update($data, $id);
+	}
+	
 	function fetch($id = NULL, $field = NULL) {
-		$this->db->select('DATE(datetime) date, TIME(datetime) time', FALSE);
+		$this->db->select($this->table.'.*, DATE(datetime) date, TIME(datetime) time, UNIX_TIMESTAMP(datetime) timestamp', FALSE);
 		return parent::fetch($id, $field);
 	}
 	
@@ -33,6 +47,8 @@ class Finance_model extends WT_Model{
 	 * @return array $result
 	 */
 	function getList(array $args=array()){
+		
+		$this->db->select($this->table.'.*, DATE(datetime) date, TIME(datetime) time, UNIX_TIMESTAMP(datetime) timestamp');
 		
 		foreach(array('item','project','user') as $arg_name){
 			if(array_key_exists($arg_name, $args)){
@@ -56,6 +72,16 @@ class Finance_model extends WT_Model{
 			if(array_key_exists('to', $args['timestamp'])){
 				$this->db->where("UNIX_TIMESTAMP(`datetime`) < ".intval($args['timestamp']['to']));
 			}
+		}
+		
+		if(array_key_exists('get_project_name', $args) && $args['get_project_name']){
+			$this->db->join('project','finance.project = project.id','left')
+				->select('project.name project_name');
+		}
+		
+		if(array_key_exists('get_username', $args) && $args['get_username']){
+			$this->db->join('user','finance.user = user.id','inner')
+				->select('user.name username');
 		}
 		
 		return parent::getList($args);

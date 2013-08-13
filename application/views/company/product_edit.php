@@ -44,7 +44,7 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
-								<button class="btn btn-primary" type="submit" name="submit">确定</button>
+								<button class="btn btn-primary" type="submit" name="submit">保存</button>
 							</div>
 						</div>
 					</form>

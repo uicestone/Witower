@@ -17,17 +17,18 @@
 				<a class="btn" href="/<?=uri_segment(1)?>/addfinance">增加纪录</a>
 				<table class="table table-bordered">
 					<thead>
-						<tr><td>日期</td><td>用户</td><td>项目</td><td>金额</td><td>科目</td><td>摘要</td></tr>
+						<tr><td>日期</td><td>用户</td><td>项目</td><td>金额</td><td>科目</td><td>摘要</td><td>&nbsp;</td></tr>
 					</thead>
 					<tbody>
 						<? foreach ($finance_records as $finance_record) { ?>								
 							<tr> 
-								<td><?=$finance_record['datetime']?></td>
+								<td><?=$finance_record['date']?><br><?=$finance_record['time']?></td>
 								<td><?=$finance_record['username']?></td>
 								<td><?=$finance_record['project_name']?></td>
 								<td><?=$finance_record['amount']?></td>
 								<td><?=$finance_record['item']?></td>
 								<td><?=$finance_record['summary']?></td>
+								<td><a href="/admin/finance/<?=$finance_record['id']?>" class="btn btn-small">修改</a></td>
 							</tr>
 						<? } ?>
 					</tbody>
