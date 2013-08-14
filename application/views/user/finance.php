@@ -19,19 +19,21 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<td>类型</td>
-								<td>数额</td>
-								<td>项目</td>
-								<td>时间</td>
+								<th>科目</th>
+								<th>数额</th>
+								<th>项目</th>
+								<th>时间</th>
+								<th>描述</th>
 							</tr>
 						</thead>
 						<tbody>
-<?foreach($accounts as $account){?>
+<?foreach($finance_records as $finance_record){?>
 							<tr>
-								<td><?=$account['item']?></td>
-								<td><?=$account['amount']?></td>
-								<td><?=$account['project']?$this->project->fetch($account['project'],'name'):''?></td>
-								<td><?=$account['datetime']?></td>
+								<td><?=$finance_record['item']?></td>
+								<td><?=$finance_record['amount']?></td>
+								<td><?=$finance_record['project_name']?></td>
+								<td><?=$finance_record['datetime']?></td>
+								<td><?=$finance_record['summary']?></td>
 							</tr>
 <?}?>
 						</tbody>
@@ -45,10 +47,16 @@
 			<div class="title"><h3>积分：<?=$this->finance->sum(array('user'=>$this->user->id,'item'=>'积分'))?></h3></div>
 		</div>
 		<div class="box">
-			<form class="form form-horizontal">
+			<form class="form form-horizontal" method="post">
+<?if($this->user->isCompany()){?>
 				<div class="control-group">
-					<input type="text" name="apply" style="width:5em" placeholder="¥" />
-					<button type="submit" class="btn" disabled="disabled">申请提现</button>
+					<input type="text" name="recharge" style="width:5em" placeholder="¥" />
+					<button type="submit" class="btn">申请充值</button>
+				</div>
+<?}?>				
+				<div class="control-group">
+					<input type="text" name="withdraw" style="width:5em" placeholder="¥" />
+					<button type="submit" class="btn">申请提现</button>
 				</div>
 			</form>
 		</div>

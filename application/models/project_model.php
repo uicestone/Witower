@@ -122,12 +122,6 @@ class Project_model extends WT_Model{
 		return $this->db->from('wit')->where('project',$project_id)->count_all_results();
 	}
 	
-	function countVersions($project_id=NULL){
-		is_null($project_id) && $project_id=$this->id;
-		$project_id=intval($project_id);
-		return $this->db->from('version')->where("wit IN (SELECT id FROM wit WHERE project  = $project_id)")->count_all_results();
-	}
-	
 	/**
 	 * 
 	 * @param int $project_id
@@ -253,18 +247,22 @@ class Project_model extends WT_Model{
 		
 		$candidates=$this->getCandidates($project_id);
 		
+		$bonus=array();
+		
 		foreach($candidates as &$candidate){
-			$candidate['percentage_votes']=$candidate['votes']/$sum['votes'];
-			$candidate['percentage_score_company']=$candidate['score_company']/$sum['score_company'];
-			$candidate['percentage_score_witower']=$candidate['score_witower']/$sum['score_witower'];
+			$candidate['percentage_votes']=$sum['votes']?$candidate['votes']/$sum['votes']:0;
+			$candidate['percentage_score_company']=$sum['score_company']?$candidate['score_company']/$sum['score_company']:0;
+			$candidate['percentage_score_witower']=$sum['score_witower']?$candidate['score_witower']/$sum['score_witower']:0;
 			$candidate['bonus']=
 				($candidate['percentage_votes']*0.2
 				+$candidate['percentage_score_company']*0.4
 				+$candidate['percentage_score_witower']*0.4)
 				*$project['bonus'];
 			
-			$this->user->addBonus($candidate['id'],$project_id,$candidate['bonus']);
+			$bonus[]=array('user'=>$candidate['id'],'amount'=>$candidate['bonus']);
 		}
+		
+		return $bonus;
 	}
 	
 	function getStatus($project=NULL){

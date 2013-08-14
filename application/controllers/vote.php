@@ -29,8 +29,8 @@ class Vote extends WT_Controller{
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 
-		$voting_projects['hot']=$this->project->getList(array('status'=>'voting','orderby'=>'voters desc','limit'=>10));
-		$voting_projects['latest']=$this->project->getList(array('status'=>'voting','orderby'=>'vote_start desc','limit'=>10));
+		$voting_projects['hot']=$this->project->getList(array('status'=>'voting','order_by'=>'voters desc','limit'=>10));
+		$voting_projects['latest']=$this->project->getList(array('status'=>'voting','order_by'=>'vote_start desc','limit'=>10));
 		
 		foreach($voting_projects as &$projects_column){
 			foreach($projects_column as &$voting_project){
@@ -47,6 +47,8 @@ class Vote extends WT_Controller{
 	 * 项目投票详情查看页
 	 */
 	function view($id){
+		
+		$this->load->model('version_model','version');
 		
 		$this->project->id=$id;
 		
@@ -70,7 +72,7 @@ class Vote extends WT_Controller{
 		
 		$comments=$this->project->getComments();
 		
-		$versions=$this->project->countVersions();
+		$versions=$this->version->count(array('in_project'=>$this->project->id));
 		
 		$candidates=$this->project->getCandidates();
 		

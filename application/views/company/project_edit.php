@@ -25,6 +25,7 @@
 							<label class="control-label">项目名称</label>
 							<div class="controls">
 								<input type="text" name="name" value="<?=set_value('name',$project['name']);?>">
+								<span class="label"><?=lang($project['status'])?></span>
 								<span class="label label-important"><?=form_error('name')?></span>
 							</div>
 						</div>
@@ -70,7 +71,7 @@
 							<div class="controls">
 								<input type="text" name="bonus" value="<?=set_value('bonus',$project['bonus'])?>" placeholder="￥" title="保存后不能修改"<?if(isset($project['id'])){?> class="uneditable-input"<?}?>>
 								<span class="label label-important"><?=form_error('bonus')?></span>
-								<span class="label label-info" style="display:none">目前可用悬赏积分是 <?=$this->finance->sum(array('user'=>$project['company'],'item'=>'可用悬赏积分'))?> 元</span>
+								<span class="label label-info" style="display:none">目前积分是 <?=$this->finance->sum(array('user'=>$project['company'],'item'=>'积分'))?> 元</span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -82,7 +83,10 @@
 						<div class="control-group">
 							<div class="controls">
 								<button class="btn btn-primary" type="submit" name="submit">保存</button>
-<?if(uri_segment(1)==='admin'){?>
+<?if(uri_segment(1)==='admin' && isset($project['id'])){?>
+<?	if($project['status']==='voting'){?>
+								<a href="/project/end/<?=$project['id']?>" class="btn btn-danger">结束</a>
+<?	}?>
 								<a href="/admin/finance?project=<?=$project['id']?>" class="btn">财务</a>
 <?}?>
 							</div>

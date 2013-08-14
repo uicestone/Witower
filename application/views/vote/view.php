@@ -55,8 +55,8 @@
 <?}elseif($voted){?>
 						您已经投票了！
 <?}else{?>
-						<button type="submit" name="vote" class="btn btn-primary">投 票</button>
-						<button type="reset" class="btn">重 选</button>
+						<button type="submit" name="vote" class="btn btn-primary">投票</button>
+						<button type="reset" class="btn">重选</button>
 <?}?>						
 					</div>
 <?if($project['status']==='voting' && !$voted){?>
@@ -69,7 +69,7 @@
 					<table>
 <?foreach($candidates as $candidate){?>
 						<tr>
-							<td><img src="/uploads/images/avatar/<?=$candidate['id']?>_100.jpg" width="100px" height="100px"></td>
+							<td><?=$this->image('avatar',$candidate['id'],'100')?></td>
 							<td><?=$candidate['name']?></td>
 <?if(!$voted){?>
 							<td class="images">
@@ -86,7 +86,7 @@
 				</div>
 				<div class="tail">
 					<div class="button-set">
-<?if($project['status']!=='投票中'){?>
+<?if($project['status']!=='voting'){?>
 						项目不在投票阶段
 <?}elseif($voted){?>
 						您已经投票了！
@@ -129,7 +129,7 @@
 				<ul>
 <?foreach($voters as $voter){?>
 					<li>
-						<img src="/uploads/images/avatar/<?=$voter['id']?>_100.jpg" width="50px" height="50px">
+						<?=$this->image('avatar',$voter['id'],100,50)?>
 						<a href="/space/<?=$voter['id']?>">
 							<span class="ellipsis"><?=$voter['name']?></span>
 						</a>

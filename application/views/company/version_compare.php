@@ -37,24 +37,18 @@ $(function(){
 			<span class="divider">/</span>
 		</li>
 <?}?>
-<?if(isset($wit)){?>
 		<li>
-			<?=$wit['name']?>
-			<span class="divider">/</span>
-		</li>
-<?}?>
-		<li>
-			版本比较
+			版本比较 <?if(isset($wit)){?><?=$wit['name']?><?}?>
 		</li>
 	</ul>
 	<div class="model model-b">
 		<div class="title">
-			<h3><?=$wit['name']?> 版本比较</h3>
+			<h3>版本比较 <?if(isset($wit)){?><?=$wit['name']?><?}?></h3>
 <?if($this->project->getStatus($project['id'])==='buffering'){?>
 <?	if($wit['selected']){?>
-			<a href="/wit/unselect/<?=$wit['id']?>" class="btn btn-mini" style="margin-left:1em">取消选中此创意</a>
+			<a href="/wit/unselect/<?=$wit['id']?>" class="btn btn-small" style="margin-left:1em">取消选中此创意</a>
 <?	}else{?>
-			<a href="/wit/select/<?=$wit['id']?>" class="btn btn-mini" style="margin-left:1em">选中此创意</a>
+			<a href="/wit/select/<?=$wit['id']?>" class="btn btn-small" style="margin-left:1em">选中此创意</a>
 <?	}?>
 <?}?>
 		</div>

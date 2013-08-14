@@ -61,6 +61,22 @@ class WT_Model extends CI_Model{
 		}
 		
 		$this->db->update($this->table,$data);
+		
+		return $this;
+	}
+	
+	function remove($id=NULL){
+		is_null($id) && $id=$this->id;
+		
+		if(is_array($id)){
+			$this->db->where($id);
+		}else{
+			$this->db->where($this->table.'.id', $id);
+		}
+		
+		$this->db->delete($this->table);
+		
+		return $this;
 	}
 	
 	function addCount($field,$project_id=NULL){
@@ -76,7 +92,7 @@ class WT_Model extends CI_Model{
 	 * @param array $args
 	 * name
 	 * count_all_results
-	 * orderby string or array
+	 * order_by string or array
 	 * limit string, array OR 'pagination'
 	 * @return array
 	 */
@@ -110,13 +126,13 @@ class WT_Model extends CI_Model{
 		//复制一个DB对象用来计算行数，因为计算行数需要运行sql，将清空DB对象中属性
 		$db_num_rows=clone $this->db;
 		
-		if(isset($args['orderby'])){
-			if(is_array($args['orderby'])){
-				foreach($args['orderby'] as $orderby){
-					$this->db->order_by($orderby[0],$orderby[1]);
+		if(isset($args['order_by'])){
+			if(is_array($args['order_by'])){
+				foreach($args['order_by'] as $order_by){
+					$this->db->order_by($order_by[0],$order_by[1]);
 				}
-			}elseif($args['orderby']){
-				$this->db->order_by($args['orderby']);
+			}elseif($args['order_by']){
+				$this->db->order_by($args['order_by']);
 			}
 		}
 		
@@ -153,7 +169,7 @@ class WT_Model extends CI_Model{
 	
 	function sum($field, array $args=array()){
 		$this->db->select_sum($field);
-		$result=$this->getRow($args);
+		$result=$this->getRow($args+array('select'=>false));
 		return $result[$field]?$result[$field]:0;
 	}
 	

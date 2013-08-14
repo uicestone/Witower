@@ -14,19 +14,11 @@ class Wit extends WT_Controller{
 			$this->version->score($this->input->post('score'));
 		}
 		
-		if($this->input->post('remove')!==false){
-			$this->wit->remove();
-		}
-		
-		if($this->input->post('removeversion')!==false){
-			$this->version->remove($this->input->post('removeversion'));
-		}
-		
 		$wit=$this->wit->fetch();
 		$witters=$this->user->getList(array('in_wit'=>$this->wit->id));
 		$project=$this->project->fetch($wit['project']);
 		$project['status']=$this->project->getStatus($project['id']);
-		$versions=$this->wit->countVersions();
+		$versions=$this->version->count(array('wit'=>$this->wit->id));
 		
 		if($this->input->get('version')){
 			$result=$this->version->getList(array('num'=>$this->input->get('version'),'wit'=>$wit['id']));
@@ -39,14 +31,12 @@ class Wit extends WT_Controller{
 			$version=$this->version->fetch($wit['latest_version']);
 		}
 		
-		$first_version=$this->version->getList(array('orderby'=>'num desc','limit'=>1))[0];
-		
 		$previous_version=$this->version->getPrevious($version['id']);
 		$next_version=$this->version->getNext($version['id']);
 		
 		$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
 		
-		$this->load->view('wit/view',compact('wit','witters','project','version','versions','first_version','previous_version','next_version','score_field'));
+		$this->load->view('wit/view',compact('wit','witters','project','version','versions','previous_version','next_version','score_field'));
 	}
 	
 	/**
@@ -56,7 +46,7 @@ class Wit extends WT_Controller{
 		
 		$this->wit->id=$id;
 		
-		$args=array('wit'=>$this->wit->id);
+		$args=array('wit'=>$this->wit->id,'order_by'=>'id desc');
 		
 		if($this->user->isLogged('wit')){
 			$args['deleted']=NULL;
@@ -135,7 +125,7 @@ class Wit extends WT_Controller{
 				}
 				
 				$wit['latest_version']=$this->version->add(array(
-					'num'=>$this->wit->countVersions()+1,
+					'num'=>$this->version->count(array('wit'=>$wit['id'],'deleted'=>NULL))+1,
 					'project'=>$project['id'],
 					'wit'=>$this->wit->id,
 					'name'=>$this->input->post('name'),
@@ -162,20 +152,55 @@ class Wit extends WT_Controller{
 			$wit=$this->wit->fetch($this->wit->id);
 			
 			$project=$this->project->fetch($wit['project']);
+			
+			$witters=$this->user->getList(array('in_wit'=>$this->wit->id));
+			$project['status']=$this->project->getStatus($project['id']);
+			$versions=$this->version->count(array('wit'=>$this->wit->id));
+			$version=$this->version->fetch($wit['latest_version']);
+			$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
+
 		}
 		
-		$this->load->view('wit/edit', compact('wit','project'));
+		$this->load->view('wit/edit', compact('wit','witters','project','version','versions','score_field'));
+	}
+	
+	function remove($wit_id){
+		$wit=$this->wit->fetch($wit_id);
+		$project=$this->project->fetch($wit['project']);
+		
+		if($this->user->id != $project['company'] && !$this->user->isLogged(array('witower','wit'))){
+			return;
+		}
+		
+		$this->wit->remove();
+		
+		redirect($this->input->server('HTTP_REFERER'),'php','');
 	}
 	
 	function removeVersion($version_id){
 		$version=$this->version->fetch($version_id);
 		$project=$this->project->fetch($version['project']);
 		
-		if($this->user->id != $project['company'] && !$this->user->isLogged('wit')){
+		if($this->user->id != $project['company'] && !$this->user->isLogged(array('witower','wit'))){
 			return;
 		}
 		
-		$this->version->remove($version_id);
+		$this->version->update(array('deleted'=>true),$version_id);
+		$this->wit->refresh($version['wit']);
+		
+		redirect($this->input->server('HTTP_REFERER'),'php','');
+	}
+	
+	function recoverVersion($version_id){
+		$version=$this->version->fetch($version_id);
+		$project=$this->project->fetch($version['project']);
+		
+		if($this->user->id != $project['company'] && !$this->user->isLogged(array('witower','wit'))){
+			return;
+		}
+		
+		$this->version->update(array('deleted'=>false),$version_id);
+		$this->wit->refresh($version['wit']);
 		
 		redirect($this->input->server('HTTP_REFERER'),'php','');
 	}

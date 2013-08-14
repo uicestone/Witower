@@ -20,7 +20,7 @@
 				<div class="fn-right">
 					<ul id="mycarousel" class="jcarousel-skin-tango">
 						<?foreach($recommended_voting_project['voters'] as $voter){?>
-						<li><a href="/space/<?= $voter['id'] ?>"><?=$this->image('avatar',$voter['id'],'50','65')?><span><?= $voter['name'] ?></span></a></li>
+						<li><a href="/space/<?= $voter['id'] ?>"><?=$this->image('avatar',$voter['id'],'100','65')?><span><?= $voter['name'] ?></span></a></li>
 						<?}?>
 					</ul>
 				</div>
@@ -67,7 +67,7 @@
 
 					<?foreach($voting_projects['latest'] as $project){?>
 					<div class="box">
-						<a href="/vote/<?= $project['id'] ?>"><img src="/uploads/images/project/<?=$project['id']?>_200.jpg"></a>
+						<a href="/vote/<?= $project['id'] ?>"><?=$this->image('project',$project['id'],200)?></a>
 						<ul>
 							<li><b>项目名称：</b><?= $project['name'] ?></li>
 							<li><b>项目介绍：</b><?= $project['summary'] ?></li>

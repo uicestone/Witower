@@ -106,6 +106,7 @@ $(function(){
 						<div class="control-group">
 							<div class="controls">
 								<button class="btn btn-primary" type="submit" name="submit">保存</button>
+								<button class="btn btn-danger" type="submit" name="remove">删除</button>
 							</div>
 						</div>
 					</form>

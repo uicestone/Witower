@@ -216,14 +216,15 @@ class Company extends WT_Controller{
 				//写入操作要放在全部表单验证以后
 				if(is_null($this->project->id)){
 
-					if($this->finance->sum(array('item'=>'可用悬赏积分','user'=>$project['company'])) < $this->input->post('bonus')){
-						throw new Exception('可用悬赏积分不足');
+					if($this->finance->sum(array('item'=>'积分','user'=>$project['company'])) < $this->input->post('bonus')){
+						throw new Exception('积分不足');
 					}
 					
 					$this->project->id=$this->project->add($project);
 					
 					$this->finance->add(array(
-						'item'=>'可用悬赏积分',
+						'item'=>'积分',
+						'project'=>$this->project->id,
 						'user'=>$project['company'],
 						'amount'=>-$this->input->post('bonus')
 					));
@@ -281,11 +282,13 @@ class Company extends WT_Controller{
 		
 		if(is_null($this->project->id)){
 			$project=$this->project->fields;
+			$project['status']=NULL;
 			$project['product']=$this->input->get('product');
 		}
 		else{
 			$project=$this->project->fetch();
-
+			$project['status']=$this->project->getStatus();
+			
 			if($this->uri->segment(1)==='company' && $project['company']!=$this->user->id){
 				show_error('no permission to project'.$this->project->id);
 			}
@@ -329,7 +332,7 @@ class Company extends WT_Controller{
 			$latest_version=$this->version->fetch($wit['latest_version']);
 			$wit['latest_version_username']=$this->user->fetch($latest_version['user'],'name');
 			$wit['latest_version_time']=$latest_version['time'];
-			$wit['versions']=$this->wit->countVersions($wit['id']);
+			$wit['versions']=$this->version->count(array('wit'=>$wit['id']));
 		});
 		
 		$this->load->view('company/wit', compact('wits','project'));
@@ -340,7 +343,7 @@ class Company extends WT_Controller{
 	 */
 	function version(){
 		
-		$version_list_args=array('company'=>$this->user->id,'orderby'=>'id desc');
+		$version_list_args=array('company'=>$this->user->id,'order_by'=>'id desc');
 		
 		if($this->uri->segment(1)==='admin'){
 			unset($version_list_args['company']);

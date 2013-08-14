@@ -48,7 +48,9 @@ class Finance_model extends WT_Model{
 	 */
 	function getList(array $args=array()){
 		
-		$this->db->select($this->table.'.*, DATE(datetime) date, TIME(datetime) time, UNIX_TIMESTAMP(datetime) timestamp');
+		if(!array_key_exists('select', $args) || $args['select']){
+			$this->db->select($this->table.'.*, DATE(datetime) date, TIME(datetime) time, UNIX_TIMESTAMP(datetime) timestamp');
+		}
 		
 		foreach(array('item','project','user') as $arg_name){
 			if(array_key_exists($arg_name, $args)){

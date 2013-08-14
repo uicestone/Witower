@@ -15,7 +15,7 @@ $(function(){
 			<span class="divider">/</span>
 		</li>
 		<li>
-			<?=$project['name']?>
+			<a href="/project/<?=$project['id']?>"><?=$project['name']?></a>
 			<span class="divider">/</span>
 		</li>
 		<li>
@@ -38,21 +38,12 @@ $(function(){
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" name="submit" class="btn btn-primary">提交创意</button>
-							<button type="submit" name="submit" class="btn btn-success">比较</button>
+							<button type="submit" name="submit" class="btn btn-primary">提交</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
-	<div id="right" class="sidebar">
-		<div class="box">
-			<div class="title">
-				<h3></h3><a href="#" class="more">more</a>
-			</div>
-		</div>
-	</div>
-</div>
+	<?$this->view('wit/sidebar')?></div>
 <? $this->view('footer') ?>

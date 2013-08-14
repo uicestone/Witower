@@ -32,11 +32,11 @@ class Project extends WT_Controller{
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 		
-		$projects['latest']=$this->project->getList(array('status'=>'witting','orderby'=>'wit_start desc','limit'=>10));
+		$projects['latest']=$this->project->getList(array('status'=>'witting','order_by'=>'wit_start desc','limit'=>10));
 		
-		$projects['hot']=$this->project->getList(array('status'=>'witting','orderby'=>'witters desc','limit'=>10));
+		$projects['hot']=$this->project->getList(array('status'=>'witting','order_by'=>'witters desc','limit'=>10));
 		
-		$projects['high_bonus']=$this->project->getList(array('status'=>'witting','orderby'=>'bonus desc','limit'=>10));
+		$projects['high_bonus']=$this->project->getList(array('status'=>'witting','order_by'=>'bonus desc','limit'=>10));
 		
 		foreach($projects as &$projects_column){
 			foreach($projects_column as &$project){
@@ -57,6 +57,7 @@ class Project extends WT_Controller{
 		$this->load->model('company_model','company');
 		$this->load->model('product_model','product');
 		$this->load->model('wit_model','wit');
+		$this->load->model('version_model','version');
 		
 		$this->project->id=$id;
 		
@@ -64,7 +65,7 @@ class Project extends WT_Controller{
 		$project['tags']=$this->project->getTags();
 		$project['comments']=$this->project->getComments();
 		$project['comments_count']=count($project['comments']);
-		$project['versions']=$this->project->countVersions();
+		$project['versions']=$this->version->count(array('in_project'=>$this->project->id));
 		$project['status']=$this->project->getStatus($project);
 		$product=$this->product->fetch($project['product']);
 		$company=$this->company->fetch($project['company']);
@@ -95,9 +96,29 @@ class Project extends WT_Controller{
 	}
 	
 	function end($id){
+		
+		$this->load->model('finance_model','finance');
+		
 		$this->project->id=$id;
-		$this->project->bonusAllocate();
+		$bonuses=$this->project->bonusAllocate();
+
 		$project=$this->project->fetch();
+		
+		foreach($bonuses as $bonus){
+			$this->finance->add(array(
+				'project'=>$this->project->id,
+				'user'=>$bonus['user'],
+				'amount'=>$bonus['amount'],
+				'item'=>'积分'
+			));
+		}
+		
+		$this->finance->add(array(
+			'project'=>$this->project->id,
+			'user'=>$project['company'],
+			'amount'=>-$project['bonus'],
+			'item'=>'悬赏积分'
+		));
 		
 		$yesterday=date('Y-m-d',time()-86400);
 		
@@ -109,7 +130,7 @@ class Project extends WT_Controller{
 
 		$this->project->update($set,$id);
 		
-		redirect('company/project');
+		redirect($this->input->server('HTTP_REFERER'),'php','');
 	}
 	
 }

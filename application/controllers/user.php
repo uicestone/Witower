@@ -207,8 +207,23 @@ class User extends WT_Controller{
 	 */
 	function finance(){
 		$this->load->model('finance_model','finance');
-		$accounts=$this->finance->getList(array('user'=>$this->user->id));
-		$this->load->view('user/finance',compact('accounts'));
+		
+		if($this->input->post('recharge')){
+			$this->finance->add(array(
+				'amount'=>$this->input->post('recharge'),
+				'item'=>'申请充值'
+			));
+		}
+		
+		if($this->input->post('withdraw')){
+			$this->finance->add(array(
+				'amount'=>$this->input->post('withdraw'),
+				'item'=>'申请提现'
+			));
+		}
+		
+		$finance_records=$this->finance->getList(array('user'=>$this->user->id,'get_project_name'=>true,'order_by'=>'datetime desc'));
+		$this->load->view('user/finance',compact('finance_records'));
 	}
 	
 	/**

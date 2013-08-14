@@ -36,9 +36,14 @@ class Admin extends WT_Controller{
 			$args['project']=$this->input->get('project');
 		}
 		
+		$query='';
+		if($this->input->get()!==false){
+			$query='?'.http_build_query($this->input->get());
+		}
+		
 		$finance_records=$this->finance->getList($args);
 		
-		$this->load->view('admin/finance',compact('finance_records'));
+		$this->load->view('admin/finance',compact('finance_records','query'));
 		
 	}
 	
@@ -99,19 +104,24 @@ class Admin extends WT_Controller{
 			}
 		}
 		
+		if($this->input->post('remove')!==false){
+			$this->finance->remove();
+			redirect('admin/finance');
+		}
+		
 		if(is_null($this->finance->id)){
 			$finance=$this->finance->fields;
-			$finance['username']=$finance['project_name']=$finance['date']=$finance['time']=NULL;
+			$finance['user']=$this->input->get('user');
+			$finance['project']=$this->input->get('project');
 			$finance['date']=date('Y-m-d');
 			$finance['time']=date('H:i:s');
 		}
 		else{
 			$finance=$this->finance->fetch();
-			
-			$finance['username']=$this->user->fetch($finance['user'])['name'];
-			$finance['project_name']=$finance['project']?$this->project->fetch($finance['project'])['name']:NULL;
-			
 		}
+		
+		$finance['username']=$finance['user']?$this->user->fetch($finance['user'])['name']:NULL;
+		$finance['project_name']=$finance['project']?$this->project->fetch($finance['project'])['name']:NULL;
 		
 		$this->load->view('admin/finance_edit',compact('finance','alert'));
 		

@@ -90,36 +90,6 @@ class Version_model extends WT_Model{
 		}
 	}
 	
-	function remove($version_id){
-		$wit=$this->db->select('wit.*')
-			->from('wit')
-			->join('version','version.id = wit.latest_version','inner')
-			->where('version.id',$version_id)
-			->get()->row_array();
-		
-		if($wit){
-			//要删除的版本是本创意最新版本，则将次新版本替换到最新版本
-			$previous_version=$this->getPrevious($version_id);
-			if($previous_version){
-				$this->db->update('wit',array(
-					'name'=>$previous_version['name'],
-					'content'=>$previous_version['content'],
-					'user'=>$previous_version['user'],
-					'time'=>$previous_version['time'],
-					'latest_version'=>$previous_version['id']
-				),array('id'=>$wit['id']));
-			}else{
-				//TODO 不能删除最后一个版本
-			}
-		}
-		
-		if(!$wit || $previous_version){
-			$this->db->update('version',array('deleted'=>true),array('id'=>$version_id));
-		}
-		
-		return $this->db->affected_rows();
-	}
-	
 	function getPrevious($version_id){
 		$this->db->from('version')
 			->where('id <',$version_id)

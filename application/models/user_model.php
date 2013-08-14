@@ -20,10 +20,6 @@ class User_model extends WT_Model{
 	function init($uid=NULL){
 		is_null($uid) && $uid=$this->session->userdata('user/id');
 		
-		if(is_null($uid) && is_null($this->id)){
-			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
-		}
-		
 		if($uid){
 			$user=$this->fetch($uid);
 			$this->id=$user['id'];
@@ -156,7 +152,7 @@ class User_model extends WT_Model{
 			return true;
 		}
 		
-		if(!is_null($group) && $this->id && in_array($group,$this->group)){
+		if(!is_null($group) && $this->id && $this->inGroup($group)){
 			return true;
 		}
 		
@@ -166,9 +162,13 @@ class User_model extends WT_Model{
 	function inGroup($group, $user_id=NULL){
 		is_null($user_id) && $user_id=$this->id;
 		
-		$groups=explode(',',$this->fetch($user_id,'group'));
-
-		if($this->id && in_array($group,$groups)){
+		$groups=preg_split('/[,|\s]+?/',$this->fetch($user_id,'group'));
+		
+		if(!is_array($group)){
+			$group=array($group);
+		}
+		
+		if($this->id && !array_diff($group, $groups)){
 			return true;
 		}
 		

@@ -2,7 +2,7 @@
 <div id="content" class="page-viewproject model-view">
 	<ul class="breadcrumb">
 		<li>
-			<strong><a href="#">项目</a></strong>
+			<strong><a href="/project">项目</a></strong>
 			<span class="divider">/</span>
 		</li>
 		<li>
