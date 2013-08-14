@@ -53,19 +53,25 @@
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label">开始日期</label>
+							<label class="control-label">创意征集</label>
 							<div class="controls">
-								<input type="text" name="start" value="<?=set_value('wit_start',$project['wit_start'])?>" title="保存后不能修改"<?if($project['bonus']){?> class="uneditable-input"<?}?>>
+								<input type="text" name="wit_start" value="<?=set_value('wit_start',$project['wit_start'])?>" title="保存后不能修改"<?if(isset($project['id']) && uri_segment(1)!=='admin'){?> class="uneditable-input"<?}?>>
+								<input type="text" name="wit_end" value="<?=set_value('wit_end',$project['wit_end'])?>" title="保存后不能修改"<?if(isset($project['id']) && uri_segment(1)!=='admin'){?> class="uneditable-input"<?}?>>
 								<span class="label label-important"><?=form_error('wit_start')?></span>
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label">截止日期</label>
-							<div class="controls">
-								<input type="text" name="end" value="<?=set_value('wit_end',$project['wit_end'])?>" title="保存后不能修改"<?if($project['bonus']){?> class="uneditable-input"<?}?>>
 								<span class="label label-important"><?=form_error('wit_end')?></span>
 							</div>
 						</div>
+<?if(uri_segment(1)==='admin'){?>
+						<div class="control-group">
+							<label class="control-label">投票评选</label>
+							<div class="controls">
+								<input type="text" name="vote_start" value="<?=set_value('vote_start',$project['vote_start'])?>">
+								<input type="text" name="vote_end" value="<?=set_value('vote_end',$project['vote_end'])?>">
+								<span class="label label-important"><?=form_error('vote_start')?></span>
+								<span class="label label-important"><?=form_error('vote_end')?></span>
+							</div>
+						</div>
+<?}?>
 						<div class="control-group">
 							<label class="control-label">悬赏金额</label>
 							<div class="controls">

@@ -197,8 +197,10 @@ class Company extends WT_Controller{
 					'summary'=>$this->input->post('summary'),
 					'product'=>$this->input->post('product'),
 					'company'=>$this->user->id,
-					'wit_start'=>$this->input->post('start'),
-					'wit_end'=>$this->input->post('end'),
+					'wit_start'=>$this->input->post('wit_start'),
+					'wit_end'=>$this->input->post('wit_end'),
+					'vote_start'=>$this->input->post('vote_start'),
+					'vote_end'=>$this->input->post('vote_end'),
 					'bonus'=>$this->input->post('bonus')
 				);
 
@@ -239,6 +241,7 @@ class Company extends WT_Controller{
 				}
 				else{
 					unset($project['bonus']);
+					unset($project['company']);
 					$this->project->update($project);
 				}
 				
