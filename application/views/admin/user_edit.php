@@ -52,9 +52,12 @@
 						<div class="control-group">
 							<div class="controls">
 								<button class="btn btn-primary" type="submit" name="submit">保存</button>
+<?if(isset($user['id'])){?>
 								<a href="/admin/finance?user=<?=$user['id']?>" class="btn">财务</a>
+<?}?>
 							</div>
 						</div>
+<?if(isset($user['id'])){?>
 						<table class="table table-bordered">
 							<thead>
 								<tr><th>资料项</th><th>内容</th></tr>
@@ -68,6 +71,7 @@
 								<? } ?>
 							</tbody>
 						</table>
+<?}?>
 					</form>
 				</div>
 			</div>
