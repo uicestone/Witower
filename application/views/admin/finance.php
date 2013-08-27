@@ -17,7 +17,7 @@
 				<a class="btn" href="/<?=uri_segment(1)?>/addfinance<?=$query?>">增加纪录</a>
 				<table class="table table-bordered">
 					<thead>
-						<tr><td>日期</td><td>用户</td><td>项目</td><td>金额</td><td>科目</td><td>摘要</td><td>&nbsp;</td></tr>
+						<tr><th>日期</th><th>用户</th><th>项目</th><th>金额</th><th>科目</th><th>摘要</th><th>&nbsp;</th></tr>
 					</thead>
 					<tbody>
 						<? foreach ($finance_records as $finance_record) { ?>								
@@ -28,11 +28,12 @@
 								<td><?=$finance_record['amount']?></td>
 								<td><?=$finance_record['item']?></td>
 								<td><?=$finance_record['summary']?></td>
-								<td><a href="/admin/finance/<?=$finance_record['id']?>" class="btn btn-small">修改</a></td>
+								<td><a href="/admin/finance/<?=$finance_record['id']?>" class="btn btn-small">查看</a></td>
 							</tr>
 						<? } ?>
 					</tbody>
 				</table>
+				<?=$pagination?>
 			</div>
 		</div>
 	</div>

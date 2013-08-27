@@ -47,13 +47,13 @@ $(function(){
 			<span class="divider">/</span>
 		</li>
 		<li>
-			<?if(isset($finance['id'])){?>编辑帐目<?}else{?>添加帐目<?}?>
+			<a href="/<?=uri_segment(1)?>/finance/<?=$finance['id']?>"><?if(isset($finance['id'])){?>查看帐目<?}else{?>添加帐目<?}?></a>
 		</li>
 	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
 	<div id="right">
 		<div class="model">
-			<div class="title"><h3><?if(isset($finance['id'])){?>编辑帐目<?}else{?>添加帐目<?}?></h3></div>
+			<div class="title"><h3><?if(isset($finance['id'])){?>查看帐目<?}else{?>添加帐目<?}?></h3></div>
 			<div class="main">
 				<div class="show_content">
 					<?$this->view('alert')?>
@@ -103,12 +103,13 @@ $(function(){
 								<textarea rows="4" name="summary"><?=set_value('summary',$finance['summary'])?></textarea>
 							</div>
 						</div>
+<?if(!$finance['id']){?>
 						<div class="control-group">
 							<div class="controls">
 								<button class="btn btn-primary" type="submit" name="submit">保存</button>
-								<button class="btn btn-danger" type="submit" name="remove">删除</button>
 							</div>
 						</div>
+<?}?>
 					</form>
 				</div>
 			</div>

@@ -17,7 +17,7 @@
 				<button class="btn" type="button" onclick="location.href = '/<?=uri_segment(1)?>/addproduct'">增加新产品</button>
 				<table class="table table-bordered">
 					<thead>
-						<tr><td>产品名称</td><td class="image">图片</td><td class="descript">描述</td><td>操作</td><td>项目</td></tr>
+						<tr><th>产品名称</th><th class="image">图片</th><th class="descript">描述</th><th>操作</th><th>项目</th></tr>
 					</thead>
 					<tbody>
 						<? foreach ($products as $product) { ?>								
@@ -37,6 +37,7 @@
 						<? } ?>
 					</tbody>
 				</table>
+				<?=$pagination?>
 			</div>
 		</div>
 	</div>

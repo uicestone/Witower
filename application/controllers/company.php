@@ -12,6 +12,7 @@ class Company extends WT_Controller{
 		$this->load->model('project_model','project');
 		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
+		$this->load->library('pagination');
 		
 		if(
 			($this->uri->segment(1)==='admin' && !$this->user->isLogged('witower'))
@@ -33,14 +34,29 @@ class Company extends WT_Controller{
 	 */
 	function product(){
 		
-		$products=$this->product->getList($this->user->isLogged('witower')?array():array('company'=>$this->user->id));
+		$args=array();
+		
+		if(!$this->user->isLogged('witower')){
+			$args['company']=$this->user->id;
+		}
+		
+		$this->pagination->initialize(array(
+			'total_rows'=>$this->product->count($args),
+			'per_page'=>$this->config->user_item('list_per_page')
+		));
+		
+		$pagination=$this->pagination->create_links();
+		
+		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
+		
+		$products=$this->product->getList($args);
 		
 		array_walk($products, function(&$product){
 			$product['projects_witting']=$this->project->count(array('in_product'=>$product['id'],'status'=>'witting'));
 			$product['projects_voting']=$this->project->count(array('in_product'=>$product['id'],'status'=>'voting'));
 		});
 		
-		$this->load->view('company/product', compact('products'));
+		$this->load->view('company/product', compact('products','pagination'));
 	}
 	
 	/**
@@ -156,13 +172,22 @@ class Company extends WT_Controller{
 			$args['status']=$status;
 		}
 		
+		$this->pagination->initialize(array(
+			'total_rows'=>$this->project->count($args),
+			'per_page'=>$this->config->user_item('list_per_page')
+		));
+		
+		$pagination=$this->pagination->create_links();
+		
+		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
+
 		$projects=$this->project->getList($args);
 		
 		array_walk($projects, function(&$project){
 			$project['product_name']=$this->product->fetch($project['product'],'name');
 		});
 		
-		$this->load->view('company/project', compact('projects'));
+		$this->load->view('company/project', compact('projects','pagination'));
 	}
 	
 	/**

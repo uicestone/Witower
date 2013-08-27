@@ -31,12 +31,16 @@
 				</ul>
 			</div>
 			<div class="main">
-				<button class="btn" type="button" onclick="location.href = '/<?=uri_segment(1)?>/addproject'">增加新项目</button>
+				<a class="btn" href="/<?=uri_segment(1)?>/addproject">增加新项目</a>
 				<table class="table table-bordered">
 					<thead>
-						<tr><td>项目名称</td>
-							<td style="width:50px">产品</td>
-							<td>图片</td><td style="width: 70px;">描述</td><td>时间</td><td>操作</td>
+						<tr>
+							<th>项目名称</th>
+							<th>产品</th>
+							<th>图片</th>
+							<th>描述</th>
+							<th>时间</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -55,6 +59,7 @@
 						<? } ?>
 					</tbody>
 				</table>
+				<?=$pagination?>
 			</div>
 		</div>
 	</div>

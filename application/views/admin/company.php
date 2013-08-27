@@ -17,7 +17,7 @@
 				<a class="btn" href="/<?=uri_segment(1)?>/addcompany">增加企业</a>
 				<table class="table table-bordered">
 					<thead>
-						<tr><td>名称</td><td>电子邮件</td><td width="96px">&nbsp;</td></tr>
+						<tr><th>名称</th><th>电子邮件</th><th width="96px">&nbsp;</th></tr>
 					</thead>
 					<tbody>
 						<? foreach ($companies as $company) { ?>								
@@ -32,6 +32,7 @@
 						<? } ?>
 					</tbody>
 				</table>
+				<?=$pagination?>
 			</div>
 		</div>
 	</div>
