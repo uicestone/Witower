@@ -7,4 +7,5 @@ $lang['witting']='进行中';
 $lang['buffering']='打分中';
 $lang['voting']='投票中';
 $lang['end']='已结束';
+$lang['invalid_score']='请在0-10之间评分';
 ?>

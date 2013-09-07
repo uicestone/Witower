@@ -53,6 +53,7 @@ $(function(){
 <?}?>
 		</div>
 		<div class="main" style="overflow:scroll">
+			<?$this->view('alert')?>
 <?foreach($versions as $version){?>
 			<div class="detail" style="width:48%;float:left;padding:1%;">
 				<div class="title">
@@ -67,7 +68,8 @@ $(function(){
 				</div>
 				<div class="score" style="margin-top: 10px; border-top: #888 dotted 1px;">
 					<form method="post" class="form form-inline" style="padding:5px;">
-						<input type="text" name="score[<?=$version['id']?>]" value="<?=$version[$score_field]?>" style="width:3em" />
+						<input type="text" name="score[<?=$version['id']?>]" value="<?=$version['score']?>" placeholder="评分" style="width:3em">
+						<input type="text" name="comment[<?=$version['id']?>]" value="<?=$version['comment']?>" placeholder="评语">
 						<button type="submit" class="btn">打分</button>
 					</form>
 				</div>

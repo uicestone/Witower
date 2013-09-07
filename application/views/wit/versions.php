@@ -46,7 +46,7 @@ $(function(){
 							<th>标题</th>
 							<th>作者</th>
 							<th>时间</th>
-<?if($this->user->isLogged('wit')){?>
+<?if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
 							<th>操作</th>
 <?}?>
 						</tr>
@@ -69,7 +69,7 @@ $(function(){
 							<td>
 								<?= date('Y-m-d H:i',$version['time']) ?>
 							</td>
-<?	if($this->user->isLogged(array('witower','wit'))){?>
+<?	if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
 							<td>
 <?		if($version['deleted']){?>
 								<a href="/wit/recoverversion/<?=$version['id']?>" class="btn btn-small">恢复</a>
@@ -80,7 +80,7 @@ $(function(){
 <?	}?>
 						</tr>
 						<tr class="summary version">
-							<td class="content" colspan="<?if($this->user->isLogged('wit')){?>5<?}else{?>4<?}?>">
+							<td class="content" colspan="<?if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>5<?}else{?>4<?}?>">
 								<?= $version['content'] ?>
 							</td>
 						</tr>

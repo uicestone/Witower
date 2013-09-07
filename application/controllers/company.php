@@ -420,23 +420,32 @@ class Company extends WT_Controller{
 	 * 版本比较
 	 */
 	function versionCompare(){
-		if($this->uri->segment(1)==='admin'){
-			$score_field='score_witower';
-		}else{
-			$score_field='score_company';
+		
+		try{
+			if($this->input->post('score')!==false){
+				$this->version->score($this->input->post('score'));
+			}
+		}catch(Exception $e){
+			$alert[]=array('message'=>lang($e->getMessage()));
 		}
 		
-		if($this->input->post('score')!==false){
-			$this->version->score($this->input->post('score'));
+		if($this->input->post('comment')!==false){
+			$this->version->comment($this->input->post('comment'));
 		}
 		
 		if($this->input->get('versions')!==false){
-			$versions=$this->version->getlist(array('id_in'=>$this->input->get('versions')));
+			$args=array('id_in'=>$this->input->get('versions'));
+			if($this->uri->segment(1)==='admin'){
+				$args['score']=$args['comment']='witower';
+			}else{
+				$args['score']=$args['comment']='company';
+			}
+			$versions=$this->version->getlist($args);
 			$wit=$this->wit->fetch($versions[0]['wit']);
 			$project=$this->project->fetch($wit['project']);
 		}
 		
-		$this->load->view('company/version_compare',compact('versions','wit','project','score_field'));
+		$this->load->view('company/version_compare',compact('versions','wit','project','alert'));
 	}
 }
 ?>

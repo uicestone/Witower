@@ -11,9 +11,11 @@ class Version_model extends WT_Model{
 			'content'=>'',//内容
 			'score_witower'=>0,//智塔打分
 			'score_company'=>0,//企业打分
-			'deleted'=>0,//隐藏（用于处理不良）
+			'comment_witower'=>'',//智塔评语
+			'comment_company'=>'',//企业评语
+			'deleted'=>false,//隐藏（用于处理不良）
 			'user'=>NULL,//用户
-			'time'=>$this->date->now,//时间
+			'time'=>time(),//时间
 		);
 	}
 
@@ -39,6 +41,8 @@ class Version_model extends WT_Model{
 	 *	in_product
 	 *	company
 	 *	deleted	false (default), null, true
+	 *	score witower,company
+	 *	comment witower,company
 	 * @return array
 	 */
 	function getList($args = array()) {
@@ -72,21 +76,47 @@ class Version_model extends WT_Model{
 			$this->db->where('version.deleted = TRUE');
 		}
 		
+		if(array_key_exists('score', $args)){
+			$this->db->select('score_'.$args['score'].' score');
+		}
+		
+		if(array_key_exists('comment', $args)){
+			$this->db->select('comment_'.$args['comment'].' comment');
+		}
+		
 		return parent::getList($args);
 	}
 	
 	/**
-	 * 给一组版本打分，并将版本作者列为候选人
+	 * 给一组版本打分
 	 * 将写入version表
 	 * @param array $version_score
 	 *	array(
 	 *		version_id => score
 	 *	)
+	 * @throws Exception 'invalid_score'
 	 */
 	function score($version_score){
 		foreach($version_score as $version_id => $score){
+			if($score>10 || $score<0){
+				throw new Exception('invalid_score');
+			}
 			$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
 			$this->update(array($score_field=>$score), $version_id);
+		}
+	}
+	
+	/**
+	 * 给一组版本写入评语（非评论）
+	 * @param array $version_comments
+	 *	array(
+	 *		version_id => comment_content
+	 *	)
+	 */
+	function comment($version_comments){
+		foreach($version_comments as $version_id => $comment){
+			$score_field=$this->user->isLogged('witower')?'comment_witower':'comment_company';
+			$this->update(array($score_field=>$comment), $version_id);
 		}
 	}
 	

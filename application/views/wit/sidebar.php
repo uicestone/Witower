@@ -39,13 +39,15 @@
 				<h3>版本操作</h3>
 			</div>
 			<div class="main">
+				<?$this->view('alert')?>
 				<form class="form form-inline" method="post">
 					<div class="control-group">
-						<input type="text" name="score[<?=$version['id']?>]" value="<?=$version[$score_field]?>" placeholder="打分" style="width:9em" />
+						<input type="text" name="score[<?=$version['id']?>]" value="<?=$version['score']?>" placeholder="打分" style="width:9em;" />
 						<button type="submit" class="btn">打分</button>
+						<textarea name="comment[<?=$version['id']?>]" placeholder="评语" style="width:94%;margin-top:0.5em;"><?=$version['comment']?></textarea>
 					</div>
 					<div class="control-group">
-						<a href="/wit/removeversion/<?=$version['id']?>" class="btn btn-danger">删除</a>
+						<a href="/wit/removeversion/<?=$version['id']?>" class="btn btn-danger" title="将当前版本标记为删除">删除</a>
 					</div>
 				</form>
 			</div>

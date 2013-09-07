@@ -60,4 +60,7 @@ ALTER TABLE  `project_tag` DROP FOREIGN KEY  `project_tag_ibfk_1` ,
 ADD FOREIGN KEY (  `project` ) REFERENCES  `witower`.`project` (
 `id`
 ) ON DELETE CASCADE ON UPDATE CASCADE ;
+
+ALTER TABLE  `version` ADD  `comment_witower` VARCHAR( 255 ) NOT NULL DEFAULT  '' AFTER  `score_company`;
+ALTER TABLE  `version` ADD  `comment_company` VARCHAR( 255 ) NOT NULL DEFAULT  '' AFTER  `comment_witower`;
 -- server upgraded

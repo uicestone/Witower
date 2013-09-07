@@ -10,8 +10,16 @@ class Wit extends WT_Controller{
 	function view($id){
 		$this->wit->id=$id;
 		
-		if($this->input->post('score')!==false){
-			$this->version->score($this->input->post('score'));
+		try{
+			if($this->input->post('score')!==false){
+				$this->version->score($this->input->post('score'));
+			}
+		}catch(Exception $e){
+			$alert[]=array('message'=>lang($e->getMessage()));
+		}
+		
+		if($this->input->post('comment')!==false){
+			$this->version->comment($this->input->post('comment'));
 		}
 		
 		$wit=$this->wit->fetch();
@@ -31,12 +39,13 @@ class Wit extends WT_Controller{
 			$version=$this->version->fetch($wit['latest_version']);
 		}
 		
+		$version['score']=$this->user->isLogged('witower')?$version['score_witower']:$version['score_company'];
+		$version['comment']=$this->user->isLogged('witower')?$version['comment_witower']:$version['comment_company'];
+		
 		$previous_version=$this->version->getPrevious($version['id']);
 		$next_version=$this->version->getNext($version['id']);
 		
-		$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
-		
-		$this->load->view('wit/view',compact('wit','witters','project','version','versions','previous_version','next_version','score_field'));
+		$this->load->view('wit/view',compact('wit','witters','project','version','versions','previous_version','next_version','alert'));
 	}
 	
 	/**
@@ -48,14 +57,14 @@ class Wit extends WT_Controller{
 		
 		$args=array('wit'=>$this->wit->id,'order_by'=>'id desc');
 		
-		if($this->user->isLogged('wit')){
+		$wit=$this->wit->fetch();
+		$project=$this->project->fetch($wit['project']);
+		
+		if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){
 			$args['deleted']=NULL;
 		}
 		
 		$versions=$this->version->getList($args);
-		
-		$wit=$this->wit->fetch();
-		$project=$this->project->fetch($wit['project']);
 		
 		foreach($versions as &$version){
 			$version['author_name']=$this->user->fetch($version['user'],'name');
