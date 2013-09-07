@@ -18,6 +18,11 @@ class Finance_model extends WT_Model{
 		if(empty($data['project'])){
 			$data['project']=NULL;
 		}
+		
+		if(!$data['amount']){
+			return;
+		}
+		
 		return parent::add($data);
 	}
 	

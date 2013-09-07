@@ -47,17 +47,19 @@
 			<div class="title"><h3>积分：<?=$this->finance->sum(array('user'=>$this->user->id,'item'=>'积分'))?></h3></div>
 		</div>
 		<div class="box">
+			<?$this->view('alert')?>
 			<form class="form form-horizontal" method="post">
 <?if($this->user->isCompany()){?>
 				<div class="control-group">
 					<input type="text" name="recharge" style="width:5em" placeholder="¥" />
 					<button type="submit" class="btn">申请充值</button>
 				</div>
-<?}?>				
+<?}else{?>				
 				<div class="control-group">
 					<input type="text" name="withdraw" style="width:5em" placeholder="¥" />
 					<button type="submit" class="btn">申请提现</button>
 				</div>
+<?}?>
 			</form>
 		</div>
 	</div>

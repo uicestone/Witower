@@ -47,7 +47,7 @@ $(function(){
 			<span class="divider">/</span>
 		</li>
 		<li>
-			<a href="/<?=uri_segment(1)?>/finance/<?=$finance['id']?>"><?if(isset($finance['id'])){?>查看帐目<?}else{?>添加帐目<?}?></a>
+			<?if(isset($finance['id'])){?><a href="/<?=uri_segment(1)?>/finance/<?=$finance['id']?>"></a>查看帐目<?}else{?>添加帐目<?}?>
 		</li>
 	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
@@ -103,7 +103,7 @@ $(function(){
 								<textarea rows="4" name="summary"><?=set_value('summary',$finance['summary'])?></textarea>
 							</div>
 						</div>
-<?if(!$finance['id']){?>
+<?if(empty($finance['id'])){?>
 						<div class="control-group">
 							<div class="controls">
 								<button class="btn btn-primary" type="submit" name="submit">保存</button>

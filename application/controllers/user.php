@@ -213,22 +213,41 @@ class User extends WT_Controller{
 	function finance(){
 		$this->load->model('finance_model','finance');
 		
-		if($this->input->post('recharge')){
-			$this->finance->add(array(
-				'amount'=>$this->input->post('recharge'),
-				'item'=>'申请充值'
-			));
-		}
+		$alert=array();
 		
-		if($this->input->post('withdraw')){
-			$this->finance->add(array(
-				'amount'=>$this->input->post('withdraw'),
-				'item'=>'申请提现'
-			));
+		try{
+			if($this->input->post('recharge')){
+				if($this->input->post('recharge')<=0){
+					throw new Exception('充值金额错误');
+				}
+
+				$this->finance->add(array(
+					'amount'=>$this->input->post('recharge'),
+					'item'=>'申请充值'
+				));
+			}
+
+			if($this->input->post('withdraw')){
+				if($this->input->post('withdraw')<=0){
+					throw new Exception('提现金额错误');
+				}
+
+				if($this->input->post('withdraw') > $this->finance->sum(array('user'=>$this->user->id,'item'=>'积分'))){
+					throw new Exception('积分余额不足');
+				}
+
+				$this->finance->add(array(
+					'amount'=>$this->input->post('withdraw'),
+					'item'=>'申请提现'
+				));
+			}
+		}catch(Exception $e){
+			$alert[]=array('message'=>$e->getMessage());
 		}
 		
 		$finance_records=$this->finance->getList(array('user'=>$this->user->id,'get_project_name'=>true,'order_by'=>'datetime desc'));
-		$this->load->view('user/finance',compact('finance_records'));
+		
+		$this->load->view('user/finance',compact('finance_records','alert'));
 	}
 	
 	/**
