@@ -125,7 +125,7 @@ class Wit extends WT_Controller{
 				}
 				
 				$wit['latest_version']=$this->version->add(array(
-					'num'=>$this->version->count(array('wit'=>$wit['id'],'deleted'=>NULL))+1,
+					'num'=>$this->version->count(array('wit'=>$this->wit->id,'deleted'=>NULL))+1,
 					'project'=>$project['id'],
 					'wit'=>$this->wit->id,
 					'name'=>$this->input->post('name'),
