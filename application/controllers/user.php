@@ -162,6 +162,11 @@ class User extends WT_Controller{
 	 * 用户首页
 	 */
 	function home(){
+		
+		if(is_null($this->user->id)){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
 		$user=$this->user->fetch();
 		
 		$status_type=$this->input->get('status_type')!==false?$this->input->get('status_type'):NULL;
