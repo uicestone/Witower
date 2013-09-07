@@ -35,25 +35,28 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>项目名称</th>
+							<th style="width:100px">名称</th>
 							<th>产品</th>
-							<th>图片</th>
 							<th>描述</th>
 							<th>时间</th>
-							<th style="width:3.5em">操作</th>
+							<th style="width:3.5em">创意</th>
 						</tr>
 					</thead>
 					<tbody>
 						<? foreach ($projects as $project) { ?>
 							<tr>
-								<td><a href="/project/<?= $project['id'] ?>"><?= $project['name'] ?></a></td>
-								<td><?= $project['product_name'] ?></td>
-								<td class="image"><?=$this->image('project',$project['id'],100)?></td>
-								<td class="descript"><?=str_getSummary($project['summary'],150)?></td>
+								<td>
+									<a href="/project/<?= $project['id'] ?>"><?= $project['name'] ?></a>
+									<?=$this->image('project',$project['id'],100)?>
+									<a href="/<?=uri_segment(1)?>/project/<?= $project['id'] ?>" class="btn btn-small" style="margin-top:5px;">修改</a><br>
+								</td>
+								<td>
+									<?= $project['product_name'] ?>
+								</td>
+								<td class="descript"><?=str_getSummary($project['summary'],250)?></td>
 								<td style="width: 100px"><?= $project['wit_start'] ?> - <?= $project['wit_end'] ?></td>
 								<td style="width: 48px;">
-									<a href="/<?=uri_segment(1)?>/project/<?= $project['id'] ?>" class="btn btn-small">修改</a><br>
-									<a href="/<?=uri_segment(1)?>/wit?project=<?=$project['id']?>" class="btn btn-small">创意</a><br>
+									<a href="/<?=uri_segment(1)?>/wit?project=<?=$project['id']?>">查看</a><br>
 								</td>
 							</tr>
 						<? } ?>
