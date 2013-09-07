@@ -208,8 +208,11 @@ class Company extends WT_Controller{
 			$this->form_validation->set_rules(array(
 				array('field'=>'name','label'=>'项目名称','rules'=>'required'),
 				array('field'=>'product','label'=>'所属产品','rules'=>'required'),
-				array('field'=>'bonus','label'=>'悬赏金额','rules'=>'required|numeric|greater_than[0]'),
 			));
+			
+			if(is_null($this->project->id)){
+				$this->form_validation->set_rules('bonus','悬赏金额','required|numeric|greater_than[0]');
+			}
 			
 			try{
 				
@@ -224,10 +227,16 @@ class Company extends WT_Controller{
 					'company'=>$this->user->id,
 					'wit_start'=>$this->input->post('wit_start'),
 					'wit_end'=>$this->input->post('wit_end'),
-					'vote_start'=>$this->input->post('vote_start'),
-					'vote_end'=>$this->input->post('vote_end'),
 					'bonus'=>$this->input->post('bonus')
 				);
+				
+				if($this->input->post('vote_start')){
+					$project['vote_start']=$this->input->post('vote_start');
+				}
+				
+				if($this->input->post('vote_end')){
+					$project['vote_end']=$this->input->post('vote_end');
+				}
 
 				$this->load->library('upload',array(
 					'upload_path'=>'./uploads/',
@@ -270,7 +279,7 @@ class Company extends WT_Controller{
 					$this->project->update($project);
 				}
 				
-				$tags=preg_split('/[\s|，|,]+/',$this->input->post('tags'));				
+				$tags=preg_split('/[\s|，|,]+/',$this->input->post('tags'));
 				$this->project->updateTags($tags);
 				
 				$this->load->library('image_lib',array(

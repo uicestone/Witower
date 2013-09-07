@@ -61,21 +61,21 @@
 								<span class="label label-important"><?=form_error('wit_end')?></span>
 							</div>
 						</div>
-<?if(uri_segment(1)==='admin'){?>
+
 						<div class="control-group">
 							<label class="control-label">投票评选</label>
 							<div class="controls">
-								<input type="text" name="vote_start" value="<?=set_value('vote_start',$project['vote_start'])?>">
-								<input type="text" name="vote_end" value="<?=set_value('vote_end',$project['vote_end'])?>">
+								<input type="text" name="vote_start" value="<?=set_value('vote_start',$project['vote_start'])?>"<?if(uri_segment(1)!=='admin'){?> disabled="disabled"<?}?>>
+								<input type="text" name="vote_end" value="<?=set_value('vote_end',$project['vote_end'])?>"<?if(uri_segment(1)!=='admin'){?> disabled="disabled"<?}?>>
 								<span class="label label-important"><?=form_error('vote_start')?></span>
 								<span class="label label-important"><?=form_error('vote_end')?></span>
 							</div>
 						</div>
-<?}?>
+
 						<div class="control-group">
 							<label class="control-label">悬赏金额</label>
 							<div class="controls">
-								<input type="text" name="bonus" value="<?=set_value('bonus',$project['bonus'])?>" placeholder="￥" title="保存后不能修改"<?if(isset($project['id'])){?> class="uneditable-input"<?}?>>
+								<input type="text" name="bonus" value="<?=set_value('bonus',$project['bonus'])?>" placeholder="￥" title="保存后不能修改"<?if(isset($project['id'])){?> disabled="disabled"<?}?>>
 								<span class="label label-important"><?=form_error('bonus')?></span>
 								<span class="label label-info" style="display:none">目前积分是 <?=$this->finance->sum(array('user'=>$project['company'],'item'=>'积分'))?> 元</span>
 							</div>

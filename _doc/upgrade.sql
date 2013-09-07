@@ -50,4 +50,14 @@ CREATE TABLE IF NOT EXISTS `finance` (
 ALTER TABLE `account`
   ADD CONSTRAINT `account_ibfk_2` FOREIGN KEY (`project`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `account_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+ALTER TABLE  `product_tag` DROP FOREIGN KEY  `product_tag_ibfk_1` ,
+ADD FOREIGN KEY (  `product` ) REFERENCES  `witower`.`product` (
+`id`
+) ON DELETE CASCADE ON UPDATE CASCADE ;
+
+ALTER TABLE  `project_tag` DROP FOREIGN KEY  `project_tag_ibfk_1` ,
+ADD FOREIGN KEY (  `project` ) REFERENCES  `witower`.`project` (
+`id`
+) ON DELETE CASCADE ON UPDATE CASCADE ;
 -- server upgraded
