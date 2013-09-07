@@ -15,27 +15,24 @@
 			<span class="divider">/</span>
 		</li>
 <?}?>
-<?if(isset($wit)){?>
-		<li>
-			<?=$wit['name']?>
-			<span class="divider">/</span>
-		</li>
-<?}?>
 		<li>
 			版本
+<?if(isset($wit)){?>
+			<?=$wit['name']?>
+<?}?>
 		</li>
 	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
 	<div id="right">
 		<div class="model">
-			<div class="title"><h3>创意版本</h3></div>
+			<div class="title"><h3>版本</h3></div>
 			<div class="main">
 				<form action="versioncompare">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th id="name">创意标题</th>
 								<th id="num" style="width:2em;">版本</th>
+								<th id="name">创意标题</th>
 <?if(!isset($project) && !isset($wit)){?>
 								<th id="project">项目</th>
 <?}?>
@@ -47,12 +44,14 @@
 						<tbody>
 							<? foreach ($versions as $version) { ?>
 								<tr>
+									<td id="num" style="text-align: center;">
+										<input type="checkbox" name="versions[]" value="<?=$version['id']?>">
+										<a href="/wit/<?=$version['wit']?>?version=<?=$version['num']?>" target="_blank"><?=$version['num']?>
+									</td>
 									<td id="name">
-										<input type="checkbox" name="versions[]" value="<?=$version['id']?>" />
 										<a href="/wit/<?=$version['wit']?>" target="_blank"><?=$version['wit_name']?></a>
 										<?if(!isset($wit)){?><a href="/<?=uri_segment(1)?>/version?wit=<?=$version['wit']?>"><span class="icon-filter pull-right"></span></a><?}?>
 									</td>
-									<td id="num" style="text-align: center;"><a href="/wit/<?=$version['wit']?>?version=<?=$version['num']?>" target="_blank"><?=$version['num']?></td>
 <?if(!isset($project) && !isset($wit)){?>
 									<td id="project">
 										<a href="/project/<?=$version['project']?>" target="_blank"><?=$version['project_name']?></a>

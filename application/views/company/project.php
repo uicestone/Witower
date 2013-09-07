@@ -40,7 +40,7 @@
 							<th>图片</th>
 							<th>描述</th>
 							<th>时间</th>
-							<th>操作</th>
+							<th style="width:3.5em">操作</th>
 						</tr>
 					</thead>
 					<tbody>
