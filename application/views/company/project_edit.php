@@ -55,8 +55,8 @@
 						<div class="control-group">
 							<label class="control-label">创意征集</label>
 							<div class="controls">
-								<input type="text" name="wit_start" value="<?=set_value('wit_start',$project['wit_start'])?>" title="保存后不能修改"<?if(isset($project['id']) && uri_segment(1)!=='admin'){?> class="uneditable-input"<?}?>>
-								<input type="text" name="wit_end" value="<?=set_value('wit_end',$project['wit_end'])?>" title="保存后不能修改"<?if(isset($project['id']) && uri_segment(1)!=='admin'){?> class="uneditable-input"<?}?>>
+								<input type="text" name="wit_start" value="<?=set_value('wit_start',$project['wit_start'])?>" title="项目开始后不能修改"<?if(isset($project['id']) && $project['status']!=='preparing' && uri_segment(1)!=='admin'){?> disabled="disabled"<?}?>>
+								<input type="text" name="wit_end" value="<?=set_value('wit_end',$project['wit_end'])?>" title="项目开始后不能修改"<?if(isset($project['id']) && $project['status']!=='preparing' && uri_segment(1)!=='admin'){?> disabled="disabled"<?}?>>
 								<span class="label label-important"><?=form_error('wit_start')?></span>
 								<span class="label label-important"><?=form_error('wit_end')?></span>
 							</div>
@@ -83,7 +83,7 @@
 						<div class="control-group">
 							<label class="control-label">关键词</label>
 							<div class="controls">
-								<input type="text" name="tags" value="<?=isset($tags)?implode(', ',$tags):''?>" />
+								<input type="text" name="tags" value="<?=set_value('tags',isset($tags)?implode(', ',$tags):'')?>" />
 							</div>
 						</div>
 						<div class="control-group">

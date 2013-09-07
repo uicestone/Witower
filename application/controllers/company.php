@@ -225,11 +225,17 @@ class Company extends WT_Controller{
 					'summary'=>$this->input->post('summary'),
 					'product'=>$this->input->post('product'),
 					'company'=>$this->user->id,
-					'wit_start'=>$this->input->post('wit_start'),
-					'wit_end'=>$this->input->post('wit_end'),
 					'bonus'=>$this->input->post('bonus')
 				);
 				
+				if($this->input->post('wit_start')){
+					$project['wit_start']=$this->input->post('wit_start');
+				}
+				
+				if($this->input->post('wit_end')){
+					$project['wit_end']=$this->input->post('wit_end');
+				}
+
 				if($this->input->post('vote_start')){
 					$project['vote_start']=$this->input->post('vote_start');
 				}
