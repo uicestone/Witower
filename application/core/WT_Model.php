@@ -212,7 +212,7 @@ class WT_Model extends CI_Model{
 		
 		$tag_ids=array_sub($this->db->select('id')->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
 		
-		$this->db->where_in($this->table,$tag_ids)->delete("{$this->table}_tag");
+		$this->db->where_in('tag',$tag_ids)->delete("{$this->table}_tag");
 		
 		return $this->db->affected_rows();
 	}
