@@ -22,6 +22,7 @@ class Project_model extends WT_Model{
 	function fetch($id=NULL){
 		$project=parent::fetch($id);
 		$project['company_name']=$this->user->fetch($project['company'],'name');
+		$project['status']=$this->getStatus($project);
 		return $project;
 	}
 	
@@ -57,6 +58,7 @@ class Project_model extends WT_Model{
 			}
 		}
 		
+		//TODO 改所有此类isset为array_key_exists()
 		if(isset($args['in_product'])){
 			$this->db->where('project.product',$args['in_product']);
 		}
@@ -70,7 +72,16 @@ class Project_model extends WT_Model{
 			$this->db->where('project.company',$args['company']);
 		}
 		
-		return parent::getList($args);
+		$project_list = parent::getList($args);
+		
+		//判断是否数组，因为可能指定了count_all_results参数，返回的是整数
+		if(is_array($project_list)){
+			foreach($project_list as &$project){
+				$project['status']=$this->getStatus($project);
+			}
+		}
+		
+		return $project_list;
 	}
 	
 	/**
@@ -265,6 +276,11 @@ class Project_model extends WT_Model{
 		return $bonus;
 	}
 	
+	/**
+	 * 获得一个项目的状态字符串
+	 * @param int or array $project 项目id或项目数据，前者将先执行一次fetch
+	 * @return string: preparing, witting, buffering, voting, end
+	 */
 	function getStatus($project=NULL){
 		is_null($project) && $project=$this->id;
 		if(!is_array($project)){

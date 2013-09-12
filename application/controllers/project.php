@@ -66,7 +66,6 @@ class Project extends WT_Controller{
 		$project['comments']=$this->project->getComments();
 		$project['comments_count']=count($project['comments']);
 		$project['versions']=$this->version->count(array('in_project'=>$this->project->id));
-		$project['status']=$this->project->getStatus($project);
 		$product=$this->product->fetch($project['product']);
 		$company=$this->company->fetch($project['company']);
 		

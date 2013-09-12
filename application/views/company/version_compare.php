@@ -44,7 +44,7 @@ $(function(){
 	<div class="model model-b">
 		<div class="title">
 			<h3>版本比较 <?if(isset($wit)){?><?=$wit['name']?><?}?></h3>
-<?if($this->project->getStatus($project['id'])==='buffering'){?>
+<?if($project['status']==='buffering'){?>
 <?	if($wit['selected']){?>
 			<a href="/wit/unselect/<?=$wit['id']?>" class="btn btn-small" style="margin-left:1em">取消选中此创意</a>
 <?	}else{?>

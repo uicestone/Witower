@@ -25,7 +25,6 @@ class Wit extends WT_Controller{
 		$wit=$this->wit->fetch();
 		$witters=$this->user->getList(array('in_wit'=>$this->wit->id));
 		$project=$this->project->fetch($wit['project']);
-		$project['status']=$this->project->getStatus($project['id']);
 		$versions=$this->version->count(array('wit'=>$this->wit->id));
 		
 		if($this->input->get('version')){
@@ -163,7 +162,6 @@ class Wit extends WT_Controller{
 			$project=$this->project->fetch($wit['project']);
 			
 			$witters=$this->user->getList(array('in_wit'=>$this->wit->id));
-			$project['status']=$this->project->getStatus($project['id']);
 			$versions=$this->version->count(array('wit'=>$this->wit->id));
 			$version=$this->version->fetch($wit['latest_version']);
 			$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';

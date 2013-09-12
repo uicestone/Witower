@@ -22,7 +22,7 @@ class WT_Model extends CI_Model{
 		
 		$id=intval($id);
 		
-		$row=$this->db->from($this->table)->where($this->table.'.id',$id)->get()->row_array();
+		$row=$this->db->select($this->table.'.*')->from($this->table)->where($this->table.'.id',$id)->get()->row_array();
 		
 		if(!$row){
 			show_error('"'.$this->table.' '.$id.'" item not found');

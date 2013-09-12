@@ -289,7 +289,7 @@ class Company extends WT_Controller{
 					$this->project->update($project);
 				}
 				
-				$tags=preg_split('/[\s|，|,]+/',$this->input->post('tags'));
+				$tags=preg_split('/[\s|,]+/',$this->input->post('tags'));
 				$this->project->updateTags($tags);
 				
 				$this->load->library('image_lib',array(
@@ -334,7 +334,6 @@ class Company extends WT_Controller{
 		}
 		else{
 			$project=$this->project->fetch();
-			$project['status']=$this->project->getStatus();
 			
 			if($this->uri->segment(1)==='company' && $project['company']!=$this->user->id){
 				show_error('no permission to project'.$this->project->id);

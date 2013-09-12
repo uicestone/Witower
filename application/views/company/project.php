@@ -48,6 +48,7 @@
 								<td>
 									<a href="/project/<?= $project['id'] ?>"><?= $project['name'] ?></a>
 									<?=$this->image('project',$project['id'],100)?>
+									<span class="label"><?=lang($project['status'])?></span>
 									<a href="/<?=uri_segment(1)?>/project/<?= $project['id'] ?>" class="btn btn-small" style="margin-top:5px;">修改</a><br>
 								</td>
 								<td>

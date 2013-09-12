@@ -65,7 +65,6 @@ class Vote extends WT_Controller{
 		$project=$this->project->fetch();
 		
 		$project['tags']=$this->project->getTags();
-		$project['status']=$this->project->getStatus($project);
 		
 		$product=$this->product->fetch($project['product']);
 		$company=$this->company->fetch($product['company']);
