@@ -63,4 +63,14 @@ ADD FOREIGN KEY (  `project` ) REFERENCES  `witower`.`project` (
 
 ALTER TABLE  `version` ADD  `comment_witower` VARCHAR( 255 ) NOT NULL DEFAULT  '' AFTER  `score_company`;
 ALTER TABLE  `version` ADD  `comment_company` VARCHAR( 255 ) NOT NULL DEFAULT  '' AFTER  `comment_witower`;
+
+ALTER TABLE  `tag` ADD UNIQUE (
+`name`
+);
+
+ALTER TABLE  `witower`.`product_tag` DROP INDEX  `product` ,
+ADD UNIQUE  `product-tag` (  `product` , `tag` );
+
+ALTER TABLE  `witower`.`project_tag` DROP INDEX  `project` ,
+ADD UNIQUE  `project-tag` (  `project` ,  `tag` );
 -- server upgraded

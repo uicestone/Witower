@@ -43,6 +43,12 @@
 							</div>
 						</div>
 						<div class="control-group">
+							<label class="control-label">关键词</label>
+							<div class="controls">
+								<input type="text" name="tags" value="<?=set_value('tags',isset($tags)?implode(', ',$tags):'')?>" />
+							</div>
+						</div>
+						<div class="control-group">
 							<div class="controls">
 								<button class="btn btn-primary" type="submit" name="submit">保存</button>
 							</div>

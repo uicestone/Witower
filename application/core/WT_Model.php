@@ -177,10 +177,12 @@ class WT_Model extends CI_Model{
 		return $this->getList($args+array('count_all_results'=>true));
 	}
 	
-	function getTags($id){
+	function getTags($id=NULL){
+		is_null($id) && $id=$this->id;
+		
 		$this->db->select('tag.name')
 			->from("{$this->table}_tag")
-			->join('tag',"tag.id = {$this->table}_tag.{$this->table}",'inner')
+			->join('tag',"tag.id = {$this->table}_tag.tag",'inner')
 			->where("{$this->table}_tag.{$this->table}",$id);
 		
 		return array_sub($this->db->get()->result_array(),'name');
@@ -192,9 +194,12 @@ class WT_Model extends CI_Model{
 		$insert=array_diff($tags,array_sub($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'name'));
 		$set=array();
 		foreach($insert as $tag_name){
+			if(!$tag_name){
+				continue;
+			}
 			$set[]=array('name'=>$tag_name);
 		}
-		$this->db->insert_batch('tag', $set);
+		$set && $this->db->insert_batch('tag', $set);
 		
 		$tag_ids=array_sub($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
 		
@@ -202,7 +207,7 @@ class WT_Model extends CI_Model{
 		foreach($tag_ids as $tag_id){
 			$set[]=array($this->table=>$id,'tag'=>$tag_id);
 		}
-		$this->db->insert_batch("{$this->table}_tag",$set);
+		$set && $this->db->insert_batch("{$this->table}_tag",$set);
 		
 		return $this->db->affected_rows();
 	}
@@ -212,7 +217,7 @@ class WT_Model extends CI_Model{
 		
 		$tag_ids=array_sub($this->db->select('id')->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
 		
-		$this->db->where_in('tag',$tag_ids)->delete("{$this->table}_tag");
+		$tags && $this->db->where_in('tag',$tag_ids)->delete("{$this->table}_tag");
 		
 		return $this->db->affected_rows();
 	}
@@ -225,8 +230,8 @@ class WT_Model extends CI_Model{
 		$insert=array_diff($tags,$current);
 		$delete=array_diff($current,$tags);
 		
-		$insert && $this->addTags($insert, $id);
-		$delete && $this->removeTags($delete, $id);
+		$this->addTags($insert, $id);
+		$this->removeTags($delete, $id);
 	}
 
 	function pagination($db_active_record, $is_group_query=false, $field_for_distinct_count=NULL){

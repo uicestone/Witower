@@ -108,6 +108,9 @@ class Company extends WT_Controller{
 					$this->product->update($data);
 				}
 
+				$tags=preg_split('/[\s|,]+/',$this->input->post('tags'));
+				$this->product->updateTags($tags);
+				
 				$this->load->library('image_lib',array(
 					'source_image'=>$upload_data['full_path'],
 					'maintain_ratio'=>true,
@@ -152,9 +155,10 @@ class Company extends WT_Controller{
 			if($this->uri->segment(1)==='company' && $product['company']!=$this->user->id){
 				show_error('no permission to product'.$this->product->id);
 			}
+			$tags=$this->product->getTags();
 		}
 		
-		$this->load->view('company/product_edit', compact('product','alert'));
+		$this->load->view('company/product_edit', compact('product','alert','tags'));
 	}
 	
 	/**
