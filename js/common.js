@@ -19,6 +19,21 @@ $(function() {
 			$(this).siblings('.label-info').fadeOut(500)
 		});
 
+	$('.datepicker:enabled:not([readonly])').each(function(){
+		
+		var options = {
+			language:'zh-CN',
+			autoclose:true
+		};
+		
+		if(!$(this).data('date-range-unlimited')){
+			options.startDate = $(this).data('startdate');
+			options.endDate = $(this).data('enddate');
+		}
+		
+		$(this).datepicker(options);
+	});
+
 	var Request = {};
 	Request.r1 = 'user/getstatuscomments/';
 	Request.flags = '/vote-vote-1-';

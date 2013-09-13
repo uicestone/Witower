@@ -55,7 +55,11 @@
 									<?= $project['product_name'] ?>
 								</td>
 								<td class="descript"><?=str_getSummary($project['summary'],250)?></td>
-								<td style="width: 100px"><?= $project['wit_start'] ?> - <?= $project['wit_end'] ?></td>
+								<td style="width: 100px">
+									<?= $project['wit_start'] ?> - <?= $project['wit_end'] ?>
+									<hr>
+									<?= $project['vote_start'] ?> - <?= $project['vote_end'] ?>
+								</td>
 								<td style="width: 48px;">
 									<a href="/<?=uri_segment(1)?>/wit?project=<?=$project['id']?>">查看</a><br>
 								</td>
