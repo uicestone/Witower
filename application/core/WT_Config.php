@@ -53,11 +53,10 @@ class WT_Config extends CI_Config{
 	 * @param $item
 	 * @param $value
 	 * @param $session 是否在session中改变设置
-	 * @param $level 配置项的作用范围method,  global
 	 * @param $override 当配置已存在时是否覆盖
 	 */
 	function set_user_item($item,$value,$session=true,$override=true){
-		if($session){
+		if($session===true){
 			if($override || !array_key_exists($item, $this->session)){
 				$this->session[$item]=$value;
 
@@ -67,7 +66,10 @@ class WT_Config extends CI_Config{
 				$CI->session->set_userdata('config/'.$item,$value);
 			}
 		}
-		else{
+		elseif($session==='db'){
+				$CI=&get_instance();
+				$CI->db->update('config',array('value'=>$value),array('item'=>$item));
+		}else{
 			if($override || !array_key_exists($item, $this->user)){
 				$this->user[$item]=$value;
 			}

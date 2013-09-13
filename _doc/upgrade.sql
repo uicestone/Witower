@@ -75,4 +75,9 @@ ALTER TABLE  `witower`.`project_tag` DROP INDEX  `project` ,
 ADD UNIQUE  `project-tag` (  `project` ,  `tag` );
 
 ALTER TABLE  `tag` ADD  `hits` INT NOT NULL DEFAULT  '0';
+
+UPDATE  `witower`.`user` SET  `group` =  'witower config finance company user product project wit' WHERE  `user`.`id` =1;
+
+ALTER TABLE  `witower`.`config` DROP INDEX  `item` ,
+ADD UNIQUE  `item` (  `item` );
 -- server upgraded

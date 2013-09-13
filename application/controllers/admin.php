@@ -20,6 +20,28 @@ class Admin extends WT_Controller{
 		$this->load->view('admin/index');
 	}
 	
+	function config(){
+		if(!$this->user->isLogged('config')){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
+		$this->load->view('admin/config',array('config_items'=>$this->config->witower));
+	}
+	
+	function editConfig($item){
+		if(!$this->user->isLogged('config')){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
+		if($this->input->post('submit')!==false){
+			$this->config->set_user_item($item, $this->input->post('value'), 'db');
+			redirect($this->uri->segment(1).'/config');
+		}
+		
+		$value=$this->config->user_item($item);
+		$this->load->view('admin/config_edit',compact('item','value'));
+	}
+	
 	function finance(){
 		if(!$this->user->isLogged('finance')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));

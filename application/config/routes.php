@@ -67,6 +67,7 @@ $route['admin/adduser'] = 'admin/edituser';
 $route['admin/addproduct'] = 'company/editproduct';
 $route['admin/addproject'] = 'company/editproject';
 
+$route['admin/config/(:any)'] = 'admin/editconfig/$1';
 $route['admin/finance/(:num)'] = 'admin/editfinance/$1';
 $route['admin/company/(:num)'] = 'admin/editcompany/$1';
 $route['admin/user/(:num)'] = 'admin/edituser/$1';
