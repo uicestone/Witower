@@ -127,7 +127,7 @@ class Wit extends WT_Controller{
 					'time'=>$this->date->now
 				),$wit['latest_version']);
 			}else{
-				$versions=$this->version->getList(array('wit'=>$this->wit->id));
+				$versions=$this->version->getList(array('in_project'=>$wit['project']));
 				if(!in_array($this->user->id,array_sub($versions,'user'))){
 					$this->project->addCount('witters',$project['id']);
 				}
