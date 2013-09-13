@@ -152,7 +152,7 @@ paginator  ******/
 .model-b .descript .fn-right p a{white-space: nowrap;}
 .model-b .descript .button .fn-right,.model-b .descript .button .fn-left {width:auto;}
 .model-b .detail {overflow: hidden;margin: 0 0 10px;}
-.model-b .detail .title{background: #fff;text-indent: 10px;font-size: 16px;border:1px solid #ddd;}
+.model-b .detail .title{background: #fff;font-size: 16px;border:1px solid #ddd;}
 .model-b .detail .title .right a{float: right;margin: 0 10px 0 0;font-size: 10px;font-family: "microsoft yahei";}
 .model-b .detail .author{font-size: 1.1em; text-align: right;padding-right: 10px;background: #EEE; height:1.5em; line-height: 1.5; border-bottom:1px solid #DDD;}
 .model-b .detail .main{margin: 10px 0;overflow: hidden;}

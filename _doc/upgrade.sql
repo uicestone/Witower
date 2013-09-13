@@ -73,4 +73,6 @@ ADD UNIQUE  `product-tag` (  `product` , `tag` );
 
 ALTER TABLE  `witower`.`project_tag` DROP INDEX  `project` ,
 ADD UNIQUE  `project-tag` (  `project` ,  `tag` );
+
+ALTER TABLE  `tag` ADD  `hits` INT NOT NULL DEFAULT  '0';
 -- server upgraded

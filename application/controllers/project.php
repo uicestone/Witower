@@ -16,6 +16,8 @@ class Project extends WT_Controller{
 	 */
 	function index(){
 		
+		$this->load->model('tag_model','tag');
+		
 		$recommended_project=$this->project->fetch($this->config->user_item('recommended_project'));
 		$recommended_project['tags']=$this->project->getTags($recommended_project['id']);
 		$recommended_project['comments']=$this->project->getComments($recommended_project['id']);
@@ -23,9 +25,8 @@ class Project extends WT_Controller{
 		$active_projects=$this->project->count(array('status'=>'witting'));
 		$witters=$this->project->sum('witters',array('status'=>'witting'));
 		
-		//TODO 热门标签
-		$hot_tags=array('设计','包装','LOGO平面','网站','UI','广告','制作');
-		
+		$hot_tags = array_sub($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
+
 		$money = array('100-1000','1000-5000','5000,10000','10000-15000');
 		
 		$date = array('今日发布','昨日发布','三日内发布','48小时内发布','24小时内发布');
@@ -58,6 +59,7 @@ class Project extends WT_Controller{
 		$this->load->model('product_model','product');
 		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
+		$this->load->model('tag_model','tag');
 		
 		$this->project->id=$id;
 		
@@ -79,17 +81,11 @@ class Project extends WT_Controller{
 		
 		$witters_count=count($witters);
 		
-		$hot_tags=array('设计','包装','Logo平面','网站');
+		$hot_tags = array_sub($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
+
+		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		
-		$recommended_projects=array(
-			array('id'=>1,'name'=>'Sony PSV'),
-			array('id'=>2,'name'=>'可口可乐广告'),
-		);
-		
-		$recommended_votes=array(
-			array('id'=>1,'name'=>'Sony PSV'),
-			array('id'=>2,'name'=>'可口可乐广告'),
-		);
+		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
 		
 		$this->load->view('project/view',  compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes','product','company'));
 	}

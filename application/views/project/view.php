@@ -70,7 +70,7 @@
 						<h3><a href="/wit/<?=$wit['id']?>"><?= $wit['name'] ?></a><?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?></h3>
 						<span class="right">
 							<a href="/wit/versions/<?=$wit['id']?>" target="_blank">版本</a>
-							<?if($project['status']==='witting'){?><a href="/wit/edit/<?=$wit['id']?>" class="edit">编辑</a><?}?>
+							<?if($project['status']==='witting'){?><a href="/wit/edit/<?=$wit['id']?>" class="btn btn-small btn-primary" style="margin-top: 2px;">编辑</a><?}?>
 						</span>
 					</div>
 					<div class="main">
@@ -127,7 +127,7 @@
 
 		<div class="box">
 			<div class="title">
-				<h3>热门的标签</h3><a href="#" class="more">more</a>
+				<h3>热门的标签</h3>
 			</div>
 			<div class="main tags-cloud">
 				<?foreach($hot_tags as $project){?>
@@ -138,7 +138,7 @@
 
 		<div class="box">
 			<div class="title">
-				<h3>推荐活动</h3><a href="#" class="more">more</a>
+				<h3>推荐活动</h3><a href="/project" target="_blank" class="more">more</a>
 			</div>
 			<div class="main">
 				<ul>
@@ -151,7 +151,7 @@
 
 		<div class="box">
 			<div class="title">
-				<h3>投票进行时</h3><a href="#" class="more">more</a>
+				<h3>投票进行时</h3><a href="/vote" target="_blank" class="more">more</a>
 			</div>
 			<div class="main">
 				<ul>

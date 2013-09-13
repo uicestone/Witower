@@ -45,6 +45,7 @@
 * @property Finance_model $finance
 * @property Product_model $product
 * @property Project_model $project
+* @property Tag_model $tag
 * @property User_model $user
 * @property Version_model $version
 * @property Wit_model $wit

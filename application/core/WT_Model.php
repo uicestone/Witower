@@ -203,6 +203,8 @@ class WT_Model extends CI_Model{
 		
 		$tag_ids=array_sub($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
 		
+		$this->db->where_in('id',$tag_ids)->set('hits', '`hits` + 1', false)->update('tag');
+		
 		$set=array();
 		foreach($tag_ids as $tag_id){
 			$set[]=array($this->table=>$id,'tag'=>$tag_id);
@@ -216,6 +218,8 @@ class WT_Model extends CI_Model{
 		is_null($id) && $id=$this->id;
 		
 		$tag_ids=array_sub($this->db->select('id')->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
+		
+		$this->db->where_in('id',$tag_ids)->set('hits', '`hits` - 1', false)->update('tag');
 		
 		$tags && $this->db->where_in('tag',$tag_ids)->delete("{$this->table}_tag");
 		
