@@ -11,7 +11,7 @@ class Index extends WT_Controller{
 		
 		$this->load->model('project_model','project');
 		
-		$projects=$this->project->getList();
+		$projects=$this->project->getList(array('order_by'=>'id desc'));
 		
 		foreach($projects as &$project){
 			$project['tags']=$this->project->getTags($project['id']);

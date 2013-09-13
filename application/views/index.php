@@ -15,22 +15,23 @@
 <?foreach($projects as $project){?>
 		<div class="box" style="display: none;">
 			<div class="img cell">
-				<a href="/project/<?= $project['id'] ?>">
+				<a href="/<?=in_array($project['status'],array('preparing','witting'))?'project':'vote'?>/<?= $project['id'] ?>">
 					<?=$this->image('project',$project['id'],200)?>
 				</a>
 				<p><?= $project['name'] ?></p>
 			</div>
 			<div class="details cell">
-				项目金额 ：<span class="price"><?= $project['bonus'] ?>元</span><br>
-				截止日期 ： <?=$project['wit_end']?><br>
+				项目状态：<?=lang($project['status'])?><br>
+				项目金额：<span class="price"><?= $project['bonus'] ?>元</span><br>
+				截止日期： <?=in_array($project['status'],array('preparing','witting'))?$project['wit_end']:$project['vote_end']?><br>
 				标签：
 				<? foreach ($project['tags'] as $tag) { ?>
 					<a class="f3" href="#"><?= $tag ?></a>
 				<? } ?>
 				<ul>
-					<a href="/project/<?= $project['id'] ?>"><li title="参与"><span class="icon-user"></span>(<?= $project['witters'] ?>)</li></a>
-					<a href="/project/<?= $project['id'] ?>"><li title="讨论"><span class="icon-comment"></span>(<?= $project['comments_count'] ?>)</li></a>
-					<a href="/project/<?= $project['id'] ?>"><li title="收藏"><span class="icon-heart"></span>(<?= $project['favorites'] ?>)</li></a>
+					<a href="/<?=in_array($project['status'],array('preparing','witting'))?'project':'vote'?>/<?= $project['id'] ?>"><li title="参与"><span class="icon-user"></span>(<?= $project['witters'] ?>)</li></a>
+					<a href="/<?=in_array($project['status'],array('preparing','witting'))?'project':'vote'?>/<?= $project['id'] ?>"><li title="讨论"><span class="icon-comment"></span>(<?= $project['comments_count'] ?>)</li></a>
+					<a href="/<?=in_array($project['status'],array('preparing','witting'))?'project':'vote'?>/<?= $project['id'] ?>"><li title="收藏"><span class="icon-heart"></span>(<?= $project['favorites'] ?>)</li></a>
 				</ul>
 			</div>
 			<div class="users cell">
