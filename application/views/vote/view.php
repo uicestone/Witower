@@ -142,35 +142,40 @@
 
 		<div class="box">
 			<div class="title">
-				<h3>热门的标签</h3><a href="#" class="more">more</a>
+				<h3>热门的标签</h3>
 			</div>
 			<div class="main tags-cloud">
-				<a href="#" ><?//TODO?></a>
+				<?foreach($hot_tags as $tag){?>
+				<a href="/project?tag=<?=$tag?>" ><?= $tag ?></a>
+				<?}?>
 			</div>
 		</div>
 
 		<div class="box">
 			<div class="title">
-				<h3>推荐活动</h3><a href="#" class="more">more</a>
+				<h3>推荐活动</h3><a href="/project" target="_blank" class="more">more</a>
 			</div>
 			<div class="main">
 				<ul>
-					<li> <a href="/project/<?//TODO?>"><?//?></a></li>
+					<? foreach ($recommended_projects as $project){?>
+					<li> <a href="/project/<?= $project['id']?>"><?= $project['name']?></a></li>
+					<?}?>
 				</ul>
 			</div>
 		</div>
 
 		<div class="box">
 			<div class="title">
-				<h3>投票进行时</h3><a href="#" class="more">more</a>
+				<h3>投票进行时</h3><a href="/vote" target="_blank" class="more">more</a>
 			</div>
 			<div class="main">
 				<ul>
-					<li> <a href="/vote/<?//?>"><?//?></a></li>
+					<?foreach($recommended_votes as  $project){?>
+						<li> <a href="/vote/<?=$project['id']?>"><?=$project['name']?></a></li>
+					<?}?>
 				</ul>
 			</div>
 		</div>
-
 	</div>
 </div>
 

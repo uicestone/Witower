@@ -49,6 +49,7 @@ class Vote extends WT_Controller{
 	function view($id){
 		
 		$this->load->model('version_model','version');
+		$this->load->model('tag_model','tag');
 		
 		$this->project->id=$id;
 		
@@ -70,18 +71,17 @@ class Vote extends WT_Controller{
 		$company=$this->company->fetch($product['company']);
 		
 		$comments=$this->project->getComments();
-		
 		$versions=$this->version->count(array('in_project'=>$this->project->id));
-		
 		$candidates=$this->project->getCandidates();
-		
 		$voters=$this->user->getList(array('voted_project'=>$this->project->id));
-		
 		$sum_votes=$this->project->countVotes();
-		
 		$voted=$this->project->hasUserVoted();
 		
-		$this->load->view('vote/view', compact('project','versions','comments','candidates','sum_votes','voters','voted','company','product'));
+		$hot_tags = array_sub($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
+		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
+		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
+
+		$this->load->view('vote/view', compact('project','versions','comments','candidates','sum_votes','voters','voted','company','product','hot_tags','recommended_projects','recommended_votes'));
 	}
 	
 }
