@@ -88,7 +88,33 @@ class User extends WT_Controller{
 	function profile(){
 		
 		if($this->input->post('submit')!==false){
+			
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules(array());
+			
 			try{
+				
+				if($this->input->post('password_new')!==false){
+					
+					$this->form_validation->set_rules(array(
+						array('field'=>'password','label'=>'密码','rules'=>'required'),
+						array('field'=>'password_new','label'=>'新密码','rules'=>'required'),
+						array('field'=>'password_new_confirm','label'=>'重复密码','rules'=>'required|matches[password_new]')
+					))
+						->set_message('matches','两次%s输入不一致');
+
+					if(!$this->user->verify($this->user->name, $this->input->post('password'))){
+						$this->form_validation->_field_data['password']['error']='原密码错误';
+					}
+					
+					if(!$this->form_validation->run()){
+						throw new Exception();
+					}
+					
+					$this->user->update(array('password'=>$this->input->post('password_new')),$this->user->id);
+					$alert[]=array('title'=>'提示','message'=>'密码已修改','type'=>'info');
+
+				}
 				
 				is_array($this->input->post('user')) && $this->user->update($this->input->post('user'));
 				
@@ -99,7 +125,7 @@ class User extends WT_Controller{
 					'allowed_types'=>'jpg'
 				));
 				
-				if(!$_FILES['avatar']['error']){
+				if(isset($_FILES['avatar']) && !$_FILES['avatar']['error']){
 					if(!$this->upload->do_upload('avatar')){
 						throw new Exception($this->upload->display_errors());
 					}
@@ -148,6 +174,7 @@ class User extends WT_Controller{
 				}
 				
 			}catch(Exception $e){
+				$e->getMessage() && $alert[]=array('message'=>$e->getMessage());
 			}
 		}
 		
@@ -155,7 +182,7 @@ class User extends WT_Controller{
 		
 		$profiles=$this->user->getProfiles();
 		
-		$this->load->view('user/profile', compact('user','profiles'));
+		$this->load->view('user/profile', compact('user','profiles','alert'));
 	}
 	
 	/**

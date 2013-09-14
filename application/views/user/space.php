@@ -20,7 +20,7 @@
 				<div class="main">
 					<textarea name="content" rows="4" cols=""></textarea>
 					<div class="buttons">
-						<div class="fn-right">
+						<div style="text-align: right;">
 							<button type="submit" value="1" class="btn btn-primary">发表</button>
 						</div>
 					</div>

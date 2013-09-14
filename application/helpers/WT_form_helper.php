@@ -60,4 +60,40 @@ function checkbox($label,$name,$check_value,$value=NULL,$attribute=''){
 		$value=$label;
 	}
 	return "<label><input name=\"$name\" type=\"checkbox\" value=\"$value\" ".($check_value==$value?'checked="checked"':'').' '.$attribute." />$label</label>";
-}?>
+}
+
+/**
+ * Form Value
+ *
+ * Grabs a value from the POST array for the specified field so you can
+ * re-populate an input field or textarea.  If Form Validation
+ * is active it retrieves the info from the validation class
+ *
+ * @access	public
+ * @param	string
+ * @return	mixed
+ */
+if ( ! function_exists('set_value'))
+{
+	function set_value($field = '', &$default = '')
+	{
+		
+		!isset($default) && $default='';
+		
+		if (FALSE === ($OBJ =& _get_validation_object()) 
+				// uicestone 2013/7/18 启用 form_validation类，但未对表单所有字段验证时，表单其他字段也可根据$_POST直接set_value
+				|| !array_key_exists($field,$OBJ->_field_data)
+			)
+		{
+			if ( ! isset($_POST[$field]))
+			{
+				return $default;
+			}
+
+			return form_prep($_POST[$field], $field);
+		}
+
+		return form_prep($OBJ->set_value($field, $default), $field);
+	}
+}
+?>

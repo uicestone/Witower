@@ -142,7 +142,7 @@ paginator  ******/
 .model-b{margin: 0 0 20px 0;}
 .model-b > .main{padding: 10px;}
 .model-b > .title{color: #666;}
-.model-b p{color: #333;}
+/*.model-b p{color: #333;}*/
 .model-b ul li{margin: 0 0 10px 0;}
 .model-b ul li b{color: #333;}
 .model-b .info img{float: left; margin-right: 20px;}
@@ -361,6 +361,7 @@ page-home  ******/
 .page-home .model-uploadPhoto .fn-right{border: none;background: none;}
 .page-home ul.buttons{margin-left: 123px;}
 .page-home ul.buttons .btn-c{margin-right: 10px;}
+.page-home .nav-tabs>.active>a{background: none; border: none; font-weight: bold;}
 
 /*goToTop*/
 #goToTop{position: fixed;bottom:20px;left:50%;margin-left:500px; }

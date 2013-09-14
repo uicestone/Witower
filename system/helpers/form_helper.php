@@ -674,10 +674,7 @@ if ( ! function_exists('set_value'))
 {
 	function set_value($field = '', $default = '')
 	{
-		if (FALSE === ($OBJ =& _get_validation_object()) 
-				// uicestone 2013/7/18 启用 form_validation类，但未对表单所有字段验证时，表单其他字段也可根据$_POST直接set_value
-				|| !array_key_exists($field,$OBJ->_field_data)
-			)
+		if (FALSE === ($OBJ =& _get_validation_object()))
 		{
 			if ( ! isset($_POST[$field]))
 			{
