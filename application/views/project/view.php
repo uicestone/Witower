@@ -42,17 +42,23 @@
 
 							</div>
 							<div class="fn-right">
+<?if($this->user->id==$project['company']){?>
+								<a href="/company/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
+<?}elseif($this->user->isLogged(array('witower','project'))){?>
+								<a href="/admin/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
+<?}else{?>
 								<a class="btn btn-primary"
-<?if(in_array($this->user->id,array_sub($wits,'user'))){?>
+<?	if(in_array($this->user->id,array_sub($wits,'user'))){?>
 								   disabled="disabled" title="您已经发起了1个创意"
-<?}?>
-<?if(count($wits)>=$this->config->user_item('max_wits_per_project')){?>
+<?	}?>
+<?	if(count($wits)>=$this->config->user_item('max_wits_per_project')){?>
 								   disabled="disabled" title="本项目创意限额已满"
-<?}?>
-<?if($project['status']!=='witting'){?>
+<?	}?>
+<?	if($project['status']!=='witting'){?>
 								   disabled="disabled" title="项目不在征集创意状态"
-<?}?>
+<?	}?>
 								   href="/wit/add?project=<?=$project['id']?>">发布创意</a>
+<?}?>
 							</div>
 
 						</div>
@@ -130,8 +136,8 @@
 				<h3>热门的标签</h3>
 			</div>
 			<div class="main tags-cloud">
-				<?foreach($hot_tags as $project){?>
-				<a href="/project/<?= $project?>" ><?= $project ?></a>
+				<?foreach($hot_tags as $tag){?>
+				<a href="/project?tag=<?=$tag?>" ><?= $tag ?></a>
 				<?}?>
 			</div>
 		</div>
@@ -156,12 +162,11 @@
 			<div class="main">
 				<ul>
 					<?foreach($recommended_votes as  $project){?>
-					<li> <a href="index.php?projectvote-view-<?= $project['id'] ?>"><?= $project['name'] ?></a></li>
+						<li> <a href="/vote/<?=$project['id']?>"><?=$project['name']?></a></li>
 					<?}?>
 				</ul>
 			</div>
 		</div>
-
 	</div>
 </div>
 

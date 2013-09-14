@@ -98,11 +98,14 @@ class Version_model extends WT_Model{
 	 */
 	function score($version_score){
 		foreach($version_score as $version_id => $score){
+			$version=$this->fetch($version_id);
 			if($score>10 || $score<0){
 				throw new Exception('invalid_score');
 			}
 			$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
 			$this->update(array($score_field=>$score), $version_id);
+			
+			$this->db->where('candidate',$version['user'])->where('project',$version['project'])->set($score_field,"`$score_field` - {$version[$score_field]} + $score",false)->update('project_candidate');//TODO unescaped
 		}
 	}
 	
