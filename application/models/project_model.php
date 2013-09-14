@@ -9,8 +9,8 @@ class Project_model extends WT_Model{
 			'summary'=>'',//项目介绍
 			'wit_start'=>date('Y-m-d',strtotime('+1 Days')),//创意开始日期
 			'wit_end'=>date('Y-m-d',strtotime('+7 Days')),//创意结束日期
-			'vote_start'=>date('Y-m-d',strtotime('+8 Days')),//投票开始日期
-			'vote_end'=>date('Y-m-d',strtotime('+10 Days')),//投票结束日期
+			'vote_start'=>date('Y-m-d',strtotime('+9 Days')),//投票开始日期
+			'vote_end'=>date('Y-m-d',strtotime('+11 Days')),//投票结束日期
 			'bonus'=>NULL,//悬赏奖金
 			'company'=>$this->user->id,//公司
 			'witters'=>0,//参与人数

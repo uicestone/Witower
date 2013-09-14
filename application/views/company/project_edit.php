@@ -13,9 +13,9 @@ $(function(){
 		$('[name="wit_end"]').datepicker('setStartDate',witEndValidFrom).datepicker('setEndDate',witEndValidTo);
 	});
 	
-	//投票评选日期开始为创意征集结束日期+1天
+	//投票评选日期开始为创意征集结束日期+2天
 	$('[name="wit_end"]').on('change',function(){
-		var voteStart = new Date(new Date($(this).val()).getTime() + 86400000);
+		var voteStart = new Date(new Date($(this).val()).getTime() + 86400000 * 2);
 		$('[name="vote_start"]').val(voteStart.getFullYear() + '-' + ('0' + (voteStart.getMonth() + 1)).slice(-2) + '-' + ('0' + voteStart.getDate()).slice(-2)).trigger('change');
 	});
 	
