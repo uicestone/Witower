@@ -33,6 +33,8 @@ $(function() {
 		
 		$(this).datepicker(options);
 	});
+	
+	$.get('/cron');
 
 	var Request = {};
 	Request.r1 = 'user/getstatuscomments/';

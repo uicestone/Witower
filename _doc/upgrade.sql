@@ -80,4 +80,6 @@ UPDATE  `witower`.`user` SET  `group` =  'witower config finance company user pr
 
 ALTER TABLE  `witower`.`config` DROP INDEX  `item` ,
 ADD UNIQUE  `item` (  `item` );
+
+ALTER TABLE  `project` ADD  `active` BOOLEAN NOT NULL AFTER  `vote_end`;
 -- server upgraded

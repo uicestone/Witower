@@ -11,6 +11,7 @@ class Project_model extends WT_Model{
 			'wit_end'=>date('Y-m-d',strtotime('+7 Days')),//创意结束日期
 			'vote_start'=>date('Y-m-d',strtotime('+9 Days')),//投票开始日期
 			'vote_end'=>date('Y-m-d',strtotime('+11 Days')),//投票结束日期
+			'active'=>true,//项目活动中，若为false，将覆盖上述时间，影响status
 			'bonus'=>NULL,//悬赏奖金
 			'company'=>$this->user->id,//公司
 			'witters'=>0,//参与人数
@@ -54,8 +55,17 @@ class Project_model extends WT_Model{
 				$this->db->where('CURDATE() >= project.vote_start AND CURDATE() <= project.vote_end',NULL,false);
 			}
 			elseif($args['status']==='end'){
-				$this->db->where('CURDATE() > project.vote_end',NULL,false);
+				if(array_key_exists('active', $args)){
+					$this->db->where('CURDATE() > project.vote_end',NULL,false);
+				}
+				else{
+					$this->db->where('CURDATE() > project.vote_end OR project.active = FALSE',NULL,false);
+				}
 			}
+		}
+		
+		if(array_key_exists('active', $args)){
+			$this->db->where('project.active',$args['active']);
 		}
 		
 		//TODO 改所有此类isset为array_key_exists()
@@ -261,14 +271,23 @@ class Project_model extends WT_Model{
 		$bonus=array();
 		
 		foreach($candidates as &$candidate){
-			$candidate['percentage_votes']=$sum['votes']?$candidate['votes']/$sum['votes']:0;
-			$candidate['percentage_score_company']=$sum['score_company']?$candidate['score_company']/$sum['score_company']:0;
-			$candidate['percentage_score_witower']=$sum['score_witower']?$candidate['score_witower']/$sum['score_witower']:0;
-			$candidate['bonus']=
-				($candidate['percentage_votes']*0.2
-				+$candidate['percentage_score_company']*0.4
-				+$candidate['percentage_score_witower']*0.4)
-				*$project['bonus'];
+			$candidate['percentage_votes']=$sum['votes']>0?$candidate['votes']/$sum['votes']:0;
+			$candidate['percentage_score_company']=$sum['score_company']>0?$candidate['score_company']/$sum['score_company']:0;
+			$candidate['percentage_score_witower']=$sum['score_witower']>0?$candidate['score_witower']/$sum['score_witower']:0;
+			
+			//三项评分均无，那么平分奖金
+			if($sum['votes'] + $sum['score_witower'] + $sum['score_company'] == 0){
+				$candidate['bonus']=$project['bonus']/count($candidates);
+			}
+			else{
+				//计算比重，总分为0的
+				$candidate['bonus']=
+					($candidate['percentage_votes']*0.2 + $candidate['percentage_score_company']*0.4 + $candidate['percentage_score_witower']*0.4)
+						/
+					($sum['votes']>0?0.2:0 + $sum['score_company']>0?0.4:0 + $sum['score_witower']>0?0.4:0)
+						*
+					$project['bonus'];
+			}
 			
 			$bonus[]=array('user'=>$candidate['id'],'amount'=>$candidate['bonus']);
 		}
@@ -287,7 +306,10 @@ class Project_model extends WT_Model{
 			$project=$this->fetch($project);
 		}
 		
-		if($this->date->today < $project['wit_start']){
+		if($project['active']===false || $this->date->today > $project['vote_end']){
+			return 'end';
+		}
+		elseif($this->date->today < $project['wit_start']){
 			return 'preparing';
 		}
 		elseif($this->date->today >= $project['wit_start'] && $this->date->today <= $project['wit_end']){
@@ -298,9 +320,6 @@ class Project_model extends WT_Model{
 		}
 		elseif($this->date->today >= $project['vote_start'] && $this->date->today <= $project['vote_end']){
 			return 'voting';
-		}
-		else{
-			return 'end';
 		}
 	}
 	

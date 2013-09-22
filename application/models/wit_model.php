@@ -30,16 +30,20 @@ class Wit_model extends WT_Model{
 	}
 	
 	function getList($args=array()){
-		if(isset($args['in_project'])){
-			$this->db->where('project',$args['in_project']);
+		if(array_key_exists('in_project', $args)){
+			$this->db->where('wit.project',$args['in_project']);
 		}
 		
-		if(isset($args['in_product'])){
-			$this->db->where("project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])})");
+		if(array_key_exists('in_product', $args)){
+			$this->db->where("wit.project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])})");
 		}
 		
-		if(!isset($args['deleted']) || !$args['deleted']){
-			$this->db->where('deleted',false);
+		if(array_key_exists('selected', $args)){
+			$this->db->where('wit.selected', $args['selected']);
+		}
+		
+		if(!array_key_exists('deleted', $args) || !$args['deleted']){
+			$this->db->where('wit.deleted',false);
 		}
 		
 		return parent::getList($args);
@@ -85,6 +89,23 @@ class Wit_model extends WT_Model{
 		$this->db->delete('project_candidate',array('project'=>$wit['project']));
 		
 		return $this;
+	}
+	
+	function autoSelect($project_id){
+		$this->db->select('wit, SUM(`score_witower` + `score_company`) sum',false)
+			->from('version')
+			->where('project',$project_id)
+			->group_by('wit')
+			->order_by('sum desc');
+			
+		$versions_grouped=$this->db->get()->result_array();
+		
+		if(!$versions_grouped){
+			return false;
+		}
+		
+		$this->select($versions_grouped[0]['wit']);
+		
 	}
 	
 	function remove($wit_id=NULL){

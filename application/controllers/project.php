@@ -115,15 +115,7 @@ class Project extends WT_Controller{
 			'item'=>'悬赏积分'
 		));
 		
-		$yesterday=date('Y-m-d',time()-86400);
-		
-		$set=array('vote_end'=>$yesterday);
-		
-		if($project['vote_start']>$yesterday){
-			$set['vote_start']=$yesterday;
-		}
-
-		$this->project->update($set,$id);
+		$this->project->update(array('active'=>false),$id);
 		
 		redirect($this->input->server('HTTP_REFERER'),'php','');
 	}
