@@ -34,7 +34,9 @@ class Company extends WT_Controller{
 	 */
 	function product(){
 		
-		$args=array();
+		$args=array(
+			'order_by'=>'id desc'
+		);
 		
 		if(!$this->user->isLogged('witower')){
 			$args['company']=$this->user->id;
@@ -166,7 +168,9 @@ class Company extends WT_Controller{
 	 */
 	function project($status=NULL){
 		
-		$args=array();
+		$args=array(
+			'order_by'=>'wit_start desc'
+		);
 		
 		if(!$this->user->isLogged('witower')){
 			$args['company']=$this->user->id;

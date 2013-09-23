@@ -159,7 +159,9 @@ class Admin extends WT_Controller{
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
-		$args=array();
+		$args=array(
+			'order_by'=>'id desc'
+		);
 		
 		$this->pagination->initialize(array(
 			'total_rows'=>$this->company->count($args),
@@ -238,7 +240,9 @@ class Admin extends WT_Controller{
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
-		$args=array();
+		$args=array(
+			'order_by'=>'id desc'
+		);
 		
 		$this->pagination->initialize(array(
 			'total_rows'=>$this->user->count($args),
