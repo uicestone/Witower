@@ -59,7 +59,7 @@ class Project_model extends WT_Model{
 					$this->db->where('CURDATE() > project.vote_end',NULL,false);
 				}
 				else{
-					$this->db->where('CURDATE() > project.vote_end OR project.active = FALSE',NULL,false);
+					$this->db->where('( CURDATE() > project.vote_end OR project.active = FALSE )',NULL,false);
 				}
 			}
 		}
