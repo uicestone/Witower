@@ -122,7 +122,8 @@ class User extends WT_Controller{
 				
 				$this->load->library('upload',array(
 					'upload_path'=>'./uploads/',
-					'allowed_types'=>'jpg'
+					'allowed_types'=>'jpg',
+					'overwrite'=>true
 				));
 				
 				if(isset($_FILES['avatar']) && !$_FILES['avatar']['error']){

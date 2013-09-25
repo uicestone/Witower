@@ -93,7 +93,8 @@ class Company extends WT_Controller{
 
 				$this->load->library('upload',array(
 					'upload_path'=>'./uploads/',
-					'allowed_types'=>'jpg'
+					'allowed_types'=>'jpg',
+					'overwrite'=>true
 				));
 				
 				if(!$_FILES['image']['error'] && !$this->upload->do_upload('image')){
@@ -254,7 +255,8 @@ class Company extends WT_Controller{
 
 				$this->load->library('upload',array(
 					'upload_path'=>'./uploads/',
-					'allowed_types'=>'jpg'
+					'allowed_types'=>'jpg',
+					'overwrite'=>true
 				));
 				
 				if(!$_FILES['image']['error'] && !$this->upload->do_upload('image')){
