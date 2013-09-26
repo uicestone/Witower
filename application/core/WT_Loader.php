@@ -102,8 +102,9 @@ class WT_Loader extends CI_Loader{
 			$attr_string.=' '.$attr_name.'="'.$attr_value.'"';
 		}
 		
-		if(file_exists('uploads/images/'.$type.'/'.$id.$suffix.'.jpg')){
-			return '<img src="/uploads/images/'.$type.'/'.$id.$suffix.'.jpg"'.$attr_string.' />';
+		$path='uploads/images/'.$type.'/'.$id.$suffix.'.jpg';
+		if(file_exists($path)){
+			return '<img src="/uploads/images/'.$type.'/'.$id.$suffix.'.jpg?_='.filemtime($path).'"'.$attr_string.' />';
 		}
 		else{
 			return '<img src="/uploads/images/'.$type.'/0'.$suffix.'.jpg"'.$attr_string.' />';
