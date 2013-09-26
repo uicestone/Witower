@@ -112,7 +112,7 @@ class Project extends WT_Controller{
 			'project'=>$this->project->id,
 			'user'=>$project['company'],
 			'amount'=>-$project['bonus'],
-			'item'=>'悬赏积分'
+			'item'=>'已冻结积分'
 		));
 		
 		$this->project->update(array('active'=>false),$id);

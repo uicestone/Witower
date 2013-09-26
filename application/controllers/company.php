@@ -282,7 +282,7 @@ class Company extends WT_Controller{
 					));
 					
 					$this->finance->add(array(
-						'item'=>'悬赏积分',
+						'item'=>'已冻结积分',
 						'project'=>$this->project->id,
 						'user'=>$project['company'],
 						'amount'=>$this->input->post('bonus')
