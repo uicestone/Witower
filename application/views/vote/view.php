@@ -118,6 +118,17 @@ $(function(){
 			</form>
 		</div>
 		<div class="model model-b">
+			<div class="title">
+				<a href="/wit/<?=$wit['id']?>" target="_blank"><h3><?=$wit['name']?></h3></a>
+				<span class="pull-right">
+					<a href="/wit/versions/<?=$wit['id']?>" target="_blank">版本</a>
+				</span>
+			</div>
+			<div class="main">
+				<?=$wit['content']?>
+			</div>
+		</div>
+		<div class="model model-b">
 			<div class="main">
 				<div class="detail">
 					<div class="title">公司介绍</div>

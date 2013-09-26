@@ -48,6 +48,7 @@ class Vote extends WT_Controller{
 	 */
 	function view($id){
 		
+		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
 		$this->load->model('tag_model','tag');
 		
@@ -82,8 +83,10 @@ class Vote extends WT_Controller{
 		$hot_tags = array_sub($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
+		
+		$wit=$this->wit->getRow(array('select'=>true,'project'=>$this->project->id));
 
-		$this->load->view('vote/view', compact('project','versions','comments','candidates','sum_votes','voters','voted','company','product','hot_tags','recommended_projects','recommended_votes'));
+		$this->load->view('vote/view', compact('project','wit','versions','comments','candidates','sum_votes','voters','voted','company','product','hot_tags','recommended_projects','recommended_votes'));
 	}
 	
 }
