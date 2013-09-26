@@ -14,7 +14,7 @@ class Version_model extends WT_Model{
 			'comment_witower'=>'',//智塔评语
 			'comment_company'=>'',//企业评语
 			'deleted'=>false,//隐藏（用于处理不良）
-			'user'=>NULL,//用户
+			'user'=>$this->user->id,//用户
 			'time'=>time(),//时间
 		);
 	}

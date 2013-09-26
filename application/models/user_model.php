@@ -55,6 +55,16 @@ class User_model extends WT_Model{
 		return array_sub($this->db->get()->result_array(),'value','item');
 	}
 	
+	/**
+	 * @param array $args
+	 *	in_project int | array
+	 *		参与过指定项目的创意编写的用户
+	 *	in_wit int | array
+	 *		为指定创意贡献过版本的用户
+	 *	voted_project int | array
+	 *		参与国指定项目的投票的用户
+	 * @return array
+	 */
 	function getList($args=array()){
 		
 		$this->db->select('user.id, user.name, user.email, user.group');

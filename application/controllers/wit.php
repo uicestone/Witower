@@ -86,7 +86,6 @@ class Wit extends WT_Controller{
 		if(is_null($this->wit->id)){
 			//对于新建创意，项目信息从url获取
 			$project=$this->project->fetch($this->input->get('project'));
-			$wit=$this->wit->fields;
 		}
 		else{
 			//对于已有创意，项目信息从创意信息中获取
@@ -96,13 +95,12 @@ class Wit extends WT_Controller{
 		
 		if($this->input->post('submit')!==false){
 			if(is_null($this->wit->id)){
+
 				//新创意，那么添加创意信息
 				$this->wit->id=$this->wit->add(array(
 					'name'=>$this->input->post('name'),
 					'content'=>$this->input->post('content'),
 					'project'=>$project['id'],
-					'user'=>$this->user->id,
-					'time'=>$this->date->now
 				));
 			}
 			else{
@@ -124,13 +122,9 @@ class Wit extends WT_Controller{
 				$this->version->update(array(
 					'name'=>$this->input->post('name'),
 					'content'=>$this->input->post('content'),
-					'time'=>$this->date->now
+					'time'=>$this->date->now//TODO $this->date->now全部换成time()
 				),$wit['latest_version']);
 			}else{
-				$versions=$this->version->getList(array('in_project'=>$wit['project']));
-				if(!in_array($this->user->id,array_sub($versions,'user'))){
-					$this->project->addCount('witters',$project['id']);
-				}
 				
 				$wit['latest_version']=$this->version->add(array(
 					'num'=>$this->version->count(array('wit'=>$this->wit->id,'deleted'=>NULL))+1,
@@ -138,9 +132,10 @@ class Wit extends WT_Controller{
 					'wit'=>$this->wit->id,
 					'name'=>$this->input->post('name'),
 					'content'=>$this->input->post('content'),
-					'user'=>$this->user->id,
-					'time'=>$this->date->now
 				));
+				
+				//更新项目下的创意参与人数
+				$this->project->update(array('witters'=>$this->user->count(array('in_project'=>$project['id']))), $project['id']);
 			}
 			
 			$this->wit->update(array('latest_version'=>$wit['latest_version']));

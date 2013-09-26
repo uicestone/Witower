@@ -7,7 +7,7 @@ class Wit_model extends WT_Model{
 			'project'=>NULL,//所属项目
 			'name'=>'',//创意标题
 			'content'=>'',//最新内容
-			'user'=>NULL,//创建者
+			'user'=>$this->user->id,//创建者
 			'time'=>$this->date->now,//创建时间
 			'selected'=>false,//选中
 			'deleted'=>false,//已删除

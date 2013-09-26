@@ -58,9 +58,11 @@ class Vote extends WT_Controller{
 			if(!$this->user->isLogged()){
 				redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 			}
-		
-			$this->project->addCount('voters');
+			
 			$this->project->vote($this->input->post('candidate'));
+			
+			//更新项目的投票参与人数
+			$this->project->update(array('voters'=>$this->user->count(array('voted_project'=>$this->project->id))));
 		}
 		
 		$project=$this->project->fetch();
