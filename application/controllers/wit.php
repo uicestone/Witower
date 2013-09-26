@@ -14,12 +14,11 @@ class Wit extends WT_Controller{
 			if($this->input->post('score')!==false){
 				$this->version->score($this->input->post('score'));
 			}
+			if($this->input->post('comment')!==false){
+				$this->version->comment($this->input->post('comment'));
+			}
 		}catch(Exception $e){
 			$alert[]=array('message'=>lang($e->getMessage()));
-		}
-		
-		if($this->input->post('comment')!==false){
-			$this->version->comment($this->input->post('comment'));
 		}
 		
 		$wit=$this->wit->fetch();
@@ -82,6 +81,17 @@ class Wit extends WT_Controller{
 		}
 
 		$this->wit->id=$id;
+		
+		try{
+			if($this->input->post('score')!==false){
+				$this->version->score($this->input->post('score'));
+			}
+			if($this->input->post('comment')!==false){
+				$this->version->comment($this->input->post('comment'));
+			}
+		}catch(Exception $e){
+			$alert[]=array('message'=>lang($e->getMessage()));
+		}
 		
 		if(is_null($this->wit->id)){
 			//对于新建创意，项目信息从url获取

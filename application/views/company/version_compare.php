@@ -66,6 +66,7 @@ $(function(){
 				<div class="content">
 					<?=$version['content']?>
 				</div>
+	<?if($project['status']!='end'){?>			
 				<div class="score" style="margin-top: 10px; border-top: #888 dotted 1px;">
 					<form method="post" class="form form-inline" style="padding:5px;">
 						<input type="text" name="score[<?=$version['id']?>]" value="<?=$version['score']?>" placeholder="评分" style="width:3em">
@@ -73,6 +74,7 @@ $(function(){
 						<button type="submit" class="btn">打分</button>
 					</form>
 				</div>
+	<?}?>
 			</div>
 <?}?>
 		</div>

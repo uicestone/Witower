@@ -440,12 +440,11 @@ class Company extends WT_Controller{
 			if($this->input->post('score')!==false){
 				$this->version->score($this->input->post('score'));
 			}
+			if($this->input->post('comment')!==false){
+				$this->version->comment($this->input->post('comment'));
+			}
 		}catch(Exception $e){
 			$alert[]=array('message'=>lang($e->getMessage()));
-		}
-		
-		if($this->input->post('comment')!==false){
-			$this->version->comment($this->input->post('comment'));
 		}
 		
 		if($this->input->get('versions')!==false){

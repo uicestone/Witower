@@ -33,7 +33,7 @@
 <?}?>			
 		</div>
 <?}?>
-<?if(($this->user->isLogged('wit') || $this->user->id==$project['company']) && isset($version)){?>
+<?if(($this->user->isLogged('wit') || $this->user->id==$project['company']) && isset($version) && $project['status']!=='end'){?>
 		<div class="box">
 			<div class="title">
 				<h3>版本操作</h3>
