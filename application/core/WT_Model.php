@@ -136,6 +136,10 @@ class WT_Model extends CI_Model{
 			}
 		}
 		
+		if(array_key_exists('group_by', $args)){
+			$this->db->group_by($args['group_by']);
+		}
+		
 		if(isset($args['limit'])){
 			if($args['limit']==='pagination'){
 				$args['limit']=$this->pagination($db_num_rows);

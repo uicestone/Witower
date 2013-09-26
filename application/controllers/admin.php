@@ -71,10 +71,12 @@ class Admin extends WT_Controller{
 		
 		$pagination=$this->pagination->create_links();
 		
+		$items=$this->finance->sum($args+array('group_by'=>'item'));
+		
 		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
 		$finance_records=$this->finance->getList($args);
 		
-		$this->load->view('admin/finance',compact('finance_records','query','pagination'));
+		$this->load->view('admin/finance',compact('finance_records','items','query','pagination'));
 		
 	}
 	

@@ -15,6 +15,13 @@
 			<div class="title"><h3><a href="/<?=uri_segment(1)?>/finance">财务管理</a></h3></div>
 			<div class="main">
 				<a class="btn" href="/<?=uri_segment(1)?>/addfinance<?=$query?>">增加纪录</a>
+				<ul class="inline pull-right">
+				<? foreach ($items as $item) { ?>								
+					<li> 
+						<?=$item['item']?>：<?=$item['amount']?>
+					</li>
+				<? } ?>
+				</ul>
 				<table class="table table-bordered">
 					<thead>
 						<tr><th>日期</th><th>用户</th><th>项目</th><th>金额</th><th>科目</th><th>摘要</th><th>&nbsp;</th></tr>

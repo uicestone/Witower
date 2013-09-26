@@ -95,6 +95,14 @@ class Finance_model extends WT_Model{
 	}
 	
 	function sum(array $args=array()){
+		
+		//如果带分组参数，那么返回一个分组求和后的列表
+		if(array_key_exists('group_by', $args)){
+			$this->db->select_sum('amount')->select($args['group_by']);
+			return parent::getList($args);
+		}
+		
+		//否则返回求和值
 		return parent::sum('amount', $args);
 	}
 	
