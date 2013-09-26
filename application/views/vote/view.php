@@ -1,4 +1,9 @@
 <? $this->view('header') ?>
+<script type="text/javascript">
+$(function(){
+	
+});
+</script>
 <div id="content" class="page-viewvote model-view">
 	<ul class="breadcrumb">
 		<li>
@@ -55,7 +60,21 @@
 <?}elseif($voted){?>
 						您已经投票了！
 <?}else{?>
-						<button type="submit" name="vote" class="btn btn-primary">投票</button>
+						<a href="#vote-confirm-modal" role="button" class="btn btn-primary" data-toggle="modal">投票</a>
+
+						<div id="vote-confirm-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h3>确认投票</h3>
+							</div>
+							<div class="modal-body">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+								<button type="submit" name="vote" class="btn btn-primary">投票</button>
+							</div>
+						</div>	
+						
 						<button type="reset" class="btn">重选</button>
 <?}?>						
 					</div>
@@ -91,7 +110,7 @@
 <?}elseif($voted){?>
 						您已经投票了！
 <?}else{?>
-						<button type="submit" name="vote" class="btn btn-primary">投 票</button>
+						<a href="#vote-confirm-modal" role="button" class="btn btn-primary" data-toggle="modal">投票</a>
 						<button type="reset" class="btn">重 选</button>
 <?}?>						
 					</div>
