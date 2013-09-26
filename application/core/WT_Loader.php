@@ -87,22 +87,26 @@ class WT_Loader extends CI_Loader{
 	 * @param int $display_size 显示尺寸
 	 * @return string img html
 	 */
-	function image($type,$id,$size=false,$display_size=false){
+	function image($type,$id,$size=false,$display_size=false,$attrs=array()){
 		$suffix='';
 		if($size){
 			$suffix='_'.$size;
 		}
 
-		$display_size_html='';
+		$attr_string='';
 		if($display_size){
-			$display_size_html=' width="'.$display_size.'" height="'.$display_size.'"';
+			$attr_string.=' width="'.$display_size.'" height="'.$display_size.'"';
+		}
+		
+		foreach($attrs as $attr_name => $attr_value){
+			$attr_string.=' '.$attr_name.'="'.$attr_value.'"';
 		}
 		
 		if(file_exists('uploads/images/'.$type.'/'.$id.$suffix.'.jpg')){
-			return '<img src="/uploads/images/'.$type.'/'.$id.$suffix.'.jpg"'.$display_size_html.' />';
+			return '<img src="/uploads/images/'.$type.'/'.$id.$suffix.'.jpg"'.$attr_string.' />';
 		}
 		else{
-			return '<img src="/uploads/images/'.$type.'/0'.$suffix.'.jpg"'.$display_size_html.' />';
+			return '<img src="/uploads/images/'.$type.'/0'.$suffix.'.jpg"'.$attr_string.' />';
 		}
 		
 	}

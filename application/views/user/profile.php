@@ -55,9 +55,9 @@ $(function(){
 								<p>您上传的头像会自动生成三种尺寸，请注意中小尺寸
 									的头像是否清晰。</p>
 <?if(file_exists('./uploads/images/avatar/'.$this->user->id.'.jpg')){?>
-								<img src="/uploads/images/avatar/<?=$this->user->id?>_200.jpg" class="pull-left">
-								<img src="/uploads/images/avatar/<?=$this->user->id?>_100.jpg" class="pull-right">
-								<img src="/uploads/images/avatar/<?=$this->user->id?>_30.jpg" class="pull-right" style="margin-top: 30px;">
+								<?=$this->image('avatar',$this->user->id,200,false,array('class'=>'pull-left'))?>
+								<?=$this->image('avatar',$this->user->id,100,false,array('class'=>'pull-right'))?>
+								<?=$this->image('avatar',$this->user->id,30,false,array('class'=>'pull-right','style'=>'margin-top: 30px; clear: right;'))?>
 <?}?>
 							</div>
 						</div>
