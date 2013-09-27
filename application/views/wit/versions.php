@@ -32,8 +32,16 @@ $(function(){
 			<span class="divider">/</span>
 		</li>
 		<li>
-			版本 <?=$wit['name']?>
+			<a href="/wit/versions/<?=$wit['id']?>">版本 <?=$wit['name']?></a>
+<?if($this->input->get('user')){?>
+			<span class="divider">/</span>
+<?}?>
 		</li>
+<?if($this->input->get('user')){?>
+		<li>
+			<a href="/wit/versions/<?=$wit['id']?>?user=<?=$this->input->get('user')?>"><?=$user['name']?> 的贡献</a>
+		</li>
+<?}?>
 	</ul>
 	<div class="model">
 		<div class="title"><h3>版本 <?=$wit['name']?></h3></div>
@@ -65,6 +73,9 @@ $(function(){
 							<td><?=$version['name']?></td>
 							<td>
 								<a href="/space/<?=$version['user']?>" ><?= $version['author_name'] ?></a>
+<?	if(!$this->input->get('user')){?>
+								<a href="?user=<?=$version['user']?>" title="只看该作者"><span class="icon-filter"></span></a>
+<?	}?>
 							</td>
 							<td>
 								<?= date('Y-m-d H:i',$version['time']) ?>

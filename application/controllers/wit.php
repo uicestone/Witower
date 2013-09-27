@@ -62,13 +62,18 @@ class Wit extends WT_Controller{
 			$args['deleted']=NULL;
 		}
 		
+		if($this->input->get('user')){
+			$args['user']=$this->input->get('user');
+			$user=$this->user->fetch($this->input->get('user'));
+		}
+		
 		$versions=$this->version->getList($args);
 		
 		foreach($versions as &$version){
 			$version['author_name']=$this->user->fetch($version['user'],'name');
 		}
 		
-		$this->load->view('wit/versions', compact('versions','wit','project'));
+		$this->load->view('wit/versions', compact('versions','wit','project','user'));
 	}
 	
 	/**

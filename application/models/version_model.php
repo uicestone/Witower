@@ -40,6 +40,7 @@ class Version_model extends WT_Model{
 	 *	in_project
 	 *	in_product
 	 *	company
+	 *	user
 	 *	deleted	false (default), null, true
 	 *	score witower,company
 	 *	comment witower,company
@@ -68,6 +69,10 @@ class Version_model extends WT_Model{
 		
 		if(isset($args['company'])){
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE company{$this->db->escape_int_array($args['company'])}))");
+		}
+		
+		if(array_key_exists('user', $args)){
+			$this->db->where('version.user',$args['user']);
 		}
 		
 		if(!array_key_exists('deleted', $args) || $args['deleted']===false){

@@ -118,7 +118,7 @@ $(function(){
 							<td>
 								<div class="bar" style="width:<?if($sum_votes==0){?>0<?}else{?><?=round($candidate['votes']/$sum_votes*100,1)?><?}?>px; background-color:#<?=dechex(rand(0,15)),dechex(rand(0,7)),dechex(rand(0,15))?>"></div>
 								<span><?=$candidate['votes']?> (<?if($sum_votes==0){?>尚无投票<?}else{?><?=round($candidate['votes']/$sum_votes*100,1)?>%<?}?>)</span></td>
-							<td><a href="#"><!--TODO-->Ta的贡献</a></td>
+							<td><a href="/wit/versions/<?=$wit['id']?>?user=<?=$candidate['id']?>" target="_blank">Ta的贡献</a></td>
 						</tr>
 <?}?>
 					</table>
