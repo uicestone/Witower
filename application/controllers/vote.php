@@ -84,7 +84,7 @@ class Vote extends WT_Controller{
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
 		
-		$wit=$this->wit->getRow(array('select'=>true,'project'=>$this->project->id));
+		$wit=$this->wit->getRow(array('select'=>true,'in_project'=>$this->project->id));
 
 		$this->load->view('vote/view', compact('project','wit','versions','comments','candidates','sum_votes','voters','voted','company','product','hot_tags','recommended_projects','recommended_votes'));
 	}
