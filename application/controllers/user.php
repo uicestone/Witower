@@ -203,13 +203,19 @@ class User extends WT_Controller{
 		
 		$status_type=$this->input->get('status_type')!==false?$this->input->get('status_type'):NULL;
 		
-		$status=$this->user->getStatusList();
+		$status=$this->user->getStatusList(NULL, $status_type);
 		
 		foreach($status as &$status_item){
 			$status_item['comments']=$this->user->getStatusCommentList($status_item['id']);
 		}
 		
-		$this->load->view('user/space', compact('user','status'));
+		$idols=$this->company->getList(array('is_idol_of'=>$this->user->id));
+		
+		$this->load->model('project_model','project');
+		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
+		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
+		
+		$this->load->view('user/space', compact('user','status','idols','recommended_projects','recommended_votes'));
 	}
 	
 	/**
@@ -221,13 +227,19 @@ class User extends WT_Controller{
 		
 		$status_type=$this->input->get('status_type')!==false?$this->input->get('status_type'):NULL;
 		
-		$status=$this->user->getStatusList($uid);
+		$status=$this->user->getStatusList($uid, $status_type);
 		
 		foreach($status as &$status_item){
 			$status_item['comments']=$this->user->getStatusCommentList($status_item['id']);
 		}
 		
-		$this->load->view('user/space', compact('user','status'));
+		$idols=$this->company->getList(array('is_idol_of'=>$uid));
+		
+		$this->load->model('project_model','project');
+		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
+		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
+		
+		$this->load->view('user/space', compact('user','status','idols','recommended_projects','recommended_votes'));
 	}
 	
 	function addStatus(){

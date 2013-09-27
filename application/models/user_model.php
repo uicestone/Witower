@@ -63,6 +63,10 @@ class User_model extends WT_Model{
 	 *		为指定创意贡献过版本的用户
 	 *	voted_project int | array
 	 *		参与国指定项目的投票的用户
+	 *	is_fan_of
+	 *		获得一个人的关注者列表
+	 *	is_idol_of
+	 *		获得一个人关注的所有人
 	 * @return array
 	 */
 	function getList($args=array()){
@@ -79,6 +83,14 @@ class User_model extends WT_Model{
 		
 		if(isset($args['voted_project'])){
 			$this->db->where("user.id IN (SELECT voter FROM project_vote WHERE project{$this->db->escape_int_array($args['voted_project'])})");
+		}
+		
+		if(array_key_exists('is_fan_of', $args)){
+			$this->db->where("user.id IN (SELECT fan FROM user_follow WHERE idol{$this->db->escape_int_array($args['is_fan_of'])})");
+		}
+		
+		if(array_key_exists('is_idol_of', $args)){
+			$this->db->where("user.id IN (SELECT idol FROM user_follow WHERE fan{$this->db->escape_int_array($args['is_idol_of'])})");
 		}
 		
 		return parent::getList($args);
@@ -272,14 +284,14 @@ class User_model extends WT_Model{
 			->order_by('id desc');
 		
 		if(is_null($uid)){
-			$this->db->where("user_status.user = {$this->user->id} OR user_status.user IN (SELECT idol FROM user_follow WHERE fan = {$this->user->id})",NULL,false);
+			$this->db->where("( user_status.user = {$this->user->id} OR user_status.user IN (SELECT idol FROM user_follow WHERE fan = {$this->user->id}) )",NULL,false);
 		}
 		else{
 			$this->db->where('user_status.user',$uid);
 		}
 		
 		if(isset($type)){
-			$this->db->where('type',$type);
+			$this->db->where('user_status.type',$type);
 		}
 		
 		return $this->db->get()->result_array();

@@ -34,6 +34,8 @@ class Project_model extends WT_Model{
 	 *	in_product
 	 *	get_product_name
 	 *	company
+	 *	user_witted int | array 过滤出某用户参与创意的项目
+	 *	user_voted int | array 过滤出某用户参与投票的项目
 	 * @return type
 	 */
 	function getList($args = array()) {
@@ -80,6 +82,14 @@ class Project_model extends WT_Model{
 		
 		if(isset($args['company'])){
 			$this->db->where('project.company',$args['company']);
+		}
+		
+		if(array_key_exists('user_witted', $args)){
+			$this->db->where("project.id IN (SELECT project FROM version WHERE user{$this->db->escape_int_array($args['user_witted'])})");
+		}
+		
+		if(array_key_exists('user_voted', $args)){
+			$this->db->where("project.id IN (SELECT project FROM project_vote WHERE voter{$this->db->escape_int_array($args['user_voted'])})");
 		}
 		
 		$project_list = parent::getList($args);

@@ -155,7 +155,7 @@ paginator  ******/
 .model-b .detail .title .right a{float: right;font-size: 10px;font-family: "microsoft yahei";}
 .model-b .detail .author{font-size: 1.1em; text-align: right;padding-right: 10px;background: #EEE; height:1.5em; line-height: 1.5; border-bottom:1px solid #DDD;}
 .model-b .detail .main{margin: 10px 0;overflow: hidden;}
-.model-b .detail .main img{float:left;margin: 10px;}
+.model-b .detail .main img{float:left;margin: 0 10px;}
 
 .page-wit .model .table tbody tr.summary{
 	background-color: white;

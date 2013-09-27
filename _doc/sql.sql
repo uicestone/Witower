@@ -40,3 +40,27 @@ delete from user_status;
 ALTER TABLE  `user_status` AUTO_INCREMENT =1;
 delete from user;
 ALTER TABLE  `user` AUTO_INCREMENT =1;
+
+-- 更新并校正用户粉丝数
+update user inner join (
+    select user.id,count(*) fans from `user`
+    inner join user_follow on user_follow.idol = user.id
+    group by user.id
+)fans using (id)
+set user.fans = fans.fans;
+
+-- 更新并校正用户关注数
+update user inner join (
+    select user.id,count(*) follows from `user`
+    inner join user_follow on user_follow.fan = user.id
+    group by user.id
+)follows using (id)
+set user.follows = follows.follows;
+
+-- 更新并校正用户状态数
+update user inner join (
+    select user.id,count(*) statuses from `user`
+    inner join user_status on user_status.user = user.id
+    group by user.id
+)statuses using (id)
+set user.statuses = statuses.statuses;

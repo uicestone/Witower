@@ -6,15 +6,15 @@
 			<span class="divider">/</span>
 		</li>
 		<li>
-<?if($user['id']==$this->user->id){?>
-			我的首页
+<?if(uri_segment(1)==='home'){?>
+			<a href="/home">我的首页</a>
 <?}else{?>
-			<?=$user['name']?>
+			<a href="/space/<?=$user['id']?>"><?=$user['name']?></a>
 <?}?>
 		</li>
 	</ul>
 	<div id="left">
-<?if($user['id']===$this->user->id){?>
+<?if(uri_segment(1)==='home'){?>
 		<form method="post" action="/user/addstatus">
 			<div class="model model-b weibo-send">
 				<div class="main">
@@ -31,8 +31,8 @@
 		<div class="model model-b category">
 			<ul>
 				<li><a href="/<?=uri_string()?>" class="f10">全部</a></li>|
-				<li><a href="/<?=uri_string()?>?statustype=project" class="f10">项目</a></li>|
-				<li><a href="/<?=uri_string()?>?statustype=vote" class="f10">投票</a> </li>
+				<li><a href="/<?=uri_string()?>?status_type=project" class="f10">项目</a></li>|
+				<li><a href="/<?=uri_string()?>?status_type=vote" class="f10">投票</a> </li>
 			</ul>
 		</div>
 <?foreach($status as $status){?>
@@ -40,7 +40,11 @@
 			<div class="main">
 				<div class="detail">
 					<div class="main">
-						<p><span name=<?=$status['username']?>><?=$this->image('avatar',$status['user'],100)?></span><?=$status['content']?></p>
+						<p>
+							<a href="/space/<?=$status['user']?>"><?=$this->image('avatar',$status['user'],100)?></a>
+							<a href="/space/<?=$status['user']?>"><h5><?=$status['username']?></h5></a>
+							<?=$status['content']?>
+						</p>
 					</div>
 					<div class="tail icons">
 						<?=date('Y-m-d H:i:s',$status['time'])?>
@@ -105,7 +109,9 @@
 			<div>
 				<?=$this->image('avatar',$user['id'],100)?>
 				<h1><?=$user['name']?></h1>
+<?if(uri_segment(1)==='space'){?>
 				<p><?followButton($user['id'])?></p>
+<?}?>
 <?if($this->user->isLogged('useradmin') && !$this->user->inGroup('blacklist',$user['id'])){?>
 				<p><a href="/user/addtoblacklist/<?=$user['id']?>" class="btn btn-mini">加入黑名单</a></p>
 <?}?>
@@ -126,8 +132,7 @@
 				</tr>
 			</table>
         </div>
-	<!--TODO 区分空间和主页，并不是已登录用户是否本人来判断-->
-        <!--{if $function=='home'}-->
+<?if(uri_segment(1)==='home'){?>
 		<div class="box my-nav">
 			<dl>
 				<dt>我的微博</dt>
@@ -141,11 +146,11 @@
 				<dt>我的成果</dt>
 
 				<dt>我的统计</dt>
-				<dd><span class="icon-folder-close"></span><a href="#">活动数量(<?//TODO 用户参与活动数?>)</a></dd>
-				<dd><span class="icon-align-left"></span><a href="#">投票数量(<?//用户参与投票数?>)</a></dd>
+				<dd><span class="icon-folder-close"></span>活动数量(<?=$this->project->count(array('user_witted'=>$user['id']))?>)</dd>
+				<dd><span class="icon-align-left"></span>投票数量(<?=$this->project->count(array('user_voted'=>$user['id']))?>)</dd>
 			</dl>
 		</div>
-		<!--{elseif $function=='space'}-->
+<?}else{?>
 <!--		<div class="box">
 			<div class="com-box">
 				<select>
@@ -157,14 +162,14 @@
 				<button><img src="style/icon-search.png"></button>
 			</div>
 		</div>-->
-		<div class="box">
+<!--		<div class="box">
 			<div class="title">
 				<h3>Ta收藏的标签</h3><a href="#" class="more">more</a>
 			</div>
 			<div class="main tags-cloud">
-				<!--{loop $favorite_tags $tag}-->
+				{loop $favorite_tags $tag}
 				<a href="#"><?=$tag['tag_name']?></a>
-				<!--{/loop}-->
+				{/loop}
 			</div>
 		</div>
 
@@ -173,63 +178,57 @@
 				<h3>热门的标签</h3><a href="#" class="more">more</a>
 			</div>
 			<div class="main tags-cloud">
-				<!--{loop $hot_tags $tag}-->
+				{loop $hot_tags $tag}
 				<a href="#"><?=$tag['tag_name']?></a>
-				<!--{/loop}-->
+				{/loop}
 			</div>
 		</div>
-
+-->
 		<div class="box">
 			<div class="title">
-				<h3>推荐活动</h3><a href="#" class="more">more</a>
+				<h3>推荐活动</h3><a href="/project" target="_blank" class="more">more</a>
 			</div>
 			<div class="main">
 				<ul>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
+					<? foreach ($recommended_projects as $project){?>
+					<li> <a href="/project/<?= $project['id']?>"><?= $project['name']?></a></li>
+					<?}?>
 				</ul>
 			</div>
 		</div>
 
 		<div class="box">
 			<div class="title">
-				<h3>投票进行时</h3><a href="#" class="more">more</a>
+				<h3>投票进行时</h3><a href="/vote" target="_blank" class="more">more</a>
 			</div>
 			<div class="main">
 				<ul>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
-					<li> <a href="#">IPHONE4S手机创意广告项目结束</a></li>
+					<?foreach($recommended_votes as  $project){?>
+						<li> <a href="/vote/<?=$project['id']?>"><?=$project['name']?></a></li>
+					<?}?>
 				</ul>
 			</div>
 		</div>
 
 		<div class="box">
 			<div class="title">
-				<h3>Ta关注的企业 (23)</h3><a href="#" class="more">more</a>
+				<h3>Ta关注的企业 (<?=count($idols)?>)</h3>
 			</div>
-			<div class="main image">
+			<div class="main participator">
 				<ul>
-					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
-					<li> <a href="#"><img src="style/p6.jpg"></a><span>财经网</span><p>采编团队向希望一览海内外重大财经新闻的读者</p></li>
+					<?foreach($idols as $idol){?>
+					<li>
+						<a href="/space/<?= $idol['id'] ?>">
+							<?=$this->image('avatar',$idol['id'],100,50)?>
+							<span><?= $idol['name'] ?></span>
+						</a>
+						<?followButton($idol['id'])?>
+					</li>
+					<?}?>
 				</ul>
 			</div>
 		</div>
-		<!--{/if}-->
-
+<?}?>
 	</div>
 </div>
 <?$this->view('footer')?>
