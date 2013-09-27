@@ -34,6 +34,14 @@ $(function() {
 		$(this).datepicker(options);
 	});
 	
+	$('.participator li')
+		.on('mouseenter',function(){
+			$(this).find('.add-follow').show();
+		})
+		.on('mouseleave',function(){
+			$(this).find('.add-follow').hide();
+		});
+	
 	$.get('/cron');
 
 	var Request = {};

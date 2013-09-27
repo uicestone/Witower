@@ -43,9 +43,9 @@
 							</div>
 							<div class="fn-right">
 <?if($this->user->id==$project['company']){?>
-								<a href="/company/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
+								<a href="/company/project/<?=$project['id']?>" class="btn">编辑</a>
 <?}elseif($this->user->isLogged(array('witower','project'))){?>
-								<a href="/admin/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
+								<a href="/admin/project/<?=$project['id']?>" class="btn">编辑</a>
 <?}else{?>
 								<a class="btn btn-primary"
 <?	if(in_array($this->user->id,array_sub($wits,'user'))){?>
@@ -79,7 +79,7 @@
 						<h3><a href="/wit/<?=$wit['id']?>"><?= $wit['name'] ?></a><?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?></h3>
 						<span class="right">
 							<a href="/wit/versions/<?=$wit['id']?>" target="_blank">版本</a>
-							<?if($project['status']==='witting'){?><a href="/wit/edit/<?=$wit['id']?>" class="btn btn-small btn-primary" style="margin-top: 2px;">编辑</a><?}?>
+							<?if($project['status']==='witting'){?><a href="/wit/edit/<?=$wit['id']?>" class="btn btn-small btn-primary" style="margin-top: 2px; margin-right: 1em;">编辑</a><?}?>
 						</span>
 					</div>
 					<div class="main">
@@ -126,7 +126,10 @@
 				<ul>
 					<?foreach($witters as $witter){?>
 					<li>
-						<?=$this->image('avatar',$witter['id'],100,50)?><a href="/space/<?= $witter['id'] ?>"><span><?= $witter['name'] ?></span></a>
+						<a href="/space/<?= $witter['id'] ?>">
+							<?=$this->image('avatar',$witter['id'],100,50)?>
+							<span><?= $witter['name'] ?></span>
+						</a>
 						<?followButton($witter['id'])?>
 					</li>
 					<?}?>

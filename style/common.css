@@ -223,7 +223,9 @@ model-view */
 .model-view #right{width: 219px;border:1px solid #ddd;background: #f3f3f3;}
 .model-view #left{width:750px;}
 .model-view #right .box{overflow: hidden;border-bottom: 1px solid #ddd;padding: 10px;}
-.model-view #right .participator ul li{float:left; margin-right:10px; width:50px;}
+.model-view #right .participator ul li{float:left; margin-right:10px; width:50px; position: relative;}
+.model-view #right .participator ul li .add-follow{position: absolute; bottom: 0; display: none;}
+.model-view #right .participator ul li img{height: 50px;}
 .model-view #right .participator ul li span{display: block; text-align: center;}
 .model-view #right .participator ul li b{display: block;}
 .model-view #right .title{overflow: hidden;}

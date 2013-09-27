@@ -183,8 +183,8 @@ $(function(){
 				<ul>
 <?foreach($voters as $voter){?>
 					<li>
-						<?=$this->image('avatar',$voter['id'],100,50)?>
 						<a href="/space/<?=$voter['id']?>">
+							<?=$this->image('avatar',$voter['id'],100,50)?>
 							<span class="ellipsis"><?=$voter['name']?></span>
 						</a>
 						<?followButton($voter['id'])?>                    
