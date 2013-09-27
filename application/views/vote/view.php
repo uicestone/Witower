@@ -31,7 +31,7 @@ $(function(){
 		<div class="model model-b">
 			<div class="main">
 				<div class="info">
-<?if($this->user->isLogged('witadmin') && $project['status']=='witting'){?>
+<?if($this->user->isLogged(array('witower','vote')) && $project['status']==='voting'){?>
 					<a href="/project/end/<?=$project['id']?>" class="btn pull-right">结束投票</a>
 <?}?>
 					<?=$this->image('avatar',$project['company'],100)?>
@@ -71,6 +71,10 @@ $(function(){
 						项目不在投票阶段
 <?}elseif($voted){?>
 						您已经投票了！
+<?}elseif($this->user->id==$project['company']){?>
+						<a href="/company/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
+<?}elseif($this->user->isLogged(array('witower','project'))){?>
+						<a href="/admin/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
 <?}else{?>
 						<a id="vote-button" href="#vote-confirm-modal" role="button" class="btn btn-primary" data-toggle="modal">投票</a>
 
@@ -125,6 +129,10 @@ $(function(){
 						项目不在投票阶段
 <?}elseif($voted){?>
 						您已经投票了！
+<?}elseif($this->user->id==$project['company']){?>
+						<a href="/company/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
+<?}elseif($this->user->isLogged(array('witower','project'))){?>
+						<a href="/admin/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
 <?}else{?>
 						<a href="#vote-confirm-modal" role="button" class="btn btn-primary" data-toggle="modal">投票</a>
 						<button type="reset" class="btn">重 选</button>
