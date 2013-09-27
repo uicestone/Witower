@@ -275,11 +275,22 @@ class User extends WT_Controller{
 				if($this->input->post('withdraw') > $this->finance->sum(array('user'=>$this->user->id,'item'=>'积分'))){
 					throw new Exception('积分余额不足');
 				}
+				
+				$profiles=$this->user->getProfiles();
+				if(empty($profiles['收货人姓名']) || empty($profiles['银行账号'])){
+					throw new Exception('个人资料>收货地址中 收货人姓名 或 银行帐号 未填写');
+				}
 
 				$this->finance->add(array(
-					'amount'=>$this->input->post('withdraw'),
-					'item'=>'申请提现'
+					'amount'=>-$this->input->post('withdraw'),
+					'item'=>'积分'
 				));
+				
+				$this->finance->add(array(
+					'amount'=>$this->input->post('withdraw'),
+					'item'=>'已申请提现积分'
+				));
+				
 			}
 		}catch(Exception $e){
 			$alert[]=array('message'=>$e->getMessage());

@@ -6,7 +6,7 @@
 			<span class="divider">/</span>
 		</li>
 		<li>
-			积分帐户
+			<a href="/finance">积分帐户</a>
 		</li>
 	</ul>
 	<div id="left">
