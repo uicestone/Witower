@@ -242,14 +242,14 @@ $(function(){
 	<div id="right">
 		<div class="box">
 			<ul class="nav nav-stacked nav-pills">
-				<li><h2>帐号</h2></li>
+				<li><b>帐号</b></li>
 				<li><a href="#baseinfo" data-toggle="pill">基本信息</a></li>
 				<li><a href="#education" data-toggle="pill">教育信息</a></li>
 				<li><a href="#career" data-toggle="pill">职业信息</a></li>
 				<li><a href="#address" data-toggle="pill">收货地址</a></li>
 				<li class="active"><a href="#avatar" data-toggle="pill">修改头像</a></li>
 				<hr>
-				<li><h2>帐号安全</h2></li>
+				<li><b>帐号安全</b></li>
 				<li><a href="#password" data-toggle="pill">修改密码</a></li>
 <!--				<li><a href="#email" data-toggle="pill">安全邮箱</a></li>-->
 			</ul>

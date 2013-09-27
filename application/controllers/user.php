@@ -87,6 +87,10 @@ class User extends WT_Controller{
 	 */
 	function profile(){
 		
+		if(is_null($this->user->id)){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
 		if($this->input->post('submit')!==false){
 			
 			$this->load->library('form_validation');
@@ -227,6 +231,10 @@ class User extends WT_Controller{
 	}
 	
 	function addStatus(){
+		if(is_null($this->user->id)){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
 		$this->user->addStatus($this->input->post('content'));
 		redirect('home');
 	}
@@ -239,6 +247,10 @@ class User extends WT_Controller{
 	 * 积分和资金列表
 	 */
 	function finance(){
+		if(is_null($this->user->id)){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
 		$this->load->model('finance_model','finance');
 		
 		$alert=array();
@@ -293,11 +305,19 @@ class User extends WT_Controller{
 	}
 	
 	function addToBlacklist($user_id){
+		if(is_null($this->user->id)){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
 		$this->user->addGroup('blacklist', $user_id);
 		redirect('space/'.$user_id);
 	}
 	
 	function removeFromBlacklist($user_id){
+		if(is_null($this->user->id)){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
+		
 		$this->user->removeGroup('blacklist', $user_id);
 		redirect('space/'.$user_id);
 	}
