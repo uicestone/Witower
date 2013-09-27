@@ -332,6 +332,8 @@ class User_model extends WT_Model{
 			'time'=>$this->date->now
 		));
 		
+		$this->addCount('statuses',$this->id);
+		
 		return $this->db->insert_id();
 	}
 	
@@ -363,8 +365,12 @@ class User_model extends WT_Model{
 	function addFollow($idol){
 		$this->db->insert('user_follow',array(
 			'idol'=>$idol,
-			'fan'=>$this->user->id
+			'fan'=>$this->id
 		));
+		
+		$this->addCount('fans',$idol);
+		$this->addCount('idol',$this->id);
+		
 		return $this->db->insert_id();
 	}
 	

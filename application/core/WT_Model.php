@@ -79,11 +79,11 @@ class WT_Model extends CI_Model{
 		return $this;
 	}
 	
-	function addCount($field,$project_id=NULL){
-		is_null($project_id) && $project_id=$this->id;
+	function addCount($field,$item_id=NULL){
+		is_null($item_id) && $item_id=$this->id;
 		$this->db
 			->set($field,'`'.$field.'` + 1',false)
-			->where('id',$project_id)
+			->where('id',$item_id)
 			->update($this->table);
 	}
 	
