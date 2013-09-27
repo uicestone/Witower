@@ -234,6 +234,11 @@ class Project_model extends WT_Model{
 		is_null($project_id) && $project_id=$this->id;
 		
 		foreach($candidates_votes as $candidate => $votes){
+			
+			if(!$votes){
+				continue;
+			}
+			
 			$project_vote=array(
 				'project'=>$project_id,
 				'candidate'=>$candidate,

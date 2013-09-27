@@ -147,15 +147,4 @@ $(function() {
 		});
 	}());
 	
-	var addAttention = (function(){
-		$(".add_attention").mouseup(function(){
-			var userId = $(this).attr("uid");
-			var $self = $(this);
-			$.get(Request.addAttention + userId,function(data){
-				if(data === 'success'){
-					$self.html("已关注").removeClass("add_attention").addClass("added").unbind("mouseup");
-				}else{}
-			});
-		});
-	}());
 });

@@ -151,6 +151,12 @@ class Wit extends WT_Controller{
 				
 				//更新项目下的创意参与人数
 				$this->project->update(array('witters'=>$this->user->count(array('in_project'=>$project['id']))), $project['id']);
+				
+				//若该用户从未参与过项目，那么发布一条状态
+				if(!$this->config->user_item('has_witted')){
+					$this->user->addStatus("我第一次参与了一个创意征集", $this->user->id, 'project', '/project/'.$project['id']);
+					$this->config->set_user_item('has_witted', 1, 'user_db');
+				}
 			}
 			
 			$this->wit->update(array('latest_version'=>$wit['latest_version']));
