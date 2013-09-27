@@ -1,7 +1,19 @@
 <? $this->view('header') ?>
 <script type="text/javascript">
 $(function(){
-	
+	$('#vote-button').on('click',function(){
+		var votes=0;
+		
+		$(this).parents('form').find(':input[name^=candidate]').each(function(){
+			votes += Number($(this).val());
+		});
+		
+		if(votes===3){
+			$(this).parents('form').find('#completed').show().siblings('#incompleted').hide();
+		}else{
+			$(this).parents('form').find('#incompleted').show().siblings('#completed').hide();
+		}
+	});
 });
 </script>
 <div id="content" class="page-viewvote model-view">
@@ -60,14 +72,18 @@ $(function(){
 <?}elseif($voted){?>
 						您已经投票了！
 <?}else{?>
-						<a href="#vote-confirm-modal" role="button" class="btn btn-primary" data-toggle="modal">投票</a>
+						<a id="vote-button" href="#vote-confirm-modal" role="button" class="btn btn-primary" data-toggle="modal">投票</a>
 
 						<div id="vote-confirm-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h3>确认投票</h3>
+								<h4>确认投票</h4>
 							</div>
-							<div class="modal-body">
+							<div class="modal-body hide" id="completed">
+								您已经进行个人投票，投票后结果无法更改，确认请点击”投票“；点击”取消“返回进行修改”
+							</div>
+							<div class="modal-body hide" id="incompleted">
+								您已经进行个人投票，每个人可以投的票数为3，目前您投的票数不足，确定请点击“投票”；点击“取消”返回进行修改
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
