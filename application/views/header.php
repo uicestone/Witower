@@ -35,11 +35,10 @@
 						<li><a href="/home"><?=$this->user->name?></a> |</li>
 						<li><a href="/profile">资料</a>|</li>
 						<li><a href="/finance">积分</a>|</li>
-<?	if($this->user->isCompany()){?>
-						<li><a href="/company/product">管理</a>|</li><?//TODO 企业管理首页?>
-<?	}?>
 <?	if($this->user->isLogged('witower')){?>
 						<li><a href="/admin">管理</a>|</li><?//TODO 智塔管理首页?>
+<?	}elseif($this->user->isCompany()){?>
+						<li><a href="/company/product">管理</a>|</li><?//TODO 企业管理首页?>
 <?	}?>
 <?}?>
 <?if($this->user->isLogged()){?>

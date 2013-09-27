@@ -59,6 +59,9 @@
 <?	}?>
 								   href="/wit/add?project=<?=$project['id']?>">发布创意</a>
 <?}?>
+<?if($this->user->isLogged(array('witower','help'))){?>
+								<a class="btn btn-primary" href="/wit/add?project=<?=$project['id']?>">发布创意</a>
+<?}?>
 							</div>
 
 						</div>

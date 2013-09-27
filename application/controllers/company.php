@@ -219,7 +219,7 @@ class Company extends WT_Controller{
 				array('field'=>'product','label'=>'所属产品','rules'=>'required'),
 			));
 			
-			if(is_null($this->project->id)){
+			if(is_null($this->project->id) && !$this->user->isLogged(array('witower','help'))){
 				$this->form_validation->set_rules('bonus','悬赏金额','required|numeric|greater_than[0]');
 			}
 			
