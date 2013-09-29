@@ -6,6 +6,8 @@
 		<title>智塔</title>
 		<meta name="keywords" content="<?=$this->config->user_item('keywords')?>" />
 		<meta name="description" content="<?=$this->config->user_item('description')?>" />
+		
+		<link rel="icon" href="/style/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="/style/bootstrap/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="/style/bootstrap/datepicker.css">
 		<link rel="stylesheet" type="text/css" href="/style/tango/skin.css">
