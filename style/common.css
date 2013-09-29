@@ -239,7 +239,7 @@ model-view */
 .model-view #right .main.image p{line-height: 130%;}
 .model-view #right .tags-cloud a{margin: 5px;white-space: nowrap;}
 
-.model-view .model-b.category {background: #444F53;height: 35px;line-height: 35px;text-indent: 2em;color: #fff;margin: 0;}
+.model-view .model-b.category {background: #444F53;height: 35px;line-height: 35px;text-indent: 2em;color: #fff;}
 .model-view .model-b.category  li{display: inline;padding: 0 15px;}
 .model-view .model-b.category  li a{color: #fff;}
 
@@ -520,6 +520,8 @@ page-home  ******/
 .page-user .sub_comment{}
 .page-user .sub_comment img.user_img{width:30px;height: 30px;float: right;}
 .page-user .sub_comment p{}
+.page-user .sub_comment .comment{text-align: right;}
+.page-user .sub_comment .comment .comment-field{width: 98%;}
 
 .added{margin: 0 5px;font-size: 10px;}
 .added:hover{color: #999!important;text-decoration: none;}

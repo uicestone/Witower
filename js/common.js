@@ -139,10 +139,10 @@ $(function() {
 			
 			var commentContent=$(this).siblings('[name="comment-content"]').val();
 			
-			$.post('/index.php?user-addmicroblogcomment-'+microblogId,{commentContent:commentContent},function(response){
-				$('.model#'+microblogId+' ul.comment-list').prepend('<li><p class="content">'+response.content+'</p><span class="time">'+response.time+'</span><span class="avatar"><a href="/?user-space-'+response.uid+'"><img src="/uploads/userface/'+response.uid+'.jpg_30.jpg"></a></span></li>');
+			$.post('/user/addstatuscomment/'+microblogId,{commentContent:commentContent},function(response){
+				$('.model#'+microblogId+' ul.comment-list').prepend('<li><p class="content">'+response.content+'</p><span class="time">'+response.time+'</span><span class="avatar"><a href="/user/space/'+response.user+'"><img src="/uploads/images/avatar/'+response.uid+'_30.jpg"></a></span></li>');
 				$(this).siblings('input[name="comment-content"]').val('');
-			},'json');
+			});
 			return false;
 		});
 	}());

@@ -55,7 +55,7 @@
 					<div class="sub_comment" style="display:none">
 						<div class="comment">
 							<form>
-								<textarea name="comment-content" placeholder="评论内容"></textarea>
+								<textarea name="comment-content" class="comment-field" placeholder="评论内容" rows="1"></textarea>
 								<button type="button" name="comment-content-submit" class="btn">提交</button>
 							</form>
 						</div>

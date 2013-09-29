@@ -251,6 +251,11 @@ class User extends WT_Controller{
 		redirect('home');
 	}
 	
+	function addStatusComment($status_id){
+		$comment_id=$this->user->addStatusComment($status_id, $this->input->post('commentContent'));
+		$this->output->set_output(json_encode($this->user->getStatusComment($comment_id)));
+	}
+	
 	function addFollow($idol){
 		$this->output->set_output($this->user->addFollow($idol));
 	}

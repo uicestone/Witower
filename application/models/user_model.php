@@ -312,6 +312,13 @@ class User_model extends WT_Model{
 		return $this->db->get()->result_array();
 	}
 	
+	function getStatusComment($comment_id){
+		$this->db->from('user_status_comment')
+			->where('id',$comment_id);
+		
+		return $this->db->get()->row_array();
+	}
+	
 	/**
 	 * 添加一条状态
 	 * @param string $content
