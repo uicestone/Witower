@@ -140,9 +140,9 @@ $(function() {
 			var commentContent=$(this).siblings('[name="comment-content"]').val();
 			
 			$.post('/user/addstatuscomment/'+microblogId,{commentContent:commentContent},function(response){
-				$('.model#'+microblogId+' ul.comment-list').prepend('<li><p class="content">'+response.content+'</p><span class="time">'+response.time+'</span><span class="avatar"><a href="/user/space/'+response.user+'"><img src="/uploads/images/avatar/'+response.uid+'_30.jpg"></a></span></li>');
+				$('.model#'+microblogId+' ul.comment-list').prepend('<li><dl class="dl-horizontal"><dt><a href="/space/'+response.user+'"><img src="/uploads/images/avatar/'+response.user+'_30.jpg"></a></dt><dd><p class="avatar"><a href="/space/'+response.user+'">'+response.username+'</a></p><p class="content">'+response.content+'<span class="time">( '+response.time+') </span></p></dd></dl></li>');
 				$(this).siblings('input[name="comment-content"]').val('');
-			});
+			},'json');
 			return false;
 		});
 	}());

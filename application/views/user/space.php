@@ -62,10 +62,22 @@
 						<ul class="comment-list">
 <?	foreach($status['comments'] as $status_comment){?>
 							<li>
-								<p class="content"><?=$status_comment['content']?></p><span class="time"><?=$status_comment['time']?></span>
-								<span class="avatar"><a href="/space/<?=$status_comment['user']?>"><?=$this->image('avatar',$status_comment['user'],100,30)?></a></span>
+								<dl class="dl-horizontal">
+									<dt>
+										<a href="/space/<?=$status_comment['user']?>"><?=$this->image('avatar',$status_comment['user'],100,30)?></a>
+									</dt>
+									<dd>
+										<p class="avatar">
+											<a href="/space/<?=$status_comment['user']?>"><?=$status_comment['username']?></a>
+										</p>
+										<p class="content">
+											<?=$status_comment['content']?>
+											<span class="time">( <?=date('Y-m-d H:i:s',$status_comment['time'])?>) </span>
+										</p>
+									</dd>
+								</dl>
 							</li>
-<?	}?>
+<?	}?>						
 						</ul>
 					</div>
 				</div>

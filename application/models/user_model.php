@@ -307,7 +307,8 @@ class User_model extends WT_Model{
 			->select('user_status_comment.*, user.name username')
 			->from('user_status_comment')
 			->join('user','user_status_comment.user = user.id','inner')
-			->where('user_status_comment.status',$status_id);
+			->where('user_status_comment.status',$status_id)
+			->order_by('id desc');
 		
 		return $this->db->get()->result_array();
 	}

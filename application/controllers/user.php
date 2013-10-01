@@ -253,7 +253,10 @@ class User extends WT_Controller{
 	
 	function addStatusComment($status_id){
 		$comment_id=$this->user->addStatusComment($status_id, $this->input->post('commentContent'));
-		$this->output->set_output(json_encode($this->user->getStatusComment($comment_id)));
+		$comment=$this->user->getStatusComment($comment_id);
+		$comment['time']=date('Y-m-d H:i:s',$comment['time']);
+		$comment['username']=$this->user->fetch($comment['user'], 'name');
+		$this->output->set_output(json_encode($comment));
 	}
 	
 	function addFollow($idol){
