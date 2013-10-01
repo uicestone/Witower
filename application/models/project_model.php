@@ -286,20 +286,22 @@ class Project_model extends WT_Model{
 		$bonus=array();
 		
 		foreach($candidates as &$candidate){
-			$candidate['percentage_votes']=$sum['votes']>0?$candidate['votes']/$sum['votes']:0;
-			$candidate['percentage_score_company']=$sum['score_company']>0?$candidate['score_company']/$sum['score_company']:0;
-			$candidate['percentage_score_witower']=$sum['score_witower']>0?$candidate['score_witower']/$sum['score_witower']:0;
 			
 			//三项评分均无，那么平分奖金
 			if($sum['votes'] + $sum['score_witower'] + $sum['score_company'] == 0){
 				$candidate['bonus']=$project['bonus']/count($candidates);
 			}
 			else{
-				//计算比重，总分为0的
+				//计算比重
+				
+				$candidate['percentage_votes']=$sum['votes']>0?$candidate['votes']/$sum['votes']:0;
+				$candidate['percentage_score_company']=$sum['score_company']>0?$candidate['score_company']/$sum['score_company']:0;
+				$candidate['percentage_score_witower']=$sum['score_witower']>0?$candidate['score_witower']/$sum['score_witower']:0;
+
 				$candidate['bonus']=
-					($candidate['percentage_votes']*0.2 + $candidate['percentage_score_company']*0.4 + $candidate['percentage_score_witower']*0.4)
+					($candidate['percentage_votes']*1 + $candidate['percentage_score_company']*2 + $candidate['percentage_score_witower']*2)
 						/
-					($sum['votes']>0?0.2:0 + $sum['score_company']>0?0.4:0 + $sum['score_witower']>0?0.4:0)
+					(($sum['votes']>0?1:0) + ($sum['score_company']>0?2:0) + ($sum['score_witower']>0?2:0))
 						*
 					$project['bonus'];
 			}
