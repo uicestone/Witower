@@ -411,5 +411,19 @@ class User_model extends WT_Model{
 		return $this->db->affected_rows();
 	}
 	
+	function config($item){
+		$this->db->from('user_config')
+			->where('item',$item);
+		
+		$row = $this->db->get()->row();
+		
+		return $row?$row->value:NULL;
+	}
+	
+	function set_config($item, $value){
+		$this->db->query("INSERT INTO `user_config` (user, item, value) VALUE ({$this->user->id}, {$this->db->escape($item)}, {$this->db->escape($value)}) ON DUPLICATE KEY UPDATE value = {$this->db->escape($value)}");
+		return $this->db->affected_rows();
+	}
+	
 }
 ?>

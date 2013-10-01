@@ -70,10 +70,6 @@ class WT_Config extends CI_Config{
 				$CI=&get_instance();
 				$CI->db->update('config',array('value'=>$value),array('item'=>$item));
 		}
-		elseif($session==='db_user'){
-				$CI=&get_instance();
-				$CI->db->update('user_config',array('value'=>$value),array('item'=>$item));
-		}
 		else{
 			if($override || !array_key_exists($item, $this->user)){
 				$this->user[$item]=$value;

@@ -66,9 +66,9 @@ class Vote extends WT_Controller{
 			$this->project->update(array('voters'=>$this->user->count(array('voted_project'=>$this->project->id))));
 			
 			//若该用户从未参与过投票，那么发布一条状态
-			if(!$this->config->user_item('has_voted')){
-				$this->user->addStatus("我第一次参与了一个投票", $this->user->id, 'project', '/vote/'.$this->project->id);
-				$this->config->set_user_item('has_voted', 1, 'user_db');
+			if(!$this->user->config('has_voted')){
+				$this->user->addStatus(lang('status_first_vote'), $this->user->id, 'project', '/vote/'.$this->project->id);
+				$this->user->set_config('has_voted', true);
 			}
 		}
 		
