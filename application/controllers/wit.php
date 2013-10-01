@@ -137,7 +137,7 @@ class Wit extends WT_Controller{
 				$this->version->update(array(
 					'name'=>$this->input->post('name'),
 					'content'=>$this->input->post('content'),
-					'time'=>$this->date->now//TODO $this->date->now全部换成time()
+					'time'=>time()
 				),$wit['latest_version']);
 			}else{
 				

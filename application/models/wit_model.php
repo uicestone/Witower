@@ -8,7 +8,7 @@ class Wit_model extends WT_Model{
 			'name'=>'',//创意标题
 			'content'=>'',//最新内容
 			'user'=>$this->user->id,//创建者
-			'time'=>$this->date->now,//创建时间
+			'time'=>time(),//创建时间
 			'selected'=>false,//选中
 			'deleted'=>false,//已删除
 			'latest_version'=>NULL//最新版本

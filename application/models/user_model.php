@@ -123,7 +123,7 @@ class User_model extends WT_Model{
 	function updateLoginTime(){
 		$this->db->update('user',
 			array('lastip'=>$this->session->userdata('ip_address'),
-				'lastlogin'=>$this->date->now
+				'lastlogin'=>time()
 			),
 			array('id'=>$this->id,'company'=>$this->company->id)
 		);
@@ -336,7 +336,7 @@ class User_model extends WT_Model{
 			'type'=>$type,
 			'content'=>$content,
 			'url'=>$url,
-			'time'=>$this->date->now
+			'time'=>time()
 		));
 		
 		$this->addCount('statuses',$this->id);
@@ -358,7 +358,7 @@ class User_model extends WT_Model{
 			'status'=>$status_id,
 			'content'=>$content,
 			'user'=>$uid,
-			'time'=>$this->date->now
+			'time'=>time()
 		));
 		
 		return $this->db->insert_id();
@@ -386,7 +386,7 @@ class User_model extends WT_Model{
 			'user'=>$user,
 			'bonus'=>$bonus,
 			'project'=>$project,
-			'time'=>$this->date->now
+			'time'=>time()
 		));
 		
 		return $this->db->insert_id();
