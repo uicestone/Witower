@@ -107,7 +107,7 @@ class WT_Model extends CI_Model{
 		
 		$this->db->from($this->table);
 		
-		if(isset($args['name'])){
+		if(array_key_exists('name',$args)){
 			$this->db->like($this->table.'.name',$args['name']);
 		}
 		
@@ -119,14 +119,14 @@ class WT_Model extends CI_Model{
 			}
 		}
 		
-		if(isset($args['count_all_results']) && $args['count_all_results']){
+		if(array_key_exists('count_all_results',$args) && $args['count_all_results']){
 			return $this->db->count_all_results();
 		}
 		
 		//复制一个DB对象用来计算行数，因为计算行数需要运行sql，将清空DB对象中属性
 		$db_num_rows=clone $this->db;
 		
-		if(isset($args['order_by'])){
+		if(array_key_exists('order_by',$args)){
 			if(is_array($args['order_by'])){
 				foreach($args['order_by'] as $order_by){
 					$this->db->order_by($order_by[0],$order_by[1]);
@@ -140,7 +140,7 @@ class WT_Model extends CI_Model{
 			$this->db->group_by($args['group_by']);
 		}
 		
-		if(isset($args['limit'])){
+		if(array_key_exists('limit',$args)){
 			if($args['limit']==='pagination'){
 				$args['limit']=$this->pagination($db_num_rows);
 				call_user_func_array(array($this->db,'limit'), $args['limit']);
@@ -162,7 +162,7 @@ class WT_Model extends CI_Model{
 	}
 	
 	function getRow(array $args=array()){
-		!isset($args['limit']) && $args['limit']=1;
+		!array_key_exists('limit',$args) && $args['limit']=1;
 		$result=$this->getList($args);
 		if(isset($result[0])){
 			return $result[0];

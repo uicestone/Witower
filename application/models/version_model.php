@@ -51,23 +51,23 @@ class Version_model extends WT_Model{
 		$this->db->join('user','user.id = version.user','inner')
 			->select('version.*, user.name username');
 		
-		if(array_key_exists(wit,$args)){
+		if(array_key_exists('wit',$args)){
 			$this->db->where('version.wit',$args['wit']);
 		}
 		
-		if(array_key_exists(num,$args)){
+		if(array_key_exists('num',$args)){
 			$this->db->where('version.num',$args['num']);
 		}
 		
-		if(array_key_exists(in_project,$args)){
+		if(array_key_exists('in_project',$args)){
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project{$this->db->escape_int_array($args['in_project'])})");
 		}
 		
-		if(array_key_exists(in_product,$args)){
+		if(array_key_exists('in_product',$args)){
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])}))");
 		}
 		
-		if(array_key_exists(company,$args)){
+		if(array_key_exists('company',$args)){
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE company{$this->db->escape_int_array($args['company'])}))");
 		}
 		
@@ -110,7 +110,10 @@ class Version_model extends WT_Model{
 			$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
 			$this->update(array($score_field=>$score), $version_id);
 			
-			$this->db->where('candidate',$version['user'])->where('project',$version['project'])->set($score_field,"`$score_field` - {$version[$score_field]} + $score",false)->update('project_candidate');//TODO unescaped
+			$this->db->where('candidate',$version['user'])
+				->where('project',$version['project'])
+				->set($score_field,"`$score_field` - {$version[$score_field]} + $score",false)
+				->update('project_candidate');//TODO unescaped
 		}
 	}
 	
