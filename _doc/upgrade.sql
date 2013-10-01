@@ -82,4 +82,8 @@ ALTER TABLE  `witower`.`config` DROP INDEX  `item` ,
 ADD UNIQUE  `item` (  `item` );
 
 ALTER TABLE  `project` ADD  `active` BOOLEAN NOT NULL AFTER  `vote_end`;
+
+ALTER TABLE  `project_candidate` CHANGE  `votes`  `votes` INT( 11 ) NOT NULL DEFAULT  '0';
+ALTER TABLE  `project_candidate` CHANGE  `score_witower`  `score_witower` DECIMAL( 10, 2 ) NOT NULL DEFAULT  '0';
+ALTER TABLE  `project_candidate` CHANGE  `score_company`  `score_company` DECIMAL( 10, 2 ) NOT NULL DEFAULT  '0';
 -- server upgraded

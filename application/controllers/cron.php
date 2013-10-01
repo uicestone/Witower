@@ -25,7 +25,7 @@ class Cron extends WT_Controller{
 		
 		foreach($voting_projects as $voting_project){
 			$wit_selected=$this->wit->getList(array(
-				'project'=>$voting_project['id'],
+				'in_project'=>$voting_project['id'],
 				'selected'=>true
 			));
 			if(!$wit_selected){
