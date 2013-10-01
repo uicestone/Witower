@@ -112,8 +112,8 @@ class Version_model extends WT_Model{
 			
 			$this->db->where('candidate',$version['user'])
 				->where('project',$version['project'])
-				->set($score_field,"`$score_field` - {$version[$score_field]} + $score",false)
-				->update('project_candidate');//TODO unescaped
+				->set($score_field,"`$score_field` - {$version[$score_field]} + {$this->db->escape($score)}",false)
+				->update('project_candidate');
 		}
 	}
 	
