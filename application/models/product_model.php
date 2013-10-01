@@ -12,7 +12,7 @@ class Product_model extends WT_Model{
 	
 	function getList(array $args=array()){
 		
-		if(isset($args['company'])){
+		if(array_key_exists(company,$args)){
 			$this->db->where('product.company',$args['company']);
 		}
 		

@@ -51,23 +51,23 @@ class Version_model extends WT_Model{
 		$this->db->join('user','user.id = version.user','inner')
 			->select('version.*, user.name username');
 		
-		if(isset($args['wit'])){
+		if(array_key_exists(wit,$args)){
 			$this->db->where('version.wit',$args['wit']);
 		}
 		
-		if(isset($args['num'])){
+		if(array_key_exists(num,$args)){
 			$this->db->where('version.num',$args['num']);
 		}
 		
-		if(isset($args['in_project'])){
+		if(array_key_exists(in_project,$args)){
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project{$this->db->escape_int_array($args['in_project'])})");
 		}
 		
-		if(isset($args['in_product'])){
+		if(array_key_exists(in_product,$args)){
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE product{$this->db->escape_int_array($args['in_product'])}))");
 		}
 		
-		if(isset($args['company'])){
+		if(array_key_exists(company,$args)){
 			$this->db->where("version.wit IN (SELECT id FROM wit WHERE project IN (SELECT id FROM project WHERE company{$this->db->escape_int_array($args['company'])}))");
 		}
 		

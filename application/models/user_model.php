@@ -73,15 +73,15 @@ class User_model extends WT_Model{
 		
 		$this->db->select('user.id, user.name, user.email, user.group');
 		
-		if(isset($args['in_project'])){
+		if(array_key_exists(in_project,$args)){
 			$this->db->where("id IN (SELECT user FROM version WHERE wit IN (SELECT id FROM wit WHERE project{$this->db->escape_int_array($args['in_project'])}))");
 		}
 		
-		if(isset($args['in_wit'])){
+		if(array_key_exists(in_wit,$args)){
 			$this->db->where("id IN (SELECT user FROM version WHERE wit{$this->db->escape_int_array($args['in_wit'])})");
 		}
 		
-		if(isset($args['voted_project'])){
+		if(array_key_exists(voted_project,$args)){
 			$this->db->where("user.id IN (SELECT voter FROM project_vote WHERE project{$this->db->escape_int_array($args['voted_project'])})");
 		}
 		

@@ -70,8 +70,7 @@ class Project_model extends WT_Model{
 			$this->db->where('project.active',$args['active']);
 		}
 		
-		//TODO 改所有此类isset为array_key_exists()
-		if(isset($args['in_product'])){
+		if(array_key_exists(in_product,$args)){
 			$this->db->where('project.product',$args['in_product']);
 		}
 		
@@ -80,7 +79,7 @@ class Project_model extends WT_Model{
 				->select('product.name product_name');
 		}
 		
-		if(isset($args['company'])){
+		if(array_key_exists(company,$args)){
 			$this->db->where('project.company',$args['company']);
 		}
 		
