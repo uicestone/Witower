@@ -120,5 +120,14 @@ class Project extends WT_Controller{
 		redirect($this->input->server('HTTP_REFERER'),'php','');
 	}
 	
+	function addVersionComment($version_id){
+		$this->load->model('version_model','version');
+		$comment_id=$this->version->addComment($version_id, $this->input->post('commentContent'));
+		$comment=$this->version->getComment($comment_id);
+		$comment['time']=date('Y-m-d H:i:s',$comment['time']);
+		$comment['username']=$this->user->fetch($comment['user'], 'name');
+		$this->output->set_output(json_encode($comment));
+	}
+	
 }
 ?>

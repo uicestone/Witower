@@ -21,9 +21,10 @@ class Wit_model extends WT_Model{
 	 * @return array
 	 */
 	function getComments($wit_id){
-		$this->db->select('version_comment.*, version.wit')
+		$this->db->select('version_comment.*, version.wit, user.name username')
 			->from('version_comment')
 			->join('version','version.id = version_comment.version','inner')
+			->join('user','user.id = version_comment.user','inner')
 			->where('version.wit',$wit_id);
 		
 		return $this->db->get()->result_array();

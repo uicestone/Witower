@@ -25,12 +25,37 @@ class Version_model extends WT_Model{
 	 * @return array
 	 */
 	function getComments($version=NULL){
-		$this->db->select('version_comment.*')
+		
+		is_null($version) && $version=$this->id;
+		
+		$this->db->select('version_comment.*, user.name username')
 			->from('version_comment')
+			->join('user','user.id = version_comment.user','inner')
 			->where('version',$version);
 
-		return $this->db->get()->result_array();
+		print_r($this->db->get()->result_array());
 		
+	}
+	
+	function getComment($comment_id){
+		$this->db->from('version_comment')
+			->where('id',$comment_id);
+		
+		return $this->db->get()->row_array();
+	}
+	
+	function addComment($version=NULL, $content){
+		
+		is_null($version) && $version=$this->id;
+		
+		$this->db->insert('version_comment',array(
+			'version'=>$version,
+			'content'=>$content,
+			'user'=>$this->user->id,
+			'time'=>time()
+		));
+		
+		return $this->db->insert_id();
 	}
 	
 	/**

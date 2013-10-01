@@ -517,14 +517,12 @@ page-home  ******/
 .page-help .content_main p{ margin: 15px 0;}
 
 .page-user .main img.user_img{width:50px;height: 50px;}
-.page-user .sub_comment{}
 .page-user .sub_comment img.user_img{width:30px;height: 30px;float: right;}
-.page-user .sub_comment p{}
-.page-user .sub_comment .comment{text-align: right;}
-.page-user .sub_comment .comment .comment-field{width: 98%;}
-.page-user .sub_comment .comment-list li{border-bottom: #ccc dotted 1px;}
-.page-user .sub_comment .comment-list dt{width: 50px;}
-.page-user .sub_comment .comment-list dd{margin-left: 70px;}
+.sub_comment .comment{text-align: right;}
+.sub_comment .comment .comment-field{width: 98%;}
+.sub_comment .comment-list li{border-bottom: #ccc dotted 1px;}
+.sub_comment .comment-list dt{width: 50px;}
+.sub_comment .comment-list dd{margin-left: 70px;}
 
 .added{margin: 0 5px;font-size: 10px;}
 .added:hover{color: #999!important;text-decoration: none;}

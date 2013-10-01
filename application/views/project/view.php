@@ -63,7 +63,6 @@
 								<a class="btn btn-primary" href="/wit/add?project=<?=$project['id']?>">发布创意</a>
 <?}?>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -71,9 +70,10 @@
 		</div>
 		<div class="model model-b">
 			<div class="title"><h3>目前有<?=count($wits)?>种创意</h3></div>
+		</div>
+<?foreach($wits as $wit){?>
+		<div class="model model-b" id="<?=$wit['latest_version']?>">
 			<div class="main">
-
-				<?foreach($wits as $wit){?>
 				<div class="detail">
 					<div class="title">
 						<h3><a href="/wit/<?=$wit['id']?>"><?= $wit['name'] ?></a><?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?></h3>
@@ -87,15 +87,41 @@
 					</div>
 					<div class="tail icons">
 						<ul>
-							<!--TODO 项目查看页创意评论--><li><span class="icon-comment"></span><a href="#">(<?=count($wit['comments'])?>)</a></li>
+							<li><span class="icon-comment"></span><a href="#" class="btn-comment">评论(<?=count($wit['comments'])?>)</a></li>
+						</ul>
+					</div>
+					<div class="sub_comment" style="display:none">
+						<div class="comment">
+							<form>
+								<textarea name="comment-content" class="comment-field" placeholder="评论内容" rows="1"></textarea>
+								<button type="button" name="comment-content-submit" class="btn">提交</button>
+							</form>
+						</div>
+						<ul class="comment-list">
+<?foreach($wit['comments'] as $comment){?>
+							<li>
+								<dl class="dl-horizontal">
+									<dt>
+										<a href="/space/<?=$comment['user']?>"><?=$this->image('avatar',$comment['user'],100,30)?></a>
+									</dt>
+									<dd>
+										<p class="avatar">
+											<a href="/space/<?=$comment['user']?>"><?=$comment['username']?></a>
+										</p>
+										<p class="content">
+											<?=$comment['content']?>
+											<span class="time">( <?=date('Y-m-d H:i:s',$comment['time'])?>) </span>
+										</p>
+									</dd>
+								</dl>
+							</li>
+<?}?>						
 						</ul>
 					</div>
 				</div>
-				<?}?>
-
-
 			</div>
 		</div>
+<?}?>
 		<div class="model model-b">
 			<div class="main">
 				<div class="detail">
