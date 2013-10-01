@@ -54,6 +54,7 @@ $(function(){
 							<th>标题</th>
 							<th>作者</th>
 							<th>时间</th>
+							<th>得分</th>
 <?if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
 							<th>操作</th>
 <?}?>
@@ -80,6 +81,9 @@ $(function(){
 							<td>
 								<?= date('Y-m-d H:i',$version['time']) ?>
 							</td>
+							<td>
+								智塔：<?=$version['score_witower']?>, 企业：<?=$version['score_company']?>
+							</td>
 <?	if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
 							<td>
 <?		if($version['deleted']){?>
@@ -91,7 +95,7 @@ $(function(){
 <?	}?>
 						</tr>
 						<tr class="summary version">
-							<td class="content" colspan="<?if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>5<?}else{?>4<?}?>">
+							<td class="content" colspan="<?if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>6<?}else{?>5<?}?>">
 								<?= $version['content'] ?>
 							</td>
 						</tr>
