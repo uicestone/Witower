@@ -11,7 +11,7 @@
 			参与的人数：<b class="s18"><?=$witters?></b>人
 		</div>
 
-		<?$this->view('project/search')?>
+		<!--<?$this->view('project/search')?>-->
 
 	</div>
 

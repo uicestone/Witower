@@ -2,14 +2,14 @@
 
 <div id="content">
 
-<div class="side-nav">
+<!--<div class="side-nav">
 	<ul>
 		<li><a href="/project">项目</a></li>
 		<li><a href="/user/master">智塔达人</a></li>
 		<li><a href="/user/partners">合作伙伴</a></li>
-		<!--li><a href="#">他们正在做</a></li-->
+		li><a href="#">他们正在做</a></li
 	</ul>
-</div>
+</div>-->
 
 <div class="water">
 <?foreach($projects as $project){?>
@@ -22,7 +22,7 @@
 			</div>
 			<div class="details cell">
 				项目状态：<?=lang($project['status'])?><br>
-				项目金额：<span class="price"><?= $project['bonus'] ?>元</span><br>
+				项目金额：<span class="label label-info"><?= $project['bonus'] ?>元</span><br>
 				截止日期： <?=in_array($project['status'],array('preparing','witting'))?$project['wit_end']:$project['vote_end']?><br>
 				标签：
 				<? foreach ($project['tags'] as $tag) { ?>
@@ -39,7 +39,7 @@
 				<ul>
 <?	foreach($project['comments'] as $comment){?>
 					<li><a href="/space/<?= $comment['user'] ?>"><?=$this->image('avatar',$comment['user'],30)?></a>
-						<p><a href="/space/<?= $comment['user'] ?>"><?= $comment['username'] ?>：</a><?= $comment['content'] ?></p>
+						<p><a href="/space/<?= $comment['user'] ?>"><?= $comment['username'] ?>：</a><?= str_getSummary($comment['content'],50) ?></p>
 					</li>
 <?	}?>
 				</ul>

@@ -51,7 +51,7 @@
 			投票总数：<b class="s18"><?= $sum_votes ?></b>票
 		</div>
 
-		<? $this->view('vote/search') ?>
+		<!--<? $this->view('vote/search') ?>-->
 
 	</div>
 
