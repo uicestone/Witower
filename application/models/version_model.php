@@ -33,7 +33,7 @@ class Version_model extends WT_Model{
 			->join('user','user.id = version_comment.user','inner')
 			->where('version',$version);
 
-		print_r($this->db->get()->result_array());
+		return $this->db->get()->result_array();
 		
 	}
 	

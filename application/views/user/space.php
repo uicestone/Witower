@@ -44,6 +44,9 @@
 							<a href="/space/<?=$status['user']?>"><?=$this->image('avatar',$status['user'],100)?></a>
 							<a href="/space/<?=$status['user']?>"><h5><?=$status['username']?></h5></a>
 							<?=$status['content']?>
+<?if($status['url']){?>
+							<a href="<?=$status['url']?>" target="_blank" class="btn btn-small">去看看</a>
+<?}?>
 						</p>
 					</div>
 					<div class="tail icons">
