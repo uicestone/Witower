@@ -265,6 +265,15 @@ model-view */
 .model-view #right .com-box input{width: 80px;}
 
 /*
+*
+page-viewproject
+*/
+.page-viewproject #left .main .detail .main{
+	max-height: 20em;
+	overflow-y: auto;
+}
+
+/*
  *
 page-viewvote */
 .page-viewvote .voting{}
