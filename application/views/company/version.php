@@ -1,5 +1,4 @@
 <? $this->view('header') ?>
-<div id="content" class="page-company">
 	<ul class="breadcrumb">
 		<li>
 			<strong><?=lang(uri_segment(1))?></strong>
@@ -23,7 +22,7 @@
 		</li>
 	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
-	<div id="right">
+	<div id="right" class="span9">
 		<div class="model">
 			<div class="title"><h3>版本</h3></div>
 			<div class="main">
@@ -77,5 +76,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 <?$this->view('footer')?>

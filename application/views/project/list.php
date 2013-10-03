@@ -1,5 +1,4 @@
 <?$this->view('header')?>
-<div id="content" class="page-list">
 	<?$this->view('project/recommended')?>
 
 	<div class="search">
@@ -112,5 +111,4 @@
 			</div>
 			</div>
 	</div>
-</div>
 <?$this->view('footer')?>

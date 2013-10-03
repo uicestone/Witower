@@ -1,5 +1,4 @@
 <? $this->view('header') ?>
-<div class="page-wit model-view">
 	<ul class="breadcrumb">
 		<li>
 			<strong><a href="/project">项目</a></strong>
@@ -13,7 +12,7 @@
 			<a href="/wit/<?=$wit['id']?>"><?=$wit['name']?></a>
 		</li>
 	</ul>
-	<div id="left">
+	<div id="left" class="span9">
 		<div class="model model-b">
 			<div class="title">
 				<h3><?=$version['name']?></h3>
@@ -26,6 +25,4 @@
 		</div>
 	</div>
 	<?$this->view('wit/sidebar')?>
-</div>
-
 <? $this->view('footer') ?>

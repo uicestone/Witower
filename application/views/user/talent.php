@@ -1,16 +1,15 @@
 <?$this->view('header')?>
 
-<div id="content" class="page-master">
 {template index_left}
 	<!--div class="info">
-		<div class="fn-left">
+		<div class="pull-left">
 			<ul>
 				<li><a href="#">奖金达人</a></li>
 				<li><a href="#">人气达人</a></li>
 				<li><a href="#">话题达人</a></li>
 			</ul>
 		</div>
-		<div class="fn-right">
+		<div class="pull-right">
 			交易数量：<span>1,534</span>个    交易金额：<span>1,657,353</span>元    新增用户：<span>5,772</span>人
 			<div class="search-bar">
 				<ul>
@@ -34,8 +33,8 @@
 	<div class="daren">
 		<!--{loop $userlist $key $master}-->
 		<div class="model-c">
-			<div class="fn-left"><a href="index.php?user-space-<?=$master[uid]?>"><img src="<?=$master[image]?>"></a></div>
-			<div class="fn-right">
+			<div class="pull-left"><a href="index.php?user-space-<?=$master[uid]?>"><img src="<?=$master[image]?>"></a></div>
+			<div class="pull-right">
 				<a href="index.php?user-space-<?=$master[uid]?>"><b><?=$master[username]?></b></a>
 				<ul>
 					<li><span>奖金：</span><?=$master[credit1]?> 元</li>
@@ -62,8 +61,6 @@
 		</p>
 	</div>
 	<!--{/if}-->
-
-</div>
 
 <?$this->view('footer')?>
 

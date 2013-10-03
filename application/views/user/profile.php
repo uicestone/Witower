@@ -28,7 +28,6 @@ $(function(){
 	
 });
 </script>
-<div id="content" class="model-view page-home">
 	<ul class="breadcrumb">
 		<li>
 			<strong><a href="#">用户</a></strong>
@@ -38,7 +37,7 @@ $(function(){
 			<a href="#">修改头像</a>
 		</li>
 	</ul>
-	<div id="left">
+	<div id="left" class="span9">
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 			<div class="model model-b tab-content">
 				<?=$this->view('alert')?>
@@ -48,10 +47,10 @@ $(function(){
 					</div>
 					<div>
 						<div class="model-lr model-uploadPhoto">
-							<div class="fn-left">
+							<div class="pull-left">
 								<input type="file" name="avatar">
 							</div>
-							<div class="fn-right">
+							<div class="pull-right">
 								<p>您上传的头像会自动生成三种尺寸，请注意中小尺寸
 									的头像是否清晰。</p>
 <?if(file_exists('./uploads/images/avatar/'.$this->user->id.'.jpg')){?>
@@ -239,7 +238,7 @@ $(function(){
 			</div>
 		</form>
 	</div>
-	<div id="right">
+	<div id="right" class="span3 sidebar">
 		<div class="box">
 			<ul class="nav nav-stacked nav-pills">
 				<li><b>帐号</b></li>
@@ -255,6 +254,5 @@ $(function(){
 			</ul>
 		</div>
 	</div>
-</div>
 <?
 $this->view('footer')?>

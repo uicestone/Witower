@@ -1,5 +1,4 @@
 <? $this->view('header') ?>
-<div id="content" class="page-viewproject model-view">
 	<ul class="breadcrumb">
 		<li>
 			<strong><a href="/project">项目</a></strong>
@@ -10,7 +9,7 @@
 		</li>
 	</ul>
 
-	<div id="left">
+	<div id="left" class="span9">
 		<div class="model model-b">
 			<div class="main">
 				<div class="info">
@@ -38,10 +37,10 @@
 					<div>
 						<p><?=$project['summary']?></p>
 						<div class="button">
-							<div class="fn-left">
+							<div class="pull-left">
 
 							</div>
-							<div class="fn-right">
+							<div class="pull-right">
 <?if($this->user->id==$project['company']){?>
 								<a href="/company/project/<?=$project['id']?>" class="btn">编辑</a>
 <?}elseif($this->user->isLogged(array('witower','project'))){?>
@@ -143,7 +142,7 @@
 	</div>
 
 	<!--右边栏部分-->
-	<div id="right" class="sidebar">
+	<div id="right" class="sidebar span3">
 		<div class="box">
 			<div class="title">
 				<h3>参与人员（<?= $witters_count ?>）</h3><a href="#" class="more">more</a>
@@ -200,6 +199,5 @@
 			</div>
 		</div>
 	</div>
-</div>
 
 <?$this->view('footer')?>

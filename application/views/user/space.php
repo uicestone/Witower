@@ -1,5 +1,4 @@
 <?$this->view('header')?>
-<div id="content" class="page-user model-view">
 	<ul class="breadcrumb">
 		<li>
 			<strong>用户</strong>
@@ -13,7 +12,7 @@
 <?}?>
 		</li>
 	</ul>
-	<div id="left">
+	<div id="left" class="span9">
 <?if(uri_segment(1)==='home'){?>
 		<form method="post" action="/user/addstatus">
 			<div class="model model-b weibo-send">
@@ -115,7 +114,7 @@
 		
 				  </div>-->
 	</div>
-	<div id="right" class="sidebar">
+	<div id="right" class="sidebar span3">
 		<form method="post" action="/?user-search" class="form-search" style="margin-top:10px;">
 			<input type="text" name='keyword' placeholder="搜索用户" style="margin-left:10px; width: 125px;" />
 			<button type="submit" name="search" class="btn">搜索</button>
@@ -245,5 +244,4 @@
 		</div>
 <?}?>
 	</div>
-</div>
 <?$this->view('footer')?>

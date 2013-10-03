@@ -1,4 +1,4 @@
-	<div id="left" class="sidebar">
+	<div id="left" class="span3 sidebar">
 		<div class="box list">
 			<ul class="nav nav-list">
 <?if($this->user->isLogged('config')){?>

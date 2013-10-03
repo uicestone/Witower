@@ -16,7 +16,6 @@ $(function(){
 	});
 });
 </script>
-<div id="content" class="page-viewvote model-view">
 	<ul class="breadcrumb">
 		<li>
 			<strong><a href="#">投票</a></strong>
@@ -26,7 +25,7 @@ $(function(){
 			<?=$project['name']?>
 		</li>
 	</ul>
-	<div id="left">
+	<div id="left" class="span9">
 
 		<div class="model model-b">
 			<div class="main">
@@ -172,7 +171,7 @@ $(function(){
 		</div>
 	</div>
 
-	<div id="right" class="sidebar">
+	<div id="right" class="sidebar span3">
 
 		<div class="box">
 
@@ -231,7 +230,4 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</div>
-
-<?
-$this->view('footer')?>
+<?$this->view('footer')?>

@@ -8,7 +8,6 @@ $(function(){
 	});
 });
 </script>
-<div id="content" class="page-witedit model-view">
 	<ul class="breadcrumb">
 		<li>
 			<strong><a href="#">项目</a></strong>
@@ -22,7 +21,7 @@ $(function(){
 			<a href="#">编辑创意</a>
 		</li>
 	</ul>
-	<div id="left">
+	<div id="left" class="span9">
 		<div class="model model-b">
 			<div class="main">
 				<form method="post">
@@ -45,5 +44,5 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	<?$this->view('wit/sidebar')?></div>
+	<?$this->view('wit/sidebar')?>
 <? $this->view('footer') ?>

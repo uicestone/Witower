@@ -14,6 +14,8 @@ class Company extends WT_Controller{
 		$this->load->model('version_model','version');
 		$this->load->library('pagination');
 		
+		$this->load->page_name='company';
+		
 		if(
 			($this->uri->segment(1)==='admin' && !$this->user->isLogged('witower'))
 			|| ($this->uri->segment(1)==='company' && !$this->user->isCompany())

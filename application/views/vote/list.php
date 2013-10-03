@@ -1,5 +1,4 @@
 <? $this->view('header') ?>
-<div id="content" class="page-vote">
 	<div class="model recommend">
 		<div class="title"><h3>每日热门投票</h3></div>
 		<div class="main">
@@ -16,8 +15,8 @@
 				</ul>
 			</div>
 			<div class="scroll-img">
-				<div class="fn-left"><p>他们已经投票</p></div>
-				<div class="fn-right">
+				<div class="pull-left"><p>他们已经投票</p></div>
+				<div class="pull-right">
 					<ul id="mycarousel" class="jcarousel-skin-tango">
 						<?foreach($recommended_voting_project['voters'] as $voter){?>
 						<li><a href="/space/<?= $voter['id'] ?>"><?=$this->image('avatar',$voter['id'],'100','65')?><span><?= $voter['name'] ?></span></a></li>
@@ -61,7 +60,7 @@
 		</div>
 		<div class="main">
 
-			<div class="model-d fn-left">
+			<div class="model-d pull-left">
 				<h4>最新投票</h4>
 				<div class="content">
 
@@ -92,7 +91,7 @@
 				</div>
 			</div>
 
-			<div class="model-d fn-right">
+			<div class="model-d pull-right">
 				<h4>热门投票</h4>
 				<div class="content">
 
@@ -124,5 +123,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 <?$this->view('footer')?>

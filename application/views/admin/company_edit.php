@@ -21,7 +21,6 @@ $(function(){
 	
 });
 </script>
-<div id="content" class="page-company">
 	<ul class="breadcrumb">
 		<li>
 			<strong><?=lang(uri_segment(1))?></strong>
@@ -36,7 +35,7 @@ $(function(){
 		</li>
 	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
-	<div id="right">
+	<div id="right" class="span9">
 		<div class="model">
 			<div class="title"><h3><?if(isset($company['id'])){?>编辑企业<?}else{?>添加企业<?}?></h3></div>
 			<div class="main">
@@ -70,5 +69,4 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</div>
 <?$this->view('footer')?>

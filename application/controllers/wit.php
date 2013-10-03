@@ -5,6 +5,7 @@ class Wit extends WT_Controller{
 		$this->load->model('project_model','project');
 		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
+		$this->load->page_name='wit';
 	}
 	
 	function view($id){

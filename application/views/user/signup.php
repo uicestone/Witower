@@ -1,11 +1,10 @@
 <?$this->view('header')?>
-<div class="page-register">
 	<div class="title">
 		<h1>注册</h1>
 	</div>
 	<div class="main">
-		<div id="left"><img src="style/register-banner.png"></div>
-		<div class="pull-left">
+		<div id="left" class="span5"><img src="style/register-banner.png"></div>
+		<div class="span7">
 			<form id="registerform" method="post" class="form-horizontal">
 				<input name="forward"   type="hidden" value='<?//=$forward?>' />
 				<div class="control-group">
@@ -54,6 +53,5 @@
 			</form>
 		</div>
 	</div>
-</div>
 <div class="c-b"></div>
 <?$this->view('footer')?>

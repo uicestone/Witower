@@ -21,7 +21,6 @@ $(function(){
 	$('.version:first').trigger('click');
 });
 </script>
-<div class="page-wit">
 	<ul class="breadcrumb">
 		<li>
 			<strong><a href="/project">项目</a></strong>
@@ -105,5 +104,4 @@ $(function(){
 			</div>
 		</form>
 	</div>
-</div>
 <? $this->view('footer') ?>

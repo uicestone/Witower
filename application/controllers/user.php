@@ -42,6 +42,8 @@ class User extends WT_Controller{
 			}
 		}
 		
+		$this->load->page_name='register';
+		
 		$this->load->view('user/signup');
 	}
 	
@@ -73,6 +75,8 @@ class User extends WT_Controller{
 				$alert[]=array('title'=>'错误：','message'=>'用户名或密码错误');
 			}
 		}
+		
+		$this->load->page_name='register';
 		
 		$this->load->view('user/login',compact('alert'));
 	}
@@ -215,6 +219,8 @@ class User extends WT_Controller{
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
 		
+		$this->load->page_name='space';
+		
 		$this->load->view('user/space', compact('user','status','idols','recommended_projects','recommended_votes'));
 	}
 	
@@ -238,6 +244,8 @@ class User extends WT_Controller{
 		$this->load->model('project_model','project');
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
+		
+		$this->load->page_name='space';
 		
 		$this->load->view('user/space', compact('user','status','idols','recommended_projects','recommended_votes'));
 	}

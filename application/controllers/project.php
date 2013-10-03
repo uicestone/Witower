@@ -47,6 +47,8 @@ class Project extends WT_Controller{
 			}
 		}
 		
+		$this->load->page_name='project-list';
+		
 		$this->load->view('project/list',compact('recommended_project','active_projects','witters','hot_tags','money','date','people','projects'));
 	}
 	
@@ -86,6 +88,8 @@ class Project extends WT_Controller{
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
+		
+		$this->load->page_name='project-view';
 		
 		$this->load->view('project/view',  compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes','product','company'));
 	}

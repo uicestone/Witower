@@ -1,4 +1,4 @@
-	<div id="right" class="sidebar">
+	<div id="right" class="sidebar span3">
 <?if(isset($witters)){?>
 		<div class="box">
 			<div class="title">
