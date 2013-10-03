@@ -74,7 +74,7 @@ class Project extends WT_Controller{
 		$wits=$this->wit->getList(array('in_project'=>$project['id']));
 		
 		foreach($wits as &$wit){
-			$wit['comments']=$this->wit->getComments($wit['id']);
+			$wit['comments']=$this->wit->getComments($wit['id'],array('order_by'=>'id desc'));
 		}
 		
 		$witters=$this->user->getList(array('in_project'=>$project['id']));

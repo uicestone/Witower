@@ -108,7 +108,7 @@ class Project_model extends WT_Model{
 	 * @param int $project_id
 	 * @return array
 	 */
-	function getComments($project_id=NULL){
+	function getComments($project_id=NULL, $args=array()){
 		
 		is_null($project_id) && $project_id=$this->id;
 		
@@ -122,6 +122,14 @@ class Project_model extends WT_Model{
 			->join('user','user.id = version_comment.user','inner')
 			->select('user.name AS username')
 			->where('project.id',$project_id);
+		
+		if(array_key_exists('order_by', $args)){
+			$this->db->order_by($args['order_by']);
+		}
+		
+		if(array_key_exists('limit', $args)){
+			$this->db->limit($args['limit']);
+		}
 		
 		return $this->db->get()->result_array();
 	}
