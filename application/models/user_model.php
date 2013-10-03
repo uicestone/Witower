@@ -377,7 +377,7 @@ class User_model extends WT_Model{
 		));
 		
 		$this->addCount('fans',$idol);
-		$this->addCount('idol',$this->id);
+		$this->addCount('follows',$this->id);
 		
 		return $this->db->insert_id();
 	}
