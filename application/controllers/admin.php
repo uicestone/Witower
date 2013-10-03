@@ -42,17 +42,44 @@ class Admin extends WT_Controller{
 		$this->load->view('admin/config_edit',compact('item','value'));
 	}
 	
-	function finance(){
+	function finance($action=NULL){
 		if(!$this->user->isLogged('finance')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
 		$this->load->model('finance_model','finance');
 		
+		if($action==='cashout'){
+			
+			$this->finance->add(array(
+				'amount'=>-$this->input->get('amount'),
+				'item'=>'已申请提现积分',
+				'user'=>$this->input->get('user')
+			));
+			
+			$this->finance->add(array(
+				'amount'=>$this->input->get('amount'),
+				'item'=>'已提现',
+				'user'=>$this->input->get('user')
+			));
+			
+			redirect('admin/finance/grouped');
+			
+		}
+		
 		$args=array('order_by'=>'id desc','get_username'=>true,'get_project_name'=>true);
+		
+		if($action==='grouped'){
+			$args['group_by']='user, item';
+			$args['having']='amount > 0';
+		}
 		
 		if($this->input->get('user')!==false){
 			$args['user']=$this->input->get('user');
+		}
+		
+		if($this->input->get('item')!==false){
+			$args['item']=$this->input->get('item');
 		}
 		
 		if($this->input->get('project')!==false){
@@ -71,7 +98,7 @@ class Admin extends WT_Controller{
 		
 		$pagination=$this->pagination->create_links();
 		
-		$items=$this->finance->sum($args+array('group_by'=>'item'));
+		$items=$this->finance->sum(array('group_by'=>'item')+$args);
 		
 		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
 		$finance_records=$this->finance->getList($args);

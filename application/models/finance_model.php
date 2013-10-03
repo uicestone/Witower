@@ -57,6 +57,10 @@ class Finance_model extends WT_Model{
 			$this->db->select($this->table.'.*, DATE(datetime) date, TIME(datetime) time, UNIX_TIMESTAMP(datetime) timestamp');
 		}
 		
+		if(array_key_exists('group_by', $args)){
+			$this->db->select_sum('amount');
+		}
+		
 		foreach(array('item','project','user') as $arg_name){
 			if(array_key_exists($arg_name, $args)){
 				$this->db->where($this->table.'.'.$arg_name,$args[$arg_name]);
@@ -99,7 +103,8 @@ class Finance_model extends WT_Model{
 		//如果带分组参数，那么返回一个分组求和后的列表
 		if(array_key_exists('group_by', $args)){
 			$this->db->select_sum('amount')->select($args['group_by']);
-			return parent::getList($args);
+			$this->db->having('amount > 0');//TODO Admin::finance() if($action==='grouped') 下有重复判断
+			return $this->getList($args);
 		}
 		
 		//否则返回求和值
