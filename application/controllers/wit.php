@@ -154,7 +154,7 @@ class Wit extends WT_Controller{
 				
 				//若该用户从未参与过项目，那么发布一条状态
 				if(!$this->config->user_item('has_witted')){
-					$this->user->addStatus(lang('status_first_wit'), $this->user->id, 'project', '/project/'.$project['id']);
+					$this->user->addStatus('我参与了 '.$project['company_name'].' 的 ”'.$project['name'].'“ 的创意征集', $this->user->id, 'project', '/project/'.$project['id']);
 					$this->user->set_config('has_witted',true);
 				}
 			}

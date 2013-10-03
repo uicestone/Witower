@@ -54,6 +54,8 @@ class Vote extends WT_Controller{
 		
 		$this->project->id=$id;
 		
+		$project=$this->project->fetch();
+		
 		if($this->input->post('vote')!==false){
 			
 			if(!$this->user->isLogged()){
@@ -67,12 +69,10 @@ class Vote extends WT_Controller{
 			
 			//若该用户从未参与过投票，那么发布一条状态
 			if(!$this->user->config('has_voted')){
-				$this->user->addStatus(lang('status_first_vote'), $this->user->id, 'project', '/vote/'.$this->project->id);
+				$this->user->addStatus('我参与了 '.$project['company_name'].' 的 “'.$project['name'].'” 的投票', $this->user->id, 'project', '/vote/'.$this->project->id);
 				$this->user->set_config('has_voted', true);
 			}
 		}
-		
-		$project=$this->project->fetch();
 		
 		$project['tags']=$this->project->getTags();
 		

@@ -8,6 +8,4 @@ $lang['buffering']='打分中';
 $lang['voting']='投票中';
 $lang['end']='已结束';
 $lang['invalid_score']='请在0-10之间评分';
-$lang['status_first_wit']='我第一次参与了一个创意征集';
-$lang['status_first_vote']='我第一次参与了一个投票';
 ?>
