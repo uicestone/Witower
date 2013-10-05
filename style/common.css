@@ -11,7 +11,7 @@ body{background: url("head-bg.png") repeat-x center 0;}
 ins {background-color: #c6ffc6;text-decoration: none;}
 del {background-color: #ffc6c6;}
 
-.wrapper{ width: 75%; min-width: 980px; margin: 0 auto;}
+.wrapper{ width: 980px; margin: 0 auto;}
 .ellipsis{word-wrap:normal;	overflow:hidden;white-space:nowrap;	text-overflow: ellipsis;}
 
 /*header*/
