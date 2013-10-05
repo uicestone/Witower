@@ -10,7 +10,7 @@ class Witower_model extends WT_Model{
 	 */
 	function getConfig(){
 		$this->db->from('config');
-		return array_sub($this->db->get()->result_array(),'value','item');
+		return array_sub($this->db->get()->result_array(),'value','item',true);
 	}
 	
 }
