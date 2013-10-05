@@ -1,5 +1,6 @@
-<? $this->view('header') ?>
+<?$this->view('header')?>
 <div id="content" class="page-vote">
+<?if(isset($recommended_voting_project)){?>
 	<div class="model recommend">
 		<div class="title"><h3>每日热门投票</h3></div>
 		<div class="main">
@@ -42,6 +43,7 @@
 			</div>
 		</div>
 	</div>
+<?}?>
 	<div class="search">
 		<div class="title">
 			<b class="s14">投票统计</b>

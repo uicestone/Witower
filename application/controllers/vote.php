@@ -10,12 +10,14 @@ class Vote extends WT_Controller{
 	 * 投票中的项目列表页
 	 */
 	function index(){
-		$recommended_voting_project=$this->project->fetch($this->config->user_item('recommended_vote'));
-		$recommended_voting_project['tags']=$this->project->getTags($recommended_voting_project['id']);
-		$recommended_voting_project['comments']=$this->project->getComments($recommended_voting_project['id']);
-		$recommended_voting_project['voters']=$this->user->getList(array('voted_project'=>$recommended_voting_project['id']));
-		$recommended_voting_project['candidates']=$this->project->getCandidates($recommended_voting_project['id']);
-		$recommended_voting_project['votes']=$this->project->countVotes($recommended_voting_project['id']);
+		if($this->config->user_item('recommended_vote')){
+			$recommended_voting_project=$this->project->fetch($this->config->user_item('recommended_vote'));
+			$recommended_voting_project['tags']=$this->project->getTags($recommended_voting_project['id']);
+			$recommended_voting_project['comments']=$this->project->getComments($recommended_voting_project['id']);
+			$recommended_voting_project['voters']=$this->user->getList(array('voted_project'=>$recommended_voting_project['id']));
+			$recommended_voting_project['candidates']=$this->project->getCandidates($recommended_voting_project['id']);
+			$recommended_voting_project['votes']=$this->project->countVotes($recommended_voting_project['id']);
+		}
 
 		$active_projects=$this->project->count(array('status'=>'voting'));
 		

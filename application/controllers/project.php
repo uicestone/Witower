@@ -18,9 +18,11 @@ class Project extends WT_Controller{
 		
 		$this->load->model('tag_model','tag');
 		
-		$recommended_project=$this->project->fetch($this->config->user_item('recommended_project'));
-		$recommended_project['tags']=$this->project->getTags($recommended_project['id']);
-		$recommended_project['comments']=$this->project->getComments($recommended_project['id']);
+		if($this->config->user_item('recommended_project')){
+			$recommended_project=$this->project->fetch($this->config->user_item('recommended_project'));
+			$recommended_project['tags']=$this->project->getTags($recommended_project['id']);
+			$recommended_project['comments']=$this->project->getComments($recommended_project['id']);
+		}
 		
 		$active_projects=$this->project->count(array('status'=>'witting'));
 		$witters=$this->project->sum('witters',array('status'=>'witting'));
