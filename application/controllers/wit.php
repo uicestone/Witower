@@ -184,11 +184,6 @@ class Wit extends WT_Controller{
 
 		}
 		
-		$version['score']=$this->user->isLogged('witower')?$version['score_witower']:$version['score_company'];
-		$version['comment']=$this->user->isLogged('witower')?$version['comment_witower']:$version['comment_company'];
-
-		$this->load->page_name='wit-edit';
-		
 		$this->load->view('wit/edit', compact('wit','witters','project','version','versions','score_field'));
 	}
 	
