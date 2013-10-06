@@ -62,7 +62,9 @@ class User_model extends WT_Model{
 	 *	in_wit int | array
 	 *		为指定创意贡献过版本的用户
 	 *	voted_project int | array
-	 *		参与国指定项目的投票的用户
+	 *		参与过指定项目的投票的用户
+	 *	has_commented_project int | array
+	 *		评论过特定项目中的版本的用户
 	 *	is_fan_of
 	 *		获得一个人的关注者列表
 	 *	is_idol_of
@@ -83,6 +85,10 @@ class User_model extends WT_Model{
 		
 		if(array_key_exists('voted_project',$args)){
 			$this->db->where("user.id IN (SELECT voter FROM project_vote WHERE project{$this->db->escape_int_array($args['voted_project'])})");
+		}
+		
+		if(array_key_exists('has_commented_project', $args)){
+			$this->db->where("user.id IN (SELECT user FROM version_comment WHERE version IN (SELECT id FROM version WHERE project{$this->db->escape_int_array($args['has_commented_project'])}))");
 		}
 		
 		if(array_key_exists('is_fan_of', $args)){
