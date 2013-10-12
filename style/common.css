@@ -208,6 +208,7 @@ page-vote */
 /*
  *
 page-vote-view */
+.page-vote-view .voting .main {max-height: 500px; overflow-y: auto;}
 .page-vote-view .voting table {width: 100%;}
 .page-vote-view .voting table{border-top: 1px dotted #999; border-bottom: 1px dotted #999;}
 .page-vote-view .voting table td{padding: 5px;}
