@@ -117,6 +117,15 @@ class Project extends WT_Controller{
 			'amount'=>-$project['bonus'],
 			'item'=>'已冻结积分'
 		));
+
+		if(round(array_sum(array_sub($bonuses,'amount'))) !== round($project['bonus'])){
+			$this->finance->add(array(
+				'project'=>$this->project->id,
+				'user'=>$project['company'],
+				'amount'=>$project['bonus'],
+				'item'=>'积分'
+			));
+		}
 		
 		$this->project->update(array('active'=>false),$id);
 		
