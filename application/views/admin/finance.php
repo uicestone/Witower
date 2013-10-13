@@ -32,7 +32,7 @@
 							<tr> 
 								<td><?=$finance_record['date']?><br><?=$finance_record['time']?></td>
 								<td>
-									<?=$finance_record['username']?>
+									<a href="/admin/user/<?=$finance_record['user']?>" target="_blank"><?=$finance_record['username']?></a>
 									<a href="<?uri_string()?>?<?=http_build_query(array('user'=>$finance_record['user'])+($this->input->get()?$this->input->get():array()))?>"><span class="icon-filter pull-right"></span></a>
 								</td>
 								<td><?=$finance_record['project_name']?></td>
