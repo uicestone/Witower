@@ -276,7 +276,7 @@ page-viewproject
 /*
  *
 page-viewvote */
-.page-viewvote .voting{}
+.page-viewvote .voting .main {max-height: 500px; overflow-y: auto;}
 .page-viewvote .voting table {width: 100%;}
 .page-viewvote .voting table{border-top: 1px dotted #999; border-bottom: 1px dotted #999;}
 .page-viewvote .voting table td{padding: 5px;}
