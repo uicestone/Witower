@@ -141,6 +141,7 @@ $(function(){
 				</div>
 			</form>
 		</div>
+<?if($wit){?>
 		<div class="model model-b">
 			<div class="title">
 				<a href="/wit/<?=$wit['id']?>" target="_blank"><h3><?=$wit['name']?></h3></a>
@@ -152,6 +153,7 @@ $(function(){
 				<?=$wit['content']?>
 			</div>
 		</div>
+<?}?>
 		<div class="model model-b">
 			<div class="main">
 				<div class="detail">
