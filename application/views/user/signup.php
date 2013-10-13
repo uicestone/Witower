@@ -37,10 +37,18 @@
 					</div>
 				</div>				
 				<div class="control-group">
+					<label class="control-label" for="repassword">验证码：</label>
+					<div class="controls">
+						<input name="captcha" id="captcha"  type="text" />
+						<span><?=$captcha['image']?></span>
+						<span class="label label-important"><?=form_error('captcha')?></span>
+					</div>
+				</div>				
+				<div class="control-group">
 					<div class="controls">
 						<label class="checkbox" for="agree">
 							<input name="agree" id="agree" type="checkbox"<?=set_checkbox('agree','on')?> />
-							<span>同意"<a href="#" target="_blank">Witower智塔用户协议</a>"</span>
+							<span>同意"<a href="/wit/9" target="_blank">Witower智塔用户协议</a>"</span>
 							<span class="label label-important"><?=form_error('agree')?></span>
 						</label>
 					</div>

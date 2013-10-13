@@ -93,4 +93,13 @@ ADD UNIQUE  `user-item` (  `user` ,  `item` );
 ALTER TABLE  `user_config` CHANGE  `value`  `value` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
 
 ALTER TABLE  `config` CHANGE  `value`  `value` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
+
+CREATE TABLE captcha (
+ captcha_id bigint(13) unsigned NOT NULL auto_increment,
+ captcha_time int(10) unsigned NOT NULL,
+ ip_address varchar(16) default '0' NOT NULL,
+ word varchar(20) NOT NULL,
+ PRIMARY KEY `captcha_id` (`captcha_id`),
+ KEY `word` (`word`)
+);
 -- server upgraded

@@ -16,7 +16,23 @@ class User extends WT_Controller{
 	function signup(){
 		
 		$this->load->library('form_validation');
+		$this->load->helper('captcha');
 		
+		$captcha=create_captcha(array(
+			'word'=>random_string('alnum',4),
+			'img_path' => './uploads/images/captcha/',
+			'img_url' => '/uploads/images/captcha/',
+			'img_width' => 80
+		));
+		
+		$data = array(
+			'captcha_time' => $captcha['time'],
+			'ip_address' => $this->input->ip_address(),
+			'word' => $captcha['word']
+		);
+
+		$this->db->insert('captcha', $data);
+
 		$this->form_validation->set_rules(array(
 			array('field'=>'email','label'=>'E-mail','rules'=>'required|valid_email|is_unique[user.email]'),
 			array('field'=>'username','label'=>'用户名','rules'=>'required|is_unique[user.name]'),
@@ -28,21 +44,39 @@ class User extends WT_Controller{
 			->set_rules('agree','同意用户协议','callback__agree');
 		
 		if($this->input->post('signup')!==false){
-			
-			if($this->form_validation->run()!==false){
-				$user_id=$this->user->add(array(
-					'name'=>$this->input->post('username'),
-					'password'=>$this->input->post('password'),
-					'email'=>$this->input->post('email')
-				));
-				
-				$this->user->sessionLogin($user_id);
+			try{
+				// 首先删除旧的验证码
+				$expiration = time()-7200; // 2小时限制
+				$this->db->where('captcha_time < ',$expiration)->delete('captcha');
 
-				redirect(urldecode($this->input->post('forward')));
+				// 然后再看是否有验证码存在:
+				$sql = "SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?";
+				$binds = array($this->input->post('captcha'), $this->input->ip_address(), $expiration);
+				$query = $this->db->query($sql, $binds);
+				$row = $query->row();
+				if ($row->count == 0)
+				{
+					$this->form_validation->_field_data['captcha']['error']='验证码错误';
+					throw new Exception;
+				}
+
+				if($this->form_validation->run()!==false){
+					$user_id=$this->user->add(array(
+						'name'=>$this->input->post('username'),
+						'password'=>$this->input->post('password'),
+						'email'=>$this->input->post('email')
+					));
+
+					$this->user->sessionLogin($user_id);
+
+					redirect(urldecode($this->input->post('forward')));
+				}
+			}catch(Exception $e){
+				
 			}
 		}
 		
-		$this->load->view('user/signup');
+		$this->load->view('user/signup',compact('captcha'));
 	}
 	
 	function _agree($value){
