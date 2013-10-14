@@ -306,9 +306,9 @@ class Project_model extends WT_Model{
 				$candidate['percentage_score_witower']=$sum['score_witower']>0?$candidate['score_witower']/$sum['score_witower']:0;
 
 				$candidate['bonus']=
-					($candidate['percentage_votes']*1 + $candidate['percentage_score_company']*2 + $candidate['percentage_score_witower']*2)
+					($candidate['percentage_votes']*2 + $candidate['percentage_score_company']*2 + $candidate['percentage_score_witower']*1)
 						/
-					(($sum['votes']>0?1:0) + ($sum['score_company']>0?2:0) + ($sum['score_witower']>0?2:0))
+					(($sum['votes']>0?2:0) + ($sum['score_company']>0?2:0) + ($sum['score_witower']>0?1:0))
 						*
 					$project['bonus'];
 			}
