@@ -69,7 +69,7 @@ class Wit_model extends WT_Model{
 			->group_by('user')
 			->having('(score_witower > 0 OR score_company > 0)', NULL, FALSE)
 			->get()->result_array();
-		echo $this->db->last_query();exit;
+		
 		$this->db->insert_batch('project_candidate',$scores);
 		
 		return $this;
