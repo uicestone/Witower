@@ -8,9 +8,9 @@ $(function(){
 		.siblings().removeClass('changed').removeClass('original')
 		.siblings('.diff').remove();
 
-		$(this).clone().insertAfter(this).addClass('diff');
+		$(this).clone().insertBefore(this).addClass('diff');
 		$(this).addClass('changed').hide()
-			.prev().addClass('original')
+			.next().addClass('original')
 			.parent().prettyTextDiff({
 				originalContainer:'.detail.original>.content',
 				changedContainer:'.detail.changed>.content',
@@ -18,7 +18,7 @@ $(function(){
 			})
 			.children('.detail.diff').children('.content').find('br:first').remove();
 	});
-	$('.detail:last').trigger('click');
+	$('.detail:first').trigger('click');
 });
 </script>
 <div id="content" class="page-company">

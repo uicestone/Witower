@@ -135,7 +135,7 @@ $(function(){
 						<a href="/admin/project/<?=$project['id']?>" class="btn btn-primary">编辑</a>
 <?}else{?>
 						<a href="#vote-confirm-modal" role="button" class="btn btn-primary" data-toggle="modal">投票</a>
-						<button type="reset" class="btn">重 选</button>
+						<button type="reset" class="btn">重选</button>
 <?}?>						
 					</div>
 				</div>

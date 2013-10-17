@@ -448,18 +448,24 @@ class Company extends WT_Controller{
 		}
 		
 		if($this->input->get('versions')!==false){
-			$args=array('id_in'=>$this->input->get('versions'));
+			$args=array('id_in'=>$this->input->get('versions'), 'order_by'=>'id desc');
 			if($this->uri->segment(1)==='admin'){
 				$args['score']=$args['comment']='witower';
 			}else{
 				$args['score']=$args['comment']='company';
 			}
 			$versions=$this->version->getlist($args);
+
+			foreach($versions as &$version){
+				$version['author_name']=$this->user->fetch($version['user'],'name');
+			}
+		
 			$wit=$this->wit->fetch($versions[0]['wit']);
 			$project=$this->project->fetch($wit['project']);
+			
 		}
 		
-		$this->load->view('company/version_compare',compact('versions','wit','project','alert'));
+		$this->load->view('wit/versions',compact('versions','wit','project','alert'));
 	}
 }
 ?>
