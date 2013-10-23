@@ -41,6 +41,18 @@ $(function() {
 		.on('mouseleave',function(){
 			$(this).find('.add-follow').hide();
 		});
+	
+	$(window).on('scroll',function(){
+		if($(window).scrollTop()>0){
+			$('#back-to-top').show();
+		}else{
+			$('#back-to-top').hide();
+		}
+	});
+	
+	$('#back-to-top').on('click',function(){
+		$(window).scrollTop(0);
+	});
 		
 	$.get('/cron');
 
