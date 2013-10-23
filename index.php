@@ -19,7 +19,7 @@
  *
  */
 	///define('ENVIRONMENT', 'testing');
-	define('ENVIRONMENT', 'testing');
+	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
