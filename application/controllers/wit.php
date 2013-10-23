@@ -58,6 +58,10 @@ class Wit extends WT_Controller{
 		$wit=$this->wit->fetch();
 		$project=$this->project->fetch($wit['project']);
 		
+		if($this->input->get('versions')!==false){
+			$args['id_in']=$this->input->get('versions');
+		}
+
 		if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){
 			$args['deleted']=NULL;
 			

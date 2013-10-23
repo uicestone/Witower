@@ -27,7 +27,7 @@
 		<div class="model">
 			<div class="title"><h3>版本</h3></div>
 			<div class="main">
-				<form action="versioncompare">
+				<form action="/wit/versions/<?=$wit['id']?>">
 					<table class="table table-bordered">
 						<thead>
 							<tr>
