@@ -47,6 +47,7 @@ $(function(){
 		<div class="title"><h3>版本 <?=$wit['name']?></h3></div>
 		<form method="post">
 			<div class="main">
+				<?=$this->view('alert')?>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -83,6 +84,15 @@ $(function(){
 							</td>
 							<td>
 								智塔：<?=$version['score_witower']?>, 企业：<?=$version['score_company']?>
+<?	if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
+<?		if($project['status']!='end'){?>
+								<p class="form-inline">
+									<input type="text" name="score[<?=$version['id']?>]" value="<?=$version['score']?>" placeholder="评分" style="width:3em">
+									<input type="text" name="comment[<?=$version['id']?>]" value="<?=$version['comment']?>" placeholder="评语">
+									<button type="submit" class="btn">打分</button>
+								</p>
+<?		}?>
+<?	}?>
 							</td>
 <?	if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
 							<td>

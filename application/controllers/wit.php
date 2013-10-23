@@ -60,6 +60,24 @@ class Wit extends WT_Controller{
 		
 		if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){
 			$args['deleted']=NULL;
+			
+			if($this->user->isLogged('witower')){
+				$args['score']=$args['comment']='witower';
+			}else{
+				$args['score']=$args['comment']='company';
+			}
+			
+			try{
+				if($this->input->post('score')!==false){
+					$this->version->score($this->input->post('score'));
+				}
+				if($this->input->post('comment')!==false){
+					$this->version->comment($this->input->post('comment'));
+				}
+			}catch(Exception $e){
+				$alert[]=array('message'=>lang($e->getMessage()));
+			}
+
 		}
 		
 		if($this->input->get('user')){
@@ -73,7 +91,7 @@ class Wit extends WT_Controller{
 			$version['author_name']=$this->user->fetch($version['user'],'name');
 		}
 		
-		$this->load->view('wit/versions', compact('versions','wit','project','user'));
+		$this->load->view('wit/versions', compact('versions','wit','project','user','alert'));
 	}
 	
 	/**
