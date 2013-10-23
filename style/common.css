@@ -162,7 +162,7 @@ page-vote */
 .model-d .content .box ul li{line-height: 180%;}
 
 .page-vote .box .join{float: right; height: 60px;border: 1px solid #ddd;border-radius: 5px;overflow: hidden;text-align: center;line-height: 30px; margin-top: 5px;}
-.page-vote .box .join p{height: 30px;background: #fff;padding: 0 10px;font-weight: bold;color: #1c1553; line-height: 30px;}
+.page-vote .box .join p{height: 30px;background: #fff;padding: 0 10px;margin-bottom:0;font-weight: bold;color: #1c1553; line-height: 30px;}
 .page-vote .box ul li.last{height:60px;}
 
 /* search */
@@ -185,7 +185,7 @@ page-vote */
 #right.sidebar{border:1px solid #ddd;background: #f3f3f3;}
 #right .box{overflow: hidden;border-bottom: 1px solid #ddd;padding: 10px;}
 #right .title{overflow: hidden;}
-#right .title h3{float: left;color: #333;font-weight: bold;}
+#right.sidebar .box .title h3{float: left;color: #333;font-weight: bold; font-size: 17px;}
 #right .title .more{float: right;font-size: 10px;font-family: "microsoft yahei";margin-top:12px; }
 #right .main{margin: 10px 0;}
 #right .main ul li a{color: #666;}

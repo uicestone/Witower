@@ -34,7 +34,7 @@
 	</div>
 	<div id="right" class="span3 sidebar">
 		<div class="box">
-			<div class="title"><h4>积分：<?=$this->finance->sum(array('user'=>$this->user->id,'item'=>'积分'))?></h4></div>
+			<div class="title"><h3>积分：<?=$this->finance->sum(array('user'=>$this->user->id,'item'=>'积分'))?></h3></div>
 		</div>
 		<div class="box">
 			<?$this->view('alert')?>
