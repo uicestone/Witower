@@ -1,54 +1,4 @@
 <?$this->view('header')?>
-<link rel="stylesheet" type="text/css" href="/style/bootstrap/typeahead.js-bootstrap.css">
-<script type="text/javascript" src="/js/typeahead.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	
-	$(':input[name="date"]').datepicker({
-		language:'zh-CN',
-		forceParse:false
-	});
-	
-	$(':input[name="username"]').typeahead({
-		remote: '/user/match/%QUERY',
-		valueKey:'name'
-	});
-	
-	$(':input[name="project_name"]').typeahead({
-		remote: '/project/match/%QUERY',
-		valueKey:'name'
-	});
-	
-	$(':input[name="item"]').typeahead({
-		remote: '/finance/matchitems/%QUERY',
-		valueKey:'name'
-	});
-	
-	$(':input').on('typeahead:selected',function(event,item){
-		console.log('selected');
-		$($(this).data('id-element')).val(item.id);
-	})
-	.on('change',function(event){
-		if($(this).val()==='' && $(this).data('id-element')){
-			$($(this).data('id-element')).val('');
-		}
-	});
-	
-});
-</script>
-	<ul class="breadcrumb">
-		<li>
-			<strong><?=lang(uri_segment(1))?></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/<?=uri_segment(1)?>/finance">财务管理</a>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<?if(isset($finance['id'])){?><a href="/<?=uri_segment(1)?>/finance/<?=$finance['id']?>"></a>查看帐目<?}else{?>添加帐目<?}?>
-		</li>
-	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
 	<div id="right" class="span9">
 		<div class="model">
@@ -114,4 +64,43 @@ $(function(){
 			</div>
 		</div>
 	</div>
+
+<link rel="stylesheet" type="text/css" href="/style/bootstrap/typeahead.js-bootstrap.css">
+<script type="text/javascript" src="/js/typeahead.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$(':input[name="date"]').datepicker({
+		language:'zh-CN',
+		forceParse:false
+	});
+	
+	$(':input[name="username"]').typeahead({
+		remote: '/user/match/%QUERY',
+		valueKey:'name'
+	});
+	
+	$(':input[name="project_name"]').typeahead({
+		remote: '/project/match/%QUERY',
+		valueKey:'name'
+	});
+	
+	$(':input[name="item"]').typeahead({
+		remote: '/finance/matchitems/%QUERY',
+		valueKey:'name'
+	});
+	
+	$(':input').on('typeahead:selected',function(event,item){
+		console.log('selected');
+		$($(this).data('id-element')).val(item.id);
+	})
+	.on('change',function(event){
+		if($(this).val()==='' && $(this).data('id-element')){
+			$($(this).data('id-element')).val('');
+		}
+	});
+	
+});
+</script>
+
 <?$this->view('footer')?>

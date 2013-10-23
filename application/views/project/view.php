@@ -1,14 +1,4 @@
 <? $this->view('header') ?>
-	<ul class="breadcrumb">
-		<li>
-			<strong><a href="/project">项目</a></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/project/<?=$project['id']?>"><?=$project['name']?></a>
-		</li>
-	</ul>
-
 	<div id="left" class="span9">
 		<div class="model model-b">
 			<div class="main">

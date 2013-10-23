@@ -1,47 +1,4 @@
 <?$this->view('header')?>
-<script type="text/javascript">
-$(function(){
-<?if(!$this->user->isLogged('witower')){?>	
-	//创意征集结束时间在开始时间+6 - 开始时间+14的范围，即7-15天
-	$('[name="wit_start"]').on('change',function(){
-		var witEndValidFrom = new Date($(this).val());
-		var witEndValidTo = new Date($(this).val());
-		
-		witEndValidFrom.setDate(witEndValidFrom.getDate()+6);
-		witEndValidTo.setDate(witEndValidTo.getDate()+14);
-		
-		$('[name="wit_end"]').datepicker('setStartDate',witEndValidFrom).datepicker('setEndDate',witEndValidTo);
-	});
-	
-	//投票评选日期开始为创意征集结束日期+2天
-	$('[name="wit_end"]').on('change',function(){
-		var voteStart = new Date(new Date($(this).val()).getTime() + 86400000 * 2);
-		$('[name="vote_start"]').val(voteStart.getFullYear() + '-' + ('0' + (voteStart.getMonth() + 1)).slice(-2) + '-' + ('0' + voteStart.getDate()).slice(-2)).trigger('change');
-	});
-	
-	//投票结束日期为投票开始日期+2天，即3天投票期
-	$('[name="vote_start"]').on('change',function(){
-		var voteEnd = new Date(new Date($(this).val()).getTime() + 86400000 * 2);
-		$('[name="vote_end"]').val(voteEnd.getFullYear() + '-' + ('0' + (voteEnd.getMonth() + 1)).slice(-2) + '-' + ('0' + voteEnd.getDate()).slice(-2));
-	});
-	
-	$('[name="wit_start"]').trigger('change');
-<?}?>
-});
-</script>
-	<ul class="breadcrumb">
-		<li>
-			<strong><?=lang(uri_segment(1))?></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/<?=uri_segment(1)?>/project">项目管理</a>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<?if(isset($project['id'])){?>编辑项目 <?=$project['name']?><?}else{?>添加项目<?}?>
-		</li>
-	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
 	<div id="right" class="span9">
 		<div class="model">
@@ -131,4 +88,36 @@ $(function(){
 			</div>
 		</div>
 	</div>
-<?$this->view('footer')?>
+
+<script type="text/javascript">
+$(function(){
+<?if(!$this->user->isLogged('witower')){?>	
+	//创意征集结束时间在开始时间+6 - 开始时间+14的范围，即7-15天
+	$('[name="wit_start"]').on('change',function(){
+		var witEndValidFrom = new Date($(this).val());
+		var witEndValidTo = new Date($(this).val());
+		
+		witEndValidFrom.setDate(witEndValidFrom.getDate()+6);
+		witEndValidTo.setDate(witEndValidTo.getDate()+14);
+		
+		$('[name="wit_end"]').datepicker('setStartDate',witEndValidFrom).datepicker('setEndDate',witEndValidTo);
+	});
+	
+	//投票评选日期开始为创意征集结束日期+2天
+	$('[name="wit_end"]').on('change',function(){
+		var voteStart = new Date(new Date($(this).val()).getTime() + 86400000 * 2);
+		$('[name="vote_start"]').val(voteStart.getFullYear() + '-' + ('0' + (voteStart.getMonth() + 1)).slice(-2) + '-' + ('0' + voteStart.getDate()).slice(-2)).trigger('change');
+	});
+	
+	//投票结束日期为投票开始日期+2天，即3天投票期
+	$('[name="vote_start"]').on('change',function(){
+		var voteEnd = new Date(new Date($(this).val()).getTime() + 86400000 * 2);
+		$('[name="vote_end"]').val(voteEnd.getFullYear() + '-' + ('0' + (voteEnd.getMonth() + 1)).slice(-2) + '-' + ('0' + voteEnd.getDate()).slice(-2));
+	});
+	
+	$('[name="wit_start"]').trigger('change');
+<?}?>
+});
+</script>
+
+	<?$this->view('footer')?>

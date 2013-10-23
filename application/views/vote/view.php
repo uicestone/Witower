@@ -1,30 +1,4 @@
 <? $this->view('header') ?>
-<script type="text/javascript">
-$(function(){
-	$('#vote-button').on('click',function(){
-		var votes=0;
-		
-		$(this).parents('form').find(':input[name^=candidate]').each(function(){
-			votes += Number($(this).val());
-		});
-		
-		if(votes===3){
-			$(this).parents('form').find('#completed').show().siblings('#incompleted').hide();
-		}else{
-			$(this).parents('form').find('#incompleted').show().siblings('#completed').hide();
-		}
-	});
-});
-</script>
-	<ul class="breadcrumb">
-		<li>
-			<strong><a href="#">投票</a></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<?=$project['name']?>
-		</li>
-	</ul>
 	<div id="left" class="span9">
 
 		<div class="model model-b">
@@ -230,4 +204,23 @@ $(function(){
 			</div>
 		</div>
 	</div>
+
+<script type="text/javascript">
+$(function(){
+	$('#vote-button').on('click',function(){
+		var votes=0;
+		
+		$(this).parents('form').find(':input[name^=candidate]').each(function(){
+			votes += Number($(this).val());
+		});
+		
+		if(votes===3){
+			$(this).parents('form').find('#completed').show().siblings('#incompleted').hide();
+		}else{
+			$(this).parents('form').find('#incompleted').show().siblings('#completed').hide();
+		}
+	});
+});
+</script>
+
 <?$this->view('footer')?>

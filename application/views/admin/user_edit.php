@@ -1,17 +1,4 @@
 <?$this->view('header')?>
-	<ul class="breadcrumb">
-		<li>
-			<strong><?=lang(uri_segment(1))?></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/<?=uri_segment(1)?>/finance">用户管理</a>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<?if(isset($user['id'])){?>编辑用户<?}else{?>添加用户<?}?>
-		</li>
-	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
 	<div id="right" class="span9">
 		<div class="model">

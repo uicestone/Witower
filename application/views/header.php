@@ -58,5 +58,17 @@
 			</div>
 		</div>
 		
-		<div id="content"<?if($this->page_name){?>class="page-<?=$this->page_name?>"<?}?>>
-			<div class="wrapper row-fluid">
+		<div id="content" class="wrapper<?if($this->page_name){?> page-<?=$this->page_name?><?}?>">
+<?if(count($this->page_path)>1){?>
+			<ul class="breadcrumb">
+<?	foreach($this->page_path as $level => $page){?>
+				<li>
+					<?if($level===0){?><strong><?}?>
+						<a href="<?=$page['href']?>"><?=$page['text']?></a>
+					<?if($level===0){?></strong><?}?>
+					<?if($level<count($this->page_path)-1){?><span class="divider">/</span><?}?>
+				</li>
+<?	}?>
+			</ul>
+<?}?>
+			<div class="row-fluid">

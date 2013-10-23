@@ -14,7 +14,8 @@ class Company extends WT_Controller{
 		$this->load->model('version_model','version');
 		$this->load->library('pagination');
 		
-		$this->load->page_name='company';
+		$this->load->page_name='admin';
+		$this->load->page_path[]=array('text'=>lang('company'),'href'=>'/company');
 		
 		if(
 			($this->uri->segment(1)==='admin' && !$this->user->isLogged('witower'))
@@ -59,6 +60,8 @@ class Company extends WT_Controller{
 			$product['projects_witting']=$this->project->count(array('in_product'=>$product['id'],'status'=>'witting'));
 			$product['projects_voting']=$this->project->count(array('in_product'=>$product['id'],'status'=>'voting'));
 		});
+		
+		$this->load->page_path[]=array('text'=>lang('admin_product'),'href'=>'/'.$this->uri->segment(1).'/product');
 		
 		$this->load->view('company/product', compact('products','pagination'));
 	}
@@ -163,6 +166,9 @@ class Company extends WT_Controller{
 			$tags=$this->product->getTags();
 		}
 		
+		$this->load->page_path[]=array('text'=>lang('admin_product'),'href'=>'/'.$this->uri->segment(1).'/product');
+		$this->load->page_path[]=array('text'=>is_null($this->product->id)?lang('admin_product_add'):lang('admin_product_edit'),'href'=>is_null($this->product->id)?'/'.$this->uri->segment(1).'/addproduct':'/'.$this->uri->segment(1).'/product/'.$this->product->id);
+		
 		$this->load->view('company/product_edit', compact('product','alert','tags'));
 	}
 	
@@ -197,6 +203,11 @@ class Company extends WT_Controller{
 		array_walk($projects, function(&$project){
 			$project['product_name']=$this->product->fetch($project['product'],'name');
 		});
+		
+		$this->load->page_path[]=array('text'=>lang('admin_project'),'href'=>'/'.$this->uri->segment(1).'/project');
+		if($status){
+			$this->load->page_path[]=array('text'=>lang($status),'href'=>'/'.$this->uri->segment(1).'/project/'.$status);
+		}
 		
 		$this->load->view('company/project', compact('projects','pagination'));
 	}
@@ -352,6 +363,9 @@ class Company extends WT_Controller{
 		
 		$products=$this->product->getArray(array('company'=>$project['company']),'name','id');
 		
+		$this->load->page_path[]=array('text'=>lang('admin_project'),'href'=>'/'.$this->uri->segment(1).'/project');
+		$this->load->page_path[]=array('text'=>is_null($this->project->id)?lang('admin_project_add'):lang('admin_project_edit'),'href'=>is_null($this->project->id)?'/'.$this->uri->segment(1).'/addproject':'/'.$this->uri->segment(1).'/project/'.$this->project->id);
+		
 		$this->load->view('company/project_edit', compact('project','products','tags','alert'));
 	}
 	
@@ -388,6 +402,10 @@ class Company extends WT_Controller{
 			$wit['latest_version_time']=$latest_version['time'];
 			$wit['versions']=$this->version->count(array('wit'=>$wit['id']));
 		});
+		
+		$this->load->page_path[]=array('text'=>lang('admin_project'),'href'=>'/'.$this->uri->segment(1).'/project');
+		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/'.$this->uri->segment(1).'/project/'.$project['id']);
+		$this->load->page_path[]=array('text'=>lang('wit'),'href'=>'/'.$this->uri->segment(1).'/wit?project='.$project['id']);
 		
 		$this->load->view('company/wit', compact('wits','project'));
 	}
@@ -429,6 +447,11 @@ class Company extends WT_Controller{
 			$version['wit_name']=$wit['name'];
 			$version['project_name']=$project['name'];
 		});
+		
+		$this->load->page_path[]=array('text'=>lang('admin_project'),'href'=>'/'.$this->uri->segment(1).'/project');
+		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/'.$this->uri->segment(1).'/project/'.$project['id']);
+		$this->load->page_path[]=array('text'=>$wit['name'],'href'=>'/'.$this->uri->segment(1).'/wit?project='.$project['id']);
+		$this->load->page_path[]=array('text'=>lang('version'),'href'=>'/'.$this->uri->segment(1).'/version?wit='.$wit['id']);
 		
 		$this->load->view('company/version', compact('versions','wit','project','product'));
 	}

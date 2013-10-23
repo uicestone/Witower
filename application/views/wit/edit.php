@@ -1,26 +1,4 @@
 <? $this->view('header') ?>
-<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	tinymce.init({
-		selector: 'textarea.tinymce',
-		language: 'zh_CN'
-	});
-});
-</script>
-	<ul class="breadcrumb">
-		<li>
-			<strong><a href="#">项目</a></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/project/<?=$project['id']?>"><?=$project['name']?></a>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="#">编辑创意</a>
-		</li>
-	</ul>
 	<div id="left" class="span9">
 		<div class="model model-b">
 			<div class="main">
@@ -45,4 +23,15 @@ $(function(){
 		</div>
 	</div>
 	<?$this->view('wit/sidebar')?>
+
+<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	tinymce.init({
+		selector: 'textarea.tinymce',
+		language: 'zh_CN'
+	});
+});
+</script>
+
 <? $this->view('footer') ?>

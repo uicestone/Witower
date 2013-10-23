@@ -1,42 +1,4 @@
 <? $this->view('header') ?>
-<script type="text/javascript">
-$(function(){
-	
-	$(':input').on('change',function(){
-		$(this).attr('changed','changed');
-	});
-	
-	$('.btn-group>:button').on('click',function(){
-		$(this).siblings(':button').removeAttr('changed');
-		$(this).attr('changed','changed');
-		$(this).parent().find(':radio[name="'+$(this).attr('name')+'"][value="'+$(this).text()+'"]').prop('checked',true).trigger('change');
-	});
-	
-	$('form').on('submit',function(){
-		$(this).find(':input:not([changed]):not([name="submit"])').prop('disabled',true);
-	});
-	
-	//http://stackoverflow.com/questions/7862233/twitter-bootstrap-tabs-go-to-specific-tab-on-page-reload
-	if (window.location.hash) {
-		$('.nav-pills a[href='+window.location.hash+']').tab('show') ;
-	} 
-
-	// Change hash for page-reload
-	$('.nav-pills a').on('shown', function (e) {
-		window.location.hash = e.target.hash;
-	});
-	
-});
-</script>
-	<ul class="breadcrumb">
-		<li>
-			<strong><a href="#">用户</a></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="#">修改头像</a>
-		</li>
-	</ul>
 	<div id="left" class="span9">
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 			<div class="model model-b tab-content">
@@ -254,5 +216,33 @@ $(function(){
 			</ul>
 		</div>
 	</div>
-<?
-$this->view('footer')?>
+<script type="text/javascript">
+$(function(){
+	
+	$(':input').on('change',function(){
+		$(this).attr('changed','changed');
+	});
+	
+	$('.btn-group>:button').on('click',function(){
+		$(this).siblings(':button').removeAttr('changed');
+		$(this).attr('changed','changed');
+		$(this).parent().find(':radio[name="'+$(this).attr('name')+'"][value="'+$(this).text()+'"]').prop('checked',true).trigger('change');
+	});
+	
+	$('form').on('submit',function(){
+		$(this).find(':input:not([changed]):not([name="submit"])').prop('disabled',true);
+	});
+	
+	//http://stackoverflow.com/questions/7862233/twitter-bootstrap-tabs-go-to-specific-tab-on-page-reload
+	if (window.location.hash) {
+		$('.nav-pills a[href='+window.location.hash+']').tab('show') ;
+	} 
+
+	// Change hash for page-reload
+	$('.nav-pills a').on('shown', function (e) {
+		window.location.hash = e.target.hash;
+	});
+	
+});
+</script>
+<?$this->view('footer')?>

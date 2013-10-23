@@ -2,6 +2,8 @@
 class User extends WT_Controller{
 	function __construct() {
 		parent::__construct();
+		$this->load->page_name='user';
+		$this->load->page_path[]=array('text'=>lang('user'),'href'=>'/home');
 	}
 	
 	function match($term){
@@ -191,6 +193,8 @@ class User extends WT_Controller{
 		
 		$profiles=$this->user->getProfiles();
 		
+			$this->load->page_path[]=array('text'=>lang('profile'),'href'=>'/profile');
+		
 		$this->load->view('user/profile', compact('user','profiles','alert'));
 	}
 	
@@ -221,6 +225,8 @@ class User extends WT_Controller{
 		
 		$this->load->page_name='space';
 		
+		$this->load->page_path[]=array('text'=>lang('home'),'href'=>'/home');
+		
 		$this->load->view('user/space', compact('user','status','idols','recommended_projects','recommended_votes'));
 	}
 	
@@ -246,6 +252,7 @@ class User extends WT_Controller{
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
 		
 		$this->load->page_name='space';
+		$this->load->page_path[]=array('text'=>$user['name'],'/space/'.$user['id']);
 		
 		$this->load->view('user/space', compact('user','status','idols','recommended_projects','recommended_votes'));
 	}
@@ -325,6 +332,8 @@ class User extends WT_Controller{
 		}
 		
 		$finance_records=$this->finance->getList(array('user'=>$this->user->id,'get_project_name'=>true,'order_by'=>'datetime desc'));
+		
+		$this->load->page_path[]=array('text'=>lang('user_finance'),'href'=>'/finance');
 		
 		$this->load->view('user/finance',compact('finance_records','alert'));
 	}

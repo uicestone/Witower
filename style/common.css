@@ -256,7 +256,7 @@ page-master  ******/
 /*
 *
 page-register  ******/
-.page-register{background: #fff;border:1px solid #ddd;border-radius: 5px;margin: 40px 0 0 0;}
+.page-register{background: #fff;border:1px solid #ddd;border-radius: 5px;}
 .page-register .title{height: 50px;line-height: 50px;border-bottom: 1px solid #ddd;}
 .page-register .title h1{font-size: 26px;float: left;color:#666;text-indent: 1em; margin-top:0.3em;}
 .page-register .title  span{float: right;margin: 16px 20px 0 0;}
@@ -458,34 +458,34 @@ page-register  ******/
 .added{margin: 0 5px;font-size: 10px;}
 .added:hover{color: #999!important;text-decoration: none;}
 
-.page-company #left{width:200px;border:1px solid #ccc;background: #f6f6f6;padding:10px}
-.page-company #left .list {margin-top: 10px;}
-.page-company #left .list ul {margin: 0;}
-.page-company #left .list h3{font-size: 14px;font-weight: bold;}
-.page-company #left .menu ul{margin:0;}
-.page-company #left .menu li{line-height: 30px;}
-.page-company #left .menu li a{display: block;}
-.page-company #left .menu li.active a{height: 30px;background: url("btn_a.png") repeat-x;color:#fff;}
-.page-company #left .menu li a{font-size: 14px;color:#333;}
+.page-admin #left{width:200px;border:1px solid #ccc;background: #f6f6f6;padding:10px}
+.page-admin #left .list {margin-top: 10px;}
+.page-admin #left .list ul {margin: 0;}
+.page-admin #left .list h3{font-size: 14px;font-weight: bold;}
+.page-admin #left .menu ul{margin:0;}
+.page-admin #left .menu li{line-height: 30px;}
+.page-admin #left .menu li a{display: block;}
+.page-admin #left .menu li.active a{height: 30px;background: url("btn_a.png") repeat-x;color:#fff;}
+.page-admin #left .menu li a{font-size: 14px;color:#333;}
 
-.page-company #right{width:740px;}
-.page-company #right .main{padding:10px;}
+.page-admin #right{width:740px;}
+.page-admin #right .main{padding:10px;}
 
-.page-company #right .table{margin-top: 10px;}
-.page-company #right .table th#name{width:8em;}
-.page-company #right .table th#project{width:8em;}
-.page-company #right .table th#date{width:6em;}
-.page-company #right .table th#score{width:3.5em;}
-.page-company #right .table th#author{width:6em;}
-.page-company #right .table th#latest-author{width:6em;}
-.page-company #right .table th#versions{width:5em;}
-.page-company #right .table td.image img{width: 100px;}
-.page-company #right .table td.descript{width: 40%;}
-.page-company #right .table .btn{margin-bottom: 5px;}
-.page-company #right .nav-tabs{margin-top:6px;border-bottom:none;}
-.page-company #right .nav-tabs li{margin:0}
-.page-company #right .nav-tabs .active a{background:#EEE;}
-.page-company #right .nav-tabs a{line-height:0.5;}
+.page-admin #right .table{margin-top: 10px;}
+.page-admin #right .table th#name{width:8em;}
+.page-admin #right .table th#project{width:8em;}
+.page-admin #right .table th#date{width:6em;}
+.page-admin #right .table th#score{width:3.5em;}
+.page-admin #right .table th#author{width:6em;}
+.page-admin #right .table th#latest-author{width:6em;}
+.page-admin #right .table th#versions{width:5em;}
+.page-admin #right .table td.image img{width: 100px;}
+.page-admin #right .table td.descript{width: 40%;}
+.page-admin #right .table .btn{margin-bottom: 5px;}
+.page-admin #right .nav-tabs{margin-top:6px;border-bottom:none;}
+.page-admin #right .nav-tabs li{margin:0}
+.page-admin #right .nav-tabs .active a{background:#EEE;}
+.page-admin #right .nav-tabs a{line-height:0.5;}
 
 .vote-search-a{color:#004856;}
 /*base style*/

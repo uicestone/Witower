@@ -14,6 +14,9 @@ class Admin extends WT_Controller{
 		if(!$this->user->isLogged('witower')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
+		
+		$this->load->page_name='admin';
+		$this->load->page_path[]=array('text'=>lang('admin'),'href'=>'/admin');
 	}
 	
 	function index(){
@@ -24,6 +27,8 @@ class Admin extends WT_Controller{
 		if(!$this->user->isLogged('config')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
+		
+		$this->load->page_path[]=array('text'=>lang('admin_config'),'href'=>'/admin/config');
 		
 		$this->load->view('admin/config',array('config_items'=>$this->config->witower));
 	}
@@ -37,6 +42,9 @@ class Admin extends WT_Controller{
 			$this->config->set_user_item($item, $this->input->post('value'), 'db');
 			redirect($this->uri->segment(1).'/config');
 		}
+		
+		$this->load->page_path[]=array('text'=>lang('admin_config'),'href'=>'/admin/config');
+		$this->load->page_path[]=array('text'=>$item,'href'=>'/admin/config/'.$item);
 		
 		$value=$this->config->user_item($item);
 		$this->load->view('admin/config_edit',compact('item','value'));
@@ -102,6 +110,8 @@ class Admin extends WT_Controller{
 		
 		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
 		$finance_records=$this->finance->getList($args);
+		
+		$this->load->page_path[]=array('text'=>lang('admin_finance'),'href'=>'/admin/finance');
 		
 		$this->load->view('admin/finance',compact('finance_records','items','query','pagination'));
 		
@@ -179,6 +189,9 @@ class Admin extends WT_Controller{
 		$finance['username']=$finance['user']?$this->user->fetch($finance['user'])['name']:NULL;
 		$finance['project_name']=$finance['project']?$this->project->fetch($finance['project'])['name']:NULL;
 		
+		$this->load->page_path[]=array('text'=>lang('admin_finance'),'href'=>'/admin/finance');
+		$this->load->page_path[]=array('text'=>is_null($this->finance->id)?lang('admin_finance_add'):lang('admin_finance_view'),'href'=>is_null($this->finance->id)?'/admin/addfinance':'/admin/finance/'.$this->finance->id);
+		
 		$this->load->view('admin/finance_edit',compact('finance','alert'));
 		
 	}
@@ -202,6 +215,8 @@ class Admin extends WT_Controller{
 		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
 
 		$companies=$this->company->getList($args);
+		
+		$this->load->page_path[]=array('text'=>lang('admin_company'),'href'=>'/admin/company');
 		
 		$this->load->view('admin/company',compact('companies','pagination'));
 		
@@ -260,6 +275,9 @@ class Admin extends WT_Controller{
 			$company=$this->company->fetch();
 		}
 		
+		$this->load->page_path[]=array('text'=>lang('admin_company'),'href'=>'/admin/company');
+		$this->load->page_path[]=array('text'=>is_null($this->company->id)?lang('admin_company_add'):lang('admin_company_edit'),'href'=>is_null($this->company->id)?'/admin/addfinance':'/admin/finance/'.$this->company->id);
+		
 		$this->load->view('admin/company_edit',compact('company','alert'));
 		
 	}
@@ -283,16 +301,16 @@ class Admin extends WT_Controller{
 		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
 		$users=$this->user->getList($args);
 		
+		$this->load->page_path[]=array('text'=>lang('admin_user'),'href'=>'/admin/user');
+		
 		$this->load->view('admin/user',compact('users','pagination'));
 		
 	}
 	
-	function editUser($id=NULL){
+	function editUser($user_id=NULL){
 		if(!$this->user->isLogged('user')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
-		
-		$this->user->id=$id;
 		
 		if($this->input->post('submit')!==false){
 			
@@ -319,8 +337,8 @@ class Admin extends WT_Controller{
 				);
 
 				//写入操作要放在全部表单验证以后
-				if(is_null($this->user->id)){
-					$this->user->id=$this->user->add($data);
+				if(is_null($user_id)){
+					$user_id=$this->user->add($data);
 				}
 				else{
 					$this->user->update($data);
@@ -336,13 +354,16 @@ class Admin extends WT_Controller{
 			}
 		}
 		
-		if(is_null($this->user->id)){
+		if(is_null($user_id)){
 			$user=$this->user->fields;
 		}
 		else{
 			$user=$this->user->fetch();
-			$profiles=$this->user->getProfiles($this->user->id);
+			$profiles=$this->user->getProfiles($user_id);
 		}
+		
+		$this->load->page_path[]=array('text'=>lang('admin_user'),'href'=>'/admin/user');
+		$this->load->page_path[]=array('text'=>is_null($user_id)?lang('admin_user_add'):lang('admin_user_edit'),'href'=>is_null($user_id)?'/admin/adduser':'/admin/user/'.$user_id);
 		
 		$this->load->view('admin/user_edit',compact('user','profiles','alert'));
 		

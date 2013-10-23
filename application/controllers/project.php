@@ -3,6 +3,7 @@ class Project extends WT_Controller{
 	function __construct() {
 		parent::__construct();
 		$this->load->model('project_model','project');
+		$this->load->page_path[]=array('text'=>lang('project'),'href'=>'/project');
 	}
 	
 	function match($term){
@@ -90,6 +91,7 @@ class Project extends WT_Controller{
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
 		
 		$this->load->page_name='project-view';
+		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/project/'.$project['id']);
 		
 		$this->load->view('project/view',  compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes','product','company'));
 	}

@@ -5,6 +5,7 @@ class Vote extends WT_Controller{
 		$this->load->model('project_model','project');
 		$this->load->model('product_model','product');
 		$this->load->page_name='vote';
+		$this->load->page_path[]=array('text'=>lang('vote'),'href'=>'/vote');
 	}
 	
 	/**
@@ -94,6 +95,8 @@ class Vote extends WT_Controller{
 		$wit=$this->wit->getRow(array('select'=>true,'in_project'=>$this->project->id));
 
 		$this->load->page_name='vote-view';
+		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/vote/'.$project['id']);
+		
 		$this->load->view('vote/view', compact('project','wit','versions','comments','candidates','sum_votes','voters','voted','company','product','hot_tags','recommended_projects','recommended_votes'));
 	}
 	

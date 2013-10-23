@@ -1,17 +1,4 @@
 <?$this->view('header')?>
-	<ul class="breadcrumb">
-		<li>
-			<strong><?=lang(uri_segment(1))?></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/<?=uri_segment(1)?>/finance">系统配置</a>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<?=$item?>
-		</li>
-	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
 	<div id="right" class="span9">
 		<div class="model">

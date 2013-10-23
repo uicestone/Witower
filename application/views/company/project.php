@@ -1,21 +1,4 @@
 <? $this->view('header') ?>
-	<ul class="breadcrumb">
-		<li>
-			<strong><?=lang(uri_segment(1))?></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/<?=uri_segment(1)?>/project">项目管理</a>
-<?if(uri_segment(3)){?>
-			<span class="divider">/</span>
-<?}?>
-		</li>
-<?if(uri_segment(3)){?>
-		<li>
-			<?=lang(uri_segment(3))?>
-		</li>
-<?}?>
-	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
 	<div id="right" class="span9">
 		<div class="model">

@@ -1,9 +1,4 @@
 <?$this->view('header')?>
-	<ul class="breadcrumb">
-		<li>
-			<strong>管理</strong>
-		</li>
-	</ul>
 	<? $this->view('admin/sidebar') ?>
 	<div id="right" class="span9">
 		<div class="model">

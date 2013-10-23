@@ -1,17 +1,4 @@
 <?$this->view('header')?>
-	<ul class="breadcrumb">
-		<li>
-			<strong>用户</strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-<?if(uri_segment(1)==='home'){?>
-			<a href="/home">我的首页</a>
-<?}else{?>
-			<a href="/space/<?=$user['id']?>"><?=$user['name']?></a>
-<?}?>
-		</li>
-	</ul>
 	<div id="left" class="span9">
 <?if(uri_segment(1)==='home'){?>
 		<form method="post" action="/user/addstatus">

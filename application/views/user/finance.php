@@ -1,13 +1,4 @@
 <?$this->view('header')?>
-	<ul class="breadcrumb">
-		<li>
-			<strong><a href="#">用户</a></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/finance">积分帐户</a>
-		</li>
-	</ul>
 	<div id="left" class="span9">
 		<div class="model">
 			<div class="title"><h3>积分帐户</h3></div>
