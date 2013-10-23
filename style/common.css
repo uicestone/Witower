@@ -185,7 +185,7 @@ page-vote */
 #right.sidebar{border:1px solid #ddd;background: #f3f3f3;}
 #right .box{overflow: hidden;border-bottom: 1px solid #ddd;padding: 10px;}
 #right .title{overflow: hidden;}
-#right .title h3{float: left;font-size: 14px;color: #333;font-weight: bold;line-height: 20px;}
+#right .title h3{float: left;color: #333;font-weight: bold;}
 #right .title .more{float: right;font-size: 10px;font-family: "microsoft yahei";margin-top:12px; }
 #right .main{margin: 10px 0;}
 #right .main ul li a{color: #666;}
