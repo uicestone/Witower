@@ -44,7 +44,18 @@ $(function(){
 <?}?>
 	</ul>
 	<div class="model">
-		<div class="title"><h3>版本 <?=$wit['name']?></h3></div>
+		<div class="title">
+			<h3>创意 <?=$wit['name']?> 的版本</h3>
+			<?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?>
+			<?if($wit['deleted']){?><span class="icon-remove-sign" title="已删除"></span><?}?>
+<?if(($this->user->isLogged(array('witower','wit')) || $this->user->id==$project['id']) && $project['status']==='buffering'){?>
+<?	if($wit['selected']){?>
+			<a href="/wit/unselect/<?=$wit['id']?>" class="btn btn-small" style="margin-left:1em">取消选中此创意</a>
+<?	}else{?>
+			<a href="/wit/select/<?=$wit['id']?>" class="btn btn-small" style="margin-left:1em">选中此创意</a>
+<?	}?>
+<?}?>
+		</div>
 		<form method="post">
 			<div class="main">
 				<?=$this->view('alert')?>

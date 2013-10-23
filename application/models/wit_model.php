@@ -70,7 +70,9 @@ class Wit_model extends WT_Model{
 			->having('(score_witower > 0 OR score_company > 0)', NULL, FALSE)
 			->get()->result_array();
 		
-		$this->db->insert_batch('project_candidate',$scores);
+		if($scores){
+			$this->db->insert_batch('project_candidate',$scores);
+		}
 		
 		return $this;
 	}

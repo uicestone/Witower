@@ -79,6 +79,13 @@
 						<h3><a href="/wit/<?=$wit['id']?>"><?= $wit['name'] ?></a><?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?></h3>
 						<span class="right">
 							<a href="/wit/versions/<?=$wit['id']?>" target="_blank">版本</a>
+<?if(($this->user->isLogged(array('witower','wit')) || $this->user->id==$project['id']) && $project['status']==='buffering'){?>
+<?	if($wit['selected']){?>
+							<a href="/wit/unselect/<?=$wit['id']?>" class="btn btn-small" style="margin-top: 2px; margin-right: 1em;">取消选中此创意</a>
+<?	}else{?>
+							<a href="/wit/select/<?=$wit['id']?>" class="btn btn-small" style="margin-top: 2px; margin-right: 1em;">选中此创意</a>
+<?	}?>
+<?}?>
 							<?if($project['status']==='witting'){?><a href="/wit/edit/<?=$wit['id']?>" class="btn btn-small btn-primary" style="margin-top: 2px; margin-right: 1em;">编辑</a><?}?>
 						</span>
 					</div>
