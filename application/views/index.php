@@ -1,7 +1,5 @@
 <? $this->view('header') ?>
 
-<div id="content">
-
 <!--<div class="side-nav">
 	<ul>
 		<li><a href="/project">项目</a></li>
@@ -57,7 +55,5 @@
 	</p>
 </div>
 <?}?>
-
-</div>
 
 <? $this->view('footer') ?>

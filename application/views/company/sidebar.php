@@ -1,4 +1,4 @@
-	<div id="left" class="sidebar">
+	<div id="left" class="span3 sidebar">
 		<div class="box list">
 			<ul class="nav nav-list">
 				<li<?if(uri_segment(2)==='product'){?> class="active"<?}?>><a href="/<?=uri_segment(1)?>/product">产品管理</a></li>

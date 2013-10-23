@@ -1,20 +1,6 @@
 <?$this->view('header')?>
-<div id="content" class="page-company">
-	<ul class="breadcrumb">
-		<li>
-			<strong><?=lang(uri_segment(1))?></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/<?=uri_segment(1)?>/product">产品管理</a>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<?if(isset($product['id'])){?>编辑产品 <?=$product['name']?><?}else{?>添加产品<?}?>
-		</li>
-	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
-	<div id="right">
+	<div id="right" class="span9">
 		<div class="model">
 			<div class="title"><h3><?if(isset($product['id'])){?>编辑产品 <?=$product['name']?><?}else{?>添加产品<?}?></h3></div>
 			<div class="main">
@@ -58,5 +44,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 <?$this->view('footer')?>

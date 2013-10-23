@@ -5,6 +5,8 @@ class Wit extends WT_Controller{
 		$this->load->model('project_model','project');
 		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
+		$this->load->page_name='wit';
+		$this->load->page_path[]=array('text'=>lang('project'),'href'=>'/project');
 	}
 	
 	function view($id){
@@ -42,6 +44,9 @@ class Wit extends WT_Controller{
 		
 		$previous_version=$this->version->getPrevious($version['id']);
 		$next_version=$this->version->getNext($version['id']);
+		
+		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/project/'.$project['id']);
+		$this->load->page_path[]=array('text'=>$wit['name'],'href'=>'/wit/'.$wit['id']);
 		
 		$this->load->view('wit/view',compact('wit','witters','project','version','versions','previous_version','next_version','alert'));
 	}
@@ -93,6 +98,13 @@ class Wit extends WT_Controller{
 		
 		foreach($versions as &$version){
 			$version['author_name']=$this->user->fetch($version['user'],'name');
+		}
+		
+		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/project/'.$project['id']);
+		$this->load->page_path[]=array('text'=>$wit['name'],'href'=>'/wit/'.$wit['id']);
+		$this->load->page_path[]=array('text'=>lang('version'),'href'=>'/wit/versions/'.$wit['id']);
+		if($this->input->get('user')){
+			$this->load->page_path[]=array('text'=>$user['name'].lang('contribute_of'),'href'=>'/wit/versions'.$wit['id'].'?user='.$this->input->get('user'));
 		}
 		
 		$this->load->view('wit/versions', compact('versions','wit','project','user','alert'));
@@ -205,6 +217,13 @@ class Wit extends WT_Controller{
 			$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
 
 		}
+		
+		$version['score']=$this->user->isLogged('witower')?$version['score_witower']:$version['score_company'];
+		$version['comment']=$this->user->isLogged('witower')?$version['comment_witower']:$version['comment_company'];
+
+		$this->load->page_name='wit-edit';
+		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/project/'.$project['id']);
+		$this->load->page_path[]=array('text'=>lang('wit_edit'),'href'=>'/wit/edit/'.$wit['id']);
 		
 		$this->load->view('wit/edit', compact('wit','witters','project','version','versions','score_field'));
 	}

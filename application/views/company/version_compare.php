@@ -21,7 +21,6 @@ $(function(){
 	$('.detail:first').trigger('click');
 });
 </script>
-<div id="content" class="page-company">
 	<ul class="breadcrumb">
 		<li>
 			<strong><?=lang(uri_segment(1))?></strong>
@@ -79,5 +78,4 @@ $(function(){
 <?}?>
 		</div>
 	</div>
-</div>
 <?$this->view('footer')?>

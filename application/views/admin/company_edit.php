@@ -1,42 +1,6 @@
 <?$this->view('header')?>
-<link rel="stylesheet" type="text/css" href="/style/bootstrap/typeahead.js-bootstrap.css">
-<script type="text/javascript" src="/js/typeahead.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	
-	$(':input[name="name"]').typeahead({
-		remote: '/user/match/%QUERY',
-		valueKey:'name'
-	});
-	
-	$(':input').on('typeahead:selected',function(event,item){
-		console.log('selected');
-		$($(this).data('id-element')).val(item.id);
-	})
-	.on('change',function(event){
-		if($(this).val()==='' && $(this).data('id-element')){
-			$($(this).data('id-element')).val('');
-		}
-	});
-	
-});
-</script>
-<div id="content" class="page-company">
-	<ul class="breadcrumb">
-		<li>
-			<strong><?=lang(uri_segment(1))?></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/<?=uri_segment(1)?>/finance">企业管理</a>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<?if(isset($company['id'])){?>编辑企业<?}else{?>添加企业<?}?>
-		</li>
-	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
-	<div id="right">
+	<div id="right" class="span9">
 		<div class="model">
 			<div class="title"><h3><?if(isset($company['id'])){?>编辑企业<?}else{?>添加企业<?}?></h3></div>
 			<div class="main">
@@ -70,5 +34,28 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</div>
+
+<link rel="stylesheet" type="text/css" href="/style/bootstrap/typeahead.js-bootstrap.css">
+<script type="text/javascript" src="/js/typeahead.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$(':input[name="name"]').typeahead({
+		remote: '/user/match/%QUERY',
+		valueKey:'name'
+	});
+	
+	$(':input').on('typeahead:selected',function(event,item){
+		console.log('selected');
+		$($(this).data('id-element')).val(item.id);
+	})
+	.on('change',function(event){
+		if($(this).val()==='' && $(this).data('id-element')){
+			$($(this).data('id-element')).val('');
+		}
+	});
+	
+});
+</script>
+
 <?$this->view('footer')?>

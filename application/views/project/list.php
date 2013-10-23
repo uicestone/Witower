@@ -1,5 +1,4 @@
 <?$this->view('header')?>
-<div id="content" class="page-list">
 <?if(isset($recommended_project)){?>
 	<?$this->view('project/recommended')?>
 <?}?>
@@ -114,5 +113,4 @@
 			</div>
 			</div>
 	</div>
-</div>
 <?$this->view('footer')?>

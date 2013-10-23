@@ -1,29 +1,6 @@
 <? $this->view('header') ?>
-<div id="content" class="page-company">
-	<ul class="breadcrumb">
-		<li>
-			<strong><?=lang(uri_segment(1))?></strong>
-			<span class="divider">/</span>
-		</li>
-<?if(isset($project)){?>
-		<li>
-			<a href="/<?=uri_segment(1)?>/project">项目管理</a>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/<?=uri_segment(1)?>/project/<?=$project['id']?>"><?=$project['name']?></a>
-			<span class="divider">/</span>
-		</li>
-<?}?>
-		<li>
-			版本
-<?if(isset($wit)){?>
-			<?=$wit['name']?>
-<?}?>
-		</li>
-	</ul>
 	<? $this->view(uri_segment(1).'/sidebar') ?>
-	<div id="right">
+	<div id="right" class="span9">
 		<div class="model">
 			<div class="title"><h3>版本</h3></div>
 			<div class="main">
@@ -77,5 +54,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 <?$this->view('footer')?>

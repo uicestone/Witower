@@ -1,15 +1,5 @@
 <?$this->view('header')?>
-<div id="content" class="page-home model-view">
-	<ul class="breadcrumb">
-		<li>
-			<strong><a href="#">用户</a></strong>
-			<span class="divider">/</span>
-		</li>
-		<li>
-			<a href="/finance">积分帐户</a>
-		</li>
-	</ul>
-	<div id="left">
+	<div id="left" class="span9">
 		<div class="model">
 			<div class="title"><h3>积分帐户</h3></div>
 			<div class="main">
@@ -42,7 +32,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="right">
+	<div id="right" class="span3 sidebar">
 		<div class="box">
 			<div class="title"><h3>积分：<?=$this->finance->sum(array('user'=>$this->user->id,'item'=>'积分'))?></h3></div>
 		</div>
@@ -63,5 +53,4 @@
 			</form>
 		</div>
 	</div>
-</div>
 <?$this->view('footer')?>

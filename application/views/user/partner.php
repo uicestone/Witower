@@ -1,6 +1,5 @@
 <?$this->view('header')?>
 
-<div id="content" class="page-partner">
 <?$this->view('index_left')?>
 	<div class="list">
 		<ul>
@@ -17,7 +16,6 @@
 	</div>
 <?}?>
 
-</div>
 
 <?$this->view('footer')?>
 

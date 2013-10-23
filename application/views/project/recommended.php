@@ -22,8 +22,8 @@
 
 		</div>
 		<div class="scroll-img">
-			<div class="fn-left"><p>他们正在讨论</p></div>
-			<div class="fn-right">
+			<div class="pull-left"><p>他们正在讨论</p></div>
+			<div class="pull-right">
 				<ul id="mycarousel" class="jcarousel-skin-tango">
 					<?foreach($recommended_project['commenters'] as $commenter){?>
 						<li><a href="/user/space/<?=$commenter['id']?>"><?=$this->image('avatar',$commenter['id'],100,65)?><span><?=$commenter['name']?></span></a></li>
