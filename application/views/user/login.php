@@ -2,8 +2,8 @@
 	<div class="title">
 		<h1>登录</h1>
 	</div>
+	<?$this->view('alert')?>
 	<div class="main">
-		<?$this->view('alert')?>
 		<div id="left" class="span5"><img src="/style/register-banner.png"></div>
 		<div class="span7">
 			<form id="registerform" method="post" class="form-horizontal">

@@ -214,18 +214,17 @@ class Wit extends WT_Controller{
 			$witters=$this->user->getList(array('in_wit'=>$this->wit->id));
 			$versions=$this->version->count(array('wit'=>$this->wit->id));
 			$version=$this->version->fetch($wit['latest_version']);
-			$score_field=$this->user->isLogged('witower')?'score_witower':'score_company';
 
+			$version['score']=$this->user->isLogged('witower')?$version['score_witower']:$version['score_company'];
+			$version['comment']=$this->user->isLogged('witower')?$version['comment_witower']:$version['comment_company'];
 		}
 		
-		$version['score']=$this->user->isLogged('witower')?$version['score_witower']:$version['score_company'];
-		$version['comment']=$this->user->isLogged('witower')?$version['comment_witower']:$version['comment_company'];
 
 		$this->load->page_name='wit-edit';
 		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/project/'.$project['id']);
-		$this->load->page_path[]=array('text'=>lang('wit_edit'),'href'=>'/wit/edit/'.$wit['id']);
+		$this->load->page_path[]=array('text'=>lang('wit_edit'),'href'=>$this->wit->id?'/wit/edit/'.$this->wit->id:'/wit/add?project='.$project['id']);
 		
-		$this->load->view('wit/edit', compact('wit','witters','project','version','versions','score_field'));
+		$this->load->view('wit/edit', compact('wit','witters','project','version','versions'));
 	}
 	
 	function remove($wit_id){
