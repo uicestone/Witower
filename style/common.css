@@ -200,7 +200,7 @@ page-vote */
 .model-b.category  li a{color: #fff;}
 
 /*project-list*/
-.page-project-list #left .main .detail .main{
+.page-project-view #left .main .detail .main{
 	max-height: 20em;
 	overflow-y: auto;
 }
