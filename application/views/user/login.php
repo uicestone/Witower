@@ -23,7 +23,8 @@
 				<div class="control-group">
 					<div class="controls">
 						<button name="login" type="submit" class="btn btn-primary">登录</button>
-						<label class="checkbox inline"><a href="/signup<?if($this->input->get()){?>?<?=http_build_query((array)$this->input->get())?><?}?>">没有账号，立即注册</a></label>
+						<label class="checkbox inline"><a href="/signup<?if($this->input->get()){?>?<?=http_build_query((array)$this->input->get())?><?}?>">立即注册</a></label>
+						<label class="checkbox inline"><a href="/resetpassword">找回密码</a></label>
 					</div>
 				</div>				
 			</form>

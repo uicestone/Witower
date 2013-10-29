@@ -48,6 +48,7 @@ $route['vote/(:num)'] = 'vote/view/$1';
 $route['login'] = 'user/login';
 $route['logout'] = 'user/logout';
 $route['signup'] = 'user/signup';
+$route['resetpassword'] = 'user/resetpassword';
 $route['home'] = 'user/home';
 $route['home/score'] = 'user/score';
 $route['home/profile'] = 'user/profile';

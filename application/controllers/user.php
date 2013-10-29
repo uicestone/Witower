@@ -122,6 +122,92 @@ class User extends WT_Controller{
 		redirect('');
 	}
 	
+	function resetPassword(){
+		
+		$this->load->library('form_validation');
+		$this->load->helper('captcha');
+		
+		$captcha=create_captcha(array(
+			'word'=>random_string('alnum',4),
+			'img_path' => './uploads/images/captcha/',
+			'img_url' => '/uploads/images/captcha/',
+			'img_width' => 80
+		));
+		
+		$data = array(
+			'captcha_time' => $captcha['time'],
+			'ip_address' => $this->input->ip_address(),
+			'word' => $captcha['word']
+		);
+
+		$this->db->insert('captcha', $data);
+
+		$this->form_validation->set_rules(array(
+			array('field'=>'password','label'=>'新密码','rules'=>'required'),
+			array('field'=>'repassword','label'=>'重复密码','rules'=>'required|matches[password]'),
+		))
+			->set_message('matches','两次%s输入不一致');
+		
+		if($this->input->post('resetpassword')!==false){
+			try{
+				// 首先删除旧的验证码
+				$expiration = time()-7200; // 2小时限制
+				$this->db->where('captcha_time < ',$expiration)->delete('captcha');
+
+				// 然后再看是否有验证码存在:
+				$sql = "SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?";
+				$binds = array($this->input->post('captcha'), $this->input->ip_address(), $expiration);
+				$query = $this->db->query($sql, $binds);
+				$row = $query->row();
+				if ($row->count == 0)
+				{
+					$this->form_validation->_field_data['captcha']['error']='验证码错误';
+					throw new Exception;
+				}
+				
+				$user = $this->user->getList(array('name'=>$this->input->post('username'),'email'=>$this->input->post('email')));
+
+				if(empty($user)){
+					$this->form_validation->_field_data['email']['error']='邮箱和用户名不匹配';
+					throw new Exception;
+				}
+				
+				if($this->form_validation->run()!==false){
+					
+					$this->user->updatePassword($user[0]['id'], $this->input->post('password'));
+					
+					$this->load->library('email');
+					
+					$this->email->initialize(array(
+						'protocol'=>'smtp',
+						'smtp_host'=>$this->config->user_item('email/smtp/server'),
+						'smtp_user'=>$this->config->user_item('email/smtp/username'),
+						'smtp_pass'=>$this->config->user_item('email/smtp/password'),
+						'mailtype'=>'html',
+						'crlf'=>"\r\n",
+						'newline'=>"\r\n"
+					));
+					
+					$this->email->from($this->config->user_item('email/smtp/username'), '智塔帮助');
+					$this->email->to($this->input->post('email')); 
+
+					$this->email->subject('您在的智塔(Witower.com)密码已被重置');
+					$this->email->message('<p>请使用<quote>用户名：'.$this->input->post('username').'密码：'.$this->input->post('password').' </quote>重新登录并修改密码。</p>'); 
+
+					$this->email->send();
+					
+					redirect('login');
+				}
+			}catch(Exception $e){
+				
+			}
+		}
+		
+		$this->load->page_name='register';
+		
+		$this->load->view('user/resetpassword', compact('captcha'));
+	}
+	
 	/**
 	 * 用户资料编辑页面
 	 */
