@@ -5,6 +5,7 @@
 	<div class="main">
 		<div id="left" class="span5"><img src="style/register-banner.png"></div>
 		<div class="span7">
+			<?$this->view('alert')?>
 			<form id="registerform" method="post" class="form-horizontal">
 				<input name="forward"   type="hidden" value='<?//=$forward?>' />
 				<div class="control-group">
@@ -38,7 +39,7 @@
 				<div class="control-group">
 					<label class="control-label" for="repassword">验证码：</label>
 					<div class="controls">
-						<input name="captcha" id="captcha"  type="text" />
+						<input name="captcha" id="captcha"  type="text" style="width: 123px;" />
 						<span><?=$captcha['image']?></span>
 						<span class="label label-important"><?=form_error('captcha')?></span>
 					</div>

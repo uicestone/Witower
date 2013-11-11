@@ -174,7 +174,14 @@ class User extends WT_Controller{
 				
 				if($this->form_validation->run()!==false){
 					
-					$this->user->updatePassword($user[0]['id'], $this->input->post('password'));
+					$token = random_string('alnum', 32);
+					
+					$this->user->id=$user[0]['id'];
+					$this->user->set_config('password_reset/to', $this->input->post('password'));
+					$this->user->set_config('password_reset/token', $token);
+					$this->user->id=NULL;
+					
+					//$this->user->updatePassword($user[0]['id'], $this->input->post('password'));
 					
 					$this->load->library('email');
 					
@@ -191,21 +198,36 @@ class User extends WT_Controller{
 					$this->email->from($this->config->user_item('email/smtp/username'), '智塔帮助');
 					$this->email->to($this->input->post('email')); 
 
-					$this->email->subject('您在的智塔(Witower.com)密码已被重置');
-					$this->email->message('<p>请使用<quote>用户名：'.$this->input->post('username').'密码：'.$this->input->post('password').' </quote>重新登录并修改密码。</p>'); 
+					$this->email->subject('您申请重置您在智塔(Witower.com)的账户密码');
+					$this->email->message('点击此链接以确认设置新密码<a href="'.base_url().'user/resetpasswordconfirm/'.$token.'" target="_blank">'.base_url().'user/resetpasswordconfirm/'.$token.'</a>'); 
 
 					$this->email->send();
 					
-					redirect('login');
+					$alert[]=array('type'=>'success','message'=>'成功发送重置确认邮件，前往邮箱点击链接即可重置密码');
+					
 				}
 			}catch(Exception $e){
-				
+				$alert[]=array('type'=>'error','message'=>$e->getMessage());
 			}
+			
 		}
 		
 		$this->load->page_name='register';
 		
-		$this->load->view('user/resetpassword', compact('captcha'));
+		$this->load->view('user/resetpassword', compact('captcha','alert'));
+	}
+	
+	function resetPasswordConfirm($token){
+		$uid = $this->user->retrieve_user_by_config('password_reset/token', $token);
+		
+		if($uid){
+			$this->user->init($uid);
+			$this->user->updatePassword($uid, $this->user->config('password_reset/to'));
+			$this->user->remove_config_item('password_reset/to');
+			$this->user->remove_config_item('password_reset/token');
+			
+			redirect('login');
+		}
 	}
 	
 	/**

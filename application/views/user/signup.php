@@ -38,7 +38,7 @@
 				<div class="control-group">
 					<label class="control-label" for="repassword">验证码：</label>
 					<div class="controls">
-						<input name="captcha" id="captcha"  type="text" />
+						<input name="captcha" id="captcha"  type="text" style="width: 123px;" />
 						<span><?=$captcha['image']?></span>
 						<span class="label label-important"><?=form_error('captcha')?></span>
 					</div>

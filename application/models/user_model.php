@@ -436,8 +436,20 @@ class User_model extends WT_Model{
 	}
 	
 	function set_config($item, $value){
-		$this->db->query("INSERT INTO `user_config` (user, item, value) VALUE ({$this->user->id}, {$this->db->escape($item)}, {$this->db->escape($value)}) ON DUPLICATE KEY UPDATE value = {$this->db->escape($value)}");
+		$this->db->query("INSERT INTO `user_config` (user, item, value) VALUE ({$this->id}, {$this->db->escape($item)}, {$this->db->escape($value)}) ON DUPLICATE KEY UPDATE value = {$this->db->escape($value)}");
 		return $this->db->affected_rows();
+	}
+	
+	function remove_config_item($item){
+		$this->db->delete('user_config', array('user'=>$this->id,'item'=>$item));
+	}
+	
+	function retrieve_user_by_config($item, $value){
+		return $this->db->select('user')
+			->from('user_config')
+			->where('item',$item)
+			->where('value',$value)
+			->get()->row()->user;
 	}
 	
 }
