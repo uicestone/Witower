@@ -21,6 +21,7 @@
 						<?}?>
 					</li>
 				</ul>
+				<wb:share-button appkey="238zj" addition="full" type="button" ralateUid="3898418729"></wb:share-button>
 				</div>
 				<div class="info">
 					<?=$this->image('project',$project['id'],100)?>

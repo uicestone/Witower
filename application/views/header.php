@@ -1,6 +1,6 @@
 <?=doctype('html5')?>
 
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns:wb="http://open.weibo.com/wb">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>智塔</title>
@@ -19,6 +19,7 @@
 		<script type="text/javascript" src="/js/jquery.jcarousel.min.js"></script>
 		<script type="text/javascript" src="/js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript" src="/js/common.js"></script>
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div id="header">
