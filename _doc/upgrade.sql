@@ -102,4 +102,6 @@ CREATE TABLE captcha (
  PRIMARY KEY `captcha_id` (`captcha_id`),
  KEY `word` (`word`)
 );
+
+ALTER TABLE  `project` CHANGE  `summary`  `summary` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 -- server upgraded
