@@ -394,7 +394,7 @@ class User extends WT_Controller{
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
 		
 		$this->load->page_name='space';
-		$this->load->page_path[]=array('text'=>$user['name'],'/space/'.$user['id']);
+		$this->load->page_path[]=array('text'=>$user['name'],'href'=>'/space/'.$user['id']);
 		
 		$this->load->view('user/space', compact('user','status','idols','recommended_projects','recommended_votes'));
 	}
