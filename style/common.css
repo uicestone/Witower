@@ -85,8 +85,8 @@ del {background-color: #ffc6c6;}
 /*page-list*/
 .page-project-list .main .model-a img {width: 200px;}
 /*model*/
-.model{overflow: hidden;border:10px solid #fff;background: #F8F8F8;box-shadow: 5px 7px 15px rgba(0,0,0,0.7); border-radius: 3px;}
-.model .title{background: #ccc;height: 30px;line-height: 30px; padding: 0 1em;}
+.model{overflow: hidden;border:10px solid #fff;background: #F5F5F5; box-shadow: 2px 2px 7px #888; border-radius: 3px;}
+.model .title{background: #E6E6E6; height: 30px;line-height: 30px; padding: 0 1em;}
 .model .title h3{font-size: 16px;color: #333;font-weight: bold;float:left;line-height: 30px;margin:0;}
 /*model 最新项目*/
 .model .title ul{float: right;}
@@ -182,10 +182,10 @@ page-vote */
 .participator ul li span{display: block; text-align: center;}
 .participator ul li b{display: block;}
 
-#right.sidebar{border:1px solid #ddd;background: #f3f3f3;}
+#right.sidebar{border:1px solid #ddd;background: #f3f3f3;box-shadow: 2px 2px 7px #888;}
 #right .box{overflow: hidden;border-bottom: 1px solid #ddd;padding: 10px;}
 #right .title{overflow: hidden;}
-#right.sidebar .box .title h3{float: left;color: #333;font-weight: bold; font-size: 17px;}
+#right.sidebar .box .title h3{float: left; color: #333; font-size: 15px; margin: 0; }
 #right .title .more{float: right;font-size: 10px;font-family: "microsoft yahei";margin-top:12px; }
 #right .main{margin: 10px 0;}
 #right .main ul li a{color: #666;}
@@ -265,8 +265,7 @@ page-register  ******/
 .page-register .label-important{max-width:170px; white-space:pre-line;}
 
 /*breadcrumb*/
-.breadcrumb{box-shadow: 1px 1px 3px #000;}
-.breadcrumb + div{margin-left: 0 !important;}
+.breadcrumb{ box-shadow: 2px 2px 7px #888; }
 
 /*page-space*/
 .page-space .model-b .warning{padding: 8px;background: #e2e2e2;margin: 0 0 10px;}
