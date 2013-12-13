@@ -358,7 +358,7 @@ class Admin extends WT_Controller{
 			$user=$this->user->fields;
 		}
 		else{
-			$user=$this->user->fetch();
+			$user=$this->user->fetch($user_id);
 			$profiles=$this->user->getProfiles($user_id);
 		}
 		
