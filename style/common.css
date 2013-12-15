@@ -14,6 +14,8 @@ del {background-color: #ffc6c6;}
 .wrapper{ width: 980px; margin: 0 auto;}
 .ellipsis{word-wrap:normal;	overflow:hidden;white-space:nowrap;	text-overflow: ellipsis;}
 
+.label p { margin: 2px 0 4px; }
+
 /*header*/
 #header{height:75px;}
 #header a{color: #fff;text-decoration: none;}

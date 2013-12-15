@@ -257,6 +257,7 @@ class User extends WT_Controller{
 
 					if(!$this->user->verify($this->user->name, $this->input->post('password'))){
 						$this->form_validation->_field_data['password']['error']='原密码错误';
+						throw new Exception();
 					}
 					
 					if(!$this->form_validation->run()){

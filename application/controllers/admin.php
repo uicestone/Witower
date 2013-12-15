@@ -341,7 +341,7 @@ class Admin extends WT_Controller{
 					$user_id=$this->user->add($data);
 				}
 				else{
-					$this->user->update($data);
+					$this->user->update($data, $user_id);
 				}
 
 				redirect($this->uri->segment(1).'/user');

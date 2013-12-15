@@ -44,7 +44,7 @@
 					<div class="control-group">
 						<label class="control-label">*性别：</label>
 						<div class="btn-group" data-toggle="buttons-radio">
-							<span style="display:none;"><?=radio(array('男','女'), 'profiles[性别]', set_value('profiles[性别]',$profiles['性别']))?></span>
+							<span class="hide"><?=radio(array('男','女'), 'profiles[性别]', set_value('profiles[性别]',$profiles['性别']))?></span>
 							<button type="button" checked="checked" name="profiles[性别]" class="btn<?if(set_value('profiles[性别]',$profiles['性别'])==='男'){?> active<?}?>">男</button>
 							<button type="button" name="profiles[性别]" class="btn<?if(set_value('profiles[性别]',$profiles['性别'])==='女'){?> active<?}?>">女</button>
 						</div>
@@ -163,7 +163,7 @@
 					</div>
 					<div class="control-group">
 						<label class="control-label">当前密码：</label>
-						<input type="password" name="password">
+						<input type="password" name="password" autocomplete="off">
 						<label class="label label-important"><?=form_error('password')?></label>
 					</div>	
 					<div class="control-group">
