@@ -112,8 +112,9 @@
 									</dd>
 								</dl>
 							</li>
-<?}?>						
+<?}?>
 						</ul>
+						<button class="close-comment-list btn btn-mini pull-right"><span class="icon-chevron-up"></span>收起评论</button>
 					</div>
 				</div>
 			</div>

@@ -139,7 +139,7 @@ $(function() {
 
 			var subComment=$(this).parent('li').parent('ul').parent('div').siblings('.sub_comment');
 			
-			subComment.show();
+			subComment.show(150);
 			
 			return false;
 
@@ -160,6 +160,11 @@ $(function() {
 			
 			return false;
 		});
+		
+		$('.close-comment-list').on('click',function(){
+			$(this).parent('.sub_comment').hide(150);
+		});
+		
 	}());
 	
 });

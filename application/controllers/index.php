@@ -15,8 +15,9 @@ class Index extends WT_Controller{
 		
 		foreach($projects as &$project){
 			$project['tags']=$this->project->getTags($project['id']);
-			$project['comments']=$this->project->getComments($project['id'],array('limit'=>3,'order_by'=>'id desc'));
+			$project['comments']=$this->project->getComments($project['id'],array('order_by'=>'id desc'));
 			$project['comments_count']=count($project['comments']);
+			$project['comments']=array_slice($project['comments'], 0, 3);
 		}
 		
 		$this->load->view('index',compact('projects'));
