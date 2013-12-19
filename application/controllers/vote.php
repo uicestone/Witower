@@ -94,7 +94,7 @@ class Vote extends WT_Controller{
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
 		
-		$wit=$this->wit->getRow(array('select'=>true,'in_project'=>$this->project->id));
+		$wit=$this->wit->getRow(array('selected'=>true,'in_project'=>$this->project->id));
 
 		$this->load->page_name='vote-view';
 		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/vote/'.$project['id']);
