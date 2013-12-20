@@ -3,7 +3,7 @@
 <html lang="zh-CN" xmlns:wb="http://open.weibo.com/wb">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>智塔</title>
+		<title><?=implode(' - ' , array_reverse(array_column($this->page_path, 'text')))?><?if($this->page_path){?> - <?}?>智塔</title>
 		<meta name="keywords" content="<?=$this->config->user_item('keywords')?>" />
 		<meta name="description" content="<?=$this->config->user_item('description')?>" />
 		
