@@ -117,7 +117,7 @@ class Finance_model extends WT_Model{
 			->group_by('item')
 			->order_by('sum desc');
 		$result=$this->db->get()->result_array();
-		return array_sub($result,'item');
+		return array_column($result,'item');
 	}
 	
 }

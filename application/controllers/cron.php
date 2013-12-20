@@ -74,7 +74,7 @@ class Cron extends WT_Controller{
 				'item'=>'已冻结积分'
 			));
 
-			if(round(array_sum(array_sub($bonuses,'amount'))) !== round($project['bonus'])){
+			if(round(array_sum(array_column($bonuses,'amount'))) !== round($project['bonus'])){
 				$this->finance->add(array(
 					'project'=>$this->project->id,
 					'user'=>$project['company'],

@@ -29,7 +29,7 @@ class Project extends WT_Controller{
 		$active_projects=$this->project->count(array('status'=>'witting'));
 		$witters=$this->project->sum('witters',array('status'=>'witting'));
 		
-		$hot_tags = array_sub($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
+		$hot_tags = array_column($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
 
 		$money = array('100-1000','1000-5000','5000,10000','10000-15000');
 		
@@ -87,7 +87,7 @@ class Project extends WT_Controller{
 		
 		$witters_count=count($witters);
 		
-		$hot_tags = array_sub($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
+		$hot_tags = array_column($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
 
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		
@@ -124,7 +124,7 @@ class Project extends WT_Controller{
 			'item'=>'已冻结积分'
 		));
 
-		if(round(array_sum(array_sub($bonuses,'amount'))) !== round($project['bonus'])){
+		if(round(array_sum(array_column($bonuses,'amount'))) !== round($project['bonus'])){
 			$this->finance->add(array(
 				'project'=>$this->project->id,
 				'user'=>$project['company'],

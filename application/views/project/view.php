@@ -38,7 +38,7 @@
 								<a href="/admin/project/<?=$project['id']?>" class="btn">编辑</a>
 <?}else{?>
 								<a class="btn btn-primary"
-<?	if(in_array($this->user->id,array_sub($wits,'user'))){?>
+<?	if(in_array($this->user->id,array_column($wits,'user'))){?>
 								   disabled="disabled" title="您已经发起了1个创意"
 <?	}?>
 <?	if(count($wits)>=$this->config->user_item('max_wits_per_project')){?>

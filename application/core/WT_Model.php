@@ -162,7 +162,7 @@ class WT_Model extends CI_Model{
 	
 	
 	function getArray(array$args=array(),$keyname='name',$keyname_forkey='id'){
-		return array_sub($this->getList($args),$keyname,$keyname_forkey);
+		return array_column($this->getList($args),$keyname,$keyname_forkey);
 	}
 	
 	function getRow(array $args=array()){
@@ -193,13 +193,13 @@ class WT_Model extends CI_Model{
 			->join('tag',"tag.id = {$this->table}_tag.tag",'inner')
 			->where("{$this->table}_tag.{$this->table}",$id);
 		
-		return array_sub($this->db->get()->result_array(),'name');
+		return array_column($this->db->get()->result_array(),'name');
 	}
 	
 	function addTags(array $tags, $id=NULL){
 		is_null($id) && $id=$this->id;
 		
-		$insert=array_diff($tags,array_sub($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'name'));
+		$insert=array_diff($tags,array_column($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'name'));
 		$set=array();
 		foreach($insert as $tag_name){
 			if(!$tag_name){
@@ -209,7 +209,7 @@ class WT_Model extends CI_Model{
 		}
 		$set && $this->db->insert_batch('tag', $set);
 		
-		$tag_ids=array_sub($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
+		$tag_ids=array_column($this->db->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
 		
 		$this->db->where_in('id',$tag_ids)->set('hits', '`hits` + 1', false)->update('tag');
 		
@@ -225,7 +225,7 @@ class WT_Model extends CI_Model{
 	function removeTags(array $tags, $id){
 		is_null($id) && $id=$this->id;
 		
-		$tag_ids=array_sub($this->db->select('id')->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
+		$tag_ids=array_column($this->db->select('id')->from('tag')->where_in('name',$tags)->get()->result_array(),'id');
 		
 		$this->db->where_in('id',$tag_ids)->set('hits', '`hits` - 1', false)->update('tag');
 		

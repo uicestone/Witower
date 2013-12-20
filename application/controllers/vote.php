@@ -90,7 +90,7 @@ class Vote extends WT_Controller{
 		$sum_votes=$this->project->countVotes();
 		$voted=$this->project->hasUserVoted();
 		
-		$hot_tags = array_sub($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
+		$hot_tags = array_column($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
 		$recommended_votes=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'voting'));
 		

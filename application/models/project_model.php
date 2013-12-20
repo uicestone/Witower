@@ -152,7 +152,7 @@ class Project_model extends WT_Model{
 		
 		$result=$this->db->get()->result_array();
 		
-		return array_sub($result,'name');
+		return array_column($result,'name');
 	}
 	
 	function countWits($project_id=NULL){

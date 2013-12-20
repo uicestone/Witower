@@ -52,7 +52,7 @@ class User_model extends WT_Model{
 	 */
 	function getConfig(){
 		$this->db->from('user_config')->where('user',$this->id);
-		return array_sub($this->db->get()->result_array(),'value','item');
+		return array_column($this->db->get()->result_array(),'value','item');
 	}
 	
 	/**
@@ -278,7 +278,7 @@ class User_model extends WT_Model{
 		
 		$result=$this->db->get()->result_array();
 		
-		$profiles=array_sub($result,'content','name');
+		$profiles=array_column($result,'content','name');
 		
 		return $profiles;
 	}

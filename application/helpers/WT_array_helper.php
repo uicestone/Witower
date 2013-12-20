@@ -65,45 +65,48 @@ if(!function_exists('array_replace_recursive')){
  * @param $keyname
  * @param $keyname_forkey 母数组中用来作为子数组键名的键值的键名
  * @return array
+ * php 5.5 开始自带此函数
  */
-function array_sub($array,$keyname,$keyname_forkey=NULL,$fill_null=false){
-	$array_new=array();
-	foreach($array as $key => $sub_array){
-		
-		if(isset($sub_array[$keyname])){
-			if($keyname_forkey===false){
-				$array_new[]=$sub_array[$keyname];
-			}
-			elseif(is_null($keyname_forkey)){
-				$array_new[$key]=$sub_array[$keyname];
-			}
-			else{
-				if(isset($sub_array[$keyname_forkey])){
-					$array_new[$sub_array[$keyname_forkey]]=$sub_array[$keyname];
+if(!function_exists('array_column')){
+	function array_column($array,$keyname,$keyname_forkey=NULL,$fill_null=false){
+		$array_new=array();
+		foreach($array as $key => $sub_array){
+
+			if(isset($sub_array[$keyname])){
+				if($keyname_forkey===false){
+					$array_new[]=$sub_array[$keyname];
 				}
-				else{
+				elseif(is_null($keyname_forkey)){
 					$array_new[$key]=$sub_array[$keyname];
 				}
-			}
-		}
-		elseif($fill_null){
-			if($keyname_forkey===false){
-				$array_new[]=NULL;
-			}
-			elseif(is_null($keyname_forkey)){
-				$array_new[$key]=NULL;
-			}
-			else{
-				if(isset($sub_array[$keyname_forkey])){
-					$array_new[$sub_array[$keyname_forkey]]=NULL;
-				}
 				else{
+					if(isset($sub_array[$keyname_forkey])){
+						$array_new[$sub_array[$keyname_forkey]]=$sub_array[$keyname];
+					}
+					else{
+						$array_new[$key]=$sub_array[$keyname];
+					}
+				}
+			}
+			elseif($fill_null){
+				if($keyname_forkey===false){
+					$array_new[]=NULL;
+				}
+				elseif(is_null($keyname_forkey)){
 					$array_new[$key]=NULL;
 				}
+				else{
+					if(isset($sub_array[$keyname_forkey])){
+						$array_new[$sub_array[$keyname_forkey]]=NULL;
+					}
+					else{
+						$array_new[$key]=NULL;
+					}
+				}
 			}
 		}
+		return $array_new;
 	}
-	return $array_new;
 }
 
 function array_picksub($array,$keys){
