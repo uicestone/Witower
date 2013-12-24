@@ -153,6 +153,11 @@ $(function() {
 			
 			var commentContent=commentField.val();
 			
+			if(commentContent === ''){
+				alert('请填写评论内容');
+				return false;
+			}
+			
 			$.post((location.pathname.match(/\/project/)?'/project/addversioncomment/':'/user/addstatuscomment/')+microblogId,{commentContent:commentContent},function(response){
 				$('.model#'+microblogId+' ul.comment-list').prepend('<li><dl class="dl-horizontal"><dt><a href="/space/'+response.user+'"><img src="/uploads/images/avatar/'+response.user+'_30.jpg"></a></dt><dd><p class="avatar"><a href="/space/'+response.user+'">'+response.username+'</a></p><p class="content">'+response.content+'<span class="time">( '+response.time+') </span></p></dd></dl></li>');
 				commentField.val('');
