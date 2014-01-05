@@ -39,7 +39,7 @@ class User_model extends WT_Model{
 	
 	function update(array $data, $id = NULL) {
 
-		if(!$data['password']){
+		if(empty($data['password'])){
 			unset($data['password']);
 		}
 		
