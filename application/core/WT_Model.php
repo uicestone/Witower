@@ -44,6 +44,11 @@ class WT_Model extends CI_Model{
 	 * @param array $data
 	 */
 	function add(array $data){
+		
+		if(empty($data['bonus'])){
+			unset($data['bonus']);
+		}
+		
 		$data=array_merge($this->fields,array_intersect_key($data, $this->fields));
 		$this->db->insert($this->table,$data);
 		return $this->db->insert_id();
