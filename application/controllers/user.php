@@ -68,6 +68,15 @@ class User extends WT_Controller{
 						'password'=>$this->input->post('password'),
 						'email'=>$this->input->post('email')
 					));
+					
+					$this->load->model('company_model','company');
+					
+					if($this->input->post('is_company')){
+						$this->company->add(array(
+							'id'=>$user_id,
+							'description'=>$this->input->post('description')
+						));
+					}
 
 					$this->user->sessionLogin($user_id);
 

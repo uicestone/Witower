@@ -23,6 +23,14 @@
 						</div>
 						<div class="control-group">
 							<div class="controls">
+								<label class="checkbox">
+									<input type="checkbox" name="certificated"<?=set_checkbox('certificated',1,$company['certificated'])?>>
+									已认证
+								</label>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
 								<button class="btn btn-primary" type="submit" name="submit">保存</button>
 <?if($company['id']){?>
 								<a href='/admin/finance?user=<?=$company['id']?>' class="btn">财务</a>

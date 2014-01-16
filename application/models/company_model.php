@@ -7,6 +7,7 @@ class Company_model extends User_model{
 		
 		$this->fields=array(
 			'id'=>NULL,
+			'certificated'=>false,
 			'description'=>'',//描述,
 		);
 	}
@@ -18,7 +19,7 @@ class Company_model extends User_model{
 	
 	function getList($args = array()) {
 		$this->db->join('user','company.id = user.id','inner')
-			->select('company.description');
+			->select('company.description, company.certificated');
 		return parent::getList($args);
 	}
 	

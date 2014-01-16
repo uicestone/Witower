@@ -234,7 +234,8 @@ class User_model extends WT_Model{
 		}
 		
 		$this->db->from('company')
-			->where('id',$user_id);
+			->where('id',$user_id)
+			->where('certificated',true);
 		
 		if($this->db->count_all_results()){
 			return true;

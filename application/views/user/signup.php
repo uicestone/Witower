@@ -45,6 +45,20 @@
 				</div>				
 				<div class="control-group">
 					<div class="controls">
+						<label class="checkbox" for="is-company">
+							<input name="is_company" id="is-company" type="checkbox"<?=set_checkbox('is_company','on')?> />
+							<span>注册为企业用户</span>
+						</label>
+					</div>
+				</div>				
+				<div class="control-group hide">
+					<label class="control-label">公司简介</label>
+					<div class="controls">
+						<textarea name="description" id="description" disabled="disabled"><?=set_value('description')?></textarea>
+					</div>
+				</div>				
+				<div class="control-group">
+					<div class="controls">
 						<label class="checkbox" for="agree">
 							<input name="agree" id="agree" type="checkbox"<?=set_checkbox('agree','on')?> />
 							<span>同意"<a href="/wit/1" target="_blank">Witower智塔用户协议</a>"</span>
@@ -62,4 +76,16 @@
 		</div>
 	</div>
 <div class="c-b"></div>
+<script type="text/javascript">
+$(function(){
+	$('#is-company').on('change', function(){
+		if($(this).is(':checked')){
+			$('#description').prop('disabled',false).parents('.control-group').show();
+		}
+		else{
+			$('#description').prop('disabled',true).parents('.control-group').hide();
+		}
+	});
+});
+</script>
 <?$this->view('footer')?>

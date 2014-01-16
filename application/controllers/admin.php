@@ -247,6 +247,7 @@ class Admin extends WT_Controller{
 				
 				$data=array(
 					'id'=>$this->input->post('id'),
+					'certificated'=>(bool)$this->input->post('certificated'),
 					'description'=>$this->input->post('description'),
 				);
 

@@ -105,3 +105,5 @@ CREATE TABLE captcha (
 
 ALTER TABLE  `project` CHANGE  `summary`  `summary` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
 -- server upgraded
+
+ALTER TABLE `company` ADD `certificated` BOOLEAN NOT NULL ;

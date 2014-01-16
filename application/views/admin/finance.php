@@ -15,7 +15,7 @@
 				</ul>
 				<table class="table table-bordered">
 					<thead>
-						<tr><th>日期</th><th>用户</th><th>项目</th><th>金额</th><th>科目</th><th>摘要</th><th>&nbsp;</th></tr>
+						<tr><th>日期</th><th>用户</th><th>项目</th><th>金额</th><th>科目</th><th>摘要</th><th style="width: 4em;">&nbsp;</th></tr>
 					</thead>
 					<tbody>
 						<? foreach ($finance_records as $finance_record) { ?>								
