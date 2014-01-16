@@ -47,7 +47,7 @@
 					<div class="controls">
 						<label class="checkbox" for="agree">
 							<input name="agree" id="agree" type="checkbox"<?=set_checkbox('agree','on')?> />
-							<span>同意"<a href="/wit/9" target="_blank">Witower智塔用户协议</a>"</span>
+							<span>同意"<a href="/wit/1" target="_blank">Witower智塔用户协议</a>"</span>
 							<span class="label label-important"><?=form_error('agree')?></span>
 						</label>
 					</div>
