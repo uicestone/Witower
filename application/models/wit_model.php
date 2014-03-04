@@ -114,7 +114,7 @@ class Wit_model extends WT_Model{
 	
 	function remove($wit_id=NULL){
 		is_null($wit_id) && $wit_id=$this->id;
-		
+		echo '123';
 		$this->unselect($wit_id);
 		
 		$this->wit->update(array('deleted'=>true));

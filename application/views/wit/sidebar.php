@@ -65,7 +65,7 @@
 					<a href="/wit/select/<?=$wit['id']?>" class="btn btn-primary">选中</a>
 <?		}?>
 <?	}?>
-					<a href="/wit/remove/<?=$wit['id']?>" class="btn btn-danger">删除</a>
+					<!--<a href="/wit/remove/<?=$wit['id']?>" class="btn btn-danger">删除</a>-->
 				</form>
 			</div>
 		</div>

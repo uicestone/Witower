@@ -228,6 +228,7 @@ class Wit extends WT_Controller{
 	}
 	
 	function remove($wit_id){
+		$this->wit->id=$wit_id;
 		$wit=$this->wit->fetch($wit_id);
 		$project=$this->project->fetch($wit['project']);
 		
