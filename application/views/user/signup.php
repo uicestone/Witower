@@ -51,17 +51,26 @@
 						</label>
 					</div>
 				</div>				
-				<div class="control-group hide">
-					<label class="control-label">公司简介</label>
-					<div class="controls">
-						<textarea name="description" id="description" disabled="disabled"><?=set_value('description')?></textarea>
+				<div class="hide company-forms">
+					<div class="control-group">
+						<label class="control-label">公司简介</label>
+						<div class="controls">
+							<textarea name="description" id="description" disabled="disabled"><?=set_value('description')?></textarea>
+						</div>
+					</div>				
+					<div class="control-group">
+						<label class="control-label">联系方式</label>
+						<div class="controls">
+							<input type="text" name="contact" id="contact" disabled="disabled"><?=set_value('contact')?></textarea>
+						</div>
 					</div>
-				</div>				
+				</div>
 				<div class="control-group">
 					<div class="controls">
 						<label class="checkbox" for="agree">
 							<input name="agree" id="agree" type="checkbox"<?=set_checkbox('agree','on')?> />
-							<span>同意"<a href="/wit/1" target="_blank">Witower智塔用户协议</a>"</span>
+							<span class="user-only-forms">同意"<a href="/wit/1" target="_blank">Witower智塔用户协议</a>"</span>
+							<span class="company-forms hide">同意"<a href="/wit/2" target="_blank">Witower智塔企业用户协议</a>"</span>
 							<span class="label label-important"><?=form_error('agree')?></span>
 						</label>
 					</div>
@@ -80,10 +89,12 @@
 $(function(){
 	$('#is-company').on('change', function(){
 		if($(this).is(':checked')){
-			$('#description').prop('disabled',false).parents('.control-group').show();
+			$('.company-forms').show().find(':input').prop('disabled',false);
+			$('.user-only-forms').hide();
 		}
 		else{
-			$('#description').prop('disabled',true).parents('.control-group').hide();
+			$('.company-forms').hide().find(':input').prop('disabled',true);
+			$('.user-only-forms').show();
 		}
 	});
 });
