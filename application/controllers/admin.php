@@ -274,12 +274,13 @@ class Admin extends WT_Controller{
 		}
 		else{
 			$company=$this->company->fetch();
+			$profiles=$this->user->getProfiles($this->company->id);
 		}
 		
 		$this->load->page_path[]=array('text'=>lang('admin_company'),'href'=>'/admin/company');
 		$this->load->page_path[]=array('text'=>is_null($this->company->id)?lang('admin_company_add'):lang('admin_company_edit'),'href'=>is_null($this->company->id)?'/admin/addfinance':'/admin/finance/'.$this->company->id);
 		
-		$this->load->view('admin/company_edit',compact('company','alert'));
+		$this->load->view('admin/company_edit',compact('company','profiles','alert'));
 		
 	}
 	

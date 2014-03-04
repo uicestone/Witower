@@ -61,7 +61,7 @@
 					<div class="control-group">
 						<label class="control-label">联系方式</label>
 						<div class="controls">
-							<input type="text" name="contact" id="contact" disabled="disabled"><?=set_value('contact')?></textarea>
+							<input type="text" name="profiles[联系方式]" id="contact" disabled="disabled"><?=set_value('profiles[联系方式]')?></textarea>
 						</div>
 					</div>
 				</div>

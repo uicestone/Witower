@@ -37,6 +37,21 @@
 <?}?>
 							</div>
 						</div>
+<?if(isset($company['id'])){?>
+						<table class="table table-bordered">
+							<thead>
+								<tr><th>资料项</th><th>内容</th></tr>
+							</thead>
+							<tbody>
+								<? foreach ($profiles as $name => $content) { ?>								
+									<tr> 
+										<td><?=$name?></td>
+										<td><?=$content?></td>
+									</tr>
+								<? } ?>
+							</tbody>
+						</table>
+<?}?>
 					</form>
 				</div>
 			</div>

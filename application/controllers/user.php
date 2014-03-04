@@ -76,6 +76,7 @@ class User extends WT_Controller{
 							'id'=>$user_id,
 							'description'=>$this->input->post('description')
 						));
+						$this->user->updateProfiles($this->input->post('profiles'), $user_id);
 					}
 
 					$this->user->sessionLogin($user_id);
