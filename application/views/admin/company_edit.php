@@ -37,7 +37,7 @@
 <?}?>
 							</div>
 						</div>
-<?if(isset($company['id'])){?>
+<?if($company['id']){?>
 						<table class="table table-bordered">
 							<thead>
 								<tr><th>资料项</th><th>内容</th></tr>
