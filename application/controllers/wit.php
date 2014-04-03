@@ -142,62 +142,78 @@ class Wit extends WT_Controller{
 			$project=$this->project->fetch($wit['project']);
 		}
 		
-		if($this->input->post('submit')!==false){
-			if(is_null($this->wit->id)){
+		$alert = array();
 
-				//新创意，那么添加创意信息
-				$this->wit->id=$this->wit->add(array(
-					'name'=>$this->input->post('name'),
-					'content'=>$this->input->post('content'),
-					'project'=>$project['id'],
-				));
-			}
-			else{
-				//已有创意，更新一下创意信息
-				$this->wit->update(array(
-					'name'=>$this->input->post('name'),
-					'content'=>$this->input->post('content')
-				));
-			}
-			
-			isset($wit['latest_version']) && $latest_version=$this->version->fetch($wit['latest_version']);
-			
-			//添加一个版本
-			if((isset($latest_version) && $latest_version['user']===$this->user->id)
-				//如果创意的最后修改人就是本人，那么执行热修改，不创建新版本
-				|| strip_tags($latest_version['content']==strip_tags($this->input->post('content')))
-				//去格式以后无更改，那也不创建新版本，用户也不保存——帮别人改格式是义务劳动
-			){
-				$this->version->update(array(
-					'name'=>$this->input->post('name'),
-					'content'=>$this->input->post('content'),
-					'time'=>time()
-				),$wit['latest_version']);
-			}else{
+		try{
 				
-				$wit['latest_version']=$this->version->add(array(
-					'num'=>$this->version->count(array('wit'=>$this->wit->id,'deleted'=>NULL))+1,
-					'project'=>$project['id'],
-					'wit'=>$this->wit->id,
-					'name'=>$this->input->post('name'),
-					'content'=>$this->input->post('content'),
-				));
-				
-				//更新项目下的创意参与人数
-				$this->project->update(array('witters'=>$this->user->count(array('in_project'=>$project['id']))), $project['id']);
-				
-				//若该用户从未参与过项目，那么发布一条状态
-				if(!$this->config->user_item('has_witted')){
-					$this->user->addStatus('我参与了 '.$project['company_name'].' 的 ”'.$project['name'].'“ 的创意征集', $this->user->id, 'project', '/project/'.$project['id']);
-					$this->user->set_config('has_witted',true);
+			if($this->input->post('submit')!==false){
+
+				if($this->input->post('content') === ''){
+					throw new Exception('请填写创意内容');
 				}
+
+				if(is_null($this->wit->id)){
+
+					//新创意，那么添加创意信息
+					$this->wit->id=$this->wit->add(array(
+						'name'=>$this->input->post('name'),
+						'content'=>$this->input->post('content'),
+						'project'=>$project['id'],
+					));
+				}
+				else{
+					//已有创意，更新一下创意信息
+					$this->wit->update(array(
+						'name'=>$this->input->post('name'),
+						'content'=>$this->input->post('content')
+					));
+				}
+
+				isset($wit['latest_version']) && $latest_version=$this->version->fetch($wit['latest_version']);
+
+				//添加一个版本
+				if(isset($latest_version) && (
+					$latest_version['user']===$this->user->id
+					//如果创意的最后修改人就是本人，那么执行热修改，不创建新版本
+					|| strip_tags($latest_version['content']==strip_tags($this->input->post('content')))
+					//去格式以后无更改，那也不创建新版本，用户也不保存——帮别人改格式是义务劳动
+					)
+				){
+					$this->version->update(array(
+						'name'=>$this->input->post('name'),
+						'content'=>$this->input->post('content'),
+						'time'=>time()
+					),$wit['latest_version']);
+				}else{
+
+					$wit['latest_version']=$this->version->add(array(
+						'num'=>$this->version->count(array('wit'=>$this->wit->id,'deleted'=>NULL))+1,
+						'project'=>$project['id'],
+						'wit'=>$this->wit->id,
+						'name'=>$this->input->post('name'),
+						'content'=>$this->input->post('content'),
+					));
+
+					//更新项目下的创意参与人数
+					$this->project->update(array('witters'=>$this->user->count(array('in_project'=>$project['id']))), $project['id']);
+
+					//若该用户从未参与过项目，那么发布一条状态
+					if(!$this->config->user_item('has_witted')){
+						$this->user->addStatus('我参与了 '.$project['company_name'].' 的 ”'.$project['name'].'“ 的创意征集', $this->user->id, 'project', '/project/'.$project['id']);
+						$this->user->set_config('has_witted',true);
+					}
+				}
+
+				$this->wit->update(array('latest_version'=>$wit['latest_version']));
+
+				redirect('project/'.$project['id']);
+
 			}
-			
-			$this->wit->update(array('latest_version'=>$wit['latest_version']));
-			
-			redirect('project/'.$project['id']);
-		}
 		
+		} catch (Exception $e) {
+			$alert[]=array('message'=>$e->getMessage());
+		}
+			
 		if(is_null($this->wit->id)){
 			
 			$project=$this->project->fetch($this->input->get('project'));
@@ -218,13 +234,12 @@ class Wit extends WT_Controller{
 			$version['score']=$this->user->isLogged('witower')?$version['score_witower']:$version['score_company'];
 			$version['comment']=$this->user->isLogged('witower')?$version['comment_witower']:$version['comment_company'];
 		}
-		
 
 		$this->load->page_name='wit-edit';
 		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/project/'.$project['id']);
 		$this->load->page_path[]=array('text'=>lang('wit_edit'),'href'=>$this->wit->id?'/wit/edit/'.$this->wit->id:'/wit/add?project='.$project['id']);
 		
-		$this->load->view('wit/edit', compact('wit','witters','project','version','versions'));
+		$this->load->view('wit/edit', compact('wit','witters','project','version','versions','alert'));
 	}
 	
 	function remove($wit_id){

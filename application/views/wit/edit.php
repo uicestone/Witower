@@ -1,11 +1,12 @@
 <? $this->view('header') ?>
 	<div id="left" class="span9">
+		<? $this->view('alert') ?>
 		<div class="model model-b">
 			<div class="main">
 				<form method="post">
 					<div class="control-group">
 						<div class="controls">
-							<input type="text" name="name" placeholder="创意标题" value="<?=$wit['name']?>" style="width: 696px;" />
+							<input type="text" name="name" placeholder="创意标题" value="<?=$wit['name']?>" style="width: 676px;" />
 						</div>
 					</div>
 					<div class="control-group">
