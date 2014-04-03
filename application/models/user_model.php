@@ -32,6 +32,8 @@ class User_model extends WT_Model{
 
 		if(!$data['password']){
 			unset($data['password']);
+		}else{
+			$data['password']=sha1($data['password'].$this->config->item('encryption_key'));
 		}
 		
 		return parent::add($data);
@@ -122,7 +124,7 @@ class User_model extends WT_Model{
 		
 		$this->db->from('user')
 			->where("(name = $username OR email = $username)",NULL,false)
-			->where('password',$password);
+			->where('password',sha1($password.$this->config->item('encryption_key')));
 				
 		$user=$this->db->get()->row_array();
 		
@@ -145,7 +147,7 @@ class User_model extends WT_Model{
 	
 	function updatePassword($user_id,$new_password){
 		
-		return $this->db->update('user',array('password'=>$new_password),array('id'=>$user_id));
+		return $this->db->update('user',array('password'=>sha1($new_password.$this->config->item('encryption_key'))),array('id'=>$user_id));
 		
 	}
 	
