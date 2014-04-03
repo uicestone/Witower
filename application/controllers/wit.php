@@ -152,6 +152,18 @@ class Wit extends WT_Controller{
 					throw new Exception('请填写创意内容');
 				}
 
+				$wits = $this->wit->getList(array('project'=>$project));
+		
+				if(in_array($this->user->id,array_column($wits,'user'))){
+					throw new Exception('您已经发起了1个创意');
+				}
+				if(count($wits)>=$this->config->user_item('max_wits_per_project')){
+					throw new Exception('本项目创意限额已满');
+				}
+				if($project['status']!=='witting'){
+					throw new Exception('项目不在征集创意状态');
+				}
+				
 				if(is_null($this->wit->id)){
 
 					//新创意，那么添加创意信息

@@ -6,12 +6,12 @@
 				<form method="post">
 					<div class="control-group">
 						<div class="controls">
-							<input type="text" name="name" placeholder="创意标题" value="<?=$wit['name']?>" style="width: 676px;" />
+							<input type="text" name="name" placeholder="创意标题" value="<?=set_value('name', $wit['name'])?>" style="width: 676px;" />
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<textarea name="content" rows="20" class="tinymce" placeholder="创意内容" style="width: 696px;"><?=$wit['content']?></textarea>
+							<textarea name="content" rows="20" class="tinymce" placeholder="创意内容" style="width: 696px;"><?=set_value('content',$wit['content'])?></textarea>
 						</div>
 					</div>
 					<div class="control-group">
