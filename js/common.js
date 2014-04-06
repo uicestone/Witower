@@ -69,7 +69,7 @@ $(function() {
 			itemSelector : '.box',
 			columnWidth : 196
 		});
-	});
+	}).fadeIn(500);
 	
 	$container.children('.box').show();
 

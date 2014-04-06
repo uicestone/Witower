@@ -9,7 +9,7 @@
 	</ul>
 </div>-->
 
-<div class="water">
+<div class="water hide">
 <?foreach($projects as $project){?>
 		<div class="box" style="display: none;">
 			<div class="img cell">
