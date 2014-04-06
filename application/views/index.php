@@ -20,7 +20,7 @@
 			</div>
 			<div class="details cell">
 				项目状态：<?=lang($project['status'])?><br>
-				项目金额：<span class="label label-info"><?= $project['bonus'] ?>元</span><br>
+				<? if($project['bonus']){ ?>项目金额：<span class="label label-info"><?= $project['bonus'] ?>元</span><br><? } ?>
 				截止日期： <?=in_array($project['status'],array('preparing','witting'))?$project['wit_end']:$project['vote_end']?><br>
 				标签：
 				<? foreach ($project['tags'] as $tag) { ?>
