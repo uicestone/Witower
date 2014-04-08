@@ -152,8 +152,8 @@ class Wit extends WT_Controller{
 					throw new Exception('请填写创意内容');
 				}
 
-				$wits = $this->wit->getList(array('project'=>$project));
-		
+				$wits = $this->wit->getList(array('in_project'=>$project['id']));
+				
 				if(in_array($this->user->id,array_column($wits,'user'))){
 					throw new Exception('您已经发起了1个创意');
 				}
