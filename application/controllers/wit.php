@@ -148,7 +148,11 @@ class Wit extends WT_Controller{
 				
 			if($this->input->post('submit')!==false){
 
-				if($this->input->post('content') === ''){
+				if(!$this->input->post('name')){
+					throw new Exception('请填写创意标题');
+				}
+				
+				if(!$this->input->post('content')){
 					throw new Exception('请填写创意内容');
 				}
 
