@@ -35,7 +35,7 @@
 										<?if(!isset($project)){?><a href="/<?=uri_segment(1)?>/version?project=<?=$version['project']?>"><span class="icon-filter pull-right"></span></a><?}?>
 									</td>
 <?}?>
-									<td id="content"><?=str_getSummary($version['content'],164)?></td>
+									<td id="content"><?=str_getSummary(strip_tags($version['content']),164)?></td>
 									<td id="date">
 										<p><?=$version['username']?></p>
 										<p><?=date('Y-m-d', $version['time'])?></p>

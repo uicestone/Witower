@@ -18,7 +18,7 @@
 <?foreach($wits as $wit){?>
 						<tr>
 							<td><a href="/wit/<?=$wit['id']?>"><?=$wit['name']?></a></td>
-							<td><?=str_getSummary($wit['content'],164)?></td>
+							<td><?=str_getSummary(strip_tags($wit['content']),164)?></td>
 							<td><?=$wit['username']?> - <?=date('Y-m-d H:i',$wit['time'])?></td>
 							<td><?=$wit['latest_version_username']?> - <?=date('Y-m-d H:i',$wit['latest_version_time'])?></td>
 							<td>
