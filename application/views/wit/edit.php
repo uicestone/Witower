@@ -30,7 +30,8 @@
 $(function(){
 	tinymce.init({
 		selector: 'textarea.tinymce',
-		language: 'zh_CN'
+		language: 'zh_CN',
+		menubar: false
 	});
 });
 </script>
