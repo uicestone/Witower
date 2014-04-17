@@ -16,6 +16,8 @@ del {background-color: #ffc6c6;}
 
 .label p { margin: 2px 0 4px; }
 
+.table td { word-break: break-all; word-break: break-word; }
+
 /*header*/
 #header{height:75px;}
 #header a{color: #fff;text-decoration: none;}
