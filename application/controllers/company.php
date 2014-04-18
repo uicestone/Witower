@@ -93,7 +93,6 @@ class Company extends WT_Controller{
 				$data=array(
 					'name'=>$this->input->post('name'),
 					'description'=>$this->input->post('description'),
-					'company'=>$this->user->id
 				);
 
 				$this->load->library('upload',array(
@@ -110,6 +109,7 @@ class Company extends WT_Controller{
 				
 				//写入操作要放在全部表单验证以后
 				if(is_null($this->product->id)){
+					$data['company'] = $this->user->id;
 					$this->product->id=$this->product->add($data);
 				}
 				else{
