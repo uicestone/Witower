@@ -27,5 +27,16 @@
 </div>
 </div>
 <button id="back-to-top" class="btn btn-small hide" style="position: fixed; right: 10px; bottom: 10px;">回到顶部</button>
+<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	tinymce.init({
+		selector: 'textarea.tinymce',
+		language: 'zh_CN',
+		menubar: false,
+		plugins: 'autoresize'
+	});
+});
+</script>
 </body>
 </html>
