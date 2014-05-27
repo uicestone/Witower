@@ -130,10 +130,11 @@
 						<label class="control-label">* 证件号码：</label><input type="text" name="profiles[证件号码]" value="<?=set_value('profiles[证件号码]',$profiles['证件号码'])?>">
 					</div>	
 					<div class="control-group">
+						<label class="control-label">* 开户银行：</label>
+						<input type="text" name="profiles[开户银行]" value="<?=set_value('profiles[开户银行]',$profiles['开户银行'])?>">
+					</div>	
+					<div class="control-group">
 						<label class="control-label">* 银行账号：</label>
-						<select type="text" name="profiles[银行]" value="<?=set_value('profiles[银行]',$profiles['银行'])?>">
-							<?=options($this->config->user_item('banks'), null, '银行')?>
-						</select>
 						<input type="text" name="profiles[银行账号]" value="<?=set_value('profiles[银行账号]',$profiles['银行账号'])?>">
 					</div>	
 					<div class="control-group">
