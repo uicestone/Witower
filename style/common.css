@@ -46,7 +46,7 @@ del {background-color: #ffc6c6;}
 .info .search-bar li.category:hover ul{display: block;}
 
 /*water fall*/
-.water .box{width:188px;border:1px solid #ddd;border-bottom: none;;margin: 0 0 20px;background: #eee;}
+.water .box{width:188px;border:1px solid #ddd;border-bottom: none;;margin: 0 0 20px;background: #FAFAFA;box-shadow:2px 2px 5px #CCC;}
 .water .box ul{margin:0;}
 .water .box .price{background: #333;padding:2px 4px;color: #fff;}
 .water .box .cell{padding: 8px;border-bottom: 1px solid #ddd;overflow: hidden;}
@@ -89,8 +89,8 @@ del {background-color: #ffc6c6;}
 /*page-list*/
 .page-project-list .main .model-a img {width: 200px;}
 /*model*/
-.model{overflow: hidden;border:10px solid #fff;background: #F5F5F5; box-shadow: 2px 2px 7px #888; border-radius: 3px;}
-.model .title{background: #E6E6E6; height: 30px;line-height: 30px; padding: 0 1em;}
+.model{overflow: hidden;border:10px solid #fff;background: #FAFAFA; box-shadow: 2px 2px 5px #CCC; border-radius: 3px;}
+.model .title{height: 30px;line-height: 30px; padding: 0 1em;}
 .model .title h3{font-size: 16px;color: #333;font-weight: bold;float:left;line-height: 30px;margin:0;}
 /*model 最新项目*/
 .model .title ul{float: right;}
@@ -186,7 +186,7 @@ page-vote */
 .participator ul li span{display: block; text-align: center;}
 .participator ul li b{display: block;}
 
-#right.sidebar{border:1px solid #ddd;background: #f3f3f3;box-shadow: 2px 2px 7px #888;}
+#right.sidebar{border:1px solid #ddd;background: #FAFAFA;box-shadow: 2px 2px 5px #CCC;}
 #right .box{overflow: hidden;border-bottom: 1px solid #ddd;padding: 10px;}
 #right .title{overflow: hidden;}
 #right.sidebar .box .title h3{float: left; color: #333; font-size: 15px; margin: 0; }
@@ -269,7 +269,7 @@ page-register  ******/
 .page-register .label-important{max-width:170px; white-space:pre-line;}
 
 /*breadcrumb*/
-.breadcrumb{ box-shadow: 2px 2px 7px #888; }
+.breadcrumb{ box-shadow: 2px 2px 5px #CCC; border-radius: 3px; }
 
 /*page-space*/
 .page-space .model-b .warning{padding: 8px;background: #e2e2e2;margin: 0 0 10px;}
