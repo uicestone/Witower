@@ -43,6 +43,8 @@ class User_model extends WT_Model{
 
 		if(empty($data['password'])){
 			unset($data['password']);
+		}else{
+			$data['password']=sha1($data['password'].$this->config->item('encryption_key'));
 		}
 		
 		return parent::update($data, $id);
