@@ -211,13 +211,16 @@ class User extends WT_Controller{
 					$this->email->subject('您申请重置您在智塔(Witower.com)的账户密码');
 					$this->email->message('点击此链接以确认设置新密码<a href="'.base_url().'user/resetpasswordconfirm/'.$token.'" target="_blank">'.base_url().'user/resetpasswordconfirm/'.$token.'</a>'); 
 
-					$this->email->send();
-					
-					$alert[]=array('type'=>'success','message'=>'成功发送重置确认邮件，前往邮箱点击链接即可重置密码');
+					if($this->email->send()){
+						$alert[]=array('type'=>'success','message'=>'成功发送重置确认邮件，前往邮箱点击链接即可重置密码');
+					}
+					else{
+						$alert[]=array('type'=>'warning','message'=>'由于系统原因，邮件发送失败。请联系客服重置密码');
+					}
 					
 				}
 			}catch(Exception $e){
-				$alert[]=array('type'=>'error','message'=>$e->getMessage());
+				$e->getMessage() && $alert[]=array('type'=>'error','message'=>$e->getMessage());
 			}
 			
 		}
