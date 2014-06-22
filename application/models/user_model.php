@@ -148,9 +148,7 @@ class User_model extends WT_Model{
 	}
 	
 	function updatePassword($user_id,$new_password){
-		
 		return $this->db->update('user',array('password'=>sha1($new_password.$this->config->item('encryption_key'))),array('id'=>$user_id));
-		
 	}
 	
 	function updateUsername($user_id,$new_username){

@@ -197,15 +197,15 @@ class User extends WT_Controller{
 					
 					$this->email->initialize(array(
 						'protocol'=>'smtp',
-						'smtp_host'=>$this->config->user_item('email/smtp/server'),
-						'smtp_user'=>$this->config->user_item('email/smtp/username'),
-						'smtp_pass'=>$this->config->user_item('email/smtp/password'),
+						'smtp_host'=>$this->config->user_item('email-smtp-server'),
+						'smtp_user'=>$this->config->user_item('email-smtp-username'),
+						'smtp_pass'=>$this->config->user_item('email-smtp-password'),
 						'mailtype'=>'html',
 						'crlf'=>"\r\n",
 						'newline'=>"\r\n"
 					));
 					
-					$this->email->from($this->config->user_item('email/smtp/username'), '智塔帮助');
+					$this->email->from($this->config->user_item('email-smtp-username'), '智塔帮助');
 					$this->email->to($this->input->post('email')); 
 
 					$this->email->subject('您申请重置您在智塔(Witower.com)的账户密码');
