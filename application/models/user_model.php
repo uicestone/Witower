@@ -455,5 +455,13 @@ class User_model extends WT_Model{
 			->get()->row()->user;
 	}
 	
+	/**
+	 * 找出明文保存的密码，并自动使用sha1+salt加密
+	 */
+	function encrypt_password(){
+		foreach($this->db->from('user')->where('LENGTH( `password` ) != 40', null, false)->get()->result() as $user){
+			$this->db->update('user',array('password'=>sha1($user->password.$this->config->item('encryption_key'))),array('id'=>$user->id));
+		}
+	}
 }
 ?>

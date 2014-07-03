@@ -289,6 +289,10 @@ class Admin extends WT_Controller{
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
+		if($this->input->get('encrypt_password')){
+			$this->user->encrypt_password();
+		}
+		
 		$args=array(
 			'order_by'=>'id desc'
 		);
