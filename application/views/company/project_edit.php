@@ -35,7 +35,7 @@
 						<div class="control-group">
 							<label class="control-label">项目描述</label>
 							<div class="controls">
-								<textarea rows="4" name="summary" class="tinymce"><?=set_value('summary',$project['summary'])?></textarea>
+								<textarea rows="4" name="summary" class="wysiwyg"><?=set_value('summary',$project['summary'])?></textarea>
 							</div>
 						</div>
 						<div class="control-group">

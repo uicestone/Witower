@@ -25,7 +25,7 @@
 						<div class="control-group">
 							<label class="control-label">产品描述</label>
 							<div class="controls">
-								<textarea rows="4" name="description" class="tinymce"><?=set_value('description',$product['description'])?></textarea>
+								<textarea rows="4" name="description" class="wysiwyg"><?=set_value('description',$product['description'])?></textarea>
 							</div>
 						</div>
 						<div class="control-group">
