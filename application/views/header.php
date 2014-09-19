@@ -7,51 +7,53 @@
 		<meta name="keywords" content="<?=$this->config->user_item('keywords')?>" />
 		<meta name="description" content="<?=$this->config->user_item('description')?>" />
 		
-		<link rel="icon" href="/style/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" type="text/css" href="/style/bootstrap/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/style/bootstrap/datepicker.css">
-		<link rel="stylesheet" type="text/css" href="/style/tango/skin.css">
-		<link rel="stylesheet" type="text/css" href="/style/common.css">
+		<link rel="icon" href="<?=site_url()?>style/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="<?=site_url()?>style/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="<?=site_url()?>style/bootstrap/datepicker.css">
+		<link rel="stylesheet" type="text/css" href="<?=site_url()?>style/tango/skin.css">
+		<link rel="stylesheet" href="//libs.baidu.com/fontawesome/4.2.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="<?=site_url()?>style/summernote.css">
+		<link rel="stylesheet" type="text/css" href="<?=site_url()?>style/common.css">
 
-		<script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
-		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/js/jquery.masonry.min.js"></script>
-		<script type="text/javascript" src="/js/jquery.jcarousel.min.js"></script>
-		<script type="text/javascript" src="/js/bootstrap-datepicker.js"></script>
-		<script type="text/javascript" src="/js/common.js"></script>
+		<script type="text/javascript" src="<?=site_url()?>js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="<?=site_url()?>js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<?=site_url()?>js/jquery.masonry.min.js"></script>
+		<script type="text/javascript" src="<?=site_url()?>js/jquery.jcarousel.min.js"></script>
+		<script type="text/javascript" src="<?=site_url()?>js/bootstrap-datepicker.js"></script>
+		<script type="text/javascript" src="<?=site_url()?>js/common.js"></script>
 		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div id="header">
 			<div class="wrapper">
-				<div class="logo pull-left"><img src="/style/logo.gif"></div>
+				<div class="logo pull-left"><img src="<?=site_url()?>style/logo.gif"></div>
 				<div class="menu pull-left">
 					<ul>
-						<li<?if(uri_string()===''){?> class="current-menu-item"<?}?>><a href="/">首页</a></li>
-						<li<?if(uri_string()==='project'){?> class="current-menu-item"<?}?>><a href="/project">项目</a></li>
-						<li<?if(uri_string()==='vote'){?> class="current-menu-item"<?}?>><a href="/vote">投票</a></li>
+						<li<?if(uri_string()===''){?> class="current-menu-item"<?}?>><a href="<?=site_url()?>">首页</a></li>
+						<li<?if(uri_string()==='project'){?> class="current-menu-item"<?}?>><a href="<?=site_url()?>project">项目</a></li>
+						<li<?if(uri_string()==='vote'){?> class="current-menu-item"<?}?>><a href="<?=site_url()?>vote">投票</a></li>
 					</ul>
 				</div>
 				<div class="login pull-right">
 					<ul>
 	<?if($this->user->isLogged()){?>
-						<li><a href="/home"><?=$this->user->name?></a> |</li>
-						<li><a href="/profile">资料</a>|</li>
-						<li><a href="/finance">积分</a>|</li>
+						<li><a href="<?=site_url()?>home"><?=$this->user->name?></a> |</li>
+						<li><a href="<?=site_url()?>profile">资料</a>|</li>
+						<li><a href="<?=site_url()?>finance">积分</a>|</li>
 	<?	if($this->user->isLogged('witower')){?>
-						<li><a href="/admin">管理</a>|</li><?//TODO 智塔管理首页?>
+						<li><a href="<?=site_url()?>admin">管理</a>|</li><?//TODO 智塔管理首页?>
 	<?	}elseif($this->user->isCompany()){?>
-						<li><a href="/company/product">管理</a>|</li><?//TODO 企业管理首页?>
+						<li><a href="<?=site_url()?>company/product">管理</a>|</li><?//TODO 企业管理首页?>
 	<?	}?>
 	<?}?>
 	<?if($this->user->isLogged()){?>
 					<li>
-						<a href="/logout">退出</a>
+						<a href="<?=site_url()?>logout">退出</a>
 					</li>
 	<?}else{?>
 					<li>
-						<a href="/signup">注册</a>
-						<a href="/login">登录</a>
+						<a href="<?=site_url()?>signup">注册</a>
+						<a href="<?=site_url()?>login">登录</a>
 					</li>
 	<?}?>
 					</ul>

@@ -27,14 +27,21 @@
 </div>
 </div>
 <button id="back-to-top" class="btn btn-small hide" style="position: fixed; right: 10px; bottom: 10px;">回到顶部</button>
-<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="<?=site_url()?>js/summernote.min.js"></script>
+<script type="text/javascript" src="<?=site_url()?>js/summernote-zh-CN.js"></script>
+<script type="text/javascript" src="<?=site_url()?>js/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="<?=site_url()?>js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="<?=site_url()?>js/jquery.iframe-transport.js"></script>
 <script type="text/javascript">
 $(function(){
-	tinymce.init({
-		selector: 'textarea.tinymce',
-		language: 'zh_CN',
-		menubar: false,
-		plugins: 'autoresize'
+	$('.wysiwyg').summernote({
+		lang: 'zh-CN',
+		onImageUpload: function(files, editor, $editable) {
+			$editable.parent('.note-editor').find('.note-image-input').fileupload({url: '/media/upload'})
+				.fileupload('send', {files: files}).success(function(result){
+					editor.insertImage($editable, result.url);
+				});
+		}
 	});
 });
 </script>

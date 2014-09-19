@@ -12,7 +12,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<textarea name="content" rows="20" class="tinymce" placeholder="创意内容" style="width: 696px;"><?=set_value('content',$wit['content'])?></textarea>
+						<textarea name="content" class="wysiwyg"><?=set_value('content', $wit['content'])?></textarea>
 					</div>
 				</div>
 				<div class="control-group">

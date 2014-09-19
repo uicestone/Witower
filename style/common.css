@@ -18,6 +18,9 @@ del {background-color: #ffc6c6;}
 
 .table td { word-break: break-all; word-break: break-word; }
 
+.fa[class*=" icon-"] { background-image: none; }
+.note-editor { background: #FFF; }
+
 /*header*/
 #header{height:75px;}
 #header a{color: #fff;text-decoration: none;}
