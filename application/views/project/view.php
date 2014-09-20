@@ -32,12 +32,15 @@
 
 							</div>
 							<div class="pull-right">
-<?if($this->user->id==$project['company']){?>
+<?if($this->user->id==$project['company'] && !$this->user->is_muted){?>
 								<a href="/company/project/<?=$project['id']?>" class="btn">编辑</a>
-<?}elseif($this->user->isLogged(array('witower','project'))){?>
+<?}elseif($this->user->isLogged(array('witower','project')) && !$this->user->is_muted){?>
 								<a href="/admin/project/<?=$project['id']?>" class="btn">编辑</a>
 <?}else{?>
 								<a class="btn btn-primary"
+<?	if($this->user->is_muted){?>
+								   disabled="disabled" title="您已被禁言"
+<?	}?>
 <?	if(in_array($this->user->id,array_column($wits,'user'))){?>
 								   disabled="disabled" title="您已经发起了1个创意"
 <?	}?>
@@ -76,7 +79,7 @@
 							<a href="/wit/select/<?=$wit['id']?>" class="btn btn-small" style="margin-top: 2px; margin-right: 1em;">选中此创意</a>
 <?	}?>
 <?}?>
-							<?if($project['status']==='witting'){?><a href="/wit/edit/<?=$wit['id']?>" class="btn btn-small btn-primary" style="margin-top: 2px; margin-right: 1em;">编辑</a><?}?>
+							<?if($project['status']==='witting' && !$this->user->is_muted){?><a href="/wit/edit/<?=$wit['id']?>" class="btn btn-small btn-primary" style="margin-top: 2px; margin-right: 1em;">编辑</a><?}?>
 						</span>
 					</div>
 					<div class="main">

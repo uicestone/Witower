@@ -156,6 +156,10 @@ class Wit extends WT_Controller{
 					throw new Exception('请填写创意内容');
 				}
 
+				if($this->user->is_muted){
+					throw new Exception('您已被禁言');
+				}
+
 				if(is_null($this->wit->id)){
 
 					//新创意，那么先再次判断是否有权添加，再添加创意信息

@@ -13,7 +13,8 @@ class User_model extends WT_Model{
 			'name'=>'',//用户名
 			'password'=>'',//密码
 			'email'=>'',//电子邮件
-			'group'=>''//用户组
+			'group'=>'',//用户组
+			'mute_until'=>'0000-01-01'//禁言结束日期
 		);
 	}
 	
@@ -25,6 +26,10 @@ class User_model extends WT_Model{
 			$this->id=$user['id'];
 			$this->name=$user['name'];
 			$this->group=preg_split('/[,|\s]+?/',$user['group']);
+			$this->is_muted = $user['mute_until'] > date('Y-m-d');
+			if(in_array('blacklist', $this->group) && !($this->router->fetch_method() === 'logout' && $this->router->fetch_class('user'))){
+				show_error('用户 ' . $user['name'] .  ' 被禁用 <a href="' . site_url() . 'logout">登出</a>');
+			}
 		}
 	}
 	
@@ -80,7 +85,7 @@ class User_model extends WT_Model{
 		$this->db->select('user.id, user.name, user.email, user.group');
 		
 		if(array_key_exists('name', $args)){
-			$this->db->where('user.name',$args['name']);
+			$this->db->like('user.name',$args['name']);
 		}
 		
 		if(array_key_exists('email', $args)){
@@ -412,12 +417,12 @@ class User_model extends WT_Model{
 	
 	function addGroup($group,$user_id=NULL){
 		is_null($user_id) && $user_id=$this->id;
-		$groups=explode(',',$this->fetch($user_id,'group'));
+		$groups=explode(' ',$this->fetch($user_id,'group'));
 		if($groups[0]===''){
 			array_shift($groups);
 		}
 		!in_array($group,$groups) && $groups[]=$group;
-		$this->db->update($this->table,array('group'=>implode(',',$groups)), array('id'=>$user_id));
+		$this->db->update($this->table,array('group'=>implode(' ',$groups)), array('id'=>$user_id));
 		return $this->db->affected_rows();
 	}
 	

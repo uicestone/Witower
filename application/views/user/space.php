@@ -110,11 +110,12 @@
 		<div class="box my-box">
 			<div>
 				<?=$this->image('avatar',$user['id'],100)?>
-				<h1><?=$user['name']?></h1>
+				<p><b><?=$user['name']?></b>
 <?if(uri_segment(1)==='space'){?>
-				<p><?followButton($user['id'])?></p>
+				<?followButton($user['id'])?>
 <?}?>
-<?if($this->user->isLogged('useradmin') && !$this->user->inGroup('blacklist',$user['id'])){?>
+				</p>
+<?if($this->user->isLogged('user') && !$this->user->inGroup('blacklist',$user['id'])){?>
 				<p><a href="/user/addtoblacklist/<?=$user['id']?>" class="btn btn-mini">加入黑名单</a></p>
 <?}?>
 <?if($this->user->inGroup('blacklist',$user['id'])){?>
@@ -136,21 +137,8 @@
         </div>
 <?if(uri_segment(1)==='home'){?>
 		<div class="box my-nav">
-			<dl>
-				<dt>我的微博</dt>
-				<dd><span class="icon-hand-right"></span><a href="#">提到我的</a></dd>
-				<dd><span class="icon-user"></span><a href="#">评论</a></dd>
-				<dd><span class="icon-envelope"></span><a href="#">私信</a></dd>
-				<dd><span class="icon-exclamation-sign"></span><a href="#">通知</a></dd>
-				<dd><span class="icon-heart"></span><a href="#">收藏</a></dd>
-				<dd><span class="icon-th-large"></span><a href="#">我的邀请</a></dd>
-
-				<dt>我的成果</dt>
-
-				<dt>我的统计</dt>
-				<dd><span class="icon-folder-close"></span>活动数量(<?=$this->project->count(array('user_witted'=>$user['id']))?>)</dd>
-				<dd><span class="icon-align-left"></span>投票数量(<?=$this->project->count(array('user_voted'=>$user['id']))?>)</dd>
-			</dl>
+			<span class="icon-folder-close"></span>活动数量(<?=$this->project->count(array('user_witted'=>$user['id']))?>)
+			<span class="icon-align-left"></span>投票数量(<?=$this->project->count(array('user_voted'=>$user['id']))?>)
 		</div>
 <?}else{?>
 <!--		<div class="box">

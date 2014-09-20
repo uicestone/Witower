@@ -43,6 +43,8 @@
 					<div class="button-set">
 <?if($project['status']!=='voting'){?>
 						项目不在投票阶段
+<?}elseif($this->user->is_muted){?>
+						您已被禁言
 <?}elseif($voted){?>
 						您已经投票了！
 <?}elseif($this->user->id==$project['company']){?>
@@ -101,6 +103,8 @@
 					<div class="button-set">
 <?if($project['status']!=='voting'){?>
 						项目不在投票阶段
+<?}elseif($this->user->is_muted){?>
+						您已被禁言
 <?}elseif($voted){?>
 						您已经投票了！
 <?}elseif($this->user->id==$project['company']){?>

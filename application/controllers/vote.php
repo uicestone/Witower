@@ -60,7 +60,7 @@ class Vote extends WT_Controller{
 		
 		$project=$this->project->fetch();
 		
-		if($this->input->post('vote')!==false){
+		if($this->input->post('vote')!==false && !$this->user->is_muted){
 			
 			if(!$this->user->isLogged()){
 				redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));

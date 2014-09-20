@@ -5,6 +5,10 @@
 			<div class="title"><h3><a href="/<?=uri_segment(1)?>/user">用户管理</a></h3></div>
 			<div class="main">
 				<a class="btn" href="/<?=uri_segment(1)?>/adduser">增加用户</a>
+				<form class="form-inline" style="display:inline">
+					<input type="text" name="name" class="span3" value="<?=$this->input->get('name')?>">
+					<button type="submit" class="btn">搜索</button>
+				</form>
 				<table class="table table-bordered">
 					<thead>
 						<tr><th>名称</th><th>电子邮件</th><th>组</th><th width="96px">&nbsp;</th></tr>

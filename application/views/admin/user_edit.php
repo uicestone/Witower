@@ -36,6 +36,13 @@
 							</div>
 						</div>
 						<div class="control-group">
+							<label class="control-label">解除禁言日期</label>
+							<div class="controls">
+								<input type="text" name="mute_until" value="<?=set_value('mute_until',$user['mute_until'])?>">
+								<span class="label label-important"><?=form_error('mute_until')?></span>
+							</div>
+						</div>
+						<div class="control-group">
 							<div class="controls">
 								<button class="btn btn-primary" type="submit" name="submit">保存</button>
 <?if(isset($user['id'])){?>

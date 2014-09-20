@@ -297,6 +297,10 @@ class Admin extends WT_Controller{
 			'order_by'=>'id desc'
 		);
 		
+		if($this->input->get('name')){
+			$args['name'] = $this->input->get('name');
+		}
+		
 		$this->pagination->initialize(array(
 			'total_rows'=>$this->user->count($args),
 			'per_page'=>$this->config->user_item('list_per_page')
@@ -339,7 +343,8 @@ class Admin extends WT_Controller{
 					'name'=>$this->input->post('name'),
 					'password'=>$this->input->post('password'),
 					'email'=>$this->input->post('email'),
-					'group'=>$this->input->post('group')
+					'group'=>$this->input->post('group'),
+					'mute_until'=>$this->input->post('mute_until') ? $this->input->post('mute_until') : '0000-01-01'
 				);
 
 				//写入操作要放在全部表单验证以后
