@@ -3,6 +3,7 @@ class User_model extends WT_Model{
 	
 	var $name;
 	var $group;
+	var $is_muted;
 	
 	function __construct(){
 		parent::__construct();
