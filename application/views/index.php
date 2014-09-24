@@ -9,6 +9,23 @@
 	</ul>
 </div>
 
+<div id="myCarousel" class="carousel slide">
+	<ol class="carousel-indicators">
+		<?php foreach($home_slide_images as $index => $image){ ?>
+		<li data-target="#myCarousel" data-slide-to="<?=$index?>" class="<?php if($index === 0){ ?>active<? } ?>"></li>
+		<?php } ?>
+	</ol>
+	<!-- Carousel items -->
+	<div class="carousel-inner">
+		<?php foreach($home_slide_images as $index => $image){ ?>
+		<div class="item<?php if($index === 0){ ?> active<? } ?>"><img src="<?=site_url()?>uploads/images/<?=$image?>"></div>
+		<?php } ?>
+	</div>
+	<!-- Carousel nav -->
+	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
 <div class="water hide">
 <?foreach($projects as $project){?>
 		<div class="box" style="display: none;">
