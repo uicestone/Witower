@@ -1,13 +1,13 @@
 <? $this->view('header') ?>
 
-<!--<div class="side-nav">
+<div class="side-nav">
 	<ul>
-		<li><a href="/project">项目</a></li>
+		<li><a href="http://www.wenjuan.com/s/vI7F3i/" target="_blank">调查问卷</a></li>
+<!--		<li><a href="/project">项目</a></li>
 		<li><a href="/user/master">智塔达人</a></li>
-		<li><a href="/user/partners">合作伙伴</a></li>
-		li><a href="#">他们正在做</a></li
+		<li><a href="/user/partners">合作伙伴</a></li>-->
 	</ul>
-</div>-->
+</div>
 
 <div class="water hide">
 <?foreach($projects as $project){?>
