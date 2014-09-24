@@ -13,7 +13,7 @@ class Index extends WT_Controller{
 		
 		$projects=$this->project->getList(array('order_by'=>'id desc'));
 		
-		$home_slide_images = explode(',', $this->config->user_item('home-slide-images'));
+		$home_slide_images = $this->config->user_item('home-slide-images') ? explode(',', $this->config->user_item('home-slide-images')) : array();
 		
 		foreach($projects as &$project){
 			$project['tags']=$this->project->getTags($project['id']);

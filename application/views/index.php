@@ -9,6 +9,7 @@
 	</ul>
 </div>
 
+<?php if($home_slide_images){ ?>
 <div id="myCarousel" class="carousel slide">
 	<ol class="carousel-indicators">
 		<?php foreach($home_slide_images as $index => $image){ ?>
@@ -25,6 +26,7 @@
 	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
+<?php } ?>
 
 <div class="water hide">
 <?foreach($projects as $project){?>
