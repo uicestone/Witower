@@ -32,6 +32,7 @@
 						<li<?if(uri_string()===''){?> class="current-menu-item"<?}?>><a href="<?=site_url()?>">首页</a></li>
 						<li<?if(uri_string()==='project'){?> class="current-menu-item"<?}?>><a href="<?=site_url()?>project">项目</a></li>
 						<li<?if(uri_string()==='vote'){?> class="current-menu-item"<?}?>><a href="<?=site_url()?>vote">投票</a></li>
+						<li<?if(uri_string()==='piece'){?> class="current-menu-item"<?}?>><a href="<?=site_url()?>piece">作品</a></li>
 					</ul>
 				</div>
 				<div class="login pull-right">

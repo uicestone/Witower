@@ -9,7 +9,7 @@ class Media extends WT_Controller {
 	function upload() {
 		$this->load->library('upload', array(
 			'upload_path'=>'./uploads/images',
-			'allowed_types'=>'jpg',
+			'allowed_types'=>'*',
 			'encrypt_name'=>true,
 		));
 

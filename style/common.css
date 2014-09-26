@@ -20,6 +20,12 @@ del {background-color: #ffc6c6;}
 
 .fa[class*=" icon-"] { background-image: none; }
 .note-editor { background: #FFF; }
+.note-editable { min-height:7em; }
+.thumbnail { background: #FFF; }
+.thumbnail h5 { padding: 10px; word-wrap: break-word; }
+.twitter-typeahead { width: 100%;}
+.twitter-typeahead .input-block-level { width: 100%; }
+.twitter-typeahead .tt-query { background-color: #FFF !important; }
 
 /*header*/
 #header{height:75px;}
@@ -516,3 +522,5 @@ page-register  ******/
 /*强制换行*/
 .content_topp,.content_1{word-wrap: break-word;word-break:break-all;}
 
+/*作品上传*/
+#files { margin-top: 10px; }

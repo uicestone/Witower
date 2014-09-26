@@ -315,5 +315,12 @@ class Wit extends WT_Controller{
 		redirect($this->input->server('HTTP_REFERER'),'php','');
 	}
 	
+	function match($term){
+		$project = $this->wit->getList(array('name'=>urldecode($term)));
+		$this->output->set_output(json_encode($project));
+	}
+
+
+	
 }
 ?>
