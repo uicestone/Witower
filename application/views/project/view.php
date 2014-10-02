@@ -7,6 +7,7 @@
 				<ul>
 					<li><b>发布企业：</b><?= $project['company_name'] ?>
 						<?followButton($project['company'])?>
+						<wb:share-button appkey="4DEu5v" addition="simple" type="button" ralateUid="3901986632" class="pull-right"></wb:share-button>
 					</li>
 					<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
 					<li><b>被编辑次数：</b><?= $project['versions'] ?>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -21,7 +22,6 @@
 						<?}?>
 					</li>
 				</ul>
-				<wb:share-button appkey="4DEu5v" addition="simple" type="button" ralateUid="3901986632"></wb:share-button>
 				</div>
 				<div class="info">
 					<?=$this->image('project',$project['id'],100)?>
