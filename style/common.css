@@ -10,6 +10,7 @@ html{background: url("bg.gif");}
 body{background: url("head-bg.png") repeat-x center 0;}
 ins {background-color: #c6ffc6;text-decoration: none;}
 del {background-color: #ffc6c6;}
+video { max-width: 100%; }
 
 .wrapper{ width: 980px; margin: 0 auto;}
 .ellipsis{word-wrap:normal;	overflow:hidden;white-space:nowrap;	text-overflow: ellipsis;}
@@ -21,7 +22,8 @@ del {background-color: #ffc6c6;}
 .fa[class*=" icon-"] { background-image: none; }
 .note-editor { background: #FFF; }
 .note-editable { min-height:7em; }
-.thumbnail { background: #FFF; }
+.thumbnail { background: #FFF; padding: 0; }
+.thumbnail .container { padding: 0 10px; }
 .thumbnail h5 { padding: 10px; word-wrap: break-word; }
 .twitter-typeahead { width: 100%;}
 .twitter-typeahead .input-block-level { width: 100%; }
@@ -98,7 +100,7 @@ del {background-color: #ffc6c6;}
 /*page-list*/
 .page-project-list .main .model-a img {width: 200px;}
 /*model*/
-.model{overflow: hidden;border:10px solid #fff;background: #FAFAFA; box-shadow: 2px 2px 5px #CCC; border-radius: 3px;}
+.model{overflow: hidden;border:6px solid #fff;background: #FAFAFA; box-shadow: 2px 2px 5px #CCC; border-radius: 2px;}
 .model .title{height: 30px;line-height: 30px; padding: 0 1em;}
 .model .title h3{font-size: 16px;color: #333;font-weight: bold;float:left;line-height: 30px;margin:0;}
 /*model 最新项目*/
