@@ -63,7 +63,7 @@ $(function() {
 
 	$("a[href = '#']").click(function(e){e.preventDefault();});// prevent every anchor default event
 
- var $container = $('div.water');
+ var $container = $('.water');
 	$container.imagesLoaded(function(){
 		$container.masonry({
 			itemSelector : '.box',

@@ -8,12 +8,20 @@ class Piece extends WT_Controller {
 	}
 	
 	function index() {
-		$pieces = array();
+		$pieces = $this->piece->query();
 		$this->load->view('piece/list', compact('pieces'));
 	}
 	
 	function detail($id) {
-		$this->load->view('piece/detail');
+		$this->load->model('project_model', 'project');
+		$this->load->model('wit_model', 'wit');
+		
+		$piece = $this->piece->get($id);
+		
+		$piece['project'] && $piece['project'] = $this->project->fetch($piece['project']);
+		$piece['wit'] && $piece['wit'] = $this->wit->fetch($piece['wit']);
+		
+		$this->load->view('piece/detail', compact('piece'));
 	}
 	
 	function edit($id = null) {
@@ -26,6 +34,10 @@ class Piece extends WT_Controller {
 				redirect('piece/edit/' . $id);
 			}
 			else{
+				$piece = $this->piece->get($id);
+				if($this->user->id !== $piece['user']){
+					show_error('You have no permission to edit this piece.');
+				}
 				$this->piece->update($id, $this->input->post());
 			}
 		}

@@ -47,7 +47,7 @@ class Wit_model extends WT_Model{
 			$this->db->where('wit.deleted',false);
 		}
 		
-		if(!array_key_exists('name', $args)){
+		if(array_key_exists('name', $args)){
 			$this->db->like('wit.name', $args['name']);
 		}
 		

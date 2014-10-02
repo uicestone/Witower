@@ -54,6 +54,11 @@ class Piece_Model extends WT_Model {
 		return $data;
 	}
 	
+	function query(){
+		$pieces = $this->db->from('piece')->get()->result_array();
+		return $pieces;
+	}
+	
 	function remove($id){
 		return $this->db->where('id', $id)->delete('piece');
 	}

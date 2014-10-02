@@ -14,7 +14,7 @@
 				<input type="hidden" id="project" name="project" value="<?=set_value('project',$piece['project'])?>">
 				<label style="margin-top:10px;">作品描述：</label>
 				<textarea name="description" class="wysiwyg" style="min-height:7em"><?=set_value('description', $piece['description'])?></textarea>
-				<label style="margin-top:10px">文件上传：</label>
+				<label style="margin-top:10px">附件上传：</label>
 				<span class="btn btn-success fileinput-button">
 					<i class="fa fa-plus"></i>
 					<span>选择文件</span>
@@ -23,7 +23,9 @@
 					<?php if(isset($piece['files']) && is_array($piece['files'])):foreach($piece['files'] as $file): ?>
 					<input type="hidden" name="files[]" value='<?=json_encode($file, JSON_UNESCAPED_UNICODE)?>'>
 					<?php endforeach;endif; ?>
+					<input id="files-clearer" type="hidden" name="files" value="" disabled="disabled">
 				</span>
+				<button id="clear-files" type="button" class="btn btn-danger">清空</button>
 				<ul id="files" class="thumbnails">
 					<?php if(isset($piece['files']) && is_array($piece['files'])):foreach($piece['files'] as $file): ?>
 					<li class="span4">
@@ -64,6 +66,12 @@ jQuery(function ($) {
 		}
 	});
 	
+	$('#clear-files').on('click', function(){
+		$('#files-clearer').prop('disabled', false);
+		$(':input[name="files[]"]').remove();
+		$('#files').empty();
+	});
+	
 	$('#fileupload').fileupload({
 		url: '/media/upload'
 //		dataType: 'json'
@@ -89,6 +97,8 @@ jQuery(function ($) {
 				.find('img').wrap(link);
 		
 			$('#files-template').clone().val(JSON.stringify(response.result)).prop('disabled', false).removeAttr('id').insertAfter('#files-template');
+			
+			$('#files-clearer').prop('disabled', true);
 			
 		}
 	})

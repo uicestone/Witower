@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="//libs.baidu.com/fontawesome/4.2.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="<?=site_url()?>style/summernote.css">
 		<link rel="stylesheet" type="text/css" href="<?=site_url()?>style/common.css">
+		<link rel="stylesheet" href="<?=site_url()?>js/MediaElement/mediaelementplayer.css" />
 
 		<script type="text/javascript" src="<?=site_url()?>js/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="<?=site_url()?>js/bootstrap.min.js"></script>
@@ -21,6 +22,7 @@
 		<script type="text/javascript" src="<?=site_url()?>js/jquery.jcarousel.min.js"></script>
 		<script type="text/javascript" src="<?=site_url()?>js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript" src="<?=site_url()?>js/common.js"></script>
+		<script type="text/javascript" src="<?=site_url()?>js/MediaElement/mediaelement-and-player.min.js"></script>
 		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>

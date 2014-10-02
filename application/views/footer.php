@@ -33,7 +33,7 @@
 <script type="text/javascript" src="<?=site_url()?>js/jquery.fileupload.js"></script>
 <script type="text/javascript" src="<?=site_url()?>js/jquery.iframe-transport.js"></script>
 <script type="text/javascript">
-$(function(){
+jQuery(function(){
 	$('.wysiwyg').summernote({
 		lang: 'zh-CN',
 		onImageUpload: function(files, editor, $editable) {
@@ -43,6 +43,7 @@ $(function(){
 				});
 		}
 	});
+	$('video,audio').mediaelementplayer();
 });
 </script>
 </body>
