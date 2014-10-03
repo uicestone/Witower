@@ -31,7 +31,11 @@
 					<li class="span4">
 						<div class="thumbnail">
 							<a href="<?=$file->url?>">
-								<img src="/uploads/images/project/0.jpg">
+								<?php if(preg_match('/^image/', $file->file_type)){ ?>
+								<img src="<?=$file->url?>">
+								<?php }elseif(preg_match('/^video/', $file->file_type)){ ?>
+								<img src="<?=site_url()?>style/video_icon.png">
+								<?php } ?>
 							</a>
 							<h5><?=$file->client_name?></h5>
 							<p></p>
@@ -41,7 +45,7 @@
 				</ul>
 				<div class="form-actions">
 					<button type="submit" name="submit" class="btn btn-primary">提交</button>
-					<?php if($this->user->id === $piece['user'] || $this->user->isLogged('piece')){ ?>
+					<?php if(isset($piece['id']) && $this->user->id === $piece['user'] || $this->user->isLogged('piece')){ ?>
 					<button type="submit" name="remove" class="btn btn-danger">删除此作品</button>
 					<?php } ?>
 				</div>

@@ -28,7 +28,7 @@ class Piece extends WT_Controller {
 		
 		$this->load->model('project_model', 'project');
 		
-		$piece = $this->piece->get($id);
+		!is_null($id) && $piece = $this->piece->get($id);
 		
 		if($this->input->post('submit') !== false){
 			if(is_null($id)){
