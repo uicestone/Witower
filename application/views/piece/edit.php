@@ -46,7 +46,22 @@
 				<div class="form-actions">
 					<button type="submit" name="submit" class="btn btn-primary">提交</button>
 					<?php if(isset($piece['id']) && $this->user->id === $piece['user'] || $this->user->isLogged('piece')){ ?>
-					<button type="submit" name="remove" class="btn btn-danger">删除此作品</button>
+					
+					<a id="vote-button" href="#remove-confirm-modal" role="button" class="btn" data-toggle="modal">删除</a>
+
+					<div id="remove-confirm-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4>确认投票</h4>
+						</div>
+						<div class="modal-body">
+							确认删除"<?=$piece['name']?>"吗？
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+							<button type="submit" name="remove" class="btn btn-danger">确认删除</button>
+						</div>
+					</div>	
 					<?php } ?>
 				</div>
 			</form>
