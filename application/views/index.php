@@ -30,7 +30,7 @@
 
 <div class="water hide">
 <?foreach($projects as $project){?>
-		<div class="box" style="display: none;">
+		<div class="box">
 			<div class="img cell">
 				<a href="/<?=in_array($project['status'],array('preparing','witting'))?'project':'vote'?>/<?= $project['id'] ?>">
 					<?=$this->image('project',$project['id'],200)?>

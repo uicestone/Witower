@@ -63,7 +63,7 @@ $(function() {
 
 	$("a[href = '#']").click(function(e){e.preventDefault();});// prevent every anchor default event
 
- var $container = $('.water');
+ var $container = $('.water').masonry();
 	$container.imagesLoaded(function(){
 		$container.masonry({
 			itemSelector : '.box',
@@ -71,7 +71,7 @@ $(function() {
 		});
 	}).fadeIn(500);
 	
-	$container.children('.box').show();
+//	$container.children('.box').show();
 
 	$('#mycarousel').jcarousel({
 		visible:10
