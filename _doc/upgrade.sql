@@ -108,26 +108,26 @@ ALTER TABLE  `project` CHANGE  `summary`  `summary` TEXT CHARACTER SET utf8 COLL
 ALTER TABLE `company` ADD `certificated` BOOLEAN NOT NULL ;
 
 ALTER TABLE `user` ADD `mute_until` DATE NOT NULL , ADD INDEX (`mute_until`) ;
--- server upgraded
 
 CREATE TABLE IF NOT EXISTS `piece` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` int(11) NOT NULL,
-  `source` text NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `files` text NOT NULL,
   `description` text NOT NULL,
-  `project` INT NULL AFTER `description`,
+  `project` int(11) DEFAULT NULL,
   `wit` int(11) DEFAULT NULL,
   `user` int(11) NOT NULL,
   `time` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
-  KEY `project` (`project`),
   KEY `wit` (`wit`),
   KEY `user` (`user`),
-  KEY `time` (`time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `time` (`time`),
+  KEY `project` (`project`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 ALTER TABLE `piece`
+  ADD CONSTRAINT `piece_ibfk_1` FOREIGN KEY (`wit`) REFERENCES `wit` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `piece_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `piece_ibfk_1` FOREIGN KEY (`wit`) REFERENCES `wit` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
+  ADD CONSTRAINT `piece_ibfk_3` FOREIGN KEY (`project`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+-- server upgraded
