@@ -35,7 +35,7 @@
 				<a href="/<?=in_array($project['status'],array('preparing','witting'))?'project':'vote'?>/<?= $project['id'] ?>">
 					<?=$this->image('project',$project['id'],200)?>
 				</a>
-				<p><?= $project['name'] ?></p>
+				<h4><?= $project['name'] ?></h4>
 			</div>
 			<div class="details cell">
 				项目状态：<?=lang($project['status'])?><br>
@@ -51,7 +51,7 @@
 					<a href="/<?=in_array($project['status'],array('preparing','witting'))?'project':'vote'?>/<?= $project['id'] ?>"><li title="收藏"><span class="icon-heart"></span>(<?= $project['favorites'] ?>)</li></a>
 				</ul>
 			</div>
-			<div class="users cell">
+<!--			<div class="users cell">
 				<p><? //=$project[summary]   ?></p>
 				<ul>
 <?	foreach($project['comments'] as $comment){?>
@@ -60,8 +60,8 @@
 					</li>
 <?	}?>
 				</ul>
-			</div>
-			<div class="tail cell"> <a href="/project/<?= $project['id'] ?>"> >>> </a></div>
+			</div>-->
+			<!--<div class="tail cell"> <a href="/project/<?= $project['id'] ?>"> >>> </a></div>-->
 		</div>
 <?}?>
 	

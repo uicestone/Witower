@@ -9,7 +9,10 @@
 					<?followButton($recommended_project['company'])?>
 				</li>
 				<li><b>项目名称：</b><a href="/project/<?=$recommended_project['id']?>"><?=$recommended_project['name']?></a></li>
-				<li><b>项目介绍：</b><?=$recommended_project['summary']?></li>
+				<li>
+					<div class="clearfix"></div>
+					<div class="well"><?=$recommended_project['summary']?></div>
+				</li>
 				<li><b>项目金额：</b><?=$recommended_project['bonus']?>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>截止日期：</b><?=$recommended_project['wit_end']?></li>
 				<li>标签：
 					<span class="tags">

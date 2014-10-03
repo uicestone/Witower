@@ -11,7 +11,10 @@
 						<?followButton($recommended_voting_project['company'])?>
 					</li>
 					<li><b>项目名称：</b><a href="/vote/<?= $recommended_voting_project['id'] ?>"><?= $recommended_voting_project['name'] ?></a></li>
-					<li><b>项目介绍：</b><?= $recommended_voting_project['summary'] ?></li>
+					<li>
+						<div class="clearfix"></div>
+						<div class="well"><?= $recommended_voting_project['summary'] ?></div>
+					</li>
 					<li><b>当前人数：</b><?= count($recommended_voting_project['voters']) ?>人</li>
 				</ul>
 			</div>

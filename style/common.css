@@ -57,13 +57,15 @@ video { max-width: 100%; }
 .info .search-bar li.category:hover ul{display: block;}
 
 /*water fall*/
-.water .box{width:188px;border:1px solid #ddd;border-bottom: none;;margin: 0 0 20px;background: #FAFAFA;box-shadow:2px 2px 5px #CCC;}
+.water .box{width:188px;border:1px solid #ddd;border-bottom: none;;margin: 0 0 10px;background: #FAFAFA;box-shadow:2px 2px 5px #CCC;}
 .water .box ul{margin:0;}
 .water .box .price{background: #333;padding:2px 4px;color: #fff;}
-.water .box .cell{padding: 8px;border-bottom: 1px solid #ddd;overflow: hidden;}
+.water .box .cell{padding: 0;border-bottom: 1px solid #ddd;overflow: hidden;}
+.water .box h4 { font-size: 15px; padding: 0 5px; }
 .water .box .img{text-align: center;background: #fff;}
 .water .box .img img{width:100%;}
 .water .box .img p{text-align: left;font-size: 14px;color: #333;}
+.water .box .details { padding: 8px }
 .water .box .details ul li{float: left;margin: 0 10px 0 0;}
 .water .box .users{padding:0;}
 .water .box .users > p{padding: 8px;}
@@ -141,7 +143,7 @@ video { max-width: 100%; }
 .recommend {margin: 0 0 40px 0;}
 .recommend .main{padding: 10px;overflow: hidden;}
 .recommend .info{margin: 0 0 20px 0;}
-.recommend .info img{float: left;margin: 0 20px 0 0;}
+.recommend .info img{float: left;margin: 0 10px 10px 0;}
 .recommend .info ul li{margin: 0 0 10px 0;}
 .recommend .info ul li b{color: #333;}
 .tags a{padding: 3px 8px;border: 1px solid #ddd;text-decoration: none;margin:  5px;display:inline-block;}
