@@ -1,7 +1,7 @@
 <?php $this->view('header'); ?>
 <link rel="stylesheet" href="<?=site_url()?>style/jquery.fileupload.css">
 <!--<link rel="stylesheet" href="<?=site_url()?>style/jquery.fileupload-ui.css">-->
-<div id="left" class="span9">
+<div class="span12">
 	<?php $this->view('alert'); ?>
 	<div class="model model-b">
 		<div class="main">
@@ -41,6 +41,9 @@
 				</ul>
 				<div class="form-actions">
 					<button type="submit" name="submit" class="btn btn-primary">提交</button>
+					<?php if($this->user->id === $piece['user'] || $this->user->isLogged('piece')){ ?>
+					<button type="submit" name="remove" class="btn btn-danger">删除此作品</button>
+					<?php } ?>
 				</div>
 			</form>
 		</div>

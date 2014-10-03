@@ -28,18 +28,24 @@ class Piece extends WT_Controller {
 		
 		$this->load->model('project_model', 'project');
 		
+		$piece = $this->piece->get($id);
+		
 		if($this->input->post('submit') !== false){
 			if(is_null($id)){
 				$id = $this->piece->create($this->input->post());
 				redirect('piece/edit/' . $id);
 			}
 			else{
-				$piece = $this->piece->get($id);
 				if($this->user->id !== $piece['user']){
 					show_error('You have no permission to edit this piece.');
 				}
 				$this->piece->update($id, $this->input->post());
 			}
+		}
+		
+		if($this->input->post('remove') !== false && ($this->user->id === $piece['user'] || $this->user->isLogged('piece'))){
+			$this->piece->remove($piece['id']);
+			redirect('piece');
 		}
 		
 		if(!is_null($id)){
