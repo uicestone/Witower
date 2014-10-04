@@ -53,7 +53,7 @@ class Piece extends WT_Controller {
 		
 		if(!is_null($id)){
 			$piece = $this->piece->get($id);
-			$piece['project_name'] = $this->project->fetch($piece['project'])['name'];
+			$piece['project'] && $piece['project_name'] = $this->project->fetch($piece['project'])['name'];
 		}
 		
 		$this->load->view('piece/edit', compact('piece'));
