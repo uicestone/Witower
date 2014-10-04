@@ -18,7 +18,7 @@
 			<a href="<?=site_url()?>piece/<?=$piece['id']?>"><img src="<?=$thumbnail_url?>"></a>
 			<div class="container">
 				<h4><a href="<?=site_url()?>piece/<?=$piece['id']?>"><?=$piece['name']?></a></h4>
-				<p><?=$piece['description']?></p>
+				<p><?=preg_replace('/\<iframe[\s\S]*?\<\/iframe\>/', '', $piece['description'])?></p>
 			</div>
 		</div>
 	</div>
