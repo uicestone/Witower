@@ -26,6 +26,9 @@ class Piece extends WT_Controller {
 	
 	function edit($id = null) {
 		
+		if(!$this->user->isLogged()){
+			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
+		}
 		$this->load->model('project_model', 'project');
 		
 		!is_null($id) && $piece = $this->piece->get($id);
