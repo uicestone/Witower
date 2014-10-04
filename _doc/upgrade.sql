@@ -130,4 +130,6 @@ ALTER TABLE `piece`
   ADD CONSTRAINT `piece_ibfk_1` FOREIGN KEY (`wit`) REFERENCES `wit` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `piece_ibfk_2` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `piece_ibfk_3` FOREIGN KEY (`project`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+ALTER TABLE `piece` CHANGE `files` `files` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
 -- server upgraded

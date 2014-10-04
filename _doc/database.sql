@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `finance` (
 CREATE TABLE IF NOT EXISTS `piece` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `files` text NOT NULL,
+  `files` text DEFAULT NULL,
   `description` text NOT NULL,
   `project` int(11) DEFAULT NULL,
   `wit` int(11) DEFAULT NULL,
