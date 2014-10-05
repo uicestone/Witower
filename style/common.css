@@ -24,6 +24,7 @@ video { max-width: 100%; }
 .note-editable { min-height:7em; }
 .thumbnail { background: #FFF; padding: 0; }
 .thumbnail .container { padding: 0 10px; }
+.thumbnail .progress { width: 90%; margin: 0 auto 20px; }
 .thumbnail h5 { padding: 10px; word-wrap: break-word; }
 .twitter-typeahead { width: 100%;}
 .twitter-typeahead .input-block-level { width: 100%; }

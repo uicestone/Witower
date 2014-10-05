@@ -105,7 +105,7 @@ jQuery(function ($) {
 //		previewCrop: true
 	})
 	.on('fileuploadadd', function(e, data) {
-		data.context = $('<li class="span4"><div class="thumbnail"><img src="/uploads/images/product/0.jpg" alt=""><h5></h5><p></p></div></li>')
+		data.context = $('<li class="span4"><div class="thumbnail"><img src="/uploads/images/product/0.jpg" alt=""><h5></h5><p></p><div class="progress progress-striped active"><div class="bar" style="width:0"></div></div></li>')
 			.appendTo('#files').find('h5').text(data.files[0].name).end().find('img').attr('alt', data.files[0].name).end();
 	})
 	.on('fileuploaddone', function(e, response) {
@@ -116,7 +116,8 @@ jQuery(function ($) {
 
 			response.context
 				.find('h5').wrapInner(link).end()
-				.find('img').wrap(link);
+				.find('img').wrap(link).end()
+				.find('.progress').remove();
 		
 			$('#files-template').clone().val(JSON.stringify(response.result)).prop('disabled', false).removeAttr('id').insertAfter('#files-template');
 			
@@ -125,7 +126,7 @@ jQuery(function ($) {
 		}
 	})
 /*	.on('fileuploadprocessalways', function(e, data) {
-		console.log('process always', data);
+		
 		var index = data.index,
 				file = data.files[index],
 				node = $(data.context.children()[index]);
@@ -144,12 +145,11 @@ jQuery(function ($) {
 					.text('上传')
 					.prop('disabled', !!data.files.error);
 		}
-	})
-	.on('fileuploadprogressall', function(e, data) {
-		console.log('progress all', data);
-		var progress = parseInt(data.loaded / data.total * 100, 10);
-		$('#progress .progress-bar').css('width', progress + '%');
 	})*/
+	.on('fileuploadprogress', function(e, data) {
+		var progress = parseInt(data.loaded / data.total * 100, 10);
+		data.context.find('.progress .bar').css('width', progress + '%');
+	})
 //		else if (response.result.files[0].error) {
 //			var error = $('<span class="text-danger"/>').text(file.error);
 //			response.context.append('<br>').append(error);
