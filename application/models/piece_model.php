@@ -38,6 +38,11 @@ class Piece_Model extends WT_Model {
 	}
 	
 	function update($id, array $data){
+		
+		if(empty($data['project'])){
+			$data['project'] = null;
+		}
+		
 		$data = array_intersect_key($data, $this->fields);
 		
 		if(array_key_exists('files', $data) && is_array($data['files'])){

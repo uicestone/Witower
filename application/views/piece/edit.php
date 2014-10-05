@@ -2,11 +2,11 @@
 <link rel="stylesheet" href="<?=site_url()?>style/jquery.fileupload.css">
 <!--<link rel="stylesheet" href="<?=site_url()?>style/jquery.fileupload-ui.css">-->
 <div class="span12">
-	<?php $this->view('alert'); ?>
 	<div class="model model-b">
 		<div class="main">
 			<form method="post">
 				<legend>上传作品</legend>
+				<?php $this->view('alert'); ?>
 				<label>标题：</label>
 				<input type="text" name="name" value="<?=set_value('name', $piece['name'])?>" class="input-block-level" />
 				<label>项目：</label>

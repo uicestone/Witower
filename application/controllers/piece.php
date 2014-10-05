@@ -43,6 +43,7 @@ class Piece extends WT_Controller {
 					show_error('You have no permission to edit this piece.');
 				}
 				$this->piece->update($id, $this->input->post());
+				$alert[] = array('message'=>'作品已更新', 'type'=>'info');
 			}
 		}
 		
@@ -56,7 +57,7 @@ class Piece extends WT_Controller {
 			$piece['project'] && $piece['project_name'] = $this->project->fetch($piece['project'])['name'];
 		}
 		
-		$this->load->view('piece/edit', compact('piece'));
+		$this->load->view('piece/edit', compact('piece', 'alert'));
 	}
 	
 }
