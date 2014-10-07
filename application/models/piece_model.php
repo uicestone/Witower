@@ -43,6 +43,8 @@ class Piece_Model extends WT_Model {
 			$data['project'] = null;
 		}
 		
+		unset($data['user']);
+		
 		$data = array_intersect_key($data, $this->fields);
 		
 		if(array_key_exists('files', $data) && is_array($data['files'])){

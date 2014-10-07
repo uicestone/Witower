@@ -21,7 +21,19 @@ class Piece extends WT_Controller {
 		$piece['project'] && $piece['project'] = $this->project->fetch($piece['project']);
 		$piece['wit'] && $piece['wit'] = $this->wit->fetch($piece['wit']);
 		
-		$this->load->view('piece/detail', compact('piece'));
+		if($this->input->post('award') !== false && $this->user->isLogged(array('witower', 'piece'))){
+			$this->load->model('finance_model', 'finance');
+			$this->finance->add(array(
+				'amount'=>$this->input->post('amount'),
+				'item'=>'上传作品奖励',
+				'project'=>$piece['project'] ? $piece['project'] : null,
+				'summary'=>'智塔对上传作品“' . $piece['name'] . '”的奖励',
+				'user'=>$piece['user']
+			));
+			$alert[] = array('message'=>'成功奖励该作者' . $this->input->post('amount') . '积分', 'type'=>'success');
+		}
+		
+		$this->load->view('piece/detail', compact('piece', 'alert'));
 	}
 	
 	function edit($id = null) {
@@ -39,11 +51,11 @@ class Piece extends WT_Controller {
 				redirect('piece/edit/' . $id);
 			}
 			else{
-				if($this->user->id !== $piece['user']){
+				if($this->user->id !== $piece['user'] && !$this->user->isLogged(array('witower', 'piece'))){
 					show_error('You have no permission to edit this piece.');
 				}
 				$this->piece->update($id, $this->input->post());
-				$alert[] = array('message'=>'作品已更新', 'type'=>'info');
+				redirect('piece/' . $id);
 			}
 		}
 		

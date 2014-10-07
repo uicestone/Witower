@@ -52,7 +52,7 @@
 					<div id="remove-confirm-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h4>确认投票</h4>
+							<h4>确认删除</h4>
 						</div>
 						<div class="modal-body">
 							确认删除"<?=$piece['name']?>"吗？
