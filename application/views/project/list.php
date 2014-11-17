@@ -3,7 +3,7 @@
 	<?$this->view('project/recommended')?>
 <?}?>
 
-	<div class="search">
+<!--	<div class="search">
 		<div class="title">
 			<b class="s14">项目统计</b>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -12,7 +12,7 @@
 			参与的人数：<b class="s18"><?=$witters?></b>人
 		</div>
 
-		<!--<?$this->view('project/search')?>-->
+		<?$this->view('project/search')?>
 
 	</div>
 
@@ -111,6 +111,6 @@
 				<?}?>
 
 			</div>
-			</div>
+			</div>-->
 	</div>
 <?$this->view('footer')?>

@@ -68,6 +68,9 @@ class WT_Config extends CI_Config{
 		}
 		elseif($session==='db'){
 				$CI=&get_instance();
+				if(is_array($value) || is_object($value)){
+					$value = json_encode($value);
+				}
 				$CI->db->update('config',array('value'=>$value),array('item'=>$item));
 		}
 		else{

@@ -67,7 +67,7 @@ $(function() {
 	$container.imagesLoaded(function(){
 		$container.masonry({
 			itemSelector : '.box',
-			columnWidth : 196
+			columnWidth :62.305
 		});
 	}).fadeIn(500);
 	
@@ -173,3 +173,164 @@ $(function() {
 	}());
 	
 });
+
+$(function () {
+	$("#controls li a").click(function () {
+		/*Performed when a control is clicked */
+		shuffle();
+		var rel = $(this).attr("rel");
+		if ($("#" + rel).hasClass("current")) {
+			return false;
+		}
+		/* Bug Fix, thanks Dave -> added .stop(true,true) 
+		 to stop any ongoing animation */
+		$("#" + rel).stop(true, true).show();
+		$(".current").fadeOut().removeClass("current");
+		$("#" + rel).addClass("current");
+		$(".active").removeClass("active");
+		$(this).parents("li").addClass("active");
+		set_new_interval(5000);
+		return false;
+	});
+	/* 
+	 * Optional Pause on Hover Feature 
+	 * Comment out to use it
+	 * Thanks, Andrew 
+	 */
+	/*$('.banner').hover(function() {
+	 clearInterval(slide);
+	 }, function () {
+	 slide = setInterval( "banner_switch()", 7000 );
+	 });*/
+});
+function banner_switch() {
+	/*This function is called on to switch the banners out when the time limit is reached */
+	shuffle();
+	var next = $('.banner.current').next('.banner').length ?
+			$('.banner.current').next('.banner') : $('#banners .banner:first');
+	$(next).show();
+	$(".current").fadeOut().removeClass("current");
+	$(next).addClass("current");
+	var next_link = $(".active").next("li").length ? $('.active').next('li') : $('#controls li:first');
+	$(".active").removeClass("active");
+	$(next_link).addClass('active');
+}
+$(function () {
+	/*Initial timer setting */
+	slide = setInterval("banner_switch()", 5000);
+});
+function set_new_interval(interval) {
+	/*Simply clears out the old timer interval and restarts it */
+	clearInterval(slide);
+	slide = setInterval("banner_switch()", interval);
+}
+function shuffle() {
+	/*This function takes every .banner and changes the z-index to 1, hides them,
+	 then takes the ".current" banner and brings it above and shows it */
+	$(".banner").css("z-index", 1).hide();
+	$(".current").css("z-index", 2).show();
+}
+$(function () {
+
+	var liwid = $(".list1 ul li").width() + 24;
+	var len = $(".list1 ul li").size() - 11;
+	var index = 0;
+	$(".list1 .right").click(function () {
+		index++;
+		if (index > len) {
+			index = len;
+			return;
+		}
+		var leng = -liwid * index;
+		$(".list1 ul").animate({left: leng}, 300);
+
+
+	});
+
+	$(".list1 .left").click(function () {
+		index--;
+		if (index <= -1) {
+			index = 0;
+			return;
+		}
+		var leng = -liwid * index;
+		$(".list1 ul").animate({left: leng}, 300);
+
+	});
+
+
+
+
+	var liwid2 = $(".list2 ul li").width() + 24;
+	var len2 = $(".list2 ul li").size() - 11;
+	var index2 = 0;
+
+	$(".list2 .right").click(function () {
+		index2++;
+		if (index2 > len2) {
+			index2 = len2;
+			return;
+		}
+		var leng2 = -liwid2 * index2;
+		$(".list2 ul").animate({left: leng2}, 300);
+
+
+	});
+
+	$(".list2 .left").click(function () {
+		index2--;
+		if (index2 <= -1) {
+			index2 = 0;
+			return;
+		}
+		var leng2 = -liwid2 * index2;
+		$(".list2 ul").animate({left: leng2}, 300);
+
+	});
+
+	var liwid3 = $(".list3 ul li").width() + 24;
+	var len3 = $(".list3 ul li").size() - 11;
+	var index3 = 0;
+
+	$(".list3 .right").click(function () {
+		index3++;
+		if (index3 > len3) {
+			index3 = len3;
+			return;
+		}
+		var leng3 = -liwid3 * index3;
+		$(".list3 ul").animate({left: leng3}, 300);
+
+
+	});
+
+	$(".list3 .left").click(function () {
+		index3--;
+		if (index3 <= -1) {
+			index3 = 0;
+			return;
+		}
+		var leng2 = -liwid3 * index3;
+		$(".list3 ul").animate({left: leng2}, 300);
+
+	});
+
+
+	$(".ul2 .c a").click(function () {
+
+		$(this).parent().next(".jiaob").show();
+		$(this).parent().parent(".ul2").parent(".div_r").next(".pinglun").css("height", "auto");
+		$(this).parent().parent(".ul2").parent(".div_r").next(".pinglun").parent(".xxcon").next(".xxbottom").css("background-image", "url('../style/shouqi.png')").css("height", "20px").css("cursor", "pointer");
+
+	})
+
+	$(".xxbottom").click(function () {
+
+		$(this).css("background-image", "url('../style/xxbotback.png')");
+		$(this).prev(".xxcon").find(".pinglun").css("height", "0px");
+		$(this).prev(".xxcon").find(".jiaob").hide();
+
+
+	});
+
+})

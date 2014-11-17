@@ -5,6 +5,7 @@ class Piece extends WT_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('piece_model', 'piece');
+		$this->load->model('finance_model', 'finance');
 	}
 	
 	function index() {

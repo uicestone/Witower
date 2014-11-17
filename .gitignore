@@ -1,4 +1,4 @@
 .DS_Store
 /nbproject
-/uploads/*/*/*
+/uploads/*/*
 !/uploads/images/*/0*

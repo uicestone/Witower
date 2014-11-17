@@ -99,7 +99,11 @@ class WT_Loader extends CI_Loader{
 
 		$attr_string='';
 		if($display_size){
-			$attr_string.=' width="'.$display_size.'" height="'.$display_size.'"';
+			if(is_array($display_size)){
+				$attr_string.=' width="'.$display_size[0].'" height="'.$display_size[1].'"';
+			}else{
+				$attr_string.=' width="'.$display_size.'" height="'.$display_size.'"';
+			}
 		}
 		
 		foreach($attrs as $attr_name => $attr_value){

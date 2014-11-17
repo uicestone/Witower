@@ -28,9 +28,47 @@ class Admin extends WT_Controller{
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
 		
+		$alert = array();
+			
+		$home_slide_images = $this->config->user_item('home_slide_images');
+		
+		if($this->input->post('upload_banner_image') !== false){
+			
+			try{
+				
+				$this->load->library('upload',array(
+					'upload_path'=>'./uploads/images/banner',
+					'allowed_types'=>'jpg',
+					'encrypt_name'=>true
+				));
+				
+				if(!$_FILES['banner_image']['error'] && !$this->upload->do_upload('banner_image')){
+					throw new Exception($this->upload->display_errors());
+				}
+
+				$upload_data = $this->upload->data();
+				
+				$home_slide_images[] = (object) array(
+					'filename'=>$upload_data['file_name'],
+					'url'=>$this->input->post('url')
+				);
+				
+			} catch (Exception $e) {
+				$alert[] = array('type'=>'error', 'message'=>'图片上传出错，' . $e->getMessage());
+			}
+		}
+		
+		if($this->input->post('delete_banner_image') !== false){
+			$home_slide_images = array_filter($home_slide_images, function($item){
+				return $item->filename !== $this->input->post('delete_banner_image');
+			});
+		}
+		
+		$this->config->set_user_item('home_slide_images', $home_slide_images, 'db');
+		
 		$this->load->page_path[]=array('text'=>lang('admin_config'),'href'=>'/admin/config');
 		
-		$this->load->view('admin/config',array('config_items'=>$this->config->witower));
+		$this->load->view('admin/config',array('config_items'=>$this->config->witower, 'home_slide_images'=>$home_slide_images, 'alert'=>$alert));
 	}
 	
 	function editConfig($item){

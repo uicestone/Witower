@@ -12,8 +12,8 @@ class Index extends WT_Controller{
 		$this->load->model('project_model','project');
 		
 		$projects=$this->project->getList(array('order_by'=>'id desc'));
-		
-		$home_slide_images = $this->config->user_item('home-slide-images') ? explode(',', $this->config->user_item('home-slide-images')) : array();
+		$homepage_project = $this->project->fetch($this->config->user_item('homepage_project_id'));
+		$home_slide_images = $this->config->user_item('home_slide_images') ? $this->config->user_item('home_slide_images') : array();
 		
 		foreach($projects as &$project){
 			$project['tags']=$this->project->getTags($project['id']);
@@ -22,7 +22,7 @@ class Index extends WT_Controller{
 			$project['comments']=array_slice($project['comments'], 0, 3);
 		}
 		
-		$this->load->view('index',compact('projects', 'home_slide_images'));
+		$this->load->view('index',compact('projects', 'home_slide_images', 'homepage_project'));
 	}
 	
 }

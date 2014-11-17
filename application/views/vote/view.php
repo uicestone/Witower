@@ -1,18 +1,28 @@
 <? $this->view('header') ?>
 	<div id="left" class="span9">
-
 		<div class="model model-b">
 			<div class="main">
+
+				<div class="info">
+					<?=$this->image('project',$project['id'],200)?>
+					<div>
+						<p style="width:445px; float:right;"><?= $project['summary'] ?></p>
+					</div>
+				</div>
 				<div class="info">
 <?if($this->user->isLogged(array('witower','vote')) && $project['status']==='voting'){?>
 					<a href="/project/end/<?=$project['id']?>" class="btn pull-right">结束投票</a>
 <?}?>
 					<?=$this->image('avatar',$project['company'],100)?>
 					<ul>
-						<li><b>发布企业：</b><?= $project['company_name'] ?>
-							<span><?followButton($project['company'])?></span>
-							<wb:share-button appkey="4DEu5v" addition="simple" type="button" ralateUid="3901986632" class="pull-right"></wb:share-button>
+						<li>
+						<div>	<?foreach($project['tags'] as $tag){?>
+						<a href="#"><?= $tag ?></a>
+						<?}?><div class=""><div class="bdsharebuttonbox"><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到网易微博" href="#" class="bds_t163" data-cmd="t163"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a><a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a><a href="#" class="bds_more" data-cmd="more"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div>
 						</li>
+						<li><b>发布企业：</b><?= $project['company_name'] ?>
+							<span><?followButton($project['company'])?></span></li>
 						<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
 						<li>
 							<b>被编辑次数：</b><?=$versions?>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -27,12 +37,6 @@
 	<?}?>
 						</li>
 					</ul>
-				</div>
-				<div class="info">
-					<?=$this->image('project',$project['id'],100)?>
-					<div>
-						<p><?= $project['summary'] ?></p>
-					</div>
 				</div>
 			</div>
 		</div>

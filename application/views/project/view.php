@@ -1,38 +1,47 @@
 <? $this->view('header') ?>
-	<div id="left" class="span9">
-		<div class="model model-b">
-			<div class="main">
-				<div class="info">
-					<a href="/space/<?=$project['company']?>"><?=$this->image('avatar',$project['company'],100)?></a>
-				<ul>
-					<li><b>发布企业：</b><?= $project['company_name'] ?>
-						<?followButton($project['company'])?>
-						<wb:share-button appkey="4DEu5v" addition="simple" type="button" ralateUid="3901986632" class="pull-right"></wb:share-button>
-					</li>
-					<li><b>发布金额：</b><?= $project['bonus'] ?>元 </li>
-					<li><b>被编辑次数：</b><?= $project['versions'] ?>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<b>被讨论次数：</b><?= $project['comments_count'] ?>次&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-						<b>项目截止日期：</b><?= $project['wit_end'] ?>
-					</li>
-					<li><b>活动状态：</b><?=lang($project['status'])?></li>
-					<li class="tags">
-						<b>标签：</b>
+	<div id="left" class="span9" >
+    <div class="reday1" style="margin-top:0;">
+  <div class="maxred">
+    <div class="img"><?=$this->image('project',$project['id'])?></div>
+    <div class="reday_r">
+      <h2><?=$project['name']?></h2>
+<h4>项目描述</h4><?=$project['summary']?>
+<strong>企业名称：</strong><?= $project['company_name'] ?><span><img src="<?=site_url()?>style/guanzhu.png" /></span>
+&nbsp;<strong>活动状态：</strong><?=lang($project['status'])?>
+&nbsp;<strong>项目金额：</strong><span><?= $project['bonus'] ?></span>元<br>
+<strong>截止时间：</strong><?= $project['wit_end'] ?>
+&nbsp;<strong>被编辑次数：</strong><?= $project['versions'] ?>次&nbsp;&nbsp;<strong>被讨论次数：</strong><?= $project['comments_count'] ?>次
+<br><strong>标签：</strong>
 						<?foreach($project['tags'] as $tag){?>
 						<a href="#"><?= $tag ?></a>
-						<?}?>
-					</li>
-				</ul>
-				</div>
-				<div class="info">
-					<?=$this->image('project',$project['id'],100)?>
-					<div>
-						<p><?=$project['summary']?></p>
-						<div class="button">
-							<div class="pull-left">
+						<?}?><div class=""><div class="bdsharebuttonbox"><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到网易微博" href="#" class="bds_t163" data-cmd="t163"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a><a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a><a href="#" class="bds_more" data-cmd="more"></a></div></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+    </div>
 
-							</div>
-							<div class="pull-right">
-<?if($this->user->id==$project['company'] && !$this->user->is_muted){?>
+  </div>
+  <div class="tlrs">当前参与人员</div>
+  <div class="list1">
+    <div class="left"><img src="<?=site_url()?>style/left.png" /></div>
+    <div class="maxul">
+   		<ul>
+					<?foreach($witters as $witter){?>
+					<li>
+						<a href="/space/<?= $witter['id'] ?>">
+							<?=$this->image('avatar',$witter['id'],100,50)?>
+							<span><?= $witter['name'] ?></span>
+						</a>
+						<?followButton($witter['id'])?>
+					</li>
+					<?}?>
+				</ul>
+    </div>
+    <div class="right"><img src="<?=site_url()?>style/right.png" /></div>
+  </div>
+</div>
+<div id="left" style="width:980px;margin-left:-4px;"><br>
+		<div class="model model-b" >
+			<div class="title" ><h3 style="color:#00A7EB;">目前有<?=count($wits)?>种创意</h3>	
+			<?if($this->user->id==$project['company'] && !$this->user->is_muted){?>
 								<a href="/company/project/<?=$project['id']?>" class="btn">编辑</a>
 <?}elseif($this->user->isLogged(array('witower','project')) && !$this->user->is_muted){?>
 								<a href="/admin/project/<?=$project['id']?>" class="btn">编辑</a>
@@ -54,21 +63,13 @@
 <?}?>
 <?if($this->user->isLogged(array('witower','help'))){?>
 								<a class="btn btn-primary" href="/wit/add?project=<?=$project['id']?>">发布创意</a>
-<?}?>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="model model-b">
-			<div class="title"><h3>目前有<?=count($wits)?>种创意</h3></div>
+<?}?></div>
 		</div>
 <?foreach($wits as $wit){?>
-		<div class="model model-b" id="<?=$wit['latest_version']?>">
-			<div class="main">
-				<div class="detail">
-					<div class="title">
+		<div class="model model-b"  id="<?=$wit['latest_version']?>">
+			<div class="main" >
+				<div class="detail" style="width:950px">
+					<div class="title" >
 						<h3><a href="/wit/<?=$wit['id']?>"><?= $wit['name'] ?></a><?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?></h3>
 						<span class="right">
 							<a href="/wit/versions/<?=$wit['id']?>" target="_blank">版本</a>
@@ -124,27 +125,26 @@
 		</div>
 <?}?>
 		<div class="model model-b">
-			<div class="main">
-				<div class="detail">
-					<div class="title"><h3>公司介绍</h3></div>
+			<div class="main" >
+				<div class="detail" style="width:940px;">
+					<div class="title" ><h3>公司介绍</h3></div>
 					<div class="main">
-						<?=$this->image('avatar',$project['company'],100)?>
+						<?=$this->image('avatar',$project['company'],200)?>
 						<?=$company['description']?>
 					</div>
 				</div>
-				<div class="detail">
+				<div class="detail" style="width:940px;">
 					<div class="title"><h3>产品说明</h3></div>
 					<div class="main">
-						<?=$this->image('product',$project['product'],100)?>
+						<?=$this->image('product',$project['product'],200)?>
 						<?=$product['description']?>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!--右边栏部分-->
-	<div id="right" class="sidebar span3">
+<!--右边栏部分-->
+<!--	<div id="right" class="sidebar span3">
 		<div class="box">
 			<div class="title">
 				<h3>参与人员（<?= $witters_count ?>）</h3><a href="#" class="more">more</a>
@@ -199,7 +199,45 @@
 					<?}?>
 				</ul>
 			</div>
-		</div>
-	</div>
+		</div>	</div>-->
+<!--
+<div class="reday">
+  <div class="maxred">
+    <div class="img"><?=$this->image('project',$project['id'])?></div>
+    <div class="reday_r">
+      <h2>3M净化器广告文案撰写征集</h2>
+      <p>雾霾天气日益增多，如何让3M的安全防护产品之一的口罩，给您带来贴心的保护，享受喧嚣中片刻的宁静？征集可独立拍成视频的创意广告！</p>
+      <ul>
+        <li>文案主题：不限（搞笑，温情，balbalba）</li>
+        <li>产品定位：大众日常消费用品</li>
+        <li>文案要求：新颖、独特、适合拍摄成视频形式</li>
+        <li>预计时场：2-5分钟</li>
+        <li>发布企业：云兆文化 <span><img src="<?=site_url()?>style/guanzhu.png" /></span></li>
+        <li>活动状态：进行中</li>
+        <li>项目金额：<span>800.00</span>元</li>
+        <li>截止时间：2014年09月31日</li>
+      </ul>
+      <div class="div"><a href="#"><img src="<?=site_url()?>style/woyaocanyu.png" /></a></div>
+    </div>
+  </div>
+  <div class="tlrs">当前参与人员</div>
+  <div class="list1">
+    <div class="left"><img src="<?=site_url()?>style/left.png" /></div>
+    <div class="maxul">
+   		<ul>
+					<?foreach($witters as $witter){?>
+					<li>
+						<a href="/space/<?= $witter['id'] ?>">
+							<?=$this->image('avatar',$witter['id'],100,50)?>
+							<span><?= $witter['name'] ?></span>
+						</a>
+						<?followButton($witter['id'])?>
+					</li>
+					<?}?>
+				</ul>
+    </div>
+    <div class="right"><img src="<?=site_url()?>style/right.png" /></div>
+  </div>
+</div>-->
 
 <?$this->view('footer')?>
