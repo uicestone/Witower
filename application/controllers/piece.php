@@ -22,6 +22,8 @@ class Piece extends WT_Controller {
 		$piece['project'] && $piece['project'] = $this->project->fetch($piece['project']);
 		$piece['wit'] && $piece['wit'] = $this->wit->fetch($piece['wit']);
 		
+		$piece['user'] = $this->user->fetch($piece['user']);
+		
 		if($this->input->post('award') !== false && $this->user->isLogged(array('witower', 'piece'))){
 			$this->load->model('finance_model', 'finance');
 			$this->finance->add(array(
