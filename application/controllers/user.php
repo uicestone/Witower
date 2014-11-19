@@ -423,6 +423,10 @@ class User extends WT_Controller{
 	}
 	
 	function addStatusComment($status_id){
+		if(!$this->user->isLogged()){
+			$this->output->set_output('Not logged in.');
+			return;
+		}
 		$comment_id=$this->user->addStatusComment($status_id, $this->input->post('commentContent'));
 		$comment=$this->user->getStatusComment($comment_id);
 		$comment['time']=date('Y-m-d H:i:s',$comment['time']);

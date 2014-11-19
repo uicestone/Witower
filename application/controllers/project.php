@@ -139,6 +139,10 @@ class Project extends WT_Controller{
 	}
 	
 	function addVersionComment($version_id){
+		if(!$this->user->isLogged()){
+			$this->output->set_output(json_encode(array('error'=>'user not logged in')));
+			return;
+		}
 		$this->load->model('version_model','version');
 		$comment_id=$this->version->addComment($version_id, $this->input->post('commentContent'));
 		$comment=$this->version->getComment($comment_id);
