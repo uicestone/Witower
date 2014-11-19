@@ -135,7 +135,7 @@ class Project extends WT_Controller{
 		
 		$this->project->update(array('active'=>false),$id);
 		
-		redirect($this->input->server('HTTP_REFERER'),'php','');
+		redirect($this->input->server('HTTP_REFERER'));
 	}
 	
 	function addVersionComment($version_id){

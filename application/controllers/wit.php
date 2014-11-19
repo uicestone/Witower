@@ -274,7 +274,7 @@ class Wit extends WT_Controller{
 		
 		$this->wit->remove();
 		
-		redirect($this->input->server('HTTP_REFERER'),'php','');
+		redirect($this->input->server('HTTP_REFERER'));
 	}
 	
 	function removeVersion($version_id){
@@ -288,7 +288,7 @@ class Wit extends WT_Controller{
 		$this->version->update(array('deleted'=>true),$version_id);
 		$this->wit->refresh($version['wit']);
 		
-		redirect($this->input->server('HTTP_REFERER'),'php','');
+		redirect($this->input->server('HTTP_REFERER'));
 	}
 	
 	function recoverVersion($version_id){
@@ -302,17 +302,17 @@ class Wit extends WT_Controller{
 		$this->version->update(array('deleted'=>false),$version_id);
 		$this->wit->refresh($version['wit']);
 		
-		redirect($this->input->server('HTTP_REFERER'),'php','');
+		redirect($this->input->server('HTTP_REFERER'));
 	}
 	
 	function select($wit_id){
 		$this->wit->select($wit_id);
-		redirect($this->input->server('HTTP_REFERER'),'php','');
+		redirect($this->input->server('HTTP_REFERER'));
 	}
 	
 	function unselect($wit_id){
 		$this->wit->unselect($wit_id);
-		redirect($this->input->server('HTTP_REFERER'),'php','');
+		redirect($this->input->server('HTTP_REFERER'));
 	}
 	
 	function match($term){
