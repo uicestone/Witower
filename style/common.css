@@ -170,14 +170,14 @@ page-vote */
 .page-vote .box .join p { height: 30px; background: #fff; padding: 0 10px; margin-bottom:0; font-weight: bold; color: #1c1553; line-height: 30px; }
 .page-vote .box ul li.last { height:60px; }
 /* search */
-.search { background: #fff; }
+.search { background: #fff; border-radius:5px;width:980px; margin: 0 auto;}
 .search .title { background: url("search-title.png") no-repeat; height: 69px; line-height: 49px; text-indent: 1em; }
 .search .title b { font-size: 1.2em; color: #666; }
 .search .main { border:1px solid #e6e6e6; border-top:none; padding: 5px 10px; }
 .search .main ul li { border-bottom: 1px solid #eee; overflow: hidden; height: 40px; line-height: 40px; }
-.search .main ul li b { float: left; width: 100px; color: #666; }
+.search .main ul li b { float: left; width: 40px; color: #666; }
 .search .main ul li a { padding: 5px 10px; }
-.search .main ul li a:hover, .search .main ul li a.on { background: #004856; color: #fff!important; text-decoration: none; }
+.search .main ul li a:hover, .search .main ul li a.on { background: #00A0E9; color: #fff!important; text-decoration: none; }
 .search .main .search-bar { display: inline-block; }
 .participator ul li { float:left; margin-right:10px; width:50px; position: relative; }
 .participator ul li .add-follow { position: absolute; bottom: 0; display: none; }

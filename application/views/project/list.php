@@ -2,21 +2,21 @@
 <?if(isset($recommended_project)){?>
 	<?$this->view('project/recommended')?>
 <?}?>
-
-<!--	<div class="search">
-		<div class="title">
+	<br>
+	<div class="search">
+		<!--<div class="title">
 			<b class="s14">项目统计</b>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			进行的项目：<b class="s18"><?=$active_projects?></b>
 			&nbsp;&nbsp;&nbsp;
 			参与的人数：<b class="s18"><?=$witters?></b>人
-		</div>
+		</div>-->
 
 		<?$this->view('project/search')?>
 
 	</div>
 
-	<div class="model">
+	<!--<div class="model">
 		<div class="title">
 			<h3>项目排行榜</h3>
 		</div>
