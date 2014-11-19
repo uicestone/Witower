@@ -531,7 +531,7 @@ page-register  ******/
 .more3 { text-align: center; width: 100%; }
 .water .container h4 { padding: 0 15px; text-indent:0px; }
 .reday { background:#fff; background:url(rightj.png) no-repeat top right #fff; width:980px; height:auto; position:relative; margin-top:25px; margin: 0 auto; margin-top:20px; padding-bottom:20px; border:1px solid #999; border-radius: 5px;}
-.reday1 { background:#fff; width:980px; height:auto; position:relative; margin-top:0px; margin-left:-4px; padding-bottom: 100px;}
+.reday1 { background:#fff; height:auto; position:relative; margin-top:0px; padding-bottom: 100px;}
 .maxred .img { float: left; height: 273px; width: 273px; }
 .maxred .reday_r { float: right; position: relative; width: 635px; }
 .maxred { height: auto; margin: 0px 20px 10px 20px; font-family:宋体; border-bottom:1px solid #c8c8c8; padding-top:20px; overflow:hidden; }
