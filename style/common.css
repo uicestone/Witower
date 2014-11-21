@@ -161,12 +161,12 @@ page-vote */
 .page-vote .recommend .statistics .main ul li ul li { display: inline; margin: 0 30px 0 0; }
 .page-vote .recommend .statistics .tail { text-align: center; }
 .page-vote .model.list .main { padding: 10px; overflow: hidden; }
-.model-d { border: 1px solid #ddd; background: #f3f3f3; width:49%; }
+.model-d { border: 1px double #ddd;  width:49%; }
 .model-d h4 { line-height: 30px; text-indent: 25px; font-size: 16px; color: #333; }
 .model-d .content .box { padding: 20px; border-bottom: 1px solid #ddd; position: relative; }
 .model-d .content .box img { width: 150px; float: left; margin-right: 20px; }
 .model-d .content .box ul li { line-height: 180%; }
-.page-vote .box .join { float: right; height: 60px; border: 1px solid #ddd; border-radius: 5px; overflow: hidden; text-align: center; line-height: 30px; margin-top: 5px; }
+.page-vote .box .join { float: right;   border-radius: 5px; overflow: hidden; text-align: center; line-height: 30px; margin-top: 5px; }
 .page-vote .box .join p { height: 30px; background: #fff; padding: 0 10px; margin-bottom:0; font-weight: bold; color: #1c1553; line-height: 30px; }
 .page-vote .box ul li.last { height:60px; }
 /* search */

@@ -12,21 +12,41 @@
 					</li>
 					<li><b>项目名称：</b><a href="/vote/<?= $recommended_voting_project['id'] ?>"><?= $recommended_voting_project['name'] ?></a></li>
 					<li>
-						<div class="clearfix"></div>
+						<div class="bdsharebuttonbox"><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到网易微博" href="#" class="bds_t163" data-cmd="t163"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a><a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a><a href="#" class="bds_more" data-cmd="more"></a></div></div>
+						<script>window._bd_share_config={"common": {"bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "24"}, "share": {}};with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+					</li> 
+					<li>
+						<div class="clearfix"><h4>项目描述：</h4></div>
 						<div class="well"><?= $recommended_voting_project['summary'] ?></div>
 					</li>
-					<li><b>当前人数：</b><?= count($recommended_voting_project['voters']) ?>人</li>
+					<li><h4>当前投票<?= count($recommended_voting_project['voters']) ?>人</h4></li>
 				</ul>
 			</div>
-			<div class="scroll-img">
-				<div class="pull-left"><p>他们已经投票</p></div>
-				<div class="pull-right">
+			<div class="scroll-img" >
+			<div class="blocks" >
+			<div class="list1" style="width:1000px;">
+			<div class="left"><img src="<?=site_url()?>style/left.png" /></div>
+			<div class="maxul">
+				<ul>
+				<?foreach($recommended_voting_project['voters'] as $voter){?>
+				<li><a href="/space/<?=$voter['id']?>">
+				  <?=$this->image('avatar',$voter['id'],100,55)?>
+				  <span>
+				  <?=$voter['name']?>
+				  </span></a></li>
+				<?}?>
+				</ul>
+			</div>
+			<div class="right"><img src="<?=site_url()?>style/right.png" /></div>
+			</div>
+			</div>
+				<!--<div class="pull-right">
 					<ul id="mycarousel" class="jcarousel-skin-tango">
 						<?foreach($recommended_voting_project['voters'] as $voter){?>
 						<li><a href="/space/<?= $voter['id'] ?>"><?=$this->image('avatar',$voter['id'],'100','65')?><span><?= $voter['name'] ?></span></a></li>
 						<?}?>
 					</ul>
-				</div>
+				</div>-->
 			</div>
 			<div class="statistics">
 				<div class="main">
@@ -41,30 +61,29 @@
 						<?}?>
 					</ul>
 				</div>
-				<div class="tail"><a href="#"><< 更多候选名单</a></div>
 			</div>
 		</div>
 	</div>
 <?}?>
-	<div class="search">
+	<!--<div class="search">
 		<div class="title">
 			<b class="s14">投票统计</b>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			进行的投票：<b class="s18"><?= $active_projects ?></b>
+			<b class="s18"><?= $active_projects ?>个正在进行的投票</b>
 			&nbsp;&nbsp;&nbsp;
-			投票总数：<b class="s18"><?= $sum_votes ?></b>票
+			<b class="s18">共计投<?= $sum_votes ?></b>票
 		</div>
 
-		<!--<? $this->view('vote/search') ?>-->
+		<? $this->view('vote/search') ?>
 
-	</div>
+	</div>-->
 
 	<div class="model list">
 		<div class="title">
 			<h3>投票排行榜</h3>
+			<b class="s18">（有<?= $active_projects ?>个项目正在进行投票，共计投<?= $sum_votes ?></b>票）
 		</div>
 		<div class="main">
-
 			<div class="model-d pull-left">
 				<h4>最新投票</h4>
 				<div class="content">
