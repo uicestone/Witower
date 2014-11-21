@@ -18,9 +18,9 @@
 			?>
 			<a href="<?=site_url()?>piece/<?=$piece['id']?>"><img src="<?=$thumbnail_url?>"></a>
 			<div class="container">
-            <h4><b>作品名称</b>:<a href="<?=site_url()?>piece/<?=$piece['id']?>"><?=substr($piece['name'],0,21)?>...</a></h4>
-            <h4><b>&nbsp;&nbsp;发布人</b>:<?=$this->db->query("select name from user where id = {$piece['user']}")->row()->name?></h4>
-            <h4><b>发布时间</b>:<?=date('Y-m-d H:i', intval($piece['time']))?></h4>
+            <h4><b>作品名称:</b><a href="<?=site_url()?>piece/<?=$piece['id']?>"><?=substr($piece['name'],0,21)?>...</a></h4>
+            <h4><b>&nbsp;&nbsp;发布人:</b><?=$this->db->query("select name from user where id = {$piece['user']}")->row()->name?></h4>
+            <h4><b>发布时间:</b><?=date('Y-m-d H:i', intval($piece['time']))?></h4>
 			
            <!-- <div class="hb"></div>
             <div class="zuop">
