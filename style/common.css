@@ -47,7 +47,6 @@ background-image: none;
 #header .login ul { float: left; margin: 20px 0 0 20px; }
 #header .login ul li { color: #fff; }
 #header .login ul li a { padding: 3px; }
-#header .login ul li:first-child a { color: #fff; font-family:宋体; font-size:12px; float:left; }
 #header .login span { float: left; margin: 16px 0 0 20px; height: 30px; line-height: 30px; padding: 0 10px; }
 .info { overflow:hidden; }
 .info .pull-left li { float:left; padding:0 10px; border-right: 1px solid #999; }

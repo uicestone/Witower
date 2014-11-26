@@ -31,29 +31,23 @@ class Project extends WT_Controller{
 		
 		$hot_tags = array_column($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
 
-		$money = array('100-1000','1000-5000','5000,10000','10000-15000');
+		$bonus_ranges = array('100-1000','1000-5000','5000-10000','10000-15000');
 		
 		$date = array('今日发布','昨日发布','三日内发布','48小时内发布','24小时内发布');
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 		
-		$projects['latest']=$this->project->getList(array('status'=>'witting','order_by'=>'wit_start desc','limit'=>10));
+		$projects = $this->project->getList(array_merge($this->input->get() ? $this->input->get() : array(), array('order_by'=>'id desc')));
 		
-		$projects['hot']=$this->project->getList(array('status'=>'witting','order_by'=>'witters desc','limit'=>10));
-		
-		$projects['high_bonus']=$this->project->getList(array('status'=>'witting','order_by'=>'bonus desc','limit'=>10));
-		
-		foreach($projects as &$projects_column){
-			foreach($projects_column as &$project){
-				$project['tags']=$this->project->getTags($project['id']);
-				$project['comments']=$this->project->getComments($project['id']);
-				$project['comments_count']=count($project['comments']);
-			}
+		foreach($projects as &$project){
+			$project['tags']=$this->project->getTags($project['id']);
+			$project['comments']=$this->project->getComments($project['id']);
+			$project['comments_count']=count($project['comments']);
 		}
 		
 		$this->load->page_name='project-list';
 		
-		$this->load->view('project/list',compact('recommended_project','active_projects','witters','hot_tags','money','date','people','projects'));
+		$this->load->view('project/list',compact('recommended_project','active_projects','witters','hot_tags','bonus_ranges','date','people','projects'));
 	}
 	
 	/**

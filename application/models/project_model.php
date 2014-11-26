@@ -36,6 +36,7 @@ class Project_model extends WT_Model{
 	 *	company
 	 *	user_witted int | array 过滤出某用户参与创意的项目
 	 *	user_voted int | array 过滤出某用户参与投票的项目
+	 *	tag
 	 * @return type
 	 */
 	function getList($args = array()) {
@@ -89,6 +90,19 @@ class Project_model extends WT_Model{
 		
 		if(array_key_exists('user_voted', $args)){
 			$this->db->where("project.id IN (SELECT project FROM project_vote WHERE voter{$this->db->escape_int_array($args['user_voted'])})");
+		}
+		
+		if(array_key_exists('tag', $args)){
+			$tags = explode(',', $args['tag']);
+			foreach($tags as &$tag){
+				$tag = $this->db->escape($tag);
+			}
+			$this->db->where('(project.id IN (SELECT project FROM project_tag WHERE tag IN (SELECT id FROM tag WHERE name IN (' . implode(', ', $tags) . '))) OR project.product IN (SELECT product FROM product_tag WHERE tag IN (SELECT id FROM tag WHERE name IN (' . implode(', ', $tags) . '))))');
+		}
+		
+		if(array_key_exists('bonus_range', $args)){
+			$range = explode('-', $args['bonus_range']);
+			$this->db->where('(project.bonus BETWEEN ' . $this->db->escape($range[0]) . ' AND ' . $this->db->escape($range[1]) . ')');
 		}
 		
 		$project_list = parent::getList($args);

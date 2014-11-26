@@ -37,7 +37,6 @@
 	</div>
 </div>
 -->
-		<script type="text/javascript" src="<?=site_url()?>js/new.js"></script>
 <div class="reday">
   <div class="maxred">
     <div class="img">

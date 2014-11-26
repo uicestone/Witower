@@ -1,116 +1,50 @@
-<?$this->view('header')?>
-<?if(isset($recommended_project)){?>
-	<?$this->view('project/recommended')?>
-<?}?>
-	<br>
-	<div class="search">
-		<!--<div class="title">
-			<b class="s14">项目统计</b>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			进行的项目：<b class="s18"><?=$active_projects?></b>
-			&nbsp;&nbsp;&nbsp;
-			参与的人数：<b class="s18"><?=$witters?></b>人
-		</div>-->
+<?php $this->view('header'); ?>
 
-		<?$this->view('project/search')?>
+<?php if(isset($recommended_project)){ ?>
+<?php $this->view('project/recommended'); ?>
+<?php } ?>
+<br>
+<div class="search">
+<?php $this->view('project/search'); ?>
+</div>
 
-	</div>
+<div style="width:980px; overflow:hidden; margin:0 auto;">
+	<div id="content" class="wrapper<? if ($this->page_name) { ?> page-<?= $this->page_name ?><? } ?>">
+		<div class="water hide">
+			<?php foreach ($projects as $project) { ?>
+			<div class="box" style="background:#f2f2f2;">
+				<div class="img cell">
+					<a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
+						<?= $this->image('project', $project['id'], 200) ?>
+					</a>
+					<h4><?= $project['name'] ?></h4>
+					<div class="blockd"><font class="fonts">截止时间：<?= in_array($project['status'], array('preparing', 'witting')) ? $project['wit_end'] : $project['vote_end'] ?></font><span><?= lang($project['status']) ?></span></div>
+				</div>
 
-	<!--<div class="model">
-		<div class="title">
-			<h3>项目排行榜</h3>
+
+
+				<div class="details cell">
+					<ul class="list">
+						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
+								<span><?= $project['comments_count'] ?></span>
+								<p>讨论留言</p>
+							</a>
+						</li>
+						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
+								<span style="font-family:微软雅黑;">￥<?= $project['bonus'] ?></span>
+								<p>项目金额</p>
+							</a>
+						</li>
+						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
+								<span><?= $project['witters'] ?></span>
+								<p>参与人数</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<?php } ?>
 		</div>
-		<div class="main">
-			<div class="model-a">
-				<h4>最新项目</h4>
-
-				<?foreach($projects['latest'] as $project){?>
-				<div class="main">
-                                    <a href="/project/<?=$project['id']?>"><?=$this->image('project',$project['id'],200)?></a>
-					<ul>
-						<li><b>项目名称：</b><?=$project['name']?></li>
-						<li><b>项目介绍：</b><?=$project['summary']?></li>
-						<li><b>发布企业：</b><?=$project['company_name']?></li>
-						<li><b>项目金额：</b><?=$project['bonus']?></li>
-						<li><b>项目时间：</b><?=$project['wit_start']?> 至 <?=$project['wit_end']?></li>
-						<li class="tags">
-							<b>标签：</b>
-							<?foreach($project['tags'] as $tags){?>
-								<a href="<?=$tags?>"><?=$tags?></a>
-							<?}?>
-						</li>
-					</ul>
-				</div>
-				<div class="tail icons">
-					<ul>
-						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['witters']?>)</a></li>
-						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
-						<li><span class="icon-heart"></span><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
-					</ul>
-				</div>
-				<?}?>
-
-			</div>
-			<div class="model-a">
-				<h4>人气项目</h4>
-
-				<?foreach($projects['hot'] as $project){?>
-				<div class="main">
-					<a href="/project/<?=$project['id']?>"><?=$this->image('project',$project['id'],200)?></a>
-					<ul>
-						<li><b>项目名称：</b><?=$project['name']?></li>
-						<li><b>项目介绍：</b><?=$project['summary']?></li>
-						<li><b>发布企业：</b><?=$project['company_name']?></li>
-						<li><b>项目金额：</b><?=$project['bonus']?></li>
-						<li><b>项目时间：</b><?=$project['wit_start']?> 至 <?=$project['wit_end']?></li>
-						<li class="tags">
-							<b>标签：</b>
-							<?foreach($project['tags'] as $tags){?>
-								<a href="<?=$tags?>"><?=$tags?></a>
-							<?}?>
-						</li>
-					</ul>
-				</div>
-				<div class="tail icons">
-					<ul>
-						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['witters']?>)</a></li>
-						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
-						<li><span class="icon-heart"></span><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
-					</ul>
-				</div>
-				<?}?>
-
-			</div>
-			<div class="model-a">
-				<h4>项目金额</h4>
-
-				<?foreach($projects['high_bonus'] as $project){?>
-				<div class="main">
-					<a href="/project/<?=$project['id']?>"><?=$this->image('project',$project['id'],200)?></a>
-					<ul>
-						<li><b>项目名称：</b><?=$project['name']?></li>
-						<li><b>项目介绍：</b><?=$project['summary']?></li>
-						<li><b>发布企业：</b><?=$project['company_name']?></li>
-						<li><b>项目金额：</b><?=$project['bonus']?></li>
-						<li><b>项目时间：</b><?=$project['wit_start']?> 至 <?=$project['wit_end']?></li>
-						<li class="tags">
-							<b>标签：</b>
-							<?foreach($project['tags'] as $tags){?>
-								<a href="<?=$tags?>"><?=$tags?></a>
-							<?}?>
-						</li>
-					</ul>
-				</div>
-				<div class="tail icons">
-					<ul>
-						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['witters']?>)</a></li>
-						<li><span class="icon-comment"></span><a href="/project/<?=$project['id']?>">(<?=$project['comments_count']?>)</a></li>
-						<li><span class="icon-heart"></span><a href="/project/<?=$project['id']?>">(<?=$project['favorites']?>)</a></li>
-					</ul>
-				</div>
-				<?}?>
-
-			</div>
-			</div>-->
 	</div>
-<?$this->view('footer')?>
+</div>
+<?php $this->view('footer'); ?>

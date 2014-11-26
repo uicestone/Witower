@@ -32,7 +32,7 @@
 				<div class="menu pull-left">
 					<ul class="newhaider">
 						<li<?if(uri_string()==='') { ?> class="current-menu-item"<?}?>><a href="<?=site_url()?>">首页</a></li>
-						<li<?if(uri_string()==='project') { ?> class="current-menu-item"<?}?>><a href="<?=site_url()?>project">每日推荐</a></li>
+						<li<?if(uri_string()==='project') { ?> class="current-menu-item"<?}?>><a href="<?=site_url()?>project">浏览项目</a></li>
 						<li<?if(uri_string()==='vote') { ?> class="current-menu-item"<?}?>><a href="<?=site_url()?>vote">发起投票</a></li>
 						<li<?if(uri_string()==='piece') { ?> class="current-menu-item"<?}?>><a href="<?=site_url()?>piece">作品</a></li>
 					</ul>
