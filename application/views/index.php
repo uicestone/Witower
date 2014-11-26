@@ -10,22 +10,22 @@
 		<div class="head_r">
 			<h2><a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"><?= $homepage_project['name'] ?></a></h2>
 			<p class="con"><?= str_getSummary($homepage_project['summary'], 140) ?></p>
-			<div class="blockd"><font class="fonts">截止时间：##-##-##</font><span>STATUS</span></div>
+			<div class="blockd"><font class="fonts">截止时间：<?=$homepage_project['wit_end']?></font><span><?=lang($homepage_project['status'])?></span></div>
 			<div class="hr"></div>
 			<div class="details cell">
 				<ul class="list">
 					<li>
-						<a href="#"> <span>##</span>
+						<a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"> <span><?=$homepage_project['comments_count']?></span>
 							<p>讨论留言</p>
 						</a>
 					</li>
 					<li>
-						<a href="#"> <span>￥##</span>
+						<a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"> <span>￥<?=$homepage_project['bonus']?></span>
 							<p>项目金额</p>
 						</a>
 					</li>
 					<li>
-						<a href="#"> <span>##</span>
+						<a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"> <span><?=$homepage_project['witters']?></span>
 							<p>参与人数</p>
 						</a>
 					</li>

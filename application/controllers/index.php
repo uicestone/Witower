@@ -12,7 +12,12 @@ class Index extends WT_Controller{
 		$this->load->model('project_model','project');
 		
 		$projects=$this->project->getList(array('order_by'=>'id desc'));
+		
 		$homepage_project = $this->project->fetch($this->config->user_item('homepage_project_id'));
+		$homepage_project['comments'] = $this->project->getComments($homepage_project['id'],array('order_by'=>'id desc'));
+		$homepage_project['comments_count'] = count($homepage_project['comments']);
+		$homepage_project['status'] = $this->project->getStatus($homepage_project['id']);
+		
 		$home_slide_images = $this->config->user_item('home_slide_images') ? $this->config->user_item('home_slide_images') : array();
 		
 		foreach($projects as &$project){
