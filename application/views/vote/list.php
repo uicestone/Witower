@@ -41,7 +41,7 @@
 			0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 		</div>
 	</div>
-			<div class="scroll-img" style="bottom: 75px;background: none repeat scroll 0 0 #fff;height: 25px;line-height: 25px;position: absolute;text-align: center;width: 110px;" ><strong>当前参与人员</strong></div>
+			<div class="scroll-img" style="bottom: 79px;background: none repeat scroll 0 0 #fff;height: 25px;line-height: 25px;position: absolute;text-align: center;width: 110px;" ><strong>当前参与人员</strong></div>
 			<div class="blocks" >
 			<div class="list1" style="width:1000px;">
 			<div class="left"><img src="<?=site_url()?>style/left.png" /></div>

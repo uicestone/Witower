@@ -1,7 +1,7 @@
 <? $this->view('header') ?>
-	<div id="left" class="span9">
+	<div id="left" class="span12">
 		<div class="model model-b">
-			<div class="main">
+			<!--<div class="main">
 
 				<div class="info">
 					<?=$this->image('project',$project['id'],200)?>
@@ -19,7 +19,7 @@
 						<div>	<?foreach($project['tags'] as $tag){?>
 						<a href="#"><?= $tag ?></a>
 						<?}?><div class=""><div class="bdsharebuttonbox"><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到网易微博" href="#" class="bds_t163" data-cmd="t163"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a><a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a><a href="#" class="bds_more" data-cmd="more"></a></div></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div>
+						<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></div>
 						</li>
 						<li><b>发布企业：</b><?= $project['company_name'] ?>
 							<span><?followButton($project['company'])?></span></li>
@@ -38,8 +38,29 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div>-->
+		
+		<div class="maxred">
+		<div class="img"><?= $this->image('project', $project['id']) ?></div>
+		<div class="reday_r">
+			<h2><strong><?= $project['name'] ?><strong></h2>
+			<h4>项目描述</h4><?= $project['summary'] ?>
+			<strong>企业名称：</strong><?= $project['company_name'] ?><span><img src="<?= site_url() ?>style/guanzhu.png" /></span>
+			<br><strong>活动状态：</strong><?= lang($project['status']) ?>
+			<br><strong>项目金额：</strong><span><?= $project['bonus'] ?></span>元
+			<br><strong>截止时间：</strong><?= $project['wit_end'] ?>
+			<br><strong>被编辑次数：</strong><?=$versions?>次
+			<br><strong>被讨论次数：</strong><?=count($comments)?>次
+			<br><strong>标签：</strong>
+			<? foreach ($project['tags'] as $tag) { ?>
+				<a href="#"><?= $tag ?></a>
+			<? } ?><div class=""><div class="bdsharebuttonbox"><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到网易微博" href="#" class="bds_t163" data-cmd="t163"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a><a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a><a href="#" class="bds_more" data-cmd="more"></a></div></div>
+			<script>window._bd_share_config={"common": {"bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "24"}, "share": {}};
+			with (document)
+			0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 		</div>
+		</div>
+	</div>
 		<div class="model model-b voting">
 			<form id="voteForm" method="post">
 				<div class="title"><h3>候选人名单及投票</h3></div>
@@ -138,17 +159,17 @@
 <?}?>
 		<div class="model model-b">
 			<div class="main">
-				<div class="detail">
+				<div class="detail" style="width:970px">
 					<div class="title">公司介绍</div>
 					<div class="main">
-						<a href="/space/<?=$project['company']?>"><?=$this->image('avatar',$project['company'],100)?></a>
+						<a href="/space/<?=$project['company']?>"><?=$this->image('avatar',$project['company'],200)?></a>
 						<p><?=$company['description'] ?></p>
 					</div>
 				</div>
-				<div class="detail">
+				<div class="detail"  style="width:970px">
 					<div class="title">产品说明</div>
 					<div class="main">
-						<?=$this->image('product',$project['product'],100)?>
+						<?=$this->image('product',$project['product'],200)?>
 						<p><?=$product['description'] ?></p>
 					</div>
 				</div>
@@ -156,7 +177,7 @@
 		</div>
 	</div>
 
-	<div id="right" class="sidebar span3">
+	<!--<div id="right" class="sidebar span3">
 
 		<div class="box">
 
@@ -214,7 +235,7 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
 <script type="text/javascript">
 $(function(){

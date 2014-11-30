@@ -8,7 +8,7 @@
 <?php $this->view('project/search'); ?>
 </div>
 
-<div style="width:980px; overflow:hidden; margin:0 auto;">
+<div style="width:980px; overflow:hidden; margin:15px auto;">
 	<div id="content" class="wrapper<? if ($this->page_name) { ?> page-<?= $this->page_name ?><? } ?>">
 		<div class="water hide">
 			<?php foreach ($projects as $project) { ?>
