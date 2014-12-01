@@ -37,7 +37,7 @@ class Project extends WT_Controller{
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 		
-		$projects = $this->project->getList(array_merge($this->input->get() ? $this->input->get() : array(), array('order_by'=>'id desc')));
+		$projects = $this->project->getList(array_merge($this->input->get() ? $this->input->get() : array(), array('order_by'=>'id desc', 'status'=>'witting')));
 		
 		foreach($projects as &$project){
 			$project['tags']=$this->project->getTags($project['id']);
