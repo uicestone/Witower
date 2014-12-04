@@ -547,6 +547,7 @@ page-register  ******/
 .list1 .left { left: 25px; position: absolute; top: 20px; }
 .list1 .right { right: 25px; position: absolute; top: 20px; }
 .maxul { width:870px; margin:0 auto; height:90px; overflow:hidden; position:relative; }
+.main img{border-radius:50px;width:70px;height:70px; }
 .list2 { height: 80px; padding-top: 10px; position: relative; width: 100%; }
 .list2 .left { left: 25px; position: absolute; top: 20px; }
 .list2 ul { height: 73px; margin: 0 auto; overflow: hidden; position: absolute; width: 2000%; }
