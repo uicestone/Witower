@@ -1,8 +1,8 @@
 <? $this->view('header')?>
 <?if(isset($recommended_voting_project)){?>
 	<div class="model recommend">
-		<div class="main">
-			<!--<div class="info">
+		<!--<div class="main">
+			<div class="info">
 				<a href="/vote/<?=$recommended_voting_project['id']?>"><?=$this->image('project',$recommended_voting_project['id'],100)?></a>
 				<a class="btn btn-primary pull-right" href="/vote/<?= $recommended_voting_project['id'] ?>">我要投票</a>
 				<ul>
