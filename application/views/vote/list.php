@@ -1,6 +1,6 @@
 <? $this->view('header')?>
 <?if(isset($recommended_voting_project)){?>
-	<div class="model recommend">
+	<div style="width:1000px; overflow:hidden; margin:15px auto;background:#fff;border-radius: 5px;">
 		<!--<div class="main">
 			<div class="info">
 				<a href="/vote/<?=$recommended_voting_project['id']?>"><?=$this->image('project',$recommended_voting_project['id'],100)?></a>
@@ -22,8 +22,8 @@
 				</ul>
 			</div>-->
 			<div class="maxred" style="height:430px">
-		<div class="img"><?=$this->image('project',$recommended_voting_project['id'])?></div>
-		<div class="reday_r">
+			<div class="img"><?=$this->image('project',$recommended_voting_project['id'])?></div>
+			<div class="reday_r">
 			<h2><strong><a href="/vote/<?= $recommended_voting_project['id'] ?>"><?= $recommended_voting_project['name'] ?></a>(热门投票)</strong></h2>
 			<h4>项目描述</h4><?= $recommended_voting_project['summary'] ?>
 			<strong>发布企业：<?= $recommended_voting_project['company_name'] ?>
@@ -41,7 +41,7 @@
 			0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 		</div>
 	</div>
-			<div class="scroll-img" style="bottom: 79px;background: none repeat scroll 0 0 #fff;height: 25px;line-height: 25px;position: absolute;text-align: center;width: 110px;" ><strong>当前参与人员</strong></div>
+			<div class="scroll-img" style="bottom: 79px;background: none repeat scroll 0 0 #fff;height: 22px;line-height: 25px;position: absolute;text-align: center;width: 110px;" ><strong>当前参与人员</strong></div>
 			<div class="blocks" >
 			<div class="list1" style="width:1000px;">
 			<div class="left"><img src="<?=site_url()?>style/left.png" /></div>
@@ -67,7 +67,7 @@
 					</ul>
 				</div>-->
 			</div>
-			<div class="statistics">
+			<div class="statistics" style="background:#fff;">
 				<div class="main">
 					<ul>
 						<?foreach($recommended_voting_project['candidates'] as $candidate){?>
@@ -84,20 +84,18 @@
 		</div>
 	</div>
 <?}?>
-	<!--<div class="search">
-		<div class="title">
-			<b class="s14">投票统计</b>
+	<div class="search">
+		<div class="main">
+			<h4><b>投票统计</b>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<b class="s18"><?= $active_projects ?>个正在进行的投票</b>
+			<b>有<?= $active_projects ?>个正在进行的投票</b>
 			&nbsp;&nbsp;&nbsp;
-			<b class="s18">共计投<?= $sum_votes ?></b>票
+			<b>共计投<?= $sum_votes ?></b>票</h4>
 		</div>
-
 		<? $this->view('vote/search') ?>
+	</div>
 
-	</div>-->
-
-	<div class="model list">
+	<!--<div class="main">
 		<div class="title">
 			<h3>投票排行榜</h3>
 			<b class="s18">（有<?= $active_projects ?>个项目正在进行投票，共计投<?= $sum_votes ?></b>票）
@@ -165,5 +163,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 <?$this->view('footer')?>

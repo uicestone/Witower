@@ -174,7 +174,7 @@ page-vote */
 .search .title b { font-size: 1.2em; color: #666; }
 .search .main { border:1px solid #e6e6e6; border-top:none; padding: 5px 10px; }
 .search .main ul li { border-bottom: 1px solid #eee; overflow: hidden; height: 40px; line-height: 40px; }
-.search .main ul li b { float: left; width: 40px; color: #666; }
+.search .main ul li b { float: left; width: 60px; color: #666; }
 .search .main ul li a { padding: 5px 10px; }
 .search .main ul li a:hover, .search .main ul li a.on { background: #00A0E9; color: #fff!important; text-decoration: none; }
 .search .main .search-bar { display: inline-block; }
