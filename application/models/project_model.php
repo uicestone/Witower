@@ -37,6 +37,7 @@ class Project_model extends WT_Model{
 	 *	user_witted int | array 过滤出某用户参与创意的项目
 	 *	user_voted int | array 过滤出某用户参与投票的项目
 	 *	tag
+	 *	voters string '0-10' 根据投票数范围过滤
 	 * @return type
 	 */
 	function getList($args = array()) {
@@ -103,6 +104,15 @@ class Project_model extends WT_Model{
 		if(array_key_exists('bonus_range', $args)){
 			$range = explode('-', $args['bonus_range']);
 			$this->db->where('(project.bonus BETWEEN ' . $this->db->escape($range[0]) . ' AND ' . $this->db->escape($range[1]) . ')');
+		}
+		
+		if(array_key_exists('voters', $args)){
+			$range = explode('-', $args['voters']);
+			$this->db->where('(project.voters BETWEEN ' . $this->db->escape($range[0]) . ' AND ' . $this->db->escape($range[1]) . ')');
+		}
+		
+		if(array_key_exists('vote_end', $args)){
+			$this->db->where('vote_end', $args['vote_end']);
 		}
 		
 		$project_list = parent::getList($args);

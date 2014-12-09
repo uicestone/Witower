@@ -23,6 +23,20 @@ class Vote extends WT_Controller{
 
 		$active_projects=$this->project->count(array('status'=>'voting'));
 		
+		$project_args = array('status'=>'voting','order_by'=>'vote_start desc');
+		
+		if($this->input->get()){
+			$project_args = array_merge($project_args, $this->input->get());
+		}
+		
+		$projects=$this->project->getList($project_args);
+		
+		foreach($projects as &$project){
+			$project['tags']=$this->project->getTags($project['id']);
+			$project['comments']=$this->project->getComments($project['id']);
+			$project['comments_count']=count($project['comments']);
+		}
+		
 		$sum_votes=$this->project->countVotes(false);
 		
 		$hot_tags=array('设计','包装','LOGO平面','网站','UI','广告','制作');
@@ -33,18 +47,7 @@ class Vote extends WT_Controller{
 	
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 
-		$voting_projects['hot']=$this->project->getList(array('status'=>'voting','order_by'=>'voters desc','limit'=>10));
-		$voting_projects['latest']=$this->project->getList(array('status'=>'voting','order_by'=>'vote_start desc','limit'=>10));
-		
-		foreach($voting_projects as &$projects_column){
-			foreach($projects_column as &$voting_project){
-				$voting_project['tags']=$this->project->getTags($voting_project['id']);
-				$voting_project['votes']=$this->project->countVotes($voting_project['id']);
-				$voting_project['voters']=$this->project->countVoters($voting_project['id']);
-			}
-		}
-		
-		$this->load->view('vote/list', compact('recommended_voting_project','hot_tags','money','date','people','voting_projects','active_projects','sum_votes'));
+		$this->load->view('vote/list', compact('recommended_voting_project','hot_tags','money','date','people','projects','active_projects','sum_votes'));
 	}
 	
 	/**
