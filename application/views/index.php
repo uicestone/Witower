@@ -4,7 +4,7 @@
     <div class="head_l">
 		<div id="bigbanner">
 			<div id="banners">
-				<?=$this->image('project', $homepage_project['id'], false, array(500, 250))?>
+				<?=$this->image('project', $homepage_project['id'], false, array(null, 250))?>
 			</div>
 		</div>
 		<div class="head_r">
