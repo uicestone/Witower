@@ -58,18 +58,16 @@
 		</div>
 	</div>
 </div>
-<div class="statistics" style="background:#fff;">
-	<div class="main">
-		<ul>
+<div  style="width:1000px; overflow:hidden; margin:15px auto;background:#fff;border-radius: 5px;">
+	<div style="margin:15px;line-height:10px;">
+		<ul><h5>
 			<?php foreach($recommended_voting_project['candidates'] as $candidate){ ?>
-			<li><b><?= $candidate['percentage']*100 ?>%</b>的人投票给<span><a href="<?=$candidate['id']?>"><?=$candidate['name']?></a></span><br>
-				<ul>
-					<li>当前投票数：<?= $candidate['votes'] ?>票</li>
-					<li>投票时间：<?= $recommended_voting_project['vote_start'] ?> 至 <?= $recommended_voting_project['vote_end'] ?></li>
-				</ul>
-			</li>
+			<b><h4><span style="color:red"><?= $candidate['percentage']*100 ?>%</span>投票给<a href="<?=$candidate['id']?>"><?=$candidate['name']?></a></h4>
+
+					<li>当前投票数：<?= $candidate['votes'] ?>票
+					投票时间：<?= $recommended_voting_project['vote_start'] ?> 至 <?= $recommended_voting_project['vote_end'] ?></li>
 			<?php } ?>
-		</ul>
+		</h5></ul>
 	</div>
 </div>
 <?php } ?>

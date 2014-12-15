@@ -82,9 +82,9 @@ background-image: none;
 .foot{ width:100%; background:#5c5c5c;height:99px; }
 .foot ul{ width:980px; height:100px; margin:0 auto;}
 .foot ul li{ width:133px; height:71px; float:left; margin-right:110px;}
-.foot ul li h2{ width:100%; font-size:14px; font-family:宋体; color:#eeeeee; height:20px; margin:14px auto; line-height:20px; background:url(img2.png) no-repeat left center; text-indent:15px;}
+.foot ul li h2{ width:100%; font-size:14px; font-family:宋体; color:#eeeeee; height:20px; margin:14px auto; line-height:20px;  no-repeat left center; text-indent:15px;}
 .foot ul li a{ font-size:12px; font-family:宋体; color:#bfbfbf; display:inline-block; float:left; margin-left:15px; text-decoration:none;}
-.foot_b{ width:100%; text-align:center; color:#bfbfbf; font-family:宋体; font-size:12px; background:#3f3f3f; height:51px; line-height:51px;}
+.foot_b{ width:100%; text-align:center; color:#bfbfbf; font-family:宋体; font-size:12px; background:#5c5c5c; height:51px; line-height:51px;}
 
 /*service*/
 .service { background: #eee; border: 1px solid #ccc; overflow: hidden; line-height: 30px; margin:20px 0 0 0; }
@@ -532,6 +532,7 @@ page-register  ******/
 .reday { background:#fff; background:url(rightj.png) no-repeat top right #fff; width:1000px; height:auto; position:relative; margin-top:25px; margin: 0 auto; margin-top:0px; padding-bottom:20px;  border-radius: 5px;}
 .reday1 { background:#fff; height:auto; position:relative; margin-top:0px; padding-bottom: 100px;border-radius: 5px;}
 .maxred .img { float: left; height: 273px; width: 273px; }
+.maxred1 td  img {height: 80px; width: 80px; border-radius: 38px;}
 .maxred .reday_r { float: right; position: relative; width: 635px; }
 .maxred { height: auto; margin: 0px 20px 10px 20px; font-family:宋体; border-bottom:1px solid #c8c8c8; padding-top:20px; overflow:hidden; }
 .reday_r h2 { border-bottom: 1px solid #c8c8c8; font-family: 微软雅黑; font-size: 18px; font-weight: 100; height: 30px; line-height: 1; margin: 0 0 10px; width: 623px; }

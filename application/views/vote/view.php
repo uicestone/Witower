@@ -105,7 +105,7 @@
 					</div>                         
 <?}?>						
 				</div>
-				<div class="main">
+				<div class="maxred1">
 					<table>
 <?foreach($candidates as $candidate){?>
 						<tr>

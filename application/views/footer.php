@@ -3,11 +3,10 @@
 		<div id="footer">
 			<div class="foot">
 				<ul>
-					<li><h2>智塔</h2><a href="#">了解智塔</a><a href="#">加入智塔</a><a href="#">友情链接</a><a href="#">联系我们</a></li>
-					<li><h2>智塔</h2><a href="#">了解智塔</a><a href="#">加入智塔</a><a href="#">友情链接</a><a href="#">联系我们</a></li>
-					<li><h2>智塔</h2><a href="#">了解智塔</a><a href="#">加入智塔</a><a href="#">友情链接</a><a href="#">联系我们</a></li>
-					<li><h2>智塔</h2><a href="#">了解智塔</a><a href="#">加入智塔</a><a href="#">友情链接</a><a href="#">联系我们</a></li>
-
+					<li><h2>智塔</h2><a href="#">了解智塔</a><a href="#">加入智塔</a><a href="#">联系我们</a></li>
+					<li><h2>智塔</h2><a href="#">了解智塔</a><a href="#">加入智塔</a><a href="#">联系我们</a></li>
+					<li><h2>智塔</h2><a href="#">了解智塔</a><a href="#">加入智塔</a><a href="#">联系我们</a></li>
+					<li><h2>智塔</h2><a href="#">了解智塔</a><a href="#">加入智塔</a><a href="#">联系我们</a></li>
 				</ul>
 			</div>
 			<div class="foot_b">Copyright @2012-2014 www.witower.com All Rights Reserved 智塔 版权所有沪ICP备12018783号-1</div>
