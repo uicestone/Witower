@@ -10,28 +10,24 @@ class Admin extends WT_Controller{
 		$this->load->model('wit_model','wit');
 		$this->load->model('version_model','version');
 		$this->load->library('pagination');
+		$this->load->model('comment_model','comment');
 
 		if(!$this->user->isLogged('witower')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
-		
 		$this->load->page_name='admin';
 		$this->load->page_path[]=array('text'=>lang('admin'),'href'=>'/admin');
 	}
-	
 	function index(){
 		$this->load->view('admin/index');
 	}
-	
 	function config(){
 		if(!$this->user->isLogged('config')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
-		
 		$alert = array();
-			
 		$home_slide_images = $this->config->user_item('home_slide_images');
-		
+		$is_audit = $this->config->user_item('is_audit');
 		if($this->input->post('upload_banner_image') !== false){
 			
 			try{
@@ -63,12 +59,17 @@ class Admin extends WT_Controller{
 				return $item->filename !== $this->input->post('delete_banner_image');
 			});
 		}
+		if($this->input->post('is_audit') !== false){
+			$is_audit = $this->input->post('is_audit');
+		}
 		
 		$this->config->set_user_item('home_slide_images', $home_slide_images, 'db');
+		echo $this->config->set_user_item('is_audit',$is_audit);
 		
 		$this->load->page_path[]=array('text'=>lang('admin_config'),'href'=>'/admin/config');
-		
-		$this->load->view('admin/config',array('config_items'=>$this->config->witower, 'home_slide_images'=>$home_slide_images, 'alert'=>$alert));
+		//print_r($this->config->witower);
+		//print_r($this->config->user_item('is_audit'));
+		$this->load->view('admin/config',array('config_items'=>$this->config->witower, 'home_slide_images'=>$home_slide_images, 'is_audit'=>$is_audit,'alert'=>$alert));
 	}
 	
 	function editConfig($item){
@@ -155,11 +156,11 @@ class Admin extends WT_Controller{
 		
 	}
 	
-	/**
-	 * 财务纪录查看/添加页，没有修改功能
-	 * @param type $id
-	 * @throws Exception
-	 */
+
+//	 * 财务纪录查看/添加页，没有修改功能
+//	 * @param type $id
+//	 * @throws Exception
+//	 
 	function editFinance($id=NULL){
 		if(!$this->user->isLogged('finance')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
@@ -238,11 +239,9 @@ class Admin extends WT_Controller{
 		if(!$this->user->isLogged('company')){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
-		
 		$args=array(
 			'order_by'=>'id desc'
 		);
-		
 		$this->pagination->initialize(array(
 			'total_rows'=>$this->company->count($args),
 			'per_page'=>$this->config->user_item('list_per_page')
@@ -338,7 +337,6 @@ class Admin extends WT_Controller{
 		if($this->input->get('name')){
 			$args['name'] = $this->input->get('name');
 		}
-		
 		$this->pagination->initialize(array(
 			'total_rows'=>$this->user->count($args),
 			'per_page'=>$this->config->user_item('list_per_page')
@@ -348,9 +346,7 @@ class Admin extends WT_Controller{
 		
 		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
 		$users=$this->user->getList($args);
-		
 		$this->load->page_path[]=array('text'=>lang('admin_user'),'href'=>'/admin/user');
-		
 		$this->load->view('admin/user',compact('users','pagination'));
 		
 	}
@@ -417,5 +413,45 @@ class Admin extends WT_Controller{
 		$this->load->view('admin/user_edit',compact('user','profiles','alert'));
 		
 	}
+	function comment(){
+
+		$args=array('order_by'=>'id desc');
+		if($this->input->get('project') !== false){
+			$args['project'] = $this->input->get('project');
+		}
+
+		$this->pagination->initialize(array(
+			'total_rows'=>$this->comment->count($args),
+			'per_page'=>$this->config->user_item('list_per_page')
+		));
+		$pagination=$this->pagination->create_links();
+		
+		$args['limit']=array($this->pagination->per_page,$this->pagination->cur_page?(($this->pagination->cur_page-1)*$this->pagination->per_page):0);
+		$comments['list'] = $this->comment->getList($args);
+
+		$comments['pagination'] = $pagination;
+		if($this->input->get('del') !== false){
+			$this->comment->delcomment($this->input->get('del'));
+		}
+		if($this->input->get('is_show') !== false){
+			$this->comment->setcomment($this->input->get('id'),$this->input->get('is_show'));
+		}
+		$this->load->view('admin/comment',$comments);
+	}
+	function commenttoproject(){
+        if($this->input->get('id') !== false){
+		   $this->load->database();
+		   $sql="select * from `version_comment`  where id='".$this->input->get('id')."'"; 
+           $version = $this->db->query($sql);
+           $versionrow = $version->result()[0]->version;
+           //var_dump($versionrow);
+		   $sql="select * from `version`  where id='".$versionrow."'"; 
+           $project = $this->db->query($sql);
+           $row = $project->result();
+           //var_dump($row[0]->project);exit;
+		}
+		redirect('project/'.$row[0]->project);
+	}
+
 }
 ?>

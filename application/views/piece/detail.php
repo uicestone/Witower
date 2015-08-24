@@ -57,17 +57,17 @@
 						</div>
 					</div>
 				</div>
-				<? foreach ($piece['files'] as $file) { ?>
-					<div class="model model-b">
-						<div class="main">
-							<?php if (preg_match('/^image/', $file->file_type)) { ?>
-								<img src="<?= $file->url ?>">
-							<?php } elseif (preg_match('/^video/', $file->file_type)) { ?>
-								<video src="<?= $file->url ?>">
-								<?php } ?>
-						</div>
-					</div>
-				<? } ?>
+<!--				--><?// foreach ($piece['files'] as $file) { ?>
+<!--					<div class="model model-b">-->
+<!--						<div class="main">-->
+<!--							--><?php //if (preg_match('/^image/', $file->file_type)) { ?>
+<!--								<img src="--><?//= $file->url ?><!--">-->
+<!--							--><?php //} elseif (preg_match('/^video/', $file->file_type)) { ?>
+<!--								<video src="--><?//= $file->url ?><!--">-->
+<!--								--><?php //} ?>
+<!--						</div>-->
+<!--					</div>-->
+<!--				--><?// } ?>
 				<div class="model model-b"><br>
 					<?php if ($this->user->isLogged(array('witower', 'piece'))) { ?>
 						<form class="form-inline" method="post">
@@ -84,7 +84,7 @@
 	<div class="rightmax">
 		<div class="righttop"><strong>项目详情</strong></div>
 		<div class="con">
-			<div class="img"><?=$this->image('project', $piece['project']['id'])?></div>
+			<div class="img"><?=$this->image('project', $piece['project']['id'],0,array('100%',null))?></div>
 			<h2><a href="/vote/<?= $piece['project']['id'] ?>"><?= $piece['project']['name'] ?></a></h2>
 			<div class="hr"></div>
 			<div class="p">

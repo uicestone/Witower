@@ -20,13 +20,15 @@ class Wit_model extends WT_Model{
 	 * @param int $wit_id
 	 * @return array
 	 */
-	function getComments($wit_id){
+	function getComments($wit_id,$args=array()){
 		$this->db->select('version_comment.*, version.wit, user.name username')
 			->from('version_comment')
 			->join('version','version.id = version_comment.version','inner')
 			->join('user','user.id = version_comment.user','inner')
 			->where('version.wit',$wit_id);
-		
+		if(isset($args['is_audit'])&&$args['is_audit'] != 0){
+			$this->db->where('version_comment.is_show',1);
+		}
 		return $this->db->get()->result_array();
 	}
 	

@@ -16,7 +16,6 @@ class Company extends WT_Controller{
 		
 		$this->load->page_name='admin';
 		$this->load->page_path[]=array('text'=>lang('company'),'href'=>'/company');
-		
 		if(
 			($this->uri->segment(1)==='admin' && !$this->user->isLogged('witower'))
 			|| ($this->uri->segment(1)==='company' && !$this->user->isCompany())
@@ -36,7 +35,6 @@ class Company extends WT_Controller{
 	 * 产品列表
 	 */
 	function product(){
-		
 		$args=array(
 			'order_by'=>'id desc'
 		);
@@ -176,7 +174,6 @@ class Company extends WT_Controller{
 	 * 项目列表
 	 */
 	function project($status=NULL){
-		
 		$args=array(
 			'order_by'=>'wit_start desc'
 		);
@@ -188,7 +185,6 @@ class Company extends WT_Controller{
 		if(isset($status)){
 			$args['status']=$status;
 		}
-		
 		$this->pagination->initialize(array(
 			'total_rows'=>$this->project->count($args),
 			'per_page'=>$this->config->user_item('list_per_page')

@@ -1,0 +1,12 @@
+.indexDiv{padding:0 10px;}
+.btn{width:100px;height:46px;font-size:15px; color: #fff;background: #00a0e9;border-style: none;margin-left: -3px;}
+.text{width: 150px;height: 40px;font-size: 15px;margin-right: 0;padding-left: 10px;}
+label{display: inline;font-size: 14px;padding-right: 50px;}
+form{display: inline;}
+.content{color: #666666;margin: 10px 0 15px 0;}
+#kuai{background: #c2c2c2; height:45px; line-height:45px; overflow:hidden; position:relative;padding-left: 10px;}
+#kuai th{ width:1000px; font-size: 14px;}
+#kuai2{ height:45px; line-height:45px; overflow:hidden; position:relative;padding-left: 10px;}
+#kuai2 td{ width:1000px; font-size: 14px;}
+.page{text-align: center;font-size: 16px;margin:40px 0 60px 0;}
+.page a{padding: 0 9px;}

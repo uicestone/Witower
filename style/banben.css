@@ -1,0 +1,9 @@
+.heading2{padding-left: 10px;}
+.heading2 span{color: #ff0000;}
+.br{height:1px;background-color:#b2b2b2;}
+
+.kuai{background: #c2c2c2; height:45px; line-height:45px; overflow:hidden; position:relative;padding-left: 10px;}
+.kuai2{height:45px; line-height:45px; overflow:hidden; position:relative;padding-left: 10px;}
+.kuai li,.kuai2 li{float:left; width:20%; overflow:hidden;font-size: 18px;}
+/*.kuai3{border-top:#c2c2c2 solid 1px; border-bottom:#c2c2c2 solid 1px; height:30px; overflow:hidden; padding:8px 0px 2px 10px; line-height:1.5em;font-size: 18px;margin-bottom: 10px;}*/
+.kuai4{font-size: 18px;margin-left: 10px;}

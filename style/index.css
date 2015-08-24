@@ -1,0 +1,56 @@
+#login{text-align: center;}   /*登录*/
+
+.content{margin-bottom: 20px;}            /*作品详细*/
+.image img{width:100%;margin-bottom: 20px;}        /*作品详细*/
+/*.id1 {position: relative;padding: 0 10px 0 10px}*/
+.id1 img{width: 88px;}
+.indexDiv .img2{position: absolute;}
+.id1 .name{font-size:14px; padding:6px 0 3px 0;}
+
+.indexDiv .table  img{width: 100%;}        /*作品*/
+.indexDiv .table td{ font-size: 15px;}     /*作品*/
+.indexDiv .table{margin-bottom: 40px;}
+.page{text-align: center;font-size: 16px;margin-bottom: 40px;}
+.page a{padding: 0px 9px;}
+.btn{width:140px;height:50px;font-size:20px; color: #fff;background: #00a0e9;border-style: none;}
+#btn{text-align: center;margin-bottom: 40px;}
+
+form {margin:0 auto; width: 400px;}
+form input{
+    width:439px;
+    height:27px;
+    background: #fff;
+    border:1px solid #dedede;
+    padding:10px;
+    margin-top:3px;
+    font-size:0.9em;
+    color:#3a3a3a;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:0px;
+}
+#yzm{width: 120px;}
+
+.indexDiv .heading2 span{color: #ff0000;}
+
+
+.indexDiv{padding:0 10px;}
+.indexDiv li{min-height:50px; _height:50px; position:relative; padding:0 0 10px 146px;}
+.indexDiv .imgDiv{position:absolute; left:0px; top:0px;}
+.indexDiv .imgDiv img{height: 87px;width:146px;}
+.li_01 .imgDiv  img{height: 145px; width:146px;} 
+.indexDiv .bg{border-top:#c2c2c2 solid 1px; border-bottom:#c2c2c2 solid 1px; height:85px; overflow:hidden; padding:0px 5px 0 10px; line-height:1.5em;}
+.indexDiv .name{font-size:14px; padding:6px 0 3px 0;}
+.indexDiv .time{height:1.5em; position:relative; color:#666;}
+.indexDiv .time em{position:absolute; top:0px; right:0px; background:#3197df; color:#FFF; display:block; height:1.5em; padding:0px 5px;
+    border-radius:3px;
+    -moz-border-radius:3px;
+}
+.indexDiv .price span{color:#f00;}
+.indexDiv .msg{text-align:right;}
+.indexDiv .msg span{padding-left:20px;}
+.indexDiv .li_01 .bg{height:145px; background:#00a0e9; border:0px; color:#FFF;}
+.indexDiv .li_01 .content{height:4.5em; overflow:hidden; text-align:justify; padding-top:3px; margin-bottom:3px;}
+.indexDiv .li_01 a{color:#FFF;}
+.indexDiv .li_01 .time em{background:#666;}
+.indexDiv .li_01 .time, .indexDiv .li_01 .msg{color:#cecece;}

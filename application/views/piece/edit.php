@@ -1,5 +1,5 @@
 <?php $this->view('header'); ?>
-<link rel="stylesheet" href="<?=site_url()?>style/jquery.fileupload.css">
+<!--<link rel="stylesheet" href="--><?//=site_url()?><!--style/jquery.fileupload.css">-->
 <!--<link rel="stylesheet" href="<?=site_url()?>style/jquery.fileupload-ui.css">-->
 <div class="span12">
 	<div class="model model-b">
@@ -32,9 +32,9 @@
 						<div class="thumbnail">
 							<a href="<?=$file->url?>">
 								<?php if(preg_match('/^image/', $file->file_type)){ ?>
-								<img src="<?=$file->url?>">
+								<img src="23<?=base_url()?><?=$file->url?>">
 								<?php }elseif(preg_match('/^video/', $file->file_type)){ ?>
-								<img src="<?=site_url()?>style/video_icon.png">
+								<img src="23<?=base_url()?>style/video_icon.png">
 								<?php } ?>
 							</a>
 							<h5><?=$file->client_name?></h5>
@@ -46,7 +46,7 @@
 				<div class="form-actions">
 					<button type="submit" name="submit" class="btn btn-primary">提交</button>
 					<?php if(isset($piece['id']) && $this->user->id === $piece['user'] || $this->user->isLogged('piece')){ ?>
-					
+
 					<a id="vote-button" href="#remove-confirm-modal" role="button" class="btn" data-toggle="modal">删除</a>
 
 					<div id="remove-confirm-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -61,7 +61,7 @@
 							<button type="button" class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
 							<button type="submit" name="remove" class="btn btn-danger">确认删除</button>
 						</div>
-					</div>	
+					</div>
 					<?php } ?>
 				</div>
 			</form>
@@ -69,16 +69,16 @@
 	</div>
 </div>
 
-<link rel="stylesheet" type="text/css" href="/style/bootstrap/typeahead.js-bootstrap.css">
-<script type="text/javascript" src="/js/typeahead.min.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="/style/bootstrap/typeahead.js-bootstrap.css">-->
+<!--<script type="text/javascript" src="/js/typeahead.min.js"></script>-->
 <script type="text/javascript">
 jQuery(function ($) {
-	
+
 	$('#project-name').typeahead({
 		remote: '/project/match/%QUERY',
 		valueKey:'name'
 	});
-	
+
 	$(':input').on('typeahead:selected',function(event,item){
 		$($(this).data('id-element')).val(item.id);
 	})
@@ -87,13 +87,13 @@ jQuery(function ($) {
 			$($(this).data('id-element')).val('');
 		}
 	});
-	
+
 	$('#clear-files').on('click', function(){
 		$('#files-clearer').prop('disabled', false);
 		$(':input[name="files[]"]').remove();
 		$('#files').empty();
 	});
-	
+
 	$('#fileupload').fileupload({
 		url: '/media/upload'
 //		dataType: 'json'
@@ -118,15 +118,15 @@ jQuery(function ($) {
 				.find('h5').wrapInner(link).end()
 				.find('img').wrap(link).end()
 				.find('.progress').remove();
-		
+
 			$('#files-template').clone().val(JSON.stringify(response.result)).prop('disabled', false).removeAttr('id').insertAfter('#files-template');
-			
+
 			$('#files-clearer').prop('disabled', true);
-			
+
 		}
 	})
 /*	.on('fileuploadprocessalways', function(e, data) {
-		
+
 		var index = data.index,
 				file = data.files[index],
 				node = $(data.context.children()[index]);
@@ -155,11 +155,11 @@ jQuery(function ($) {
 //			response.context.append('<br>').append(error);
 //		}
 //	.on('fileuploadfail', function(e, data) {
-//		
+//
 //		$.each(data.files, function(index) {
-//			
+//
 //			var error = $('<span class="text-danger"/>').text('上传文件失败');
-//			
+//
 //			$(data.context.children()[index]).append('<br>').append(error);
 //		});
 //	})

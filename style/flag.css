@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+ margin:0;padding:0 10px;color:#333;text-align:center;font:12px Arial,Helvetica,sans-serif;
+}
+h1,h2,h3,h4,h5,h6,form,ul,img{
+ margin:0;padding:0;border:0;
+}
+li{
+ list-style:none;
+}
+div#AddDP{
+ text-align:left;margin-top:20px;border:1px solid #ffdfb6;background:#fffbf5;
+}
+div#AddDP h5{
+ margin:0;padding:5px;background:#fff3dd;font-size:14px;
+}
+div#AddDP ul.Star{
+ margin-top:8px;margin-left:6em;
+}
+div#AddDP ul.Star li{
+ float:left;margin-right:8px;margin-bottom:5px;margin-bottom:0;list-style:none;
+}
+div#AddDP ul.Star li span.Select{
+ float:left;padding:5px;border:1px solid #ffcc00;display:block;
+}
+div#AddDP ul.Star li span.Select img{
+ vertical-align:middle;
+}

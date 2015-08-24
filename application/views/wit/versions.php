@@ -1,8 +1,13 @@
 <? $this->view('header') ?>
-	<div class="model">
-		<div class="title">
-			<h3>创意 <?=$wit['name']?> 的版本</h3>
-			<?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?>
+<style>
+.kuai2 ul li {
+  font-size: 13px;
+}
+</style>
+<link href="<?=base_url()?>style/banben.css" rel="stylesheet" type="text/css" />
+ <div class="heading2"><a href="">项目</a> / <a href=""><?= $project['name'] ?></a> / <a href=""><span>版本</span></a></div>
+        <div class="br"></div>
+        <?if($wit['selected']){?><span class="icon-check" title="已选中"></span><?}?>
 			<?if($wit['deleted']){?><span class="icon-remove-sign" title="已删除"></span><?}?>
 <?if(($this->user->isLogged(array('witower','wit')) || $this->user->id==$project['id']) && $project['status']==='buffering'){?>
 <?	if($wit['selected']){?>
@@ -11,80 +16,43 @@
 			<a href="/wit/select/<?=$wit['id']?>" class="btn btn-small" style="margin-left:1em">选中此创意</a>
 <?	}?>
 <?}?>
-		</div>
-		<form method="post">
-			<div class="main">
-				<?=$this->view('alert')?>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>版本</th>
-							<th>标题</th>
-							<th>作者</th>
-							<th>时间</th>
-							<th>得分</th>
-<?if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
-							<th>操作</th>
+<?=$this->view('alert')?>
+ <?foreach ($versions as $id => $version){?>
+        <div class="kuai">
+            <ul >
+                <li style=" width:15%;">版本</li>
+                <li style=" width:20%;">作者</li>
+                <li style=" width:30%;">时间</li>
+                <li style=" width:35%;">评分</li>
+                <?if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
 <?}?>
-						</tr>
-					</thead>
-					<tbody>
-<?foreach ($versions as $id => $version){?>
-						<tr class="fields">
-							<td>
-								<label>
-									<?=$version['num']?>
+            </ul>
+        </div>
+        <div class="kuai2">
+            <ul style="  font-size: 10px; ">
+                <li style=" width:15%;"><?=$version['num']?>
 <?	if($version['deleted']){?>
 									<span class="icon-remove-sign" title="已删除"></span>
-<?	}?>
-								</label>
-							</td>
-							<td><?=$version['name']?></td>
-							<td>
-								<a href="/space/<?=$version['user']?>" ><?= $version['author_name'] ?></a>
-<?	if(!$this->input->get('user')){?>
-								<a href="?user=<?=$version['user']?>" title="只看该作者"><span class="icon-filter"></span></a>
-<?	}?>
-							</td>
-							<td>
-								<?= date('Y-m-d H:i',$version['time']) ?>
-							</td>
-							<td>
-								智塔：<?=$version['score_witower']?>, 企业：<?=$version['score_company']?>
-<?	if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
-<?		if($project['status']!='end'){?>
-								<p class="form-inline">
-									<input type="text" name="score[<?=$version['id']?>]" value="<?=$version['score']?>" placeholder="评分" style="width:3em">
-									<input type="text" name="comment[<?=$version['id']?>]" value="<?=$version['comment']?>" placeholder="评语">
-									<button type="submit" class="btn">打分</button>
-								</p>
-<?		}?>
-<?	}?>
-							</td>
-<?	if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>
-							<td>
-<?		if($version['deleted']){?>
-								<a href="/wit/recoverversion/<?=$version['id']?>" class="btn btn-small">恢复</a>
-<?		}else{?>
-								<a href="/wit/removeversion/<?=$version['id']?>" class="btn btn-small">删除</a>
-<?		}?>								
-							</td>
-<?	}?>
-						</tr>
-						<tr class="summary version">
-							<td class="content" colspan="<?if($this->user->isLogged(array('witower','wit')) || $project['company']==$this->user->id){?>6<?}else{?>5<?}?>">
-								<?= $version['content'] ?>
-							</td>
-						</tr>
-<?}?>
-					</tbody>
-				</table>
-			</div>
-		</form>
-	</div>
+<?	}?></li>
+                <li style=" width:20%;"><?=$version['author_name']?></li>
+                <li style=" width:30%;"><?= date('Y-m-d H:i',$version['time']) ?></li>
+                <li style=" width:35%;">智塔:<?=$version['score_witower']?>;企业:<?=$version['score_company']?></li>
+            </ul>
+        </div>
+        <div class="hx"></div>
+        <div class="kuai4"><?= $version['content'] ?>
 
-<script type="text/javascript" src="/js/diff_match_patch.js"></script>
-<script type="text/javascript" src="/js/jquery.pretty-text-diff.min.js"></script>
+
+        </div>
+ <?}?>
+
+
+
+
+
+
+<!--<script type="text/javascript" src="/js/diff_match_patch.js"></script>-->
+<!--<script type="text/javascript" src="/js/jquery.pretty-text-diff.min.js"></script>-->
 <script type="text/javascript">
 $(function(){
 	$('.version').on('click',function(){
@@ -105,5 +73,5 @@ $(function(){
 	$('.version:first').trigger('click');
 });
 </script>
-		
+
 <? $this->view('footer') ?>

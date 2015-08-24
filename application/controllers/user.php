@@ -251,16 +251,13 @@ class User extends WT_Controller{
 		if(is_null($this->user->id)){
 			redirect('login?'.http_build_query(array('forward'=>substr($this->input->server('REQUEST_URI'),1))));
 		}
-		
 		if($this->input->post('submit')!==false){
 			
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules(array());
 			
 			try{
-				
-				if($this->input->post('password_new')!==false){
-					
+				if($this->input->post('password_new')!==false&&$this->input->post('password_new')!=''){
 					$this->form_validation->set_rules(array(
 						array('field'=>'password','label'=>'密码','rules'=>'required'),
 						array('field'=>'password_new','label'=>'新密码','rules'=>'required'),
@@ -281,9 +278,7 @@ class User extends WT_Controller{
 					$alert[]=array('title'=>'提示','message'=>'密码已修改','type'=>'info');
 
 				}
-				
-				is_array($this->input->post('user')) && $this->user->update($this->input->post('user'));
-				
+				is_array($this->input->post('user')) && $this->user->update($this->input->post('user'));		
 				is_array($this->input->post('profiles')) && $this->user->updateProfiles($this->input->post('profiles'));
 				
 				$this->load->library('upload',array(
@@ -346,7 +341,6 @@ class User extends WT_Controller{
 		}
 		
 		$user=$this->user->fetch();
-		
 		$profiles=$this->user->getProfiles();
 		
 			$this->load->page_path[]=array('text'=>lang('profile'),'href'=>'/profile');

@@ -1,20 +1,25 @@
 <?php $this->view('header'); ?>
+<link href="<?=base_url()?>style/xiangmutoupiao1.css" rel="stylesheet" type="text/css" />
+<link href="<?=base_url()?>style/index.css" rel="stylesheet" type="text/css" />
 <?php if(isset($recommended_voting_project)){ ?>
-<div style="width:1000px; overflow:hidden; margin:15px auto;background:#fff;border-radius: 5px;">
-	<div class="maxred" style="height:430px">
-		<div class="img"><?= $this->image('project', $recommended_voting_project['id']) ?></div>
-		<div class="reday_r">
-			<h2><strong><a href="/vote/<?= $recommended_voting_project['id'] ?>"><?= $recommended_voting_project['name'] ?></a>(热门投票)</strong></h2>
-			<h4>项目描述</h4><?= $recommended_voting_project['summary'] ?>
-			<strong>发布企业：<?= $recommended_voting_project['company_name'] ?>
-				<?php followButton($recommended_voting_project['company']) ?></strong>
-			<br><strong>活动状态：<?= lang($recommended_voting_project['status']) ?></strong>
-			<br><strong>项目金额：<span><?= $recommended_voting_project['bonus'] ?></span>元<br></strong>
-			<strong>截止时间：<?= $recommended_voting_project['wit_end'] ?>
-				&nbsp;</strong>
-			<br>
-			<strong>标签：</strong>
-			<?php foreach ($recommended_voting_project['tags'] as $tag) { ?>
+<div class="indexDiv">
+    <div class="heading"><a href="<?=site_url()?>/vote/<?= $recommended_voting_project['id'] ?>"><?= $recommended_voting_project['name'] ?></div>
+    <img src="<?=base_url()?>uploads/images/project/<?=$recommended_voting_project['id']?>.jpg" width="100%"/>
+    <div class="content">
+        <div class="section">项目描述 : <span><?= $recommended_voting_project['summary'] ?></span></div>
+
+        <div class="section1">企业名称 : <span><?= $recommended_voting_project['company_name'] ?>
+    		<?php followButton($recommended_voting_project['company']) ?></span>
+
+        </div>
+        <div class="section">活动状态 : <span><?= lang($recommended_voting_project['status']) ?></span></div>
+        <div class="section">项目金额 : <span id="i"><span><?= $recommended_voting_project['bonus'] ?>元</span></div>
+        <div class="section">截止时间 : <span class="ii"><?= $recommended_voting_project['wit_end'] ?></span></div>
+
+    <?php foreach ($recommended_voting_project['tags'] as $tag) { ?>
+			<a href="#"><?= $tag ?></a>
+	<?php } ?>
+    <?php foreach ($recommended_voting_project['tags'] as $tag) { ?>
 			<a href="#"><?= $tag ?></a>
 			<?php } ?>
 			<div class="">
@@ -34,14 +39,11 @@
 				with (document)
 				0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
 			</script>
-		</div>
-	</div>
-	<div class="scroll-img" style="bottom: 79px;background: none repeat scroll 0 0 #fff;height: 22px;line-height: 25px;position: absolute;text-align: center;width: 110px;" ><strong>当前参与人员</strong></div>
-	<div class="blocks">
-		<div class="list1" style="width:1000px;">
-			<div class="left"><img src="<?= site_url() ?>style/left.png" /></div>
-			<div class="maxul">
-				<ul>
+
+    <div class="hx"></div>
+
+    <div class="heading1">候选人名单及投票</div>
+        <div class="hx"></div>
 					<?php foreach ($recommended_voting_project['voters'] as $voter) { ?>
 					<li>
 						<a href="/space/<?= $voter['id'] ?>">
@@ -52,69 +54,35 @@
 						</a>
 					</li>
 					<?php } ?>
-				</ul>
-			</div>
-			<div class="right"><img src="<?= site_url() ?>style/right.png" /></div>
-		</div>
-	</div>
-</div>
-<div  style="width:1000px; overflow:hidden; margin:15px auto;background:#fff;border-radius: 5px;">
-	<div style="margin:15px;line-height:10px;">
-		<ul><h5>
-			<?php foreach($recommended_voting_project['candidates'] as $candidate){ ?>
-			<b><h4><span style="color:red"><?= $candidate['percentage']*100 ?>%</span>投票给<a href="<?=$candidate['id']?>"><?=$candidate['name']?></a></h4>
-
-					<li>当前投票数：<?= $candidate['votes'] ?>票
-					投票时间：<?= $recommended_voting_project['vote_start'] ?> 至 <?= $recommended_voting_project['vote_end'] ?></li>
-			<?php } ?>
-		</h5></ul>
-	</div>
-</div>
+    </div>
 <?php } ?>
-<div class="search">
-	<div class="main">
-		<h4><b>投票统计</b>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>有<?= $active_projects ?>个正在进行的投票</b>
-			&nbsp;&nbsp;&nbsp;
-			<b>共计投<?= $sum_votes ?></b>票</h4>
-	</div>
-	<?php $this->view('vote/search'); ?>
-</div>
-<div style="width:980px; overflow:hidden; margin:15px auto;">
-	<div id="content" class="wrapper<? if ($this->page_name) { ?> page-<?= $this->page_name ?><? } ?>">
-		<div class="water hide">
-			<?php foreach ($projects as $project) { ?>
-			<div class="box" style="background:#f2f2f2;">
-				<div class="img cell">
-					<a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-						<?= $this->image('project', $project['id'], 200) ?>
-					</a>
-					<h4><?= $project['name'] ?></h4>
-					<div class="blockd"><font class="fonts">截止时间：<?= in_array($project['status'], array('preparing', 'witting')) ? $project['wit_end'] : $project['vote_end'] ?></font><span><?= lang($project['status']) ?></span></div>
-				</div>
-				<div class="details cell">
-					<ul class="list">
-						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-								<span><?= $project['comments_count'] ?></span>
-								<p>讨论留言</p>
-							</a>
-						</li>
-						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-								<span style="font-family:微软雅黑;">￥<?= $project['bonus'] ?></span>
-								<p>项目金额</p>
-							</a>
-						</li>
-						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-								<span><?= $project['witters'] ?></span>
-								<p>参与人数</p>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+    <div class="hx2"></div>
+
+		<?php foreach($recommended_voting_project['candidates'] as $candidate){ ?>
+			<h4><span style="color:red"><?= $candidate['percentage']*100 ?>%</span>投票给<a href="<?=$candidate['id']?>"><?=$candidate['name']?></a></h4>
+                    <li>当前投票数：<?= $candidate['votes'] ?>票
+					投票时间：<?= $recommended_voting_project['vote_start'] ?> 至 <?= $recommended_voting_project['vote_end'] ?></li>
+					<div class="hx2"></div>
 			<?php } ?>
-		</div>
+			<?php $this->view('vote/search'); ?>
+	<div class="hx2"></div>
+	<div >
+	 	<?php foreach ($projects as $project) { ?>
+	      <li>
+	          <div class="imgDiv"><a href="<?= site_url() ?>vote/<?= $project['id'] ?>"><img src="<?=base_url()?>uploads/images/project/<?=$project['id']?>.jpg" height="87px"/></a></div>
+	          <div class="bg">
+	              <div class="name"><a href="<?= site_url() ?>vote/<?= $project['id'] ?>"><?= $project['name'] ?></div>
+	              <div class="time">截止时间：<?= in_array($project['status'], array('preparing', 'witting')) ? $project['wit_end'] : $project['vote_end'] ?> <em><?= lang($project['status']) ?></em></div>
+	              <div class="price"><a href="<?= site_url() ?>vote/<?= $project['id'] ?>">项目金额：<span><?= $project['bonus'] ?></span></div>
+	              <div class="msg">讨论留言：<?= $project['comments_count'] ?><span>参与人数：<?= $project['witters'] ?></span></div>
+	          </div>
+	      </li>
+
+	      <?}?>
 	</div>
+
+
 </div>
+
+
 <?php $this->view('footer'); ?>

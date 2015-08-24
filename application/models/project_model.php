@@ -23,7 +23,12 @@ class Project_model extends WT_Model{
 	function fetch($id=NULL){
 		$project=parent::fetch($id);
 		$project['company_name']=$this->user->fetch($project['company'],'name');
+	//	print_r($args);
+//		if(is_audit==1){
+//			$this->db->where('project.active',$args['active']);
+//		}
 		$project['status']=$this->getStatus($project);
+		//$project['comments']=$this->getComments($project['id'],$args);
 		return $project;
 	}
 	
@@ -113,17 +118,16 @@ class Project_model extends WT_Model{
 		
 		if(array_key_exists('vote_end', $args)){
 			$this->db->where('vote_end', $args['vote_end']);
-		}
-		
+		}		
 		$project_list = parent::getList($args);
-		
+		//print_r($args);
 		//判断是否数组，因为可能指定了count_all_results参数，返回的是整数
 		if(is_array($project_list)){
 			foreach($project_list as &$project){
 				$project['status']=$this->getStatus($project);
+				//$project['comments']=$this->getComments($project['id'],);
 			}
 		}
-		
 		return $project_list;
 	}
 	
@@ -133,11 +137,11 @@ class Project_model extends WT_Model{
 	 * @return array
 	 */
 	function getComments($project_id=NULL, $args=array()){
-		
+		//echo $project_id;
+		//print_r($args);
 		is_null($project_id) && $project_id=$this->id;
-		
 		$this->db->select('version_comment.*')
-			->from('version_comment')
+			->where('version_comment.is_show',1)->from('version_comment')
 			->join('version','version.id = version_comment.version','inner')
 			->join('wit','wit.id = version.wit','inner')
 			->select('wit.id AS wit')
@@ -146,16 +150,14 @@ class Project_model extends WT_Model{
 			->join('user','user.id = version_comment.user','inner')
 			->select('user.name AS username')
 			->where('project.id',$project_id);
-		
 		if(array_key_exists('order_by', $args)){
 			$this->db->order_by($args['order_by']);
 		}
-		
 		if(array_key_exists('limit', $args)){
-			$this->db->limit($args['limit']);
+			$this->db->limit($args['limit'][0]);
 		}
-		
-		return $this->db->get()->result_array();
+		$result = $this->db->get()->result_array();
+		return $result;
 	}
 	
 	/**
@@ -230,11 +232,9 @@ class Project_model extends WT_Model{
 		
 		$this->db->select('SUM(votes) AS sum',false)
 			->from('project_vote');
-		
 		if($project_id!==false){
 			$this->db->where('project',$project_id);
 		}
-		
 		return $this->db->get()->row()->sum;
 	}
 	
@@ -349,10 +349,14 @@ class Project_model extends WT_Model{
 	 * @return string: preparing, witting, buffering, voting, end
 	 */
 	function getStatus($project=NULL){
+		//print_r($project);
+		
+		
 		is_null($project) && $project=$this->id;
 		if(!is_array($project)){
 			$project=$this->fetch($project);
 		}
+		//print_r($project['id']);
 		
 		if($project['active']===false || $this->date->today > $project['vote_end']){
 			return 'end';
@@ -370,6 +374,20 @@ class Project_model extends WT_Model{
 			return 'voting';
 		}
 	}
+	/**
+	 * 获得一个项目的所有评论
+	 * @param int or array $project 项目id或项目数据，前者将先执行一次fetch
+	 * @return string: preparing, witting, buffering, voting, end
+	 */
+//	function getComment($project=NULL){
+//		//is_null($project) && $project=$this->id;
+////		if(!is_array($project)){
+////			$project=$this->fetch($project);
+////		}
+////		$version = $this->db->from('version')->where("project = $project['id']");
+////		echo $this->db->last_query();
+//		return 0;
+//	}
 	
 }
 ?>

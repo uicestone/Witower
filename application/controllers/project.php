@@ -15,14 +15,13 @@ class Project extends WT_Controller{
 	/**
 	 * 项目列表页
 	 */
-	function index(){
-		
+	function index(){		
 		$this->load->model('tag_model','tag');
 		
 		if($this->config->user_item('recommended_project')){
 			$recommended_project=$this->project->fetch($this->config->user_item('recommended_project'));
 			$recommended_project['tags']=$this->project->getTags($recommended_project['id']);
-			$recommended_project['comments']=$this->project->getComments($recommended_project['id']);
+			//$recommended_project['comments']=$this->project->getComments($recommended_project['id']);
 			$recommended_project['commenters']=$this->user->getList(array('has_commented_project'=>$recommended_project['id']));
 		}
 		
@@ -38,10 +37,15 @@ class Project extends WT_Controller{
 		$people = array('七嘴八舌(1-50)','高朋满座(51-500)' ,'人多势众(501-2000)','熙来攘往(2001-5000)','人山人海(5000以上)');
 		
 		$projects = $this->project->getList(array_merge($this->input->get() ? $this->input->get() : array(), array('order_by'=>'id desc', 'status'=>'witting')));
-		
+		if($this->config->user_item('is_audit') === 0){
+			$conditions['is_audit'] = 0;
+		}else{
+			$conditions['is_audit'] = 1;	
+		}
+
 		foreach($projects as &$project){
 			$project['tags']=$this->project->getTags($project['id']);
-			$project['comments']=$this->project->getComments($project['id']);
+			$project['comments']=$this->project->getComments($project['id'],$conditions);
 			$project['comments_count']=count($project['comments']);
 		}
 		
@@ -72,15 +76,22 @@ class Project extends WT_Controller{
 		$company=$this->company->fetch($project['company']);
 		
 		$wits=$this->wit->getList(array('in_project'=>$project['id']));
+
 		
+		$conditions['order_by'] = 'id desc';
+		//echo $this->config->user_item('is_audit');
+		if($this->config->user_item('is_audit') === 0){
+			$conditions['is_audit'] = 0;
+		}else{
+			$conditions['is_audit'] = 1;	
+		}
 		foreach($wits as &$wit){
-			$wit['comments']=$this->wit->getComments($wit['id'],array('order_by'=>'id desc'));
+			$wit['comments']=$this->wit->getComments($wit['id'],$conditions);
 		}
 		
 		$witters=$this->user->getList(array('in_project'=>$project['id']));
 		
 		$witters_count=count($witters);
-		
 		$hot_tags = array_column($this->tag->getList(array('order_by'=>'hits desc','limit'=>20)),'name');
 
 		$recommended_projects=$this->project->getList(array('order_by'=>'witters','limit'=>10,'status'=>'witting'));
@@ -89,7 +100,7 @@ class Project extends WT_Controller{
 		
 		$this->load->page_name='project-view';
 		$this->load->page_path[]=array('text'=>$project['name'],'href'=>'/project/'.$project['id']);
-		
+		//print_r(compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes','product','company'));
 		$this->load->view('project/view',  compact('project','wits','hot_tags','witters','witters_count','recommended_projects','recommended_votes','product','company'));
 	}
 	

@@ -133,7 +133,6 @@ class User_model extends WT_Model{
 		$this->db->from('user')
 			->where("(name = $username OR email = $username)",NULL,false)
 			->where('password',sha1($password.$this->config->item('encryption_key')));
-				
 		$user=$this->db->get()->row_array();
 		
 		if(empty($user)){

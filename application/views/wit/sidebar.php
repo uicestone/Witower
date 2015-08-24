@@ -1,4 +1,7 @@
 	<div id="right" class="sidebar span3">
+	<style>
+	.participator li{display: inline-block;*display:inline;*zoom:1;}
+	</style>
 <?if(isset($witters)){?>
 		<div class="box">
 			<div class="title">
@@ -8,8 +11,7 @@
 				<ul>
 					<?foreach($witters as $witter){?>
 					<li>
-						<a href="/space/<?=$witter['id']?>"><?=$this->image('avatar',$witter['id'],100,50)?><span><?=$witter['name']?></span></a>
-						<?followButton($witter['id'])?>
+						<a href="/space/<?=$witter['id']?>"><?=$this->image('avatar',$witter['id'],100,50)?><br><span><?=$witter['name']?></span></a>
 					</li>
 					<?}?>
 				</ul>

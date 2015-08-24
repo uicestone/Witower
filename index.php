@@ -1,6 +1,7 @@
 <?php
 
 /*
+
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
  *---------------------------------------------------------------
@@ -73,6 +74,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
+ 
 	$application_folder = 'application';
 
 /*
@@ -148,7 +150,6 @@ if (defined('ENVIRONMENT'))
 
 	// ensure there's a trailing slash
 	$system_path = rtrim($system_path, '/').'/';
-
 	// Is the system path correct?
 	if ( ! is_dir($system_path))
 	{
@@ -192,6 +193,7 @@ if (defined('ENVIRONMENT'))
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
 
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
@@ -200,7 +202,10 @@ if (defined('ENVIRONMENT'))
  * And away we go...
  *
  */
-require_once BASEPATH.'core/CodeIgniter.php';
+	require_once BASEPATH.'core/CodeIgniter.php';
+
+	//print_r($_SERVER);
+
 
 /* End of file index.php */
 /* Location: ./index.php */

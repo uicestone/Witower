@@ -1416,9 +1416,8 @@ class CI_DB_driver {
 			if(empty($value)){
 				$value='NULL';
 			}else{
-				array_walk($value,function($v){
-					$v=intval($v);
-				});
+				//array_walk($value,$v=intval($v));
+				array_walk($value,function($v){$v=intval($v);});
 				$value=implode(', ',$value);
 			}
 			return " IN ($value)";

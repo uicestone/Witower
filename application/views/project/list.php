@@ -1,50 +1,34 @@
 <?php $this->view('header'); ?>
+<link href="<?=base_url()?>style/liulanxiangmu.css" rel="stylesheet" type="text/css" />
+<link href="<?=base_url()?>style/style.css" rel="stylesheet" type="text/css" />
 
 <?php if(isset($recommended_project)){ ?>
 <?php $this->view('project/recommended'); ?>
 <?php } ?>
 <br>
-<div class="search">
+</div>
 <?php $this->view('project/search'); ?>
+
+<br>
+<div class="indexDiv">
+ <?php foreach ($projects as $project) { ?>
+      <li>
+          <div class="imgDiv"><a href="<?= site_url() ?>project/<?= $project['id'] ?>">
+		  
+		  <?= $this->image('project', $project['id'], 200 ,array( 146,87))?>
+		  
+		  </a></div>
+          <div class="bg">
+              <div class="name"><a href="<?= site_url() ?>project/<?= $project['id'] ?>"><?= $project['name'] ?></div>
+              <div class="time">截止时间：<?= in_array($project['status'], array('preparing', 'witting')) ? $project['wit_end'] : $project['vote_end'] ?> <em><?= lang($project['status']) ?></em></div>
+              <div class="price"><a href="<?= site_url() ?>project/<?= $project['id'] ?>">项目金额：<span><?= $project['bonus'] ?></span></div>
+              <div class="msg">讨论留言：<?= $project['comments_count'] ?><span>参与人数：<?= $project['witters'] ?></span></div>
+          </div>
+      </li>
+
+      <?}?>
 </div>
 
-<div style="width:980px; overflow:hidden; margin:15px auto;">
-	<div id="content" class="wrapper<? if ($this->page_name) { ?> page-<?= $this->page_name ?><? } ?>">
-		<div class="water hide">
-			<?php foreach ($projects as $project) { ?>
-			<div class="box" style="background:#f2f2f2;">
-				<div class="img cell">
-					<a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-						<?= $this->image('project', $project['id'], 200) ?>
-					</a>
-					<h4><?= $project['name'] ?></h4>
-					<div class="blockd"><font class="fonts">截止时间：<?= in_array($project['status'], array('preparing', 'witting')) ? $project['wit_end'] : $project['vote_end'] ?></font><span><?= lang($project['status']) ?></span></div>
-				</div>
-
-
-
-				<div class="details cell">
-					<ul class="list">
-						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-								<span><?= $project['comments_count'] ?></span>
-								<p>讨论留言</p>
-							</a>
-						</li>
-						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-								<span style="font-family:微软雅黑;">￥<?= $project['bonus'] ?></span>
-								<p>项目金额</p>
-							</a>
-						</li>
-						<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-								<span><?= $project['witters'] ?></span>
-								<p>参与人数</p>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<?php } ?>
-		</div>
-	</div>
-</div>
 <?php $this->view('footer'); ?>
+
+

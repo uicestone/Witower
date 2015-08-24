@@ -1,121 +1,61 @@
-<? $this->view('header') ?>
-
-<div class="head_co">
-    <div class="head_l">
-		<div id="bigbanner">
-			<div id="banners">
-				<?=$this->image('project', $homepage_project['id'], false, array(null, 250))?>
-			</div>
-		</div>
-		<div class="head_r">
-			<h2><a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"><?= $homepage_project['name'] ?></a></h2>
-			<p class="con"><?= str_getSummary($homepage_project['summary'], 140) ?></p>
-			<div class="blockd"><font class="fonts">截止时间：<?=$homepage_project['wit_end']?></font><span><?=lang($homepage_project['status'])?></span></div>
-			<div class="hr"></div>
-			<div class="details cell">
-				<ul class="list">
-					<li>
-						<a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"> <span><?=$homepage_project['comments_count']?></span>
-							<p>讨论留言</p>
-						</a>
-					</li>
-					<li>
-						<a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"> <span>￥<?=$homepage_project['bonus']?></span>
-							<p>项目金额</p>
-						</a>
-					</li>
-					<li>
-						<a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"> <span><?=$homepage_project['witters']?></span>
-							<p>参与人数</p>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-    </div>
-    <div class="code">
-		<div class="code_t"> <img src="<?= site_url() ?>style/erweima.jpg" width="73" height="74" />
-			<h2>智塔微信</h2>
-			<p>掏出手机扫一扫
-				关注智塔
-			</p>
-		</div>
-		<div class="me"><img src="<?= site_url() ?>style/me.jpg"></div>
-    </div>
-</div>
-
-<div class="centermax" style="width:100%;">
-	<div style="width:980px; overflow:hidden; margin:0 auto;">
-		<div id="content" class="wrapper<? if ($this->page_name) { ?> page-<?= $this->page_name ?><? } ?>">
-			<? if (count($this->page_path) > 1) { ?>
-				<ul class="breadcrumb">
-					<? foreach ($this->page_path as $level => $page) { ?>
-						<li>
-							<? if ($level === 0) { ?>
-								<strong>
-								<? } ?>
-								<a href="<?= $page['href'] ?>">
-									<?= $page['text'] ?>
-								</a>
-								<? if ($level === 0) { ?>
-								</strong>
-							<? } ?>
-							<? if ($level < count($this->page_path) - 1) { ?>
-								<span class="divider">/</span>
-							<? } ?>
-						</li>
-					<? } ?>
-				</ul>
-			<? } ?>
-
-			<div class="water hide">
-				<?php foreach ($projects as $project) { ?>
-					<div class="box" style="background:#f2f2f2;">
-						<div class="img cell">
-							<a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-								<?= $this->image('project', $project['id'], 200) ?>
-							</a>
-							<h4><?= $project['name'] ?></h4>
-							<div class="blockd"><font class="fonts">截止时间：<?= in_array($project['status'], array('preparing', 'witting')) ? $project['wit_end'] : $project['vote_end'] ?></font><span><?= lang($project['status']) ?></span></div>
-						</div>
-
-
-
-						<div class="details cell">
-							<ul class="list">
-								<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-										<span><?= $project['comments_count'] ?></span>
-										<p>讨论留言</p>
-									</a>
-								</li>
-								<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-										<span style="font-family:微软雅黑;">￥<?= $project['bonus'] ?></span>
-										<p>项目金额</p>
-									</a>
-								</li>
-								<li><a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
-										<span><?= $project['witters'] ?></span>
-										<p>参与人数</p>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				<? } ?>
-
-			</div>
-
-			<?php if (!$this->user->isLogged()) { ?>
-			<div class="login">
-				<p>
-					想看更多？请<a href="/signup">注册</a>或<a href="/login">登录</a>
-				</p>
-			</div>
+﻿<?php $this->view('header')?>
+<style>
+.slidesjs-pagination{  display:none;}
+</style>
+<script type="text/javascript" src="<?= site_url() ?>js/jquery.slides.minn.js"></script>
+<link href="<?=base_url()?>style/index.css" rel="stylesheet" type="text/css" />
+<div class="pageBanner">
+		<?php if(!empty($home_slide_images)){ ?>
+		<!--幻灯片切换层START-->
+		<link rel="stylesheet" type="text/css" href="<?=site_url()?>style/slides.css">
+		<div id="slides" style="margin-top:-20px;">
+			<?php foreach ($home_slide_images as $image) { ?>
+				<?php if ($image->url) { ?><a href="<?= $image->url ?>" target="_blank"><?php } ?>
+					<img src="<?= site_url() ?>uploads/images/banner/<?= $image->filename ?>" width="375px" height="156px">
+					<?php if ($image->url) { ?></a><?php } ?>
 			<?php } ?>
 		</div>
-	</div>
+		<!--幻灯片切换层END-->
+		<?php } ?>
+<div class="h10"></div>
+<div class="indexDiv">
+<ul>
+      <li class="li_01">
+          <div class="imgDiv"><a href="">
+		  <?= $this->image('project', $homepage_project['id'], false ,array(null,145))?>	  
+		  </a></div>
+          <div class="bg">
+              <div class="name"><a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"><?= $homepage_project['name'] ?></a></div>
+              <div class="time"><a href="<?= site_url() ?>project/<?= $homepage_project['id'] ?>"> 截止时间：<?=$homepage_project['wit_end']?> <em><?=lang($homepage_project['status'])?></em></div>
+              <div class="content">
+                  <?= str_getSummary($homepage_project['summary'], 140) ?>
+              </div>
+              <div class="price">项目金额：<span><?=$homepage_project['bonus']?></span></div>
+              <div class="msg">讨论留言：<?=$homepage_project['comments_count']?><span>参与人数：<?=$homepage_project['witters']?></span></div>
+          </div>
+      </li>
+      <?php foreach ($projects as $project) { ?>
+      <li>
+          <div class="imgDiv">
+              <a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
+		  <?= $this->image('project', $project['id'], 200 ,array(null, 87)) ?>
+		  <!--<img src="<?=base_url()?>uploads/images/project/<?=$project['id']?>.jpg" height="87px"/>--></a></div>
+          <div class="bg">
+              <div class="name">
+              <a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
+                 </div>
+              <div class="time">截止时间：<?= in_array($project['status'], array('preparing', 'witting')) ? $project['wit_end'] : $project['vote_end'] ?> <em><?= lang($project['status']) ?></em></div>
+              <div class="price">
+                <a href="/<?= in_array($project['status'], array('preparing', 'witting')) ? 'project' : 'vote' ?>/<?= $project['id'] ?>">
+                      项目金额：<span><?= $project['bonus'] ?></span></div>
+              <div class="msg">讨论留言：<?= $project['comments_count'] ?><span>参与人数：<?= $project['witters'] ?></span></div>
+          </div>
+      </li>
+
+      <?}?>
+
+</ul>
 </div>
-<script type="text/javascript" src="<?= site_url() ?>js/jquery.slides.min.js"></script>
 <script type="text/javascript">
 jQuery(function ($) {
 	$('#slides').slidesjs({
@@ -142,5 +82,4 @@ jQuery(function ($) {
 		});
 	});
 </script>
-
-<? $this->view('footer') ?>
+<?php $this->view('footer')?>

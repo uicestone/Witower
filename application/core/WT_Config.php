@@ -19,7 +19,6 @@ class WT_Config extends CI_Config{
 	 * @return mixed
 	 */
 	function user_item($item){
-		
 		//TODO 给上级配置增加禁止覆盖选项
 		$plain_config = array_merge($this->witower,$this->user,$this->session);
 		

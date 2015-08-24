@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0px; padding:0px; font-size:12px; font-family:Arial, "微软雅黑"; color:#333;}
+a{color:#333; text-decoration:none; outline:none;}
+a:active{star:expression(this.onFocus=this.blur()); color:#333;} 
+img{border:0px;}
+a:link {text-decoration: none; outline:none; color:#333;}
+a:visited{text-decoration: none; outline:none; color:#333;}
+a:hover{text-decoration:none; color:#1c5a97; outline:none;}
+ul, p, dl, dt, dd{padding:0px; margin:0px;}
+li{list-style-position:outside; list-style-type:none;}
+h1, h2, h3, h4, h5{font-size:14px; padding:0px; margin:0px;}
+h1{font-size:16px;}
+h5{font-size:12px;}
+.fl{float:left;}
+.fr{float:right;}
+.clear_f{clear:both; height:0px; padding:0px; margin:0px; display:block; _display:inherit;}
+.h10{height:10px; overflow:hidden; clear:both;}
+input{margin:10px 10px 10px 0px; font-family:Arial, "微软雅黑"; color: #888;font-size: 27px;}
+em{font-style:normal;}
+
+input[type="button"], input[type="submit"], input[type="reset"] {
+-webkit-appearance: none;
+}
+
+.head{background:#323232; height:45px; line-height:45px; overflow:hidden; position:relative; color:#FFF;}
+.head .logo{position:absolute; left:10px; top:8px;}
+.head .info{position:absolute; top:0px; right:10px; font-size:14px;}
+.head .info a{color:#FFF; padding:0 6px;}
+.head .info .img{padding-top:6px;}
+
+.nav{background:#fff; height:45px; line-height:45px; overflow:hidden; position:relative;}
+.nav li{float:left; width:25%; overflow:hidden;}
+.nav a{display:block; height:45px; overflow:hidden; border-right:#b2b2b2 solid 1px; font-size:16px; text-align:center;}
+.nav a:hover, .nav .aNow{background:#00a0e9; color:#FFF;}
+
+.pageBanner img{float:left; width:100%;}
+
+.footDiv{background:#666; padding:10px 0; text-align:center; color:#FFF; line-height:1.5em;}
+.footDiv div{padding-bottom:5px;}
+.footDiv div a{color:#FFF; font-size:14px; padding:0 9px; position:relative; top:1px;}
+
+.heading{font-size: 18px;text-align: center;  margin:20px 0;}   /*主标题*/
+.heading1{font-size: 15px; font-weight: bold;margin: 10px 0px 10px 0px; }    /*副标题*/
+.hx{margin:0 0 20px 0;padding:0; height:1px;background-color:#b2b2b2;overflow:hidden;}  /*横线*/
+.hx2{margin:0 0 20px 0;padding:0; height:2px;background-color:#b2b2b2;overflow:hidden;}
+.heading2{font-size: 18px;text-align: left;  margin:20px 0 20px 0; }
+
+
+
+
+
